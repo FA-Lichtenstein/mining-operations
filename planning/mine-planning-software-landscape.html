@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mine Planning Software Landscape — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+      --warn-bg: #fff8f0;
+      --warn-border: #c45c00;
+      --ok-bg: #f0f7f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    .mimic { background: var(--ok-bg); border-left: 4px solid var(--accent); padding: 0.85rem 1rem; margin: 1rem 0; }
+    .avoid { background: var(--warn-bg); border-left: 4px solid var(--warn-border); padding: 0.85rem 1rem; margin: 1rem 0; }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Mine Planning Software Landscape</h1>
+  <p class="meta">
+    Task ID: PR-08 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a>, <a href="index.html#pr-02">PR-02</a> ·
+    Related: <a href="angular-firebase-or-stack.html">PR-04</a> (stack only — not duplicated here),
+    <a href="mining-or-real-world-examples.html">PR-05</a>, <a href="synthetic-data-generator-spec.html">PR-07b</a> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a>
+  </p>
+
+  <p class="lead">
+    Commercial mine planning suites — GEOVIA Whittle/Surpac/MineSched, Datamine Studio OP, RPMGlobal XPAC/MinePlanner,
+    Deswik, Micromine, Maptek Vulcan/Evolution, Hexagon MinePlan — share a common workflow from block model through
+    pit shells, pushbacks, Gantt schedules, and plan-vs-actual reconciliation. Portfolio Angular demos should
+    <strong>mimic planner vocabulary, horizon hand-offs, scenario comparison, and KPI dashboards</strong> in simplified
+    form; they should <strong>not</strong> claim Whittle-grade pit optimisation, native 3D CAD, or desktop MIP engines
+    (see PR-04 anti-patterns). This doc maps vendor roles so demos feel credible to a Ukwazi quantitative planner
+    without reimplementing proprietary kernels.
+  </p>
+
+  <h2>Scope and boundary</h2>
+  <ul>
+    <li><strong>In scope:</strong> Product categories, planning horizons, typical data objects, UI/workflow patterns worth cloning, mimic-vs-avoid guidance for portfolio demos.</li>
+    <li><strong>Out of scope:</strong> Angular/Firebase library choices, Worker architecture, Firestore schemas — covered in <a href="angular-firebase-or-stack.html">PR-04</a>.</li>
+    <li><strong>Audience:</strong> Agent implementing PR-06/PR-19 portfolio modules; interview prep for Ukwazi Quantitative Planning Analyst remit.</li>
+    <li><strong>Method:</strong> Vendor product pages and documentation (2024–2026); industry workflow articles; cross-check against Ukwazi T1–T3 themes.</li>
+  </ul>
+
+  <h2>Planning horizons (shared vocabulary)</h2>
+  <p>
+    All major vendors partition work by <em>time horizon</em> and <em>decision type</em>, not by a single monolithic app.
+    Demos should label views with the same language planners use on site.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Horizon</th>
+        <th>Typical duration</th>
+        <th>Primary decisions</th>
+        <th>Representative tools</th>
+        <th>Portfolio theme</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Strategic / LOM</strong></td>
+        <td>Life of mine (5–30+ yr)</td>
+        <td>Ultimate pit, cut-off, pushback phasing, NPV, stockpile strategy</td>
+        <td>Whittle, Hexagon MPPE, Maptek Evolution Strategy, Deswik GO, Micromine Beyond</td>
+        <td><span class="tag">T4</span> <span class="tag">T6</span></td>
+      </tr>
+      <tr>
+        <td><strong>Tactical / medium-term</strong></td>
+        <td>1–5 yr; rolling quarters</td>
+        <td>Phase sequencing, equipment fleets, blend targets, budget tonnes</td>
+        <td>MineSched (tactical focus), Studio OP Auto Scheduler, XPAC, Deswik Planning, Micromine Alastri ATS, Maptek Evolution Origin</td>
+        <td><span class="tag">T1</span></td>
+      </tr>
+      <tr>
+        <td><strong>Short-term / operational</strong></td>
+        <td>Weeks–months; 12-week rolling</td>
+        <td>Bench/block sequence, destinations, calendars, MOQ rules</td>
+        <td>MineSched (short-term targets), Studio OP + DTS, XPAC Autoscheduler, Deswik Planning, Micromine Alastri APS, Maptek Short Term Planner</td>
+        <td><span class="tag">T1</span></td>
+      </tr>
+      <tr>
+        <td><strong>Execution / reconciliation</strong></td>
+        <td>Shift–monthly</td>
+        <td>Plan vs survey, variance KPIs, deviation alerts</td>
+        <td>Pitram (execution), Cut Reporting (Vulcan), conformance modules (Alastri)</td>
+        <td><span class="tag">T3</span></td>
+      </tr>
+      <tr>
+        <td><strong>Haulage / simulation</strong></td>
+        <td>Cross-cutting</td>
+        <td>Cycle times, bottlenecks, IPCC vs truck trade-offs</td>
+        <td>Deswik NOVA, Maptek haulage profiles, XPAC ADS, Haul Infinity (Micromine)</td>
+        <td><span class="tag">T2</span> <span class="tag">T4</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Typical integrated workflow</h2>
+  <p>
+    Case studies and reseller workflows (e.g. Surpac → Whittle → MineSched) describe a repeatable chain.
+    Portfolio demos can show this as a <strong>read-only pipeline diagram</strong> with synthetic hand-offs — not live CAD integration.
+  </p>
+  <ol>
+    <li><strong>Geology / block model</strong> — Surpac, Vulcan, Studio RM: drillholes → 3D model → block attributes (grade, density, RQD).</li>
+    <li><strong>Strategic pit optimisation</strong> — Whittle, MPPE, Vulcan pit optimiser: Lerchs-Grossmann or Pseudoflow shells; pit-by-pit NPV curves; Whittle Simultaneous Optimizer for concurrent cut-off, stockpile, blend, and schedule (industry literature: GMX/SIMO).</li>
+    <li><strong>Design &amp; reserves</strong> — Pushback solids, bench blocks, wireframe reserves (Studio OP Reserves workflow, Vulcan Interactive Block Planner).</li>
+    <li><strong>Scheduling</strong> — Gantt + dependencies + resource leveling; scenario A/B/C (XPAC, Deswik Planning, Datamine DTS).</li>
+    <li><strong>Reporting &amp; hand-off</strong> — Period tonnes/grade, cashflow tables, 3D animation playback, export to Excel/board packs.</li>
+    <li><strong>Reconciliation loop</strong> — End-of-period surfaces vs plan; spatial KPI dashboards (T3).</li>
+  </ol>
+
+  <h2>Vendor landscape (2024–2026)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Vendor / product</th>
+        <th>Primary role</th>
+        <th>Signature capabilities</th>
+        <th>Demo mimic priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GEOVIA Whittle</strong><br><small><a href="https://www.3ds.com/products/geovia/whittle">3ds.com</a></small></td>
+        <td>Strategic open-pit optimisation</td>
+        <td>LG / Pseudoflow pit shells; role-based portfolio (Pit, Pushback, Blend, Multi-Mine, Simultaneous Optimizer); scenario sensitivity; NPV focus</td>
+        <td>Low kernel — <strong>high UX</strong>: pit-by-pit chart, scenario tabs, assumption summary report</td>
+      </tr>
+      <tr>
+        <td><strong>GEOVIA Surpac</strong></td>
+        <td>Geology, modelling, mine design</td>
+        <td>Block models, pit design solids, industry-standard data interchange</td>
+        <td>Skip 3D CAD — show block-model <em>metadata card</em> (commodity, cells, extent)</td>
+      </tr>
+      <tr>
+        <td><strong>GEOVIA MineSched</strong><br><small><a href="https://www.3ds.com/products/geovia/minesched">3ds.com</a></small></td>
+        <td>Tactical scheduling OP/UG</td>
+        <td>Pushback/bench automation; stockpile + haulage; thousands of heuristic scenarios; target-based material ratios; 2025 release adds stockpile capacity rules and progressive haul-truck availability</td>
+        <td><strong>High</strong>: horizon label “tactical”, scenario compare table, Gantt-like period grid</td>
+      </tr>
+      <tr>
+        <td><strong>Datamine Studio OP</strong><br><small><a href="https://docs.dataminesoftware.com/StudioOP/">docs</a></small></td>
+        <td>OP design + medium/short schedule</td>
+        <td>Managed Reserves workflow; Auto Scheduler; rules-based pit design; DTS 4.0+ Gantt sync (supersedes legacy EPS export); Studio OP 4.1 current</td>
+        <td><strong>High</strong>: wizard steps (import model → phases → blocks → schedule); workflow ribbon metaphor</td>
+      </tr>
+      <tr>
+        <td><strong>RPMGlobal XPAC / MinePlanner</strong><br><small><a href="https://rpmglobal.com/product/xpac/">rpmglobal.com</a></small></td>
+        <td>Commodity-specific scheduling</td>
+        <td>Reserve-block database; Autoscheduler objectives/constraints; Advanced Destination Scheduling; scenario calendars</td>
+        <td><strong>High</strong>: “constraints panel” (MOQ, bench rules, capacities); destination routing table</td>
+      </tr>
+      <tr>
+        <td><strong>Deswik Planning / GO / NOVA</strong><br><small><a href="https://www.deswik.com/products/planning">deswik.com</a></small></td>
+        <td>Unified OP+UG planning; optimisation services</td>
+        <td>CAD-linked Gantt; design↔schedule sync; resource leveling; cloud optimisation; haulage/blend (NOVA)</td>
+        <td><strong>Medium</strong>: linked design/schedule toggle; dashboard filters; DES/optimisation as <em>backend job</em> status chip</td>
+      </tr>
+      <tr>
+        <td><strong>Micromine Beyond / Alastri</strong><br><small><a href="https://www.micromine.com/beyond/">micromine.com</a></small></td>
+        <td>Strategic OP + tactical/production schedule</td>
+        <td>End-of-period surfaces exported Beyond → Alastri; ESG scenario quantification; Pitram for execution deviation</td>
+        <td><strong>High</strong>: strategic→tactical surface hand-off; conformance/deviation KPI strip</td>
+      </tr>
+      <tr>
+        <td><strong>Maptek Vulcan / Evolution</strong><br><small><a href="https://www.maptek.com/products/evolution/">maptek.com</a></small></td>
+        <td>3D platform + enterprise scheduling</td>
+        <td>Pit optimiser (LG/push-relabel); Evolution MILP-style LOM; single dataset across horizons; haulage/blend</td>
+        <td>Low 3D — <strong>medium</strong> scenario iteration counter (“assessed N scenarios”)</td>
+      </tr>
+      <tr>
+        <td><strong>Hexagon MinePlan (MPPE)</strong><br><small><a href="https://hexagon.com/products/hexagon-mineplan-op-engineering-strategic">hexagon.com</a></small></td>
+        <td>Strategic pit + MILP LOM schedule</td>
+        <td>Pseudoflow pits; pushback generator; case management; Excel export; Block Model Manager as single source of truth</td>
+        <td><strong>Medium</strong>: case/version switcher; pit-by-pit graph; “model version diff” for reserves</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="meta">
+    Also referenced in market comparisons: Minemax (Datamine group via Constellation 2020, separate branding), Snowden Optimo,
+    Micromine Spry (soft rock), Carlson Mining — same horizon split applies; not exhaustively scored here.
+    Market moves since 2022: Sandvik acquired Deswik; Weir acquired Micromine (2025); Datamine parent Vela acquired Samtech fleet/telematics (2024).
+  </p>
+
+  <h2>Shared data objects (synthetic-friendly)</h2>
+  <p>Demos should name entities the way planners export them — aligns with <a href="synthetic-data-generator-spec.html">PR-07b</a> seeds.</p>
+  <dl>
+    <dt>Block model slice</dt>
+    <dd>Tabular: block ID, x/y/z, grade(s), material type, economic value ($/t), in-pit flag.</dd>
+    <dt>Pit shell / pushback</dt>
+    <dd>Shell ID, nested parent shell, tonnes ore/waste, strip ratio, incremental NPV.</dd>
+    <dt>Mining block / bench polygon</dt>
+    <dd>Schedulable unit with phase, bench, destination (plant / stockpile / waste dump).</dd>
+    <dt>Schedule period</dt>
+    <dd>Calendar month/quarter; planned ore/waste tonnes, grade, equipment hours, cashflow.</dd>
+    <dt>Scenario</dt>
+    <dd>Named assumption set: price, cost escalation, discount rate, capacity cap — comparable side-by-side.</dd>
+    <dt>Reconciliation record</dt>
+    <dd>Plan vs actual tonnes/grade by period or polygon; variance % and alert threshold.</dd>
+  </dl>
+
+  <h2>Mimic vs avoid (portfolio demos)</h2>
+
+  <div class="mimic">
+    <h3>Mimic — simplified but credible</h3>
+    <ul>
+      <li><strong>Horizon navigation</strong> — tabs or stepper: Strategic → Tactical → Short-term → Reconciliation (Micromine Beyond→Alastri pattern).</li>
+      <li><strong>Scenario manager</strong> — duplicate scenario, edit price/cost/capacity sliders, compare NPV/tonnes/grade in a summary table (Whittle/MPPE/XPAC all emphasise multi-scenario).</li>
+      <li><strong>Pit-by-pit or phase summary chart</strong> — line/bar of incremental NPV vs shell number; static chart from precomputed JSON (not live LG; chart lib per PR-04).</li>
+      <li><strong>Gantt-like period grid</strong> — rows = pushbacks or phases, columns = months; colour by material type; read-only or drag-reorder on <em>toy</em> instance only.</li>
+      <li><strong>Constraints panel</strong> — checklist: bench precedence, MOQ, mill blend band, truck count, stockpile cap (XPAC Autoscheduler / MineSched vocabulary).</li>
+      <li><strong>Assumptions audit trail</strong> — collapsible “settings report” listing every input used in a run (Whittle Pit Optimizer summary report pattern).</li>
+      <li><strong>Workflow wizard</strong> — 4–6 steps with validation gates (Studio OP Reserves workflow; Datamine managed tasks).</li>
+      <li><strong>Plan vs actual dashboard</strong> — KPI cards, variance heatmap by period (T3; Pitram deviation tracking analogue).</li>
+      <li><strong>Destination / material routing table</strong> — source block → destination, tonnes, grade (XPAC ADS simplified).</li>
+      <li><strong>Professional exports</strong> — CSV download + print-friendly summary; “board pack” PDF is optional polish.</li>
+      <li><strong>Domain language in UI</strong> — pushback, bench, strip ratio, cut-off, LOM, MOQ, end-of-period surface — matches Ukwazi job ads and <a href="ukwazi-services-summary.html">anchor §5</a>.</li>
+    </ul>
+  </div>
+
+  <div class="avoid">
+    <h3>Avoid — credibility traps</h3>
+    <ul>
+      <li><strong>Claiming Whittle/Deswik integration</strong> — no logos implying certified connectors; say “inspired by industry workflow”.</li>
+      <li><strong>Browser-based full pit optimisation</strong> — million-cell LG/Pseudoflow/GMX; use precomputed shells from PR-07b or &lt;500-block toy grid (PR-04 anti-pattern).</li>
+      <li><strong>Desktop-grade 3D mine CAD</strong> — full Vulcan/Surpac viewer; at most 2D bench map or lightweight Three.js pit shell with &lt;5k faces.</li>
+      <li><strong>Real-time MIP scheduling at scale</strong> — Hexagon MPSO/MPPE MILP on full block inventory; expose “optimisation run” as Cloud Function job with polling, or fixed optimal schedule.</li>
+      <li><strong>Fake precision</strong> — NPV to six decimals, or optimal labels without stating toy/synthetic scope.</li>
+      <li><strong>Fleet management (Pitram) scope creep</strong> — shift-by-shift dispatch GPS is execution layer; stay planning/reconciliation unless T2 DES haulage module.</li>
+      <li><strong>Reimplementing vendor-specific scripting</strong> — XPAC XCM, Deswik macros; use JSON scenario configs instead.</li>
+      <li><strong>Stack duplication</strong> — Firebase schema, Workers, chart libraries, route paths, and auth belong in PR-04 only; this doc names UI patterns, not implementation.</li>
+    </ul>
+  </div>
+
+  <h2>UI pattern mimic scorecard</h2>
+  <p>How worthwhile each <em>interaction pattern</em> is for Angular portfolio modules (1 = skip, 5 = flagship).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Pattern (source products)</th>
+        <th>Theme</th>
+        <th>Mimic score</th>
+        <th>Simplified implementation hint</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Scenario compare dashboard (Whittle, MPPE, XPAC)</td>
+        <td>T1, T4</td>
+        <td>5</td>
+        <td>Scenario compare panel; persisted per PR-04 Firestore pattern — not specified here</td>
+      </tr>
+      <tr>
+        <td>Plan vs actual reconciliation (Alastri conformance, Vulcan Cut Reporting)</td>
+        <td>T3</td>
+        <td>5</td>
+        <td>Monthly CSV series; variance alerts — see PR-05 cases #04–#05</td>
+      </tr>
+      <tr>
+        <td>Managed workflow wizard (Studio OP Reserves)</td>
+        <td>T1</td>
+        <td>4</td>
+        <td>Angular stepper + guarded routes; state in session service</td>
+      </tr>
+      <tr>
+        <td>Gantt / period grid (Deswik, DTS, Maptek Gantt Scheduler)</td>
+        <td>T1</td>
+        <td>4</td>
+        <td>Table or lightweight Gantt lib; read-only for demo v1</td>
+      </tr>
+      <tr>
+        <td>Constraints &amp; objectives panel (XPAC Autoscheduler)</td>
+        <td>T1</td>
+        <td>4</td>
+        <td>Form group bound to scenario JSON; validation messages in planner jargon</td>
+      </tr>
+      <tr>
+        <td>Pit-by-pit NPV curve (Whittle, Vulcan optimiser)</td>
+        <td>T4</td>
+        <td>3</td>
+        <td>Static chart from precomputed shells; label “illustrative”</td>
+      </tr>
+      <tr>
+        <td>3D schedule animation (DTS, MineSched)</td>
+        <td>T1</td>
+        <td>2</td>
+        <td>Defer; optional GIF or period slider on 2D map</td>
+      </tr>
+      <tr>
+        <td>Block model editor (Surpac, Vulcan)</td>
+        <td>—</td>
+        <td>1</td>
+        <td>Out of portfolio scope</td>
+      </tr>
+      <tr>
+        <td>Strategic MILP LOM optimiser UI (MPPE, Evolution)</td>
+        <td>T1, T4</td>
+        <td>2</td>
+        <td>Show job queue + result only; kernel off-browser per PR-04</td>
+      </tr>
+      <tr>
+        <td>Haulage / IPCC trade-off (Deswik NOVA, Maptek haulage)</td>
+        <td>T2, T4</td>
+        <td>4</td>
+        <td>Separate DES/LCC module — PR-05 #02, #08</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Mapping to portfolio themes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Theme</th>
+        <th>Industry software anchor</th>
+        <th>Demo focus (no vendor clone)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag">T1</span> Scheduling</td>
+        <td>MineSched, Studio OP, XPAC, Deswik Planning, Alastri</td>
+        <td>Scenario scheduling UI, constraints, period tonnes/grade</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T2</span> DES / haulage</td>
+        <td>NOVA, XPAC haulage, Haul Infinity</td>
+        <td>Queue/cycle DES dashboard — not scheduling suite UI</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T3</span> Reconciliation</td>
+        <td>Vulcan Cut Reporting, Alastri conformance, Pitram deviation</td>
+        <td>Spatial KPI variance, alert workflow</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T4</span> Trade-offs</td>
+        <td>Whittle scenarios, IPCC vs truck studies</td>
+        <td>NPV/LCC scenario compare, not pit optimiser</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T5</span> Capacity / MDP</td>
+        <td>Resource leveling (Deswik), fleet calendars (XPAC)</td>
+        <td>Equipment pool calendar + utilization chart</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T6</span> Closure / risk</td>
+        <td>Whittle sensitivity, Evolution scenario batches</td>
+        <td>Price/cost Monte Carlo on simplified cashflow — not closure CAD</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Gaps for downstream PRs</h2>
+  <ul>
+    <li><strong>PR-07b:</strong> Add named exports matching Studio OP / XPAC column headers for schedule and reconciliation CSVs.</li>
+    <li><strong>PR-09:</strong> Which suites dominate SA platinum/coal vs gold (vendor market share) — not verified in this pass.</li>
+    <li><strong>PR-18/PR-19:</strong> Tag seed ideas with “mimic pattern” IDs from scorecard above.</li>
+    <li><strong>UG planning:</strong> Micromine Advance, MineSched UG flows noted but OP-first for portfolio v1.</li>
+  </ul>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard</h3>
+    <p class="meta">Artifact-level scores for this research doc. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score (1–5)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukwazi fit (T1–T6)</td>
+          <td>5</td>
+          <td>Directly maps commercial planner toolchain to T1/T3/T4 demo vocabulary Ukwazi uses daily.</td>
+        </tr>
+        <tr>
+          <td>CV proof</td>
+          <td>2</td>
+          <td>Landscape research only; CV does not yet show mine-planning UI (PR-03 gap).</td>
+        </tr>
+        <tr>
+          <td>Angular+Firebase fit</td>
+          <td>4</td>
+          <td>Top mimic patterns (scenario dashboard, reconciliation, wizard) are browser-native; kernels deferred per PR-04.</td>
+        </tr>
+        <tr>
+          <td>Data feasibility</td>
+          <td>4</td>
+          <td>No vendor file formats required; synthetic block/schedule objects suffice (PR-07b).</td>
+        </tr>
+        <tr>
+          <td>Differentiation</td>
+          <td>5</td>
+          <td>Few developer portfolios reference Whittle/MineSched workflows authentically.</td>
+        </tr>
+        <tr>
+          <td>Effort</td>
+          <td>M</td>
+          <td>Research complete; implementing mimic patterns spans multiple PR-19 modules.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Suggested module sketch (stack in PR-04)</h3>
+    <p>
+      Frame a lazy route group as a <strong>“simplified planner workbench”</strong> — not a Whittle clone. Landing page shows the
+      six-step industry pipeline (block model card → pit shells → phases → schedule → report → reconciliation) with each step
+      linking to a submodule. Core views to mimic: (1) <strong>scenario manager</strong> — list/create/compare scenarios with
+      assumption diff and pit-by-pit chart from precomputed JSON; (2) <strong>tactical schedule</strong> — period grid + constraints
+      sidebar mirroring MineSched/XPAC language; (3) <strong>reconciliation</strong> — plan vs actual KPIs with variance alerts
+      (T3 flagship). Any “optimise” action returns canned or server-side results — never implies live LG/MILP in-browser.
+      Routes, Firestore schemas, Workers, chart libraries, and auth are defined in
+      <a href="angular-firebase-or-stack.html">PR-04</a> only.
+    </p>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-08.md</code> ·
+    Registry row: <code>index.html#pr-08</code>
+  </footer>
+</body>
+</html>

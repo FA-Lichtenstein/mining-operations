@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synthetic Data Generator Spec — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    h4 { font-size: 0.92rem; margin: 1rem 0 0.35rem; color: var(--muted); }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    pre {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.78rem;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 0.6rem 0 1rem;
+      line-height: 1.45;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Synthetic Data Generator Spec</h1>
+  <p class="meta">
+    Task ID: PR-07b · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-07">PR-07</a>, <a href="index.html#pr-01">PR-01</a>, <a href="index.html#pr-02">PR-02</a> ·
+    Cross-refs: <a href="open-data-apis-mining.html">open-data-apis-mining.html</a>,
+    <a href="mining-or-real-world-examples.html">PR-05 cases</a>,
+    <a href="_handover/theme-taxonomy.md">T1–T6</a>
+  </p>
+
+  <p class="lead">
+    Three deterministic-seed generators produce mine-level CSV/GeoJSON that PR-07 public anchors cannot supply:
+    <strong>block model</strong> (T1 scheduling topology), <strong>truck cycle</strong> (T2/T5 DES and MDP states),
+    and <strong>plan-vs-survey variance</strong> (T3 reconciliation KPIs). Each generator accepts a JSON config,
+    emits versioned seed files for Firebase Storage, and calibrates scale against Stats SA P2041, DMPR B1/ME Bulletin,
+    D1 entity metadata, and USGS infrastructure priors from PR-07. T4 combines block + cycle outputs for IPCC trade-offs;
+    T6 uses block-model entity metadata plus PR-07 <code>closure_risk.csv</code> — no fourth generator.
+  </p>
+
+  <h2>Boundary — PR-07 vs PR-07b</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>PR-07 (<a href="open-data-apis-mining.html">open-data-apis-mining.html</a>)</th>
+        <th>PR-07b (this doc)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>19-source catalog, licenses, ETL patterns, aggregate seed filenames</td>
+        <td>Three generators, JSON Schema configs, mine-level CSV/GeoJSON column specs</td>
+      </tr>
+      <tr>
+        <td>Defines <em>synthetic gap</em> per T1–T6 theme package</td>
+        <td>Maps each gap to <code>gen-*</code> outputs and PR-05 clone cases — does not re-research sources</td>
+      </tr>
+      <tr>
+        <td>T6 liability amounts stay out of scope (public atlases only)</td>
+        <td>T6 joins <code>closure_risk.csv</code> + block site metadata; stochastic cost draws remain in demo Worker</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Generator registry</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Primary themes</th>
+        <th>Output artifacts</th>
+        <th>PR-07 calibration anchor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>gen-block-model</code></td>
+        <td>Block model generator</td>
+        <td>T1, T4 (partial), T6 (metadata)</td>
+        <td><code>blocks.csv</code>, <code>precedence_edges.csv</code>, <code>blocks.geojson</code></td>
+        <td>D1 mine type + commodity; B1/ME Bulletin annual tonnage cap; CGS domain bounds</td>
+      </tr>
+      <tr>
+        <td><code>gen-truck-cycle</code></td>
+        <td>Truck cycle generator</td>
+        <td>T2, T4 (partial), T5</td>
+        <td><code>cycles.csv</code>, <code>fleet_events.csv</code>, <code>fleet_state.json</code></td>
+        <td>P2041 <code>throughput_priors.json</code>; Minerals Council fleet/crew order-of-magnitude; USGS haul distance skeleton</td>
+      </tr>
+      <tr>
+        <td><code>gen-plan-survey-var</code></td>
+        <td>Plan-vs-survey variance generator</td>
+        <td>T3</td>
+        <td><code>reconciliation_daily.csv</code>, <code>bench_variance.csv</code>, <code>survey_polygons.geojson</code></td>
+        <td>P2041 production vs sales <code>delta_pct</code>; ME Bulletin quarterly variance bands</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Theme → generator → demo mapping</h2>
+  <p>Maps each T1–T6 pillar to generator(s), PR-07 public seed, PR-05 clone cases, and suggested portfolio demo module ID (for PR-19).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Theme</th>
+        <th>Generator(s)</th>
+        <th>PR-07 public anchor</th>
+        <th>PR-05 cases</th>
+        <th>Demo module ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag">T1</span> Scheduling</td>
+        <td><code>gen-block-model</code></td>
+        <td>D1 filtered entities + B1 tonnage cap</td>
+        <td>#06 MIP dispatch, #07 Sungun, #12 dragline, #13 network LP, #14 Holingol</td>
+        <td><code>pit-schedule-gantt</code></td>
+      </tr>
+      <tr>
+        <td><span class="tag">T2</span> DES/ABS</td>
+        <td><code>gen-truck-cycle</code></td>
+        <td>P2041 throughput + USGS <code>network.graphml</code></td>
+        <td>#01 Peru DES, #02 IPCC DES, #03 haulage KPI+DES, #06/#07 dispatch</td>
+        <td><code>haulage-des</code></td>
+      </tr>
+      <tr>
+        <td><span class="tag">T3</span> Reconciliation</td>
+        <td><code>gen-plan-survey-var</code></td>
+        <td>P2041 prod/sales benchmark + ME Bulletin bands</td>
+        <td>#03 KPI alert, #04 proactive reconciliation, #05 control charts</td>
+        <td><code>reconciliation-dashboard</code></td>
+      </tr>
+      <tr>
+        <td><span class="tag">T4</span> Trade-offs</td>
+        <td><code>gen-block-model</code> + <code>gen-truck-cycle</code></td>
+        <td>USGS MCS commodity macro + CGS geology context</td>
+        <td>#02 IPCC vs truck, #08 bauxite LCC, #15 OP–UG IP</td>
+        <td><code>ipcc-tradeoff-wsm</code></td>
+      </tr>
+      <tr>
+        <td><span class="tag">T5</span> Forecasting / MDP</td>
+        <td><code>gen-truck-cycle</code> (<code>fleet_state.json</code>)</td>
+        <td>P2041 <code>capacity_series.csv</code> + workforce prior</td>
+        <td>#01 fleet sizing, #09 equipment SLP</td>
+        <td><code>fleet-capacity-mdp</code></td>
+      </tr>
+      <tr>
+        <td><span class="tag">T6</span> Closure liability</td>
+        <td>Block metadata + PR-07 <code>closure_risk.csv</code></td>
+        <td>WRC Closure Atlas + Global Tailings + Mine Water Atlas</td>
+        <td>#10 probabilistic closure, #11 decision tree MC</td>
+        <td><code>closure-liability-mc</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Shared conventions</h2>
+  <ul>
+    <li><strong>Deterministic seeds:</strong> All generators accept integer <code>seed</code> (Mulberry32 or equivalent); same config + seed → identical bytes.</li>
+    <li><strong>Site binding:</strong> Config references <code>mine_id</code> from PR-07 <code>entities.csv</code> (post D1 extraction) or a synthetic ID prefixed <code>syn-</code>.</li>
+    <li><strong>Units:</strong> Metric throughout — tonnes, metres, minutes, g/t or % grade as declared in config.</li>
+    <li><strong>Storage layout:</strong> <code>seeds/{mine_id}/{generator_id}/v{semver}/</code> in Firebase Storage; Firestore doc <code>syntheticSeeds/{mine_id}_{generator_id}</code> holds config hash, anchor citations, generated-at.</li>
+    <li><strong>Disclaimer:</strong> UI footer on every demo: “Synthetic data calibrated to public aggregates — not operational mine data.”</li>
+    <li><strong>Post-generation validation (required):</strong> After emit, assert (1) block <code>ore_t + waste_t ≈ tonnage_t</code> per row; (2) sum of scheduled extract ≤ calibration cap; (3) shift actual tons in <code>fleet_state.json</code> within ±15% of <code>daily_tonnage_target_t</code> unless breakdown events explain deviation; (4) national-scale variance mean in <code>reconciliation_daily.csv</code> within ±0.5 pp of <code>benchmark_kpi.csv#delta_pct</code> over the reporting window.</li>
+  </ul>
+
+  <h2>Calibration hooks (PR-07 anchors)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Anchor file (PR-07)</th>
+        <th>Field used</th>
+        <th>Generator</th>
+        <th>Calibration rule</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>entities.csv</code></td>
+        <td><code>commodity</code>, <code>mine_type</code>, <code>province</code></td>
+        <td><code>gen-block-model</code></td>
+        <td>Set commodity grade distribution and OP vs UG bench geometry template</td>
+      </tr>
+      <tr>
+        <td>B1 / ME Bulletin tables</td>
+        <td>Annual commodity production (Mt)</td>
+        <td><code>gen-block-model</code></td>
+        <td>Scale total in-situ tonnage so scheduled annual extract ≤ 105% of bulletin aggregate ÷ entity count in hub</td>
+      </tr>
+      <tr>
+        <td><code>throughput_priors.json</code></td>
+        <td>Monthly mean, variance by mineral group</td>
+        <td><code>gen-truck-cycle</code></td>
+        <td>Set daily shift tonnage target; cycle inter-arrival λ from mean ÷ payload</td>
+      </tr>
+      <tr>
+        <td><code>network.graphml</code></td>
+        <td>Edge length (km) load→dump</td>
+        <td><code>gen-truck-cycle</code></td>
+        <td>Haul time ~ Uniform(0.9, 1.1) × (distance / nominal_speed_kmh) × 60 min</td>
+      </tr>
+      <tr>
+        <td>Minerals Council employment</td>
+        <td>~470k direct (2025 pocketbook)</td>
+        <td><code>gen-truck-cycle</code></td>
+        <td>Fleet count = round(throughput_tpd / (cycles_per_truck_per_shift × payload)) bounded [8, 45] for demo OP</td>
+      </tr>
+      <tr>
+        <td><code>benchmark_kpi.csv</code></td>
+        <td><code>delta_pct</code> production vs sales</td>
+        <td><code>gen-plan-survey-var</code></td>
+        <td>Mean bench variance μ = national delta_pct; σ from ME Bulletin quarterly band ÷ 2</td>
+      </tr>
+      <tr>
+        <td><code>capacity_series.csv</code></td>
+        <td>YoY%, seasonal index by commodity group</td>
+        <td><code>gen-truck-cycle</code> (<code>fleet_state.json</code>)</td>
+        <td>Scale shift-to-shift backlog and target drift; optional scenario bounds for T5 MDP demos</td>
+      </tr>
+      <tr>
+        <td><code>commodity_macro.csv</code></td>
+        <td>5-year price/reserve salients (USGS MCS)</td>
+        <td>T4 demo (no generator)</td>
+        <td>IPCC vs truck WSM weights; re-run <code>gen-truck-cycle</code> scenarios only supply haul-side inputs</td>
+      </tr>
+      <tr>
+        <td><code>closure_risk.csv</code></td>
+        <td><code>likelihood_score</code>, <code>water_threat_class</code></td>
+        <td>T6 demo (no generator)</td>
+        <td>Join on <code>mine_id</code> from block config; stochastic cost draws in demo Worker</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Generator 1 — <code>gen-block-model</code></h2>
+  <p>Produces a simplified open-pit block model: bench grid, ore/waste tonnage, primary grade, geotechnical class, extraction rate limits, and bench-down precedence edges. Suitable for Gantt/NetworkX-style scheduling demos without claiming Whittle/Deswik integration. Follows standard pit-block conventions: bench-down precedence, metric units, and tonnage conservation per block (aligned with DES/block-model literature — e.g. drill-hole → block model → cycle simulation pipelines).</p>
+
+  <h3>Config JSON Schema (sample)</h3>
+  <pre><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfolio.local/schemas/gen-block-model-config.v1.json",
+  "type": "object",
+  "required": ["generator_id", "version", "seed", "site", "calibration", "geometry", "grade", "precedence"],
+  "properties": {
+    "generator_id": { "const": "gen-block-model" },
+    "version": { "type": "string", "pattern": "^1\\.0\\.0$" },
+    "seed": { "type": "integer", "minimum": 0 },
+    "site": {
+      "type": "object",
+      "required": ["mine_id", "commodity", "mine_type"],
+      "properties": {
+        "mine_id": { "type": "string" },
+        "commodity": { "enum": ["PGM", "gold", "iron_ore", "coal", "manganese", "chrome"] },
+        "mine_type": { "enum": ["OP", "UG", "mixed"] },
+        "province": { "type": "string" },
+        "anchor_entity_row": { "type": "integer", "description": "Row index in entities.csv" }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "required": ["annual_tonnage_cap_t", "source_ref"],
+      "properties": {
+        "annual_tonnage_cap_t": { "type": "number", "minimum": 100000 },
+        "source_ref": { "type": "string", "examples": ["dmpar-b1-pgm-2021", "me-bulletin-q4-2024"] }
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "properties": {
+        "bench_count": { "type": "integer", "minimum": 4, "maximum": 24, "default": 12 },
+        "blocks_per_bench": { "type": "integer", "minimum": 12, "maximum": 120, "default": 48 },
+        "bench_height_m": { "type": "number", "default": 10 },
+        "block_size_m": { "type": "number", "default": 25 }
+      }
+    },
+    "grade": {
+      "type": "object",
+      "properties": {
+        "primary_attr": { "type": "string", "examples": ["grade_4e_gpt", "fe_pct", "cv_pct"] },
+        "distribution": { "enum": ["lognormal", "normal_truncated"] },
+        "mean": { "type": "number" },
+        "cv": { "type": "number", "minimum": 0.05, "maximum": 0.8 }
+      }
+    },
+    "precedence": {
+      "type": "object",
+      "properties": {
+        "rule": { "const": "bench-down-vertical" },
+        "geotech_unstable_pct": { "type": "number", "minimum": 0, "maximum": 0.25, "default": 0.08 },
+        "slope_angle_deg": { "type": "number", "default": 45 }
+      }
+    }
+  }
+}</code></pre>
+
+  <h3>Example config instance</h3>
+  <pre><code>{
+  "generator_id": "gen-block-model",
+  "version": "1.0.0",
+  "seed": 42,
+  "site": {
+    "mine_id": "syn-pgm-bushveld-01",
+    "commodity": "PGM",
+    "mine_type": "OP",
+    "province": "Limpopo",
+    "anchor_entity_row": 128
+  },
+  "calibration": {
+    "annual_tonnage_cap_t": 12500000,
+    "source_ref": "dmpar-b1-pgm-aggregate-2000-2021"
+  },
+  "geometry": {
+    "bench_count": 12,
+    "blocks_per_bench": 48,
+    "bench_height_m": 10,
+    "block_size_m": 25
+  },
+  "grade": {
+    "primary_attr": "grade_4e_gpt",
+    "distribution": "lognormal",
+    "mean": 4.2,
+    "cv": 0.35
+  },
+  "precedence": {
+    "rule": "bench-down-vertical",
+    "geotech_unstable_pct": 0.08,
+    "slope_angle_deg": 45
+  }
+}</code></pre>
+
+  <h3>Output schemas</h3>
+  <h4><code>blocks.csv</code></h4>
+  <pre><code>{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["block_id", "bench", "row", "col", "tonnage_t", "ore_t", "waste_t", "grade_primary", "rock_type", "geotech_class", "extract_rate_tph", "centroid_x", "centroid_y", "status"],
+    "properties": {
+      "block_id": { "type": "string", "pattern": "^B[0-9]{3}-R[0-9]{2}-C[0-9]{2}$" },
+      "bench": { "type": "integer" },
+      "row": { "type": "integer" },
+      "col": { "type": "integer" },
+      "tonnage_t": { "type": "number" },
+      "ore_t": { "type": "number" },
+      "waste_t": { "type": "number" },
+      "grade_primary": { "type": "number" },
+      "rock_type": { "enum": ["ore", "waste", "low_grade"] },
+      "geotech_class": { "enum": ["stable", "marginal", "unstable"] },
+      "extract_rate_tph": { "type": "number" },
+      "centroid_x": { "type": "number" },
+      "centroid_y": { "type": "number" },
+      "status": { "enum": ["planned", "scheduled", "mining", "mined"] }
+    }
+  }
+}</code></pre>
+
+  <h4><code>precedence_edges.csv</code></h4>
+  <pre><code>from_block_id,to_block_id,edge_type,lag_days
+B012-R04-C08,B011-R04-C08,vertical,0
+B012-R04-C08,B012-R03-C08,bench_sibling,1</code></pre>
+
+  <h4><code>blocks.geojson</code> (FeatureCollection excerpt)</h4>
+  <pre><code>{
+  "type": "FeatureCollection",
+  "name": "syn-pgm-bushveld-01-blocks",
+  "crs": { "type": "name", "properties": { "name": "EPSG:32735" } },
+  "features": [{
+    "type": "Feature",
+    "properties": {
+      "block_id": "B012-R04-C08",
+      "bench": 12,
+      "tonnage_t": 156250,
+      "grade_primary": 4.8,
+      "geotech_class": "stable"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[[500000, 7200000], [500025, 7200000], [500025, 7200025], [500000, 7200025], [500000, 7200000]]]
+    }
+  }]
+}</code></pre>
+
+  <h2>Generator 2 — <code>gen-truck-cycle</code></h2>
+  <p>Emits load–haul–dump cycle records, breakdown/repair events, and shift-level fleet state snapshots for Web Worker DES (T2) and MDP capacity demos (T5). Haul distances derive from PR-07 network skeleton or config override. Cycle phases follow discrete-event haulage practice: load → haul (loaded) → dump → return (empty), plus queue and optional breakdown (cf. OpenMines / Peru DES fleet studies). Use triangular/normal/exponential segments — not a single fixed cycle time — so queueing and fleet sizing behave realistically.</p>
+
+  <h3>Config JSON Schema (sample)</h3>
+  <pre><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfolio.local/schemas/gen-truck-cycle-config.v1.json",
+  "type": "object",
+  "required": ["generator_id", "version", "seed", "site", "fleet", "calibration", "cycle_distributions"],
+  "properties": {
+    "generator_id": { "const": "gen-truck-cycle" },
+    "version": { "type": "string", "const": "1.0.0" },
+    "seed": { "type": "integer" },
+    "site": {
+      "type": "object",
+      "required": ["mine_id"],
+      "properties": {
+        "mine_id": { "type": "string" },
+        "scenario_id": { "type": "string", "default": "truck-haul", "description": "truck-haul | ipcc-conveyor — suffix in Storage path for T4" },
+        "shift_hours": { "type": "number", "default": 12 },
+        "simulation_days": { "type": "integer", "default": 30 }
+      }
+    },
+    "fleet": {
+      "type": "object",
+      "properties": {
+        "truck_class": { "type": "string", "examples": ["CAT793F", "Kom930E"] },
+        "truck_count": { "type": "integer", "minimum": 4, "maximum": 45 },
+        "payload_t": { "type": "number", "default": 290 },
+        "shovel_count": { "type": "integer", "default": 3 }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "properties": {
+        "throughput_prior_ref": { "type": "string", "examples": ["p2041-platinum-group-metals"] },
+        "daily_tonnage_target_t": { "type": "number" },
+        "network_edge_ref": { "type": "string", "description": "Edge ID in network.graphml" },
+        "haul_distance_km": { "type": "number" }
+      }
+    },
+    "cycle_distributions": {
+      "type": "object",
+      "properties": {
+        "load_time_min": { "type": "object", "properties": { "dist": { "const": "triangular" }, "min": {}, "mode": {}, "max": {} } },
+        "haul_time_min": { "type": "object" },
+        "dump_time_min": { "type": "object" },
+        "queue_time_min": { "type": "object" },
+        "return_time_min": { "type": "object" },
+        "breakdown_mtbf_hours": { "type": "number", "default": 120 },
+        "breakdown_mttr_hours": { "type": "number", "default": 4.5 }
+      }
+    }
+  }
+}</code></pre>
+
+  <h3>Example config instance</h3>
+  <pre><code>{
+  "generator_id": "gen-truck-cycle",
+  "version": "1.0.0",
+  "seed": 1337,
+  "site": { "mine_id": "syn-pgm-bushveld-01", "scenario_id": "truck-haul", "shift_hours": 12, "simulation_days": 30 },
+  "fleet": {
+    "truck_class": "CAT793F",
+    "truck_count": 22,
+    "payload_t": 290,
+    "shovel_count": 3
+  },
+  "calibration": {
+    "throughput_prior_ref": "p2041-platinum-group-metals",
+    "daily_tonnage_target_t": 42000,
+    "network_edge_ref": "pit-a_crusher-a",
+    "haul_distance_km": 3.8
+  },
+  "cycle_distributions": {
+    "load_time_min": { "dist": "triangular", "min": 2.5, "mode": 3.8, "max": 6.0 },
+    "haul_time_min": { "dist": "normal", "mean": 14.2, "sd": 2.1 },
+    "dump_time_min": { "dist": "triangular", "min": 1.0, "mode": 1.8, "max": 3.5 },
+    "queue_time_min": { "dist": "exponential", "lambda": 0.15 },
+    "return_time_min": { "dist": "normal", "mean": 11.5, "sd": 1.8 },
+    "breakdown_mtbf_hours": 120,
+    "breakdown_mttr_hours": 4.5
+  }
+}</code></pre>
+
+  <h3>Output schemas</h3>
+  <h4><code>cycles.csv</code></h4>
+  <pre><code>{
+  "type": "object",
+  "required": ["cycle_id", "scenario_id", "truck_id", "shovel_id", "load_zone", "dump_zone", "timestamp_utc", "load_min", "haul_min", "dump_min", "queue_min", "return_min", "payload_t", "material"],
+  "properties": {
+    "cycle_id": { "type": "string" },
+    "scenario_id": { "type": "string", "enum": ["truck-haul", "ipcc-conveyor"] },
+    "truck_id": { "type": "string", "pattern": "^T[0-9]{2}$" },
+    "shovel_id": { "type": "string" },
+    "load_zone": { "type": "string" },
+    "dump_zone": { "type": "string" },
+    "timestamp_utc": { "type": "string", "format": "date-time" },
+    "load_min": { "type": "number" },
+    "haul_min": { "type": "number" },
+    "dump_min": { "type": "number" },
+    "queue_min": { "type": "number" },
+    "return_min": { "type": "number" },
+    "payload_t": { "type": "number" },
+    "material": { "enum": ["ore", "waste", "low_grade"] }
+  }
+}</code></pre>
+
+  <h4><code>fleet_events.csv</code></h4>
+  <pre><code>event_id,truck_id,event_type,start_utc,end_utc,duration_h,root_cause
+E0042,T07,breakdown,2026-01-15T06:22:00Z,2026-01-15T10:52:00Z,4.5,tyre</code></pre>
+
+  <h4><code>fleet_state.json</code> (MDP snapshot series)</h4>
+  <pre><code>{
+  "mine_id": "syn-pgm-bushveld-01",
+  "snapshots": [{
+    "shift_id": "2026-01-15-D",
+    "trucks_total": 22,
+    "trucks_available": 19,
+    "trucks_down": 3,
+    "shovels_active": 3,
+    "backlog_tons": 8400,
+    "shift_tons_actual": 38500,
+    "shift_tons_target": 42000
+  }]
+}</code></pre>
+
+  <h2>Generator 3 — <code>gen-plan-survey-var</code></h2>
+  <p>Generates daily planned vs surveyed tonnage by bench, SPC-friendly variance classes, and GeoJSON survey polygons for map overlays. Calibrated so aggregate variance statistics match PR-07 national reconciliation priors at scale.</p>
+
+  <h3>Config JSON Schema (sample)</h3>
+  <pre><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://portfolio.local/schemas/gen-plan-survey-var-config.v1.json",
+  "type": "object",
+  "required": ["generator_id", "version", "seed", "site", "calibration", "spatial", "variance_model"],
+  "properties": {
+    "generator_id": { "const": "gen-plan-survey-var" },
+    "version": { "const": "1.0.0" },
+    "seed": { "type": "integer" },
+    "site": {
+      "type": "object",
+      "required": ["mine_id", "block_model_ref"],
+      "properties": {
+        "mine_id": { "type": "string" },
+        "block_model_ref": { "type": "string", "description": "Storage path to gen-block-model blocks.csv" },
+        "reporting_days": { "type": "integer", "default": 90 }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "properties": {
+        "benchmark_kpi_ref": { "type": "string" },
+        "target_mean_variance_pct": { "type": "number" },
+        "target_sigma_pct": { "type": "number" },
+        "me_bulletin_band_ref": { "type": "string" }
+      }
+    },
+    "spatial": {
+      "type": "object",
+      "properties": {
+        "polygon_source": { "enum": ["block_footprints", "simplified_bench"] },
+        "crs": { "type": "string", "default": "EPSG:32735" }
+      }
+    },
+    "variance_model": {
+      "type": "object",
+      "properties": {
+        "distribution": { "enum": ["normal", "skewed_normal"] },
+        "autocorrelation_day": { "type": "number", "default": 0.35 },
+        "tarp_green_pct": { "type": "number", "default": 3.0 },
+        "tarp_amber_pct": { "type": "number", "default": 7.0 }
+      }
+    }
+  }
+}</code></pre>
+
+  <h3>Example config instance</h3>
+  <pre><code>{
+  "generator_id": "gen-plan-survey-var",
+  "version": "1.0.0",
+  "seed": 9001,
+  "site": {
+    "mine_id": "syn-pgm-bushveld-01",
+    "block_model_ref": "seeds/syn-pgm-bushveld-01/gen-block-model/v1.0.0/blocks.csv",
+    "reporting_days": 90
+  },
+  "calibration": {
+    "benchmark_kpi_ref": "benchmark_kpi.csv#platinum-group-metals",
+    "target_mean_variance_pct": -1.2,
+    "target_sigma_pct": 4.5,
+    "me_bulletin_band_ref": "me-bulletin-q4-2024-pgm"
+  },
+  "spatial": {
+    "polygon_source": "block_footprints",
+    "crs": "EPSG:32735"
+  },
+  "variance_model": {
+    "distribution": "skewed_normal",
+    "autocorrelation_day": 0.35,
+    "tarp_green_pct": 3.0,
+    "tarp_amber_pct": 7.0
+  }
+}</code></pre>
+
+  <h3>Output schemas</h3>
+  <h4><code>reconciliation_daily.csv</code></h4>
+  <pre><code>date,bench_id,planned_t,surveyed_t,variance_t,variance_pct,variance_class,rolling_7d_pct,tarp_breach
+2026-01-15,B012,4200,4086,-114,-2.71,green,-1.8,false
+2026-01-15,B011,3800,3524,-276,-7.26,amber,-4.2,true</code></pre>
+
+  <h4><code>bench_variance.csv</code> (period aggregate for control charts)</h4>
+  <pre><code>{
+  "type": "array",
+  "items": {
+    "required": ["period", "bench_id", "planned_sum_t", "surveyed_sum_t", "variance_pct", "ucl_pct", "lcl_pct"],
+    "properties": {
+      "period": { "type": "string", "pattern": "^[0-9]{4}-W[0-9]{2}$" },
+      "bench_id": { "type": "string" },
+      "planned_sum_t": { "type": "number" },
+      "surveyed_sum_t": { "type": "number" },
+      "variance_pct": { "type": "number" },
+      "ucl_pct": { "type": "number" },
+      "lcl_pct": { "type": "number" }
+    }
+  }
+}</code></pre>
+
+  <h4><code>survey_polygons.geojson</code></h4>
+  <pre><code>{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "properties": {
+      "bench_id": "B012",
+      "date": "2026-01-15",
+      "planned_area_m2": 120000,
+      "surveyed_area_m2": 117400,
+      "variance_pct": -2.71
+    },
+    "geometry": { "type": "MultiPolygon", "coordinates": [] }
+  }]
+}</code></pre>
+
+  <h2>Combined seed bundle (reference site)</h2>
+  <p>Default demo site <code>syn-pgm-bushveld-01</code> — run generators in order: block → truck → plan-survey (survey references block footprints).</p>
+  <pre><code>seeds/syn-pgm-bushveld-01/
+├── gen-block-model/v1.0.0/
+│   ├── config.json
+│   ├── blocks.csv
+│   ├── precedence_edges.csv
+│   └── blocks.geojson
+├── gen-truck-cycle/v1.0.0/          # scenario_id=truck-haul (default)
+│   ├── config.json
+│   ├── cycles.csv
+│   ├── fleet_events.csv
+│   └── fleet_state.json
+├── gen-truck-cycle/v1.0.0-ipcc-conveyor/   # T4: re-run with scenario_id=ipcc-conveyor
+│   └── … (same artifact names)
+└── gen-plan-survey-var/v1.0.0/
+    ├── config.json
+    ├── reconciliation_daily.csv
+    ├── bench_variance.csv
+    └── survey_polygons.geojson</code></pre>
+
+  <h2>PR-05 case crosswalk</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Case #</th>
+        <th>Title</th>
+        <th>Required generator output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>01</td><td>Peru copper fleet DES</td><td><code>cycles.csv</code>, <code>fleet_state.json</code></td></tr>
+      <tr><td>02</td><td>Iron-ore IPCC vs truck DES</td><td><code>cycles.csv</code> (two scenarios: truck vs conveyor dump zone)</td></tr>
+      <tr><td>03</td><td>Haulage KPI alert + DES</td><td><code>cycles.csv</code> + <code>reconciliation_daily.csv</code> (queue KPI)</td></tr>
+      <tr><td>04</td><td>Proactive reconciliation</td><td><code>reconciliation_daily.csv</code>, <code>bench_variance.csv</code></td></tr>
+      <tr><td>05</td><td>Mine-to-mill control charts</td><td><code>bench_variance.csv</code> (UCL/LCL columns)</td></tr>
+      <tr><td>06–07</td><td>Dispatch MIP + DES</td><td><code>blocks.csv</code>, <code>precedence_edges.csv</code>, <code>cycles.csv</code></td></tr>
+      <tr><td>08</td><td>Bauxite IPCC LCC</td><td><code>cycles.csv</code> haul profiles + block tonnage totals</td></tr>
+      <tr><td>09</td><td>Equipment SLP</td><td><code>fleet_state.json</code> multi-shift series</td></tr>
+      <tr><td>10–11</td><td>Closure MC</td><td>Block <code>site.mine_type</code> + PR-07 <code>closure_risk.csv</code></td></tr>
+      <tr><td>12</td><td>CADSIM dragline</td><td><code>blocks.csv</code> strip bench sequence</td></tr>
+      <tr><td>13–14</td><td>Network LP / Holingol scheduling</td><td><code>blocks.csv</code>, <code>precedence_edges.csv</code> — pre-computed schedule JSON in demo (PR-04 anti-pattern); generators supply topology only</td></tr>
+      <tr><td>15</td><td>OP–UG transition IP</td><td><code>blocks.csv</code> tonnage + <code>commodity_macro.csv</code> (PR-07); no extra generator</td></tr>
+      <tr><td>16–19</td><td>Stochastic fleet / Kiruna / RCPSP</td><td>Not seed targets — cloud MIP or toy reduction; optional <code>fleet_state.json</code> only</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Implementation notes</h2>
+  <ul>
+    <li><strong>Language:</strong> TypeScript CLI or Cloud Function <code>generateSyntheticSeed</code>; validate config against JSON Schema before emit.</li>
+    <li><strong>Performance:</strong> Target &lt;5 s for reference site on laptop; block model capped at 576 blocks (12×48) for browser map performance.</li>
+    <li><strong>T4 IPCC scenario:</strong> Re-run <code>gen-truck-cycle</code> with <code>scenario_id=ipcc-conveyor</code>, <code>dump_zone=conveyor-port</code>, and haul distance −40% vs truck route; write under <code>…/v1.0.0-ipcc-conveyor/</code> so <code>cycles.csv</code> rows carry matching <code>scenario_id</code>.</li>
+    <li><strong>T6 closure:</strong> Monte Carlo cost draws live in demo Worker; join <code>closure_risk.csv</code> on <code>mine_id</code> — do not fabricate liability amounts in generator layer.</li>
+    <li><strong>Versioning:</strong> Bump generator semver if column sets change; Firestore metadata must record both generator and anchor file versions.</li>
+  </ul>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard</h3>
+    <p class="meta">Artifact-level scores. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score (1–5)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukwazi fit (T1–T6)</td>
+          <td>5</td>
+          <td>Closes operational gaps for all six themes; direct enabler for T1/T2/T3 flagship demos.</td>
+        </tr>
+        <tr>
+          <td>CV proof</td>
+          <td>2</td>
+          <td>Spec only — no generated seed files in repo yet.</td>
+        </tr>
+        <tr>
+          <td>Angular+Firebase fit</td>
+          <td>5</td>
+          <td>CSV/GeoJSON + config JSON map cleanly to Storage, Firestore metadata, Worker ingestion (PR-04).</td>
+        </tr>
+        <tr>
+          <td>Data feasibility</td>
+          <td>5</td>
+          <td>With PR-07 anchors + these generators, T1–T3 demos no longer blocked; T6 still needs tailings CSV request.</td>
+        </tr>
+        <tr>
+          <td>Differentiation</td>
+          <td>4</td>
+          <td>Calibration-to-public-aggregates narrative is stronger than unlabeled random CSVs.</td>
+        </tr>
+        <tr>
+          <td>Effort</td>
+          <td>M</td>
+          <td>Spec complete; implementing three generators + reference bundle is separate build task.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Optional extensions (deferred)</h2>
+  <ul>
+    <li><strong>Truck state log:</strong> Optional <code>truck_states.csv</code> with OpenMines-style phases (<code>wait_load</code>, <code>loading</code>, <code>loaded</code>, <code>wait_dump</code>, <code>dumping</code>, <code>empty_return</code>) for animation overlays.</li>
+    <li><strong>Grade–tonnage coupling:</strong> Pass <code>blocks.csv</code> ore tonnage into cycle <code>material</code> mix so DES payload aligns with scheduled blocks.</li>
+    <li><strong>Congestion module:</strong> Weibull jam events on <code>network.graphml</code> edges (OpenMines-style) — config flag on <code>gen-truck-cycle</code>.</li>
+    <li><strong>Reference bundle CI:</strong> Golden-file hash check for <code>syn-pgm-bushveld-01</code> after generator semver bumps.</li>
+    <li><strong>PR-07 back-links:</strong> Add generator ID column to each theme package in <code>open-data-apis-mining.html</code>.</li>
+  </ul>
+
+  <div class="portfolio-box">
+    <h3>Suggested Angular+Firebase sketch</h3>
+    <p>
+      Add admin route <code>/admin/seeds</code> (Auth-gated): form panels bound to the three config JSON Schemas (ecosystem.Ai-style or Angular reactive forms), POST to Callable Function <code>generateSyntheticSeed</code> which validates, runs generators server-side, writes to Storage under <code>seeds/{mine_id}/…</code>, and upserts Firestore <code>syntheticSeeds/{id}</code>. Public demos lazy-load seeds via Storage SDK: <code>haulage-des</code> fetches <code>cycles.csv</code> into a Web Worker; <code>reconciliation-dashboard</code> joins <code>reconciliation_daily.csv</code> with <code>survey_polygons.geojson</code> on Leaflet; <code>pit-schedule-gantt</code> reads <code>precedence_edges.csv</code>. Display calibration footer citing PR-07 anchor IDs from Firestore metadata. Link generator IDs in PR-07 data-package rows once seeds exist.
+    </p>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-07b.md</code> ·
+    Registry row: <code>index.html#pr-07b</code>
+  </footer>
+</body>
+</html>

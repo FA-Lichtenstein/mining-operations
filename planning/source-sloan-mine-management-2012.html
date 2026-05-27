@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sloan 2012 — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Douglas A. Sloan — Mine Management (2012 reprint)</h1>
+  <p class="meta">
+    Task ID: PR-14 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a> ·
+    Source: <code>sources/processed/Douglas A_ Sloan - Mine Management (2012).txt</code> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+    Read depth: deep Ch 1 (planning process, income planning), Ch 6 (MIS, flexible budget, reconciliation variances), Ch 7–9 (labour standards); skim Ch 2–3, 11, 15; selective Ch 10; TOC Ch 4–5, 12–14
+  </p>
+
+  <p class="lead">
+    Chapman &amp; Hall mine-management text (first published 1983; 2012 Internet Archive reprint used here — content is unchanged).
+    Unlike OR handbooks in Wave 2, Sloan is a <strong>native mining management-systems</strong> source: four-phase corporate planning
+    (Exhibit 1.1), income planning with mine–mill tonnage reconciliation, and a full management-accounting / MIS stack
+    (custodial vs decision vs management accounting; flexible budgets; method-mix and draw-mix variances; responsibility reporting).
+    Deep read centred on <strong>T3 production reconciliation &amp; spatial KPIs</strong> and <strong>T5 labour-standard / PI control</strong>.
+    Five seeds below; top three by composite: A → C → B (all ≥ 3.5). Seed D (3.92) also clears the PR-19 threshold; E (~3.47) is below. Seed A anchors T3 flexible-budget reconciliation; Seed C anchors superintendent-level plan-vs-actual accountability.
+  </p>
+
+  <h2>1. Scope &amp; audience</h2>
+  <ul>
+    <li><strong>Text:</strong> 15 chapters + index; ~28k sentencized lines. Practical systems for mine managers — planning, organization, MBO, MIS, labour standards, incentive bonus, maintenance. No optimisation theory; complements Hillier (<a href="source-hillier-2024.html">PR-10</a>) and Reid &amp; Sanders (<a href="source-reid-sanders-2023.html">PR-11</a>) with mining-native control vocabulary.</li>
+    <li><strong>Audience:</strong> Quantitative Planning Analyst portfolio — citeable reconciliation and variance-decomposition patterns for browser dashboards per <a href="angular-firebase-or-stack.html">PR-04</a>; fills T3 gap left by Hillier (PR-10 has no T3 seeds).</li>
+    <li><strong>Read boundary:</strong> Deep Ch 1 (planning process, Eagle Mining case, income planning, ton vs grade); Ch 6 (management accounting, Examples 6.1–6.2, Tables 6.4–6.6, method/draw mix); Ch 7–9 (standard types, establishment methods, PI control). Skim Ch 2 (organization/Urwick), Ch 3 (MBO), Ch 11 (maintenance), Ch 15 (summary). Selective Ch 10 (PI-linked bonus link to Seed E). TOC: Ch 4–5, 12–14.</li>
+    <li><strong>Cross-refs:</strong> SA KPI personas (<a href="sa-mining-context.html">PR-09</a>); synthetic cost-centre data (<a href="synthetic-data-generator-spec.html">PR-07b</a>); Reid SPC reconciliation analogue (<a href="source-reid-sanders-2023.html">PR-11</a> Seed E); handbook MILP scheduling (<a href="source-natural-resources-handbook-2007.html">PR-13</a>) for T1 contrast; Dunbar value-chain vocabulary (<a href="source-dunbar-how-mining-works-2024.html">PR-15</a>) for strip ratio, dilution, and cut-off context ahead of MIS reconciliation; SME formula definitions (<a href="source-sme-mining-reference-handbook-2020.html">PR-16</a>) for E=A×U, match factor, and study-stage accuracy bands on fleet/economics seeds.</li>
+  </ul>
+
+  <h2>2. Chapter map</h2>
+  <p class="meta">15 chapters. Deep-read rows match task brief (planning, MIS, labour standards, reconciliation culture).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Ch</th>
+        <th>Title</th>
+        <th>Key sections</th>
+        <th>Read</th>
+        <th>Portfolio hook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Corporate planning</td><td>Planning process (Exhibit 1.1); business assessment; Eagle Mining CEO case; income planning &amp; control; ton vs contained metal; mine–mill ton reconciliation</td><td><strong>Deep</strong></td><td>T3 tonnage reconciliation; T4/T5 planning hierarchy</td></tr>
+      <tr><td>2</td><td>Organization</td><td>Urwick elements (forecast–control); duties vs responsibilities; organization manual</td><td>Skim</td><td>Responsibility lines for MIS design (Ch 6)</td></tr>
+      <tr><td>3</td><td>Management by objectives</td><td>MBO integrates corporate plans; key results; needs “sound and timely management control information”</td><td>Skim</td><td>Links planning (Ch 1) to MIS (Ch 6)</td></tr>
+      <tr><td>4</td><td>Performance appraisal</td><td>Appraisal process for managers</td><td>TOC</td><td>Accountability culture adjacency</td></tr>
+      <tr><td>5</td><td>Education, training &amp; development</td><td>Training payback evaluation</td><td>TOC</td><td>Method-study training (Ch 8–9)</td></tr>
+      <tr><td>6</td><td>Providing management information</td><td>Custodial/decision/management accounting; flexible budget (Ex 6.1–6.2); responsibility areas; Tables 6.4–6.6; method/draw mix variances; workplace reports (Fig 6.3)</td><td><strong>Deep</strong></td><td>T3 flagship — reconciliation &amp; variance culture</td></tr>
+      <tr><td>7</td><td>Labour standard costing</td><td>Minimum/attainable/probable standards; probable for forecasting; attainable for control</td><td><strong>Deep</strong></td><td>T5 standard hierarchy; PI foundation</td></tr>
+      <tr><td>8</td><td>Establishing standards</td><td>Estimate, historical, work-study; PERT-style te formula; work sampling validation</td><td><strong>Deep</strong></td><td>Standard-setting economics for demos</td></tr>
+      <tr><td>9</td><td>Using standards</td><td>Fixed-output vs variable-output jobs (Figs 9.1–9.2); PI = standard time / actual time × 100</td><td><strong>Deep</strong></td><td>T5 productivity monitoring; underground vs mill paths</td></tr>
+      <tr><td>10</td><td>Underground incentive bonus</td><td>Debit/credit piece-work; standard-hour PI bonus</td><td>Selective</td><td>Links attainable standard to pay (Ch 7)</td></tr>
+      <tr><td>11</td><td>Maintenance management</td><td>Planner–foreman job-ticket model (Intro “before/after”)</td><td>Skim</td><td>T2 maintenance queue; Intro case study</td></tr>
+      <tr><td>12</td><td>Materials management</td><td>Stores/inventory control</td><td>TOC</td><td>Low portfolio priority</td></tr>
+      <tr><td>13–14</td><td>Compensation; industrial relations</td><td>—</td><td>TOC</td><td>HR context only</td></tr>
+      <tr><td>15</td><td>Summary</td><td>Recap of planning → MIS → labour standards → bonus</td><td>Skim</td><td>Validation of chapter priorities</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Methods catalog</h2>
+  <p>Management systems and control techniques from deep-read chapters (not OR algorithms).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Method / system</th>
+        <th>Chapter</th>
+        <th>Core idea</th>
+        <th>Portfolio transfer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Four-phase planning process</td><td>Ch 1; Exhibit 1.1</td><td>Business assessment → strategic → operational → annual planning; feedback/corrective action loop</td><td>T4/T5 planning hierarchy UI; strategic vs operational distinction</td></tr>
+      <tr><td>Income planning &amp; ore-unit choice</td><td>Ch 1 § income planning</td><td>Profit = value/ton − cost/ton; contained metal vs ore ton; mine volume vs mill weight reconciliation (10–20% swings)</td><td>T3 spatial/tonnage reconciliation narrative</td></tr>
+      <tr><td>Custodial vs decision vs management accounting</td><td>Ch 6</td><td>Financial (stakeholder) vs tactical (method/equipment) vs ongoing control (controllable variances)</td><td>Three-layer data model for dashboards</td></tr>
+      <tr><td>Flexible budget / standard cost variance</td><td>Ch 6; Ex 6.1–6.2</td><td>Flex allowances on actual tons broken/ hauled; separate standards per activity (breaking, hauling, bolting)</td><td>T3 flagship — volume vs efficiency variance split</td></tr>
+      <tr><td>Responsibility accounting</td><td>Ch 6</td><td>Costs charged on usage not allocation; manager sees only controllable items; exception reporting</td><td>Beat/shift/cost-centre drill-down views</td></tr>
+      <tr><td>Method-mix &amp; draw-mix variance</td><td>Ch 6; Table 6.5–6.6</td><td>Decompose plan deviation: jumbo vs jackleg method change + ton draw from cheaper vs costlier centres</td><td>T3 mining-native variance decomposition (rare in OR texts)</td></tr>
+      <tr><td>Equipment availability / utilization variance</td><td>Ch 6; Table 6.4</td><td>Maintenance vs mining responsibility for 92% avail vs 74% util on scooptrams; $30/h usage charge</td><td>T2/T3 fleet accountability KPIs</td></tr>
+      <tr><td>Minimum / attainable / probable labour standard</td><td>Ch 7</td><td>Ideal vs 100% PI sustainable vs historical+inefficiency; probable ≈ attainable + ineffective time</td><td>T5 forecast vs control standard picker</td></tr>
+      <tr><td>Standard establishment (estimate / historical / work study)</td><td>Ch 8</td><td>Economic choice by job repetition; PERT te = (a+4m+b)/6; work sampling validates estimates</td><td>Progressive standard maturity in demo</td></tr>
+      <tr><td>Performance Index (PI)</td><td>Ch 9</td><td>PI = standard minutes completed / actual minutes × 100; Figs 9.1–9.2 job categories</td><td>T5 labour productivity cards; links Ch 10 bonus</td></tr>
+      <tr><td>Participative MIS design</td><td>Ch 6</td><td>Top-down control points + bottom-up manager involvement in report formats; “will to manage”</td><td>UX pattern — manager-configurable variance thresholds</td></tr>
+      <tr><td>MBO ↔ MIS integration</td><td>Ch 3</td><td>Key results require “sound and timely management control information”</td><td>Planning-to-KPI traceability</td></tr>
+      <tr><td>Underground piece-work / standard-hour bonus</td><td>Ch 10</td><td>Contract credit − debit wage = bonus; PI from standard-hour value vs actual hours</td><td>Incentive overlay on Seed E (optional)</td></tr>
+      <tr><td>Maintenance job-ticket + standard time</td><td>Intro; Ch 11</td><td>Independent planner sets target times; foreman explains overruns — 30% staff reduction case</td><td>T2 maintenance accountability sketch</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. Deep-read sections (task brief)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Topic</th>
+        <th>Section</th>
+        <th>Why it matters</th>
+        <th>Source anchor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Planning process</td><td>Ch 1 — four phases</td><td>Integrates strategic effectiveness with operational efficiency; continuous feedback loop with performance standards</td><td>Exhibit 1.1: assessment → strategic → operational → annual → corrective action</td></tr>
+      <tr><td>Planning process</td><td>Ch 1 — income planning</td><td>Long-term profit maximization via ore extraction program; annual budget must align with long-term objectives</td><td>Grade/volume/price/extraction efficiency factors; capital investment ignored in forward income calc</td></tr>
+      <tr><td>Reconciliation culture</td><td>Ch 1 — ton measurement</td><td>Mine volume tons vs mill weight tons; pro-rata face adjustment when 10–20% mismatch; warns against blind cost/ton decisions</td><td>“Myth of the ton” — cost accurate to cent, mine tonnage ±50%</td></tr>
+      <tr><td>MIS</td><td>Ch 6 — three accounting types</td><td>Unit costing alone cannot control performance — agglomerates labour/material/equipment without responsibility clarity</td><td>$0.02/lb on 5M lb = $100k variance example</td></tr>
+      <tr><td>MIS</td><td>Ch 6 — management accounting ingredients</td><td>Dynamic tool: plans + engineered standards + physical results + exception variances + usage-based service charges</td><td>10 bullet characteristics (Ch 6 § management accounting)</td></tr>
+      <tr><td>Reconciliation culture</td><td>Ch 6 — flexible budget</td><td>Fixed budget masks favourable $1k when volume short — flex exposes adverse $450 efficiency (labour, bolts, equipment downtime)</td><td>Examples 6.1 vs 6.2 — cost centre A</td></tr>
+      <tr><td>Reconciliation culture</td><td>Ch 6 — method/draw mix</td><td>$1 550 net adverse split: jackleg overrun in CC101 (−$3 600 method) offset partly by draw from cheaper centre (+$180)</td><td>Table 6.6 calculation walkthrough</td></tr>
+      <tr><td>Reconciliation culture</td><td>Ch 6 — superintendent report</td><td>Tons hoisted, grade, pounds product, beat-level variable costs, method/draw mix lines, fixed cost centres</td><td>Table 6.5 mine performance summary</td></tr>
+      <tr><td>Labour standards</td><td>Ch 7 — standard types</td><td>Probable ≈ 2× attainable in extreme; probable for budget, attainable (100% PI) for control and incentive</td><td>30–50% ineffective time from delays/non-productive work</td></tr>
+      <tr><td>Labour standards</td><td>Ch 8 — establishment</td><td>Precision scales with economic impact; estimated manual → historical → time study; work sampling validates</td><td>Foreman’s Pocket Guide; PERT te formula for uncertain jobs</td></tr>
+      <tr><td>Labour standards</td><td>Ch 9 — application</td><td>Mill/hoist (fixed throughput) vs scooptram (variable output); minimum PI monitoring + non-productive cause codes</td><td>Fig 9.1 metallurgical plant; Fig 9.2 underground PI</td></tr>
+      <tr><td>Reconciliation culture</td><td>Ch 6 — timeliness trade-off</td><td>95% accurate report at 5 days vs 100% at 3–4 weeks; daily/weekly stats must agree with monthly MIS</td><td>Separate allowances for tons broken vs hauled</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Portfolio seeds</h2>
+  <p>Five seeds tagged T1–T6; chapter citations for each. Rank by composite: A (4.32) → C (4.16) → B (4.08) → D (3.92) → E (3.47). Seeds A–D clear PR-19 threshold (≥ 3.5); E is kept for T5 breadth. A prioritises T3 reconciliation.</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Flexible budget variance lab <span class="tag">T3</span></h3>
+    <p><strong>Source:</strong> Ch 6 Examples 6.1–6.2 (fixed vs flexed cost centre A); Ch 6 § eliminating volume effects; separate breaking/ hauling/ bolting allowances.</p>
+    <p><strong>Idea:</strong> Interactive cost-centre report: toggle fixed vs flexible budget on synthetic tons broken/hauled. Show how volume-favourable mask hides adverse labour, rock-bolt and equipment-downtime variances. Exception-highlight adverse lines; manager “explain variance” notes field — flagship T3 cite for mining MIS culture.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Method-mix &amp; draw-mix decomposer <span class="tag">T3</span></h3>
+    <p><strong>Source:</strong> Ch 6 Table 6.5–6.6 (jumbo/jackleg/air-trac; CC101 vs CC202 draw); § mining-method and draw-mix variances.</p>
+    <p><strong>Idea:</strong> Two cost-centre toy model: plan assumes jumbo/air-trac mix; user shifts actual methods and draw tonnages. Waterfall chart: total variance → method mix (by centre) → draw mix → net. Distinctive mining reconciliation demo vs generic SPC (<a href="source-reid-sanders-2023.html">PR-11</a> Seed E).</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Mine superintendent accountability dashboard <span class="tag">T3</span></h3>
+    <p><strong>Source:</strong> Ch 6 Table 6.5 (tons hoisted, grade, pounds, beat costs 110/310/326, method/draw mix lines, fixed centres); Fig 6.3 report hierarchy.</p>
+    <p><strong>Idea:</strong> Single-page monthly MIS: production headline KPIs → beat-level variable efficiency → mix variances → fixed cost centres (maintenance, ventilation). Drill-down to workplace heading report. Persona: mine superintendent per <a href="sa-mining-context.html">PR-09</a>.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed D — Mobile equipment availability / utilization tracker <span class="tag">T2</span> <span class="tag">T3</span></h3>
+    <p><strong>Source:</strong> Ch 6 Table 6.4 (scooptram pool: 92% avail vs 89% plan; 74% util vs 90%; maintenance vs mining responsibility split).</p>
+    <p><strong>Idea:</strong> Fleet KPI cards: availability (maintenance foreman) vs utilization (mining captain) vs net usage hours. Charge-back at standard $/hour; repair variance by subsystem (engine, transmission, hydraulics). Supports fleet-sizing narrative over rolling quarters.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed E — Attainable-standard PI &amp; labour control <span class="tag">T5</span> <span class="tag">T3</span></h3>
+    <p><strong>Source:</strong> Ch 7–9 (standard types; PI formula; Figs 9.1–9.2); Ch 10 PI-linked bonus (selective).</p>
+    <p><strong>Idea:</strong> Shift report: standard work completed vs actual time → PI; non-productive delay codes (equipment, materials, coordination). Compare probable (budget) vs attainable (control) standard sliders. Below showcase threshold (~3.47) but pairs with Seed A for T3+T5 pillar story.</p>
+  </div>
+
+  <h2>6. Angular+Firebase angle per seed</h2>
+  <dl>
+    <dt>Seed A (flexible budget)</dt>
+    <dd>Side-by-side fixed/flex tables with variance heat-map; sliders for actual tons broken/hauled. Firestore <code>costCentres/{id}/periods/{month}</code>, <code>varianceNotes/{id}</code>; Chart.js waterfall optional. Worker computes flex allowances from standard $/ton vector.</dd>
+    <dt>Seed B (method/draw mix)</dt>
+    <dd>Editable plan vs actual method tonnage grid; Worker decomposes variances per Table 6.6 walkthrough. Firestore <code>mixScenarios/{id}</code>; D3 or Chart.js waterfall.</dd>
+    <dt>Seed C (superintendent dashboard)</dt>
+    <dd>Nested routes: mine summary → beat → heading. Firestore mirrors Table 6.5 structure; exception badges on |variance| &gt; threshold. Export PDF snapshot for “accountability meeting” UX.</dd>
+    <dt>Seed D (equipment tracker)</dt>
+    <dd>Gauge charts for availability/utilization; monthly roll-up Table 6.4 layout. Firestore <code>mobileFleet/{unitId}/months/{id}</code>.</dd>
+    <dt>Seed E (PI control)</dt>
+    <dd>Shift form: job list + actual minutes; Worker PI calc. Firestore <code>shiftReports/{id}</code>; delay-code picklist from Ch 9 categories.</dd>
+  </dl>
+
+  <h2>7. Scorecard — top 3 seeds</h2>
+  <p class="meta">Composite = (4×Ukwazi + 3×CV + 2×Stack + 2×Data + 2×Diff) / 13 − effort penalty (<a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>).</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Flexible budget variance lab (composite 4.32)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T3)</td><td>5</td><td>Core reconciliation / plan-vs-actual remit — only Wave 2 mining-native MIS source</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Dashboards, variance analysis, KPI reporting on CV</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Table + slider UI; flex calc trivial in Worker</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Examples 6.1–6.2 fully specified in text</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Mining flexible budget vs generic BI; not spatial survey reconciliation</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Multi-activity flex + explain-variance workflow</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Superintendent accountability dashboard (composite 4.16)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T3)</td><td>5</td><td>Full plan-vs-actual hierarchy — Table 6.5</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Multi-level KPI dashboards</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Nested drill-down; Firestore hierarchical collections</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Table 6.5 worked example + synthetic beats (<a href="synthetic-data-generator-spec.html">PR-07b</a>)</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Method/draw mix lines rare in OR portfolios</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Three-level report tree + mix variance module</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Method/draw mix decomposer (composite 4.08)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T3)</td><td>5</td><td>Mining-specific variance decomposition — Table 6.6</td></tr>
+        <tr><td>CV proof</td><td>3</td><td>Variance logic less explicit on CV than dashboards</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Waterfall + editable grid</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Table 6.6 numeric example reproducible</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Unique jumbo/jackleg method-mix narrative</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Variance engine + two-centre UI</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>8. Suggested Angular+Firebase sketch (Seed A flagship)</h2>
+  <p>
+    Module <code>FlexBudgetLab</code>: select cost centre and month; load plan tons broken/hauled and standard $/ton rates (breaking labour, explosives, bolts, haulage labour, equipment).
+    Input actuals; render fixed budget (Example 6.1) beside flexible budget (Example 6.2) with adverse/favourable styling.
+    Annotate root causes from text (equipment downtime → low haulage → labour idle; excess bolting vs bonus incentive).
+    Firestore <code>flexBudgetScenarios/{id}</code>, <code>periodReports/{id}</code>; optional link to mine–mill ton reconciliation slider from Ch 1 (volume adjustment %) for T3 breadth.
+    Cite Sloan Ch 6 in sidebar; pair with Seed B for mix-variance module or Seed D for equipment accountability.
+  </p>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard (artifact)</h3>
+    <p class="meta">This source summary document. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>Primary T3 source; T5 via labour standards; T2 via equipment table</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>KPI/dashboard alignment; less MILP than handbook</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Variance tables, drill-down, PI calc — all browser-native</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Worked examples 6.1–6.2, Tables 6.4–6.6 in text</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Only Wave 2 mining management-control text</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Wave 2 summary; demo effort per seed M (E: M−)</td></tr>
+        <tr><td><strong>Composite (doc)</strong></td><td><strong>4.47</strong></td><td>(4×5 + 3×4 + 2×5 + 2×5 + 2×5) / 13 − 0.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-14.md</code> ·
+    Registry row: <code>index.html#pr-14</code>
+  </footer>
+</body>
+</html>

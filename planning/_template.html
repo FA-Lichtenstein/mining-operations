@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><!-- Document title --> — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1><!-- Document title --></h1>
+  <p class="meta">
+    Task ID: <!-- PR-XX --> · Date: <!-- YYYY-MM-DD --> ·
+    Upstream deps: <!-- PR-01, PR-02, … -->
+  </p>
+
+  <p class="lead">
+    <!-- Executive summary: 2–4 sentences on scope, audience, and key takeaway. -->
+  </p>
+
+  <h2>Body</h2>
+  <!-- Main research content: sections, tables, lists as needed. -->
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard</h3>
+    <p class="meta">See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a> for T1–T6 definitions and composite formula.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score (1–5)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukwazi fit (T1–T6)</td>
+          <td><!-- 1–5 --></td>
+          <td><!-- Which theme(s) and why --></td>
+        </tr>
+        <tr>
+          <td>CV proof</td>
+          <td><!-- 1–5 --></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Angular+Firebase fit</td>
+          <td><!-- 1–5 --></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Data feasibility</td>
+          <td><!-- 1–5 --></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Differentiation</td>
+          <td><!-- 1–5 --></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Effort</td>
+          <td><!-- S / M / L --></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Suggested Angular+Firebase sketch</h3>
+    <p><!-- One paragraph: modules, Firestore collections, key UI views, offline/API boundaries. --></p>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-XX.md</code> ·
+    Registry row: <code>index.html#pr-XX</code>
+  </footer>
+</body>
+</html>

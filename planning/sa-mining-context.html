@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SA Mining Context — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>SA Mining Context</h1>
+  <p class="meta">
+    Task ID: PR-09 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a>, <a href="index.html#pr-02">PR-02</a> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+    Related: <a href="open-data-apis-mining.html">PR-07</a> (data sources), <a href="ukwazi-services-summary.html">Ukwazi anchor</a> ·
+    Out of scope: CV ↔ Ukwazi matrix (<a href="index.html#pr-03">PR-03</a>)
+  </p>
+
+  <p class="lead">
+    South Africa remains a globally significant minerals producer — dominant in PGMs and ferroalloy feedstocks, still material in gold and coal — governed by the <strong>DMPR</strong> (successor to DMRE) under the MPRDA, with public resource and reserve reporting under <strong>SAMREC</strong> and monetary valuation under <strong>SAMVAL</strong>. Portfolio demos should anchor on this commodity mix, regulatory vocabulary, and the operational KPIs that Ukwazi-style planning and reconciliation work actually influences: plan attainment, strip ratio, fleet utilisation, mine-call factors, and cost per tonne — not generic OR toy problems divorced from Bushveld UG, Northern Cape bulk, or Mpumalanga coal context.
+  </p>
+
+  <h2>Scope and method</h2>
+  <ul>
+    <li><strong>Audience:</strong> Portfolio builders targeting Ukwazi / SA mining employers; interview and demo narrative layer.</li>
+    <li><strong>Boundary:</strong> Commodities, sector structure, regulatory acronyms (SAMREC/SAMVAL/DMPR), and KPI vocabulary. CV skill mapping is PR-03; open-data URLs and ETL patterns are PR-07; synthetic seeds are PR-07b.</li>
+    <li><strong>Research date:</strong> 2026-05-27. Production/sales figures cite Stats SA mining production index weights and Minerals Council / DMPR 2024–2025 publications unless noted.</li>
+    <li><strong>Geography:</strong> National SA context with provincial anchors where they explain demo commodity choice (Limpopo/NW PGMs, Northern Cape iron/manganese, Mpumalanga coal, Gauteng/Free State gold legacy).</li>
+  </ul>
+
+  <h2>Sector snapshot</h2>
+  <p>
+    Mining contributed roughly <strong>5.8% of nominal GDP</strong> (~R439&nbsp;bn) in 2025 (Minerals Council <em>Facts &amp; Figures</em>; DMPR portal often rounds to ~6%). Direct employment is on the order of <strong>469&nbsp;000–477&nbsp;000</strong> depending on source and annualisation (Minerals Council vs DMPR portal, 2025). More than <strong>1&nbsp;700 operating mines</strong> extract <strong>50+ commodity types</strong>. The sector is export-heavy: PGMs, gold, iron ore, and coal historically dominate sales and employment; chrome and manganese add bulk-ferroalloy leverage tied to Chinese steel demand.
+  </p>
+  <p>
+    <strong>2025 production narrative (Stats SA / Minerals Council):</strong> headline mining production grew only <strong>0.1%</strong> y/y — a slowdown from 0.6% in 2024. Bulk and “other metallic” minerals gained (iron ore <strong>+3.0%</strong>, manganese <strong>+5.0%</strong>, chromium <strong>+3.9%</strong>) while traditional anchors softened (PGMs <strong>−4.1 to −4.4%</strong>, gold <strong>−1.7 to −1.9%</strong>, coal <strong>−0.2 to −0.7%</strong>). Higher PGM and gold <em>prices</em> still lifted mineral <em>sales</em> (gold sales +29.7% to ~R185&nbsp;bn; PGMs +19.5% to ~R206.7&nbsp;bn in rand terms), decoupling revenue from volume — a useful demo talking point for T3 reconciliation and T4 trade-off stories.
+  </p>
+
+  <h3>Stats SA production basket (volume index weights)</h3>
+  <p class="meta">Approximate shares in the official mining production index — use for benchmark KPI seeding, not reserve ranking.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Commodity group</th>
+        <th>Index weight</th>
+        <th>Demo relevance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Coal</td>
+        <td>24%</td>
+        <td>Open-pit/UG coal; Eskom-linked domestic offtake; export RBCT corridor; SANS 10320 reporting</td>
+      </tr>
+      <tr>
+        <td>Platinum group metals (PGMs)</td>
+        <td>23%</td>
+        <td>Bushveld Complex UG; concentrator + smelter chain; employment leader (~40% of mining jobs per DMPR critical-minerals study)</td>
+      </tr>
+      <tr>
+        <td>Gold</td>
+        <td>16%</td>
+        <td>Deep-level UG (Witwatersrand legacy); declining reserves (~27&nbsp;yr at current rate per gov strategy doc); high cost sensitivity</td>
+      </tr>
+      <tr>
+        <td>Iron ore</td>
+        <td>12%</td>
+        <td>Northern Cape open pit; rail to Saldanha; strip-ratio and haulage-heavy — strong T1/T2 demo fit</td>
+      </tr>
+      <tr>
+        <td>Other non-metallic minerals</td>
+        <td>6%</td>
+        <td>Aggregates, industrial minerals</td>
+      </tr>
+      <tr>
+        <td>Diamonds</td>
+        <td>4%</td>
+        <td>Kimberlite pipes; SAMREC diamond guideline section</td>
+      </tr>
+      <tr>
+        <td>Manganese ore</td>
+        <td>3%</td>
+        <td>Kalagadi / Hotazel belt; export ferroalloy feedstock</td>
+      </tr>
+      <tr>
+        <td>Chromium ore</td>
+        <td>3%</td>
+        <td>Bushveld chromitite; integrated with PGM mines at some operations</td>
+      </tr>
+      <tr>
+        <td>Other metallic, building materials, nickel (each)</td>
+        <td>2%</td>
+        <td>Transition metals narrative (nickel, copper) in critical-minerals strategy</td>
+      </tr>
+      <tr>
+        <td>Copper</td>
+        <td>1%</td>
+        <td>Smaller but rising policy focus; Palabora as known SA copper producer</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Global positioning (selected)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Mineral</th>
+        <th>SA global share (indicative)</th>
+        <th>Portfolio hook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>PGMs (reserves / production)</td>
+        <td>~88% reserves; ~59% production</td>
+        <td>Default Ukwazi commodity for UG scheduling, reconciliation dashboards</td>
+      </tr>
+      <tr>
+        <td>Manganese (reserves / production)</td>
+        <td>~80% / ~17%</td>
+        <td>Open-pit bulk + logistics — T1 strip sequencing, T2 truck-shovel DES</td>
+      </tr>
+      <tr>
+        <td>Chromite (reserves)</td>
+        <td>~72%</td>
+        <td>Co-product with PGM mines; shared infrastructure constraints</td>
+      </tr>
+      <tr>
+        <td>Gold (reserves / production)</td>
+        <td>~13% / ~8%</td>
+        <td>Depth, seismicity, labour intensity — cost-per-tonne KPI stress</td>
+      </tr>
+      <tr>
+        <td>Coal (production)</td>
+        <td>~4%</td>
+        <td>Energy transition / export mix — T4 timing and T6 closure liability angles</td>
+      </tr>
+      <tr>
+        <td>Iron ore (production)</td>
+        <td>~4%</td>
+        <td>Large open pits; IPCC vs trucking trade-offs (PR-05 case #02/#08)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="meta">Source: <em>Critical Minerals and Metals Strategy South Africa 2025</em> (DMPR/USGS cited); rounded for demo narrative.</p>
+
+  <h3>Provincial anchors (demo setting)</h3>
+  <ul>
+    <li><strong>Limpopo / North West / Gauteng fringe:</strong> Bushveld Igneous Complex — PGM, chrome, vanadium, nickel; Merensky and UG2 reefs; concentrator pipelines.</li>
+    <li><strong>Northern Cape:</strong> Iron ore (Sishen/Kolomela), manganese (Hotazel), zinc-lead (Gamsberg); open-pit, rail logistics.</li>
+    <li><strong>Mpumalanga:</strong> Coal (Witbank/Highveld coalfields); dragline and truck-shovel open cast.</li>
+    <li><strong>Free State / Gauteng:</strong> Declining but high-cost deep gold; legacy tailings and closure (T6).</li>
+    <li><strong>KwaZulu-Natal:</strong> Anthracite, heavy mineral sands; smaller but diverse.</li>
+  </ul>
+
+  <h2>Regulatory and institutional context</h2>
+
+  <h3>DMRE → DMPR split</h3>
+  <p>
+    The former <strong>Department of Mineral Resources and Energy (DMRE)</strong> was split after the May 2024 elections. <strong>Proclamation No.&nbsp;179 of 2024</strong> (Gazette 51140, 27&nbsp;Aug&nbsp;2024) assigned mining, minerals, and upstream petroleum to the new <strong>Department of Mineral and Petroleum Resources (DMPR)</strong>; electricity and energy moved to a separate department. Legacy <code>dmre.gov.za</code> now redirects to <a href="https://www.dmpr.gov.za/">dmpr.gov.za</a>. Energy portfolio items (e.g. fuel price announcements) still appear on DMPR media channels — do not conflate with mine planning regulation in demos.
+  </p>
+  <dl>
+    <dt>DMPR</dt>
+    <dd>Primary regulator: licensing, mine health and safety coordination, production statistics, transformation charter oversight. Mandate rooted in Constitution s24 and the <strong>Mineral and Petroleum Resources Development Act (MPRDA), 2002</strong>.</dd>
+    <dt>MPRDA</dt>
+    <dd>Governs prospecting/mining rights, social and labour plans (SLPs), environmental authorisations interface, and ministerial cadastre. No public bulk rights API — see PR-07 (SAMRAD legacy, Project Indwe phased rollout).</dd>
+    <dt>Operating Mines (Form D1)</dt>
+    <dd>DMPR-published directory of active mines by province — best free entity list for demo mine names and commodity tags (HTML/PDF; no official CSV).</dd>
+    <dt>Minerals Council South Africa</dt>
+    <dd>Industry body (formerly Chamber of Mines); <em>Facts &amp; Figures</em> for sales, investment, and policy commentary — complements Stats SA P2041.</dd>
+    <dt>Stats SA P2041</dt>
+    <dd>Monthly mining production and mineral sales — macro KPI benchmarks for T3/T5 dashboards (PR-07).</dd>
+  </dl>
+
+  <h2>SAMREC and SAMVAL — acronym reference</h2>
+  <p>
+    Both codes sit under the <strong>SAMCODES Standards Committee (SSC)</strong> and are mandatory for <strong>JSE-listed</strong> mineral companies’ public reporting. They align with the international <strong>CRIRSCO</strong> family (JORC, NI 43-101, etc.). The <strong>2016 editions remain the current mandatory versions</strong> (effective <strong>1&nbsp;January&nbsp;2017</strong>) — there was no new SAMREC or SAMVAL code release in 2024 or 2025. The SSC runs compliance workshops (e.g. Sept&nbsp;2025 JSE reporting workshop); a SAMVAL working group is reviewing a future update, but demos should cite the 2016 code until a replacement is published.
+  </p>
+
+  <h3>SAMREC — resource and reserve reporting</h3>
+  <dl>
+    <dt>Full name</dt>
+    <dd><strong>S</strong>outh <strong>A</strong>frican <strong>M</strong>ineral <strong>REC</strong> reporting code — <em>The South African Code for the Reporting of Exploration Results, Mineral Resources and Mineral Reserves</em> (2016 edition).</dd>
+    <dt>Purpose</dt>
+    <dd>Minimum standards for public reporting of exploration results, <strong>Mineral Resources</strong> (Inferred, Indicated, Measured), and <strong>Mineral Reserves</strong> (Probable, Proved). Governs Competent Person (CP) sign-off and Table&nbsp;1 disclosure.</dd>
+    <dt>Scope</dt>
+    <dd>Solid minerals: base and precious metals, bulk commodities, coal, diamonds/gemstones, industrial minerals, mineral sands. Excludes oil/gas (<strong>SAMOG</strong>) and water.</dd>
+    <dt>Key principles</dt>
+    <dd>Materiality, transparency, competency — same philosophical line as JORC. Commodity-specific sections for coal, diamonds, industrial minerals, and metal equivalents.</dd>
+    <dt>Coal adjunct</dt>
+    <dd><strong>SANS 10320:2017</strong> — national standard for systematic evaluation of coal resources and reserves; referenced by SAMREC coal section.</dd>
+    <dt>Demo usage</dt>
+    <dd>Use “SAMREC-compliant resource model” when describing block-model or reconciliation inputs; cite <strong>Measured/Indicated</strong> vs <strong>Inferred</strong> when explaining forecast uncertainty (T5). Do not invent reserve numbers — point to public CPRs or synthetic specs (PR-07b).</dd>
+  </dl>
+
+  <h3>SAMVAL — mineral asset valuation</h3>
+  <dl>
+    <dt>Full name</dt>
+    <dd><strong>S</strong>outh <strong>A</strong>frican <strong>M</strong>ineral <strong>VAL</strong>uation code — <em>The South African Code for the Reporting of Mineral Asset Valuations</em> (2016 edition).</dd>
+    <dt>Purpose</dt>
+    <dd>Standards for monetary valuation of mineral assets for public reports, transactions, and litigation support. Valuations must be based on resources/reserves prepared under SAMREC (or other CRIRSCO code where justified).</dd>
+    <dt>Key principles</dt>
+    <dd>Materiality, transparency, competency, plus <strong>reasonableness</strong> (added in 2016 update). Sign-off by a <strong>Competent Mineral Asset Valuator</strong> (SAMVAL abbreviation <strong>CV</strong> — valuation competency, not curriculum vitae; see PR-03 for CV ↔ Ukwazi skill mapping).</dd>
+    <dt>Relationship to SAMREC</dt>
+    <dd>SAMREC answers “how much metal/geology?”; SAMVAL answers “what is it worth?” — same deposit, different report type. Closure liability and provision work (T6) often references valuation discipline even when not a full SAMVAL report.</dd>
+    <dt>Demo usage</dt>
+    <dd>T4 techno-economic and T6 closure demos: frame outputs as inputs to a valuation narrative (NPV, discount rate sensitivity) without presenting fake JSE-grade SAMVAL tables.</dd>
+  </dl>
+
+  <h3>Related acronyms (quick)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Acronym</th>
+        <th>Meaning</th>
+        <th>When to mention</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SAMCODES / SSC</td>
+        <td>Standards committee overseeing SAMREC, SAMVAL, SAMOG, SAMESG</td>
+        <td>Credibility when discussing reporting governance</td>
+      </tr>
+      <tr>
+        <td>CP / CPR</td>
+        <td>Competent Person / Competent Person’s Report</td>
+        <td>Resource model provenance in T1/T3</td>
+      </tr>
+      <tr>
+        <td>CRIRSCO</td>
+        <td>Committee for Mineral Reserves International Reporting Standards</td>
+        <td>International equivalence of SAMREC</td>
+      </tr>
+      <tr>
+        <td>Table 1</td>
+        <td>SAMREC mandatory disclosure checklist</td>
+        <td>Investor-facing reserve tables</td>
+      </tr>
+      <tr>
+        <td>MPRDA</td>
+        <td>Mineral and Petroleum Resources Development Act</td>
+        <td>Licensing, SLP, legal tenure</td>
+      </tr>
+      <tr>
+        <td>SLP</td>
+        <td>Social and Labour Plan</td>
+        <td>Transformation compliance — rarely OR demo core, but SA-specific</td>
+      </tr>
+      <tr>
+        <td>MHSA</td>
+        <td>Mine Health and Safety Act</td>
+        <td>Safety KPI context (LTIFR, fall-of-ground)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Operational KPIs — portfolio vocabulary</h2>
+  <p>
+    SA mines use the same core operational KPIs as other jurisdictions; differentiation is in <em>commodity drivers</em> (PGM UG grade-recovery vs coal strip ratio vs iron-ore logistics). Group KPIs by planning horizon and map to portfolio themes.
+  </p>
+
+  <h3>Production and planning (T1, T5)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>KPI</th>
+        <th>Definition / formula</th>
+        <th>SA nuance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Plan attainment %</td>
+        <td>Actual tonnes (or metal) ÷ planned × 100</td>
+        <td>PGM concentrator feed consistency; coal Eskom nomination vs export split</td>
+      </tr>
+      <tr>
+        <td>Strip ratio (W:O)</td>
+        <td>Waste tonnes ÷ ore tonnes</td>
+        <td>Critical in Northern Cape iron ore and Mpumalanga coal open cast</td>
+      </tr>
+      <tr>
+        <td>Ring advance / face advance</td>
+        <td>Metres or rings per month (UG)</td>
+        <td>Bushveld UG PGM stoping; bound by seismic and ventilation</td>
+      </tr>
+      <tr>
+        <td>Mill feed grade (g/t or %)</td>
+        <td>Head grade to concentrator</td>
+        <td>4E PGM (Pt, Pd, Rh, Au) reporting common in SA</td>
+      </tr>
+      <tr>
+        <td>LOM schedule compliance</td>
+        <td>Cumulative actual vs life-of-mine plan</td>
+        <td>Links short-term schedule (T1) to strategic plan (T5)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Haulage and simulation (T2)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>KPI</th>
+        <th>Definition / formula</th>
+        <th>SA nuance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Fleet availability %</td>
+        <td>Available hours ÷ calendar hours</td>
+        <td>Shared contractor fleets on Bushveld mines</td>
+      </tr>
+      <tr>
+        <td>Utilisation %</td>
+        <td>Operating hours ÷ available hours</td>
+        <td>Queue at shovel and tip — DES demo targets (PR-05 #01–#03)</td>
+      </tr>
+      <tr>
+        <td>Cycle time</td>
+        <td>Load + haul + queue + dump (minutes)</td>
+        <td>Pit-to-plant vs pit-to-stockpile routing</td>
+      </tr>
+      <tr>
+        <td>Payload compliance %</td>
+        <td>Actual payload ÷ target payload</td>
+        <td>Under-load hurts cost/t at Sishen-scale pits</td>
+      </tr>
+      <tr>
+        <td>BCM/h or tph</td>
+        <td>Bank cubic metres or tonnes per hour moved</td>
+        <td>Contractor payment units in coal</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Reconciliation and spatial performance (T3)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>KPI</th>
+        <th>Definition / formula</th>
+        <th>SA nuance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mine call factor (MCF)</td>
+        <td>Payable metal produced ÷ metal called from model (×100%)</td>
+        <td>Gold and PGM operations; MCF &gt;100% or &lt;100% triggers investigation</td>
+      </tr>
+      <tr>
+        <td>Dilution / ore loss %</td>
+        <td>Waste in ore / ore left behind</td>
+        <td>UG stope width vs blast design on narrow reefs</td>
+      </tr>
+      <tr>
+        <td>Survey-to-plan variance</td>
+        <td>As-built vs design tonnes or metres</td>
+        <td>Core Ukwazi T3 deliverable — spatial accountability</td>
+      </tr>
+      <tr>
+        <td>Short- vs long-term model variance</td>
+        <td>Grade/tonnes drift between models</td>
+        <td>SAMREC model update cycles vs operational short-term model</td>
+      </tr>
+      <tr>
+        <td>Metallurgical recovery %</td>
+        <td>Metal in product ÷ metal in feed</td>
+        <td>PGM concentrator and chrome spiral circuits</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Economics and transition (T4)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>KPI</th>
+        <th>Definition / formula</th>
+        <th>SA nuance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Cost per tonne mined / moved / processed</td>
+        <td>Total cost ÷ respective tonnes</td>
+        <td>Deep gold &gt; PGM UG &gt; open-pit bulk ordering on $/t</td>
+      </tr>
+      <tr>
+        <td>All-in sustaining cost (AISC)</td>
+        <td>Industry standard gold/PGM unit cost</td>
+        <td>Compare to rand gold price in investor narratives</td>
+      </tr>
+      <tr>
+        <td>NPV / IRR</td>
+        <td>Discounted cash flow metrics</td>
+        <td>SAMVAL-aligned sensitivity — not a substitute for formal valuation</td>
+      </tr>
+      <tr>
+        <td>IPCC vs trucking $/t</td>
+        <td>Life-cycle cost comparison</td>
+        <td>Iron ore and coal corridor studies (PR-05 #02, #08)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Closure and risk (T6)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>KPI</th>
+        <th>Definition / formula</th>
+        <th>SA nuance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Closure provision (R or $)</td>
+        <td>Balance-sheet liability estimate</td>
+        <td>WRC Closure Atlas layers; gold tailings legacy in Gauteng</td>
+      </tr>
+      <tr>
+        <td>Water balance / AMD risk</td>
+        <td>Decant prediction, treatment cost</td>
+        <td>WRC Mine Water Atlas — strong public anchor (PR-07)</td>
+      </tr>
+      <tr>
+        <td>Tailings dam consequence class</td>
+        <td>GISTM / national dam safety alignment</td>
+        <td>Post-Jagersfontein sensitivity; T6 differentiation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Safety and environment (cross-cutting)</h3>
+  <ul>
+    <li><strong>LTIFR / TRIFR</strong> — lost-time and total recordable injury frequency per million hours; MHSA-driven reporting.</li>
+    <li><strong>Section 54/55 stoppages</strong> — inspector-ordered work cessation; hits plan attainment (T1) and utilisation (T2).</li>
+    <li><strong>Dust, noise, water use (m³/t)</strong> — environmental licence compliance; secondary to OR demos unless T6 water closure focus.</li>
+  </ul>
+
+  <h2>Demo narrative cheat sheet</h2>
+  <p>Use this table to pick a credible SA setting when introducing a portfolio artifact in interviews or README copy.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Theme</th>
+        <th>Suggested SA setting</th>
+        <th>Lead KPI</th>
+        <th>Regulatory touchpoint</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T1 Scheduling</td>
+        <td>Bushveld UG PGM — monthly stope ring sequence</td>
+        <td>Plan attainment %, face advance</td>
+        <td>SAMREC resource model → short-term schedule</td>
+      </tr>
+      <tr>
+        <td>T2 DES haulage</td>
+        <td>Northern Cape iron ore — truck-shovel fleet</td>
+        <td>Cycle time, utilisation %, queue</td>
+        <td>D1 mine list for entity names</td>
+      </tr>
+      <tr>
+        <td>T3 Reconciliation</td>
+        <td>PGM or gold — survey vs plan tonnes and grade</td>
+        <td>MCF, survey-to-plan variance</td>
+        <td>SAMREC Table 1 vs operational model</td>
+      </tr>
+      <tr>
+        <td>T4 Trade-off</td>
+        <td>Mpumalanga coal — IPCC vs expanded pit fleet</td>
+        <td>$/t moved, strip ratio</td>
+        <td>MPRDA mining right boundary</td>
+      </tr>
+      <tr>
+        <td>T5 Capacity planning</td>
+        <td>Multi-commodity Bushveld — crew/equipment under uncertainty</td>
+        <td>LOM compliance, forecast error</td>
+        <td>Stats SA P2041 macro benchmark</td>
+      </tr>
+      <tr>
+        <td>T6 Closure</td>
+        <td>Free State gold tailings — provision scenario</td>
+        <td>Closure provision, water treatment cost</td>
+        <td>SAMVAL-style NPV sensitivity; WRC atlas</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Boundary — PR-09 vs adjacent tasks</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Topic</th>
+        <th>Owner task</th>
+        <th>PR-09 provides</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CV skill ↔ theme matrix</td>
+        <td>PR-03</td>
+        <td>Not duplicated — use SA vocabulary only</td>
+      </tr>
+      <tr>
+        <td>Open-data URLs, licenses, ETL</td>
+        <td>PR-07</td>
+        <td>Commodity/benchmark context; link D1/P2041 by name</td>
+      </tr>
+      <tr>
+        <td>Synthetic parameter generators</td>
+        <td>PR-07b</td>
+        <td>KPI names and realistic ranges for seeds</td>
+      </tr>
+      <tr>
+        <td>OR case study clones</td>
+        <td>PR-05 / PR-06</td>
+        <td>SA setting overlay for case #15 (OP–UG IP)</td>
+      </tr>
+      <tr>
+        <td>Method ↔ theme synthesis</td>
+        <td>PR-18</td>
+        <td>Glossary and KPI map inputs</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://www.dmpr.gov.za/About-Us/Overview">DMPR — Overview</a> (DMRE split, mandate, MPRDA)</li>
+    <li><a href="https://www.dmpr.gov.za/">DMPR portal</a> — quick stats (GDP, employment, operating mines)</li>
+    <li><a href="https://www.gov.za/sites/default/files/gcis_document/202505/critical-minerals-and-metals-strategy-south-africa-2025.pdf">Critical Minerals and Metals Strategy South Africa 2025</a></li>
+    <li><a href="https://www.samcode.co.za/samcode-ssc/samrec">SAMCODES — SAMREC</a> (2016 edition, JSE requirement)</li>
+    <li><a href="https://www.samcode.co.za/samcode-ssc/about-samcodes">SAMCODES — About</a> (SAMVAL, SANS 10320)</li>
+    <li>Stats SA P2041 / mining production index — commodity basket weights are approximate; verify against latest Stats SA technical notes before hard-coding demo benchmarks</li>
+    <li><a href="https://www.samcode.co.za/">SAMCODES home</a> — 2016 SAMREC/SAMVAL mandatory status; 2025 compliance workshops</li>
+    <li>Minerals Council — 2025 production and sales commentary (Feb 2026); <em>Facts &amp; Figures 2025</em> pocketbook (GDP 5.8%, employment ~469k)</li>
+    <li>Internal: <a href="open-data-apis-mining.html">open-data-apis-mining.html</a>, <a href="ukwazi-services-summary.html">ukwazi-services-summary.html</a>, <a href="mining-or-real-world-examples.html">mining-or-real-world-examples.html</a> (#15 SA OP–UG)</li>
+  </ul>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard</h3>
+    <p class="meta">Artifact-level scores for this research doc. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score (1–5)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukwazi fit (T1–T6)</td>
+          <td>5</td>
+          <td>Direct employer-context layer for all themes; KPI map matches Ukwazi planning/reconciliation remit.</td>
+        </tr>
+        <tr>
+          <td>CV proof</td>
+          <td>3</td>
+          <td>Domain vocabulary and SA setting — complements PR-03 evidence without repeating matrix.</td>
+        </tr>
+        <tr>
+          <td>Angular+Firebase fit</td>
+          <td>4</td>
+          <td>KPI glossary and commodity tables map cleanly to Firestore config + benchmark CSV joins (PR-07).</td>
+        </tr>
+        <tr>
+          <td>Data feasibility</td>
+          <td>4</td>
+          <td>Macro benchmarks public; operational values still synthetic (PR-07b) but ranges are now documented.</td>
+        </tr>
+        <tr>
+          <td>Differentiation</td>
+          <td>5</td>
+          <td>SA-specific SAMREC/SAMVAL/DMPR fluency uncommon in generic OR portfolios.</td>
+        </tr>
+        <tr>
+          <td>Effort</td>
+          <td>S</td>
+          <td>Research doc only; no ETL implementation required.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Suggested Angular+Firebase sketch</h3>
+    <p>
+      Add a read-only <code>/context/sa-mining</code> route backed by Firestore collection <code>saContext</code>: documents <code>commodities</code>, <code>kpiGlossary</code>, <code>acronyms</code>, <code>provinces</code> seeded from static JSON exported from this page. Pair with PR-07 <code>dataSources</code> entries (<code>stats-sa-p2041</code>, <code>dmpr-d1</code>) via a <code>benchmark-chart</code> component showing PGM/coal/gold index weights against user-selected demo mine commodity. Admin toggle lets portfolio builder pick a <strong>demo persona</strong> (PGM UG, iron ore OP, coal OC) that pre-filters theme cheat-sheet rows and injects KPI tooltips into reconciliation/scheduling views. No live DMPR scraping in-app — cache P2041 CSV in Storage and refresh weekly via Cloud Function.
+    </p>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-09.md</code> ·
+    Registry row: <code>index.html#pr-09</code>
+  </footer>
+</body>
+</html>

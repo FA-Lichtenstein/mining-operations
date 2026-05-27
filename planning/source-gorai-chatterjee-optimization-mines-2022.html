@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gorai &amp; Chatterjee 2022 — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Gorai &amp; Chatterjee — Optimization Techniques and their Applications to Mine Systems (2022)</h1>
+  <p class="meta">
+    Task ID: PR-17 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a> ·
+    Source: <code>sources/processed/Amit Kumar Gorai, Snehamoy Chatterjee - Optimization Techniques and their Applications to Mine (2022).txt</code> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+    Read depth: deep Ch 3 (LP), Ch 4 (transport/assignment + haulage case), Ch 5 (ILP/MIP + production scheduling case), Ch 6 (DP — UPL, stope), Ch 7 (CPM/PERT), Ch 10 (queuing + shovel-truck case); skim Ch 1–2, 8–9, 11
+  </p>
+
+  <p class="lead">
+    CRC Press textbook (~54k sentencized lines) that is the portfolio’s <strong>highest-priority mining-method source</strong> alongside the Natural Resources Handbook (<a href="source-natural-resources-handbook-2007.html">PR-13</a>): every major OR technique is taught with <strong>in-book mine case studies</strong> (Indonesia coal LP, Indian iron-ore transport, southeastern India open-pit MIP schedule, Central Africa copper UPL by DP, Odisha shovel-truck queuing). Co-author Chatterjee links to published stochastic mine-scheduling literature cited in the handbook. Deep read centred on <strong>T1</strong> scheduling (Ch 5–6, Ch 7 CPM) and <strong>T2</strong> haulage queuing (Ch 10 — analytic fleet sizing, not DES; pairs external DES in <a href="mining-or-real-world-examples.html">PR-05</a>); Ch 3–4 logistics LP/transport. Five seeds below; top three by composite: <strong>A (3.94) → B (3.93) → C (3.55)</strong> (all ≥ 3.5). Seed A anchors T1 with $898M NPV MIP case; Seed B anchors T2 with field-data queuing.
+  </p>
+
+  <h2>1. Scope &amp; audience</h2>
+  <ul>
+    <li><strong>Text:</strong> Gorai &amp; Chatterjee, CRC/Taylor &amp; Francis 2022 (1st ed. 2023 imprint). Eleven chapters from mine systems engineering through nonlinear scheduling; appendices for ZIMPL/CPLEX (Ch 5), Matlab UPL (Ch 6), reliability/inventory tooling.</li>
+    <li><strong>Audience:</strong> Quantitative Planning Analyst portfolio — step-by-step formulations, published numeric results, and solver workflows (ZIMPL, CPLEX academic, Excel Solver, Matlab) for browser demos per <a href="angular-firebase-or-stack.html">PR-04</a>; complements Hillier method theory (<a href="source-hillier-2024.html">PR-10</a>) and handbook deployed MILP narratives (<a href="source-natural-resources-handbook-2007.html">PR-13</a>).</li>
+    <li><strong>Read boundary:</strong> Deep Ch 3.6 (coal LP); Ch 4.3–4.5 (transport + Indian iron-ore network); Ch 5.3–5.4 (Gomory, B&amp;B, MIP schedule); Ch 6.4–6.6 (2-D UPL, stope DP, copper case); Ch 7.3–7.4 (CPM/PERT, crashing); Ch 10.6–10.8 (M/M/s, machine-repair, shovel-truck). Skim Ch 1–2 (systems, probability); Ch 8.11 (reliability case); Ch 9 (inventory); Ch 11.4 (nonlinear open-pit schedule with stockpile).</li>
+    <li><strong>PR-05 boundary:</strong> In-book cases only — Indonesian coal LP (Ch 3.6), Indian iron-ore transport (Ch 4.5), SE India open-pit MIP (Ch 5.4), Central Africa Cu-Co DP UPL (Ch 6.6), Odisha shovel-truck queuing (Ch 10.8), Africa MIQP schedule (Ch 11.4 skim), Ch 8.11 reliability skim. Not duplicated in <a href="mining-or-real-world-examples.html">PR-05</a> external catalog.</li>
+    <li><strong>Cross-refs:</strong> Synthetic block models (<a href="synthetic-data-generator-spec.html">PR-07b</a>); SA/India personas (<a href="sa-mining-context.html">PR-09</a>); external haulage DES (<a href="mining-or-real-world-examples.html">PR-05</a>); Dunbar process context (<a href="source-dunbar-how-mining-works-2024.html">PR-15</a>).</li>
+  </ul>
+
+  <h2>2. Chapter map</h2>
+  <p class="meta">Eleven chapters. Case-study rows are deep-read anchors.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Ch</th>
+        <th>Title</th>
+        <th>Key sections</th>
+        <th>Read</th>
+        <th>Portfolio hook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Introduction to mine systems</td><td>1.5–1.7 elements; optimization taxonomy</td><td>Skim</td><td>Systems framing; maps to T1–T6 vocabulary</td></tr>
+      <tr><td>2</td><td>Probability &amp; statistics</td><td>2.6–2.15 distributions; mining Examples 2.9–2.15 (shovel, trucks)</td><td>Skim</td><td>Feeds Ch 10 queuing PDF fitting; not portfolio seeds</td></tr>
+      <tr><td>3</td><td>Linear programming</td><td>3.3 simplex; 3.4 sensitivity; 3.5 dual; <strong>3.6 coal LP case</strong></td><td><strong>Deep</strong></td><td>T4 logistics / multi-product allocation</td></tr>
+      <tr><td>4</td><td>Transportation &amp; assignment</td><td>4.3 VAM/modi; 4.4 Hungarian; <strong>4.5 iron-ore transport case</strong></td><td><strong>Deep</strong></td><td>T2/T4 multi-echelon ore routing (faces → plant → steel)</td></tr>
+      <tr><td>5</td><td>Integer / MIP programming</td><td>5.3 Gomory, B&amp;B; <strong>5.4 open-pit MIP schedule case</strong>; App. 5 ZIMPL+CPLEX</td><td><strong>Deep</strong></td><td>T1 flagship — 49,603 blocks, NPV $898M</td></tr>
+      <tr><td>6</td><td>Dynamic programming</td><td>6.4 2-D UPL; 6.5 stope DP; <strong>6.6 copper UPL case</strong>; App. 6 Matlab</td><td><strong>Deep</strong></td><td>T1 pit limit; underground stope boundary</td></tr>
+      <tr><td>7</td><td>Network analysis (CPM/PERT)</td><td>7.3.1 CPM; 7.3.2 PERT; 7.4 crashing; Ex. 7.1 mine office</td><td><strong>Deep</strong></td><td>T1 project scheduling; penalty/crashing trade-offs</td></tr>
+      <tr><td>8</td><td>Reliability analysis</td><td>8.11 mine system reliability case</td><td>Skim</td><td>T5 equipment uptime; pairs Ch 2 failure dists</td></tr>
+      <tr><td>9</td><td>Inventory management</td><td>EOQ, safety stock for mine consumables</td><td>Skim</td><td>T5 spare-parts / explosive inventory adjacency</td></tr>
+      <tr><td>10</td><td>Queuing theory</td><td>10.6 M/M/1, M/M/s, (M/M/s):FCFS/K/K; <strong>10.8 shovel-truck case</strong></td><td><strong>Deep</strong></td><td>T2 flagship — fleet sizing from field data</td></tr>
+      <tr><td>11</td><td>Nonlinear optimization</td><td>11.4 open-pit schedule + cut-off + stockpile (MIQP)</td><td>Skim</td><td>T1 extension beyond Ch 5 linear MIP</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Methods catalog</h2>
+  <p>Methods from deep-read chapters; each row ties to an in-book mining example or case study.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Chapter</th>
+        <th>Core idea</th>
+        <th>Mining case / example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>LP / simplex + sensitivity</td><td>Ch 3</td><td>Allocate seams to plants; dual prices on quality caps</td><td>§3.6 Indonesia: 12 seams → 3 power plants; profit US$435,000/day (ZIMPL+CPLEX)</td></tr>
+      <tr><td>Transportation (VAM, MODI)</td><td>Ch 4</td><td>Min-cost flow on bipartite network</td><td>§4.5 India: 3 mines × 9 faces → crushers → stockpiles → 6 steel plants; US$596,650/day (Excel Solver)</td></tr>
+      <tr><td>Assignment (Hungarian)</td><td>Ch 4</td><td>Min-cost job–contractor matching</td><td>§4.4–4.5 contractor task tables; precedes haulage network case</td></tr>
+      <tr><td>ILP — Gomory cuts</td><td>Ch 5.3.1</td><td>Fractional cuts until integer feasible</td><td>Toy problems; foundation for MIP schedule</td></tr>
+      <tr><td>ILP — branch &amp; bound</td><td>Ch 5.3.2</td><td>Partition assignment space; bound with LP relaxations</td><td>Contractor–job example (z = 75); scales to mine MIP</td></tr>
+      <tr><td>MIP open-pit production schedule</td><td>Ch 5.4</td><td>Max discounted cashflow; soft mining/processing/metal targets</td><td>49,603 blocks (20×20×10 m); NPV <strong>US$898M</strong>; 265 Mt ore / 568 Mt total; Surpac + ordinary kriging</td></tr>
+      <tr><td>DP — project NPV path</td><td>Ch 6.3</td><td>Backward/forward recursion on stage graph</td><td>Four-year mine production path selection</td></tr>
+      <tr><td>DP — 2-D ultimate pit limit</td><td>Ch 6.4</td><td>Column stages; pit value recursion with slope</td><td>Toy 8-column block section; cumulative pit value = 2</td></tr>
+      <tr><td>DP — stope boundary</td><td>Ch 6.5</td><td>Block-caving stope envelope optimization</td><td>Underground profit max before scheduling</td></tr>
+      <tr><td>DP — 3-D UPL (section stitch)</td><td>Ch 6.6</td><td>2-D optimum per vertical section; Matlab pipeline</td><td>Central Africa Cu-Co: 9.1 Mt @ 2.03% Cu in pit; SR 2.22; 12.5×12.5×5 m blocks</td></tr>
+      <tr><td>CPM / PERT / crashing</td><td>Ch 7</td><td>Critical path, floats, time–cost trade-off</td><td>Ex. 7.1: mine office build (40-week target, 47-week contingency); US$300k late-start penalty in crashing case</td></tr>
+      <tr><td>Queuing — M/M/1 and M/M/s</td><td>Ch 10.6</td><td>Utilization, L<sub>q</sub>, W<sub>q</sub>, cost rate</td><td>Shovel model comparison (Models 1–4; min ETC US$24.4/hr)</td></tr>
+      <tr><td>Machine-repair (M/M/1):FCFS/K/K</td><td>Ch 10.6.4, 10.8</td><td>Finite truck population; shovel as server</td><td>Odisha: λ≈20 trucks/hr, μ≈12/hr; <strong>5 trucks</strong> optimal (η<sub>s</sub>=100%, Ct≈US$1.32/t)</td></tr>
+      <tr><td>Reliability / inventory (skim)</td><td>Ch 8–9</td><td>System availability; EOQ for mine stores</td><td>§8.11 mine reliability case — T5 breadth only</td></tr>
+      <tr><td>MIQP nonlinear schedule</td><td>Ch 11.4</td><td>Stockpile blending → nonlinear constraints</td><td>Africa copper: 26,021 blocks; cut-off + stockpile decisions</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. Mining-relevant sections (deep read)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Topic</th>
+        <th>Why it matters for mining</th>
+        <th>Book anchor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Ch 3.6</td><td>Coal seam–to–power-plant LP</td><td>Multi-seam quality (TM, ash, TS, CV) + transport cost; contract caps per plant</td><td>17 Indonesian open pits; 12 seams; profit max; seams 2,3,7,10 have surplus</td></tr>
+      <tr><td>Ch 4.5</td><td>Iron-ore logistics network</td><td>Face → crusher → stockpile → steel plant; distance-priced haul</td><td>Mine A/B/C capacities 10k/6k/4k t/d; six steel plants; Fig. 4.2 flow</td></tr>
+      <tr><td>Ch 5.4</td><td>MIP production scheduling</td><td>Block model + slope + soft metal/ore targets; maximize NPV</td><td>77 boreholes; 7 lithologies; Fe kriging; Model 2 schedule Fig. 5.18; risk profile early-period bias</td></tr>
+      <tr><td>Ch 5 App.</td><td>ZIMPL → CPLEX workflow</td><td>Industrial solve path for open-pit MIP</td><td>Minelib block/slope files cited; .lp generation</td></tr>
+      <tr><td>Ch 6.4–6.5</td><td>2-D UPL &amp; stope DP</td><td>Pedagogical pit/stope geometry before 3-D case</td><td>Eight-column toy pit; block-caving stope boundary</td></tr>
+      <tr><td>Ch 6.6</td><td>Copper UPL case study</td><td>DP per 50 m E–W section; stitch to 3-D pit</td><td>462 boreholes; oxide/mixed/sulphide zones; 45° slope; Matlab + Surpac CSV</td></tr>
+      <tr><td>Ch 7.3–7.4</td><td>CPM/PERT + crashing</td><td>Mine construction / project control</td><td>Ex. 7.1 office build; penalty and crash cost slopes (Table 7.10)</td></tr>
+      <tr><td>Ch 10.8</td><td>Shovel-truck queuing</td><td>Fleet size vs shovel utilization &amp; unit haul cost</td><td>1×10 m³ shovel; 60 m³ trucks; 4,000 t/shift target; Table 10.5 field sample (n=30)</td></tr>
+      <tr><td>Ch 11.4 (skim)</td><td>Nonlinear schedule + stockpile</td><td>Cut-off and blend nonlinearity beyond Ch 5 MIP</td><td>26,021 blocks; MIQP with stockpile destinations</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Skim chapters — method transfer (Ch 1–2, 8–9, 11)</h2>
+  <p>Not duplicated as top seeds unless PR-19 needs reliability or inventory breadth.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Transfer pattern</th>
+        <th>Mining reframe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Ch 1.6–1.7</td><td>Optimization taxonomy (LP, NLP, IP)</td><td>Maps portfolio method matrix (PR-18) to mine problem classes</td></tr>
+      <tr><td>Ch 2</td><td>Poisson/exponential shovel &amp; truck times</td><td>Validates Ch 10 exponential assumptions; links Hillier Ch 17</td></tr>
+      <tr><td>Ch 8.11</td><td>Series–parallel mine equipment reliability</td><td>T5 fleet availability KPIs; synthetic failure rates</td></tr>
+      <tr><td>Ch 9</td><td>Inventory models for mine consumables</td><td>Explosives/drill-steel EOQ — low demo priority</td></tr>
+      <tr><td>Ch 11.4</td><td>MIQP with stockpile blending</td><td>Extension of Seed A when linear MIP insufficient</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6. Portfolio seeds</h2>
+  <p>Five seeds from in-book case studies; chapter citations on each. Rank by composite: <strong>A (3.94) → B (3.93) → C (3.55)</strong> → D (~3.47) → E (~3.15). Seeds A–C clear PR-19 threshold (≥ 3.5).</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Open-pit MIP production schedule (India iron ore) <span class="tag">T1</span></h3>
+    <p><strong>Source:</strong> Ch 5.4 (MIP max NPV Eq. 5.13; reserve Eq. 5.14; slope Eq. 5.15; soft mining/processing/metal penalties); Ch 5 App. (ZIMPL+CPLEX); cites Chatterjee &amp; Dimitrakopoulos (2020) on infeasible pure-IP schedules.</p>
+    <p><strong>Idea:</strong> Toy block model (100–500 blocks, 10–15 periods) with precedence: maximize discounted cashflow vs fixed annual ore/metal targets. Show optimizer front-loading production (Fig. 5.19 pattern) and report NPV vs handbook Caccetta branch-and-cut narrative (<a href="source-natural-resources-handbook-2007.html">PR-13</a> Seed B). Cite industrial anchor: <strong>US$898M NPV</strong>, 49,603 blocks, 64.86% Fe.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Shovel-truck queuing fleet sizing (Odisha) <span class="tag">T2</span></h3>
+    <p><strong>Source:</strong> Ch 10.8 ((M/M/1):FCFS/K/K machine-repair model); Ch 10.6.4 formulas; Table 10.5 field inter-arrival/service sample; Figs 10.13–10.18.</p>
+    <p><strong>Idea:</strong> Replay Table 10.5 data in a Worker: sweep trucks N=1…22, plot η<sub>s</sub>, Ct, Q<sub>n</sub>. Highlight optimum at <strong>5 trucks</strong> (η<sub>s</sub>=100%, Ct≈US$1.32/t vs 22-truck fleet Ct≈US$4.86/t). Pairs Hillier queueing theory (<a href="source-hillier-2024.html">PR-10</a>) with mining-native field data — flagship T2 cite.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Dynamic programming ultimate pit (Central Africa copper) <span class="tag">T1</span> <span class="tag">T4</span></h3>
+    <p><strong>Source:</strong> Ch 6.4 (2-D UPL recursion); Ch 6.6 (section-wise DP, stitch caveat); App. 6 Matlab; Table 6.3 economics (45° slope, US$1.20/t mining, 98% recovery).</p>
+    <p><strong>Idea:</strong> 2-D block grid section viewer: run DP column stages in TypeScript; show pit envelope vs naive greedy shell. Narrate 3-D stitch limitation and contrast Lerchs–Grossmann / handbook max-closure (<a href="source-natural-resources-handbook-2007.html">PR-13</a> Ch 29.3). Anchor: 9.1 Mt @ 2.03% Cu, SR 2.22.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed D — Multi-echelon iron-ore transport network <span class="tag">T2</span> <span class="tag">T4</span></h3>
+    <p><strong>Source:</strong> Ch 4.5 (nine faces, dual crushers, truck/rail stockpiles, six steel plants); Table 4.43 distances; Excel Solver optimum US$596,650/day.</p>
+    <p><strong>Idea:</strong> Interactive flow diagram: adjust face production and route flows; solve min-cost transport LP in Worker. SA/India logistics persona (<a href="sa-mining-context.html">PR-09</a>). Below PR-19 threshold but strong regional differentiation.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed E — Coal seam allocation LP (Indonesia) <span class="tag">T4</span></h3>
+    <p><strong>Source:</strong> Ch 3.6 (12 seams × 3 power plants; quality constraints TM/ash/TS/CV; Tables 3.14–3.17); ZIMPL+CPLEX profit US$435,000/day.</p>
+    <p><strong>Idea:</strong> Small LP demo: sliders for seam quality and plant caps; dual-price panel on sulfur constraint. Fast Stack fit (Effort S) — good teaching module, lower composite.</p>
+  </div>
+
+  <h2>7. Angular+Firebase angle per seed</h2>
+  <dl>
+    <dt>Seed A (MIP schedule)</dt>
+    <dd>Bench-wise block grid + period Gantt; toggle soft vs hard metal constraints. Cloud Function OR-Tools/CPLEX on toy .lp from ZIMPL-style generator. Firestore <code>pitScheduleScenarios/{id}</code>, <code>npvRuns/{id}</code>; NPV and period production charts.</dd>
+    <dt>Seed B (queuing)</dt>
+    <dd>Upload or paste Table 10.5 events; fit exponential λ, μ; sweep fleet size. Chart.js η<sub>s</sub>, Ct, Q<sub>n</sub> vs N. Firestore <code>haulageQueueRuns/{id}</code>; cite 5-truck optimum vs deployed 22.</dd>
+    <dt>Seed C (DP UPL)</dt>
+    <dd>2-D section canvas with economic block colours; Worker runs column DP. Firestore <code>uplSections/{id}</code>; compare tonnage/grade to Ch 6.6 published totals.</dd>
+    <dt>Seed D (transport)</dt>
+    <dd>Sankey face→crusher→plant; LP solve on edge costs. Firestore <code>oreNetworkScenarios/{id}</code>.</dd>
+    <dt>Seed E (coal LP)</dt>
+    <dd>Seam–plant matrix editor; simplex via Worker. Firestore <code>coalLpScenarios/{id}</code>.</dd>
+  </dl>
+
+  <h2>8. Scorecard — top 3 seeds</h2>
+  <p class="meta">Composite = (4×Ukwazi + 3×CV + 2×Stack + 2×Data + 2×Diff) / 13 − effort penalty (<a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>).</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — MIP open-pit schedule (composite 3.94)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1)</td><td>5</td><td>Full block-model production schedule with NPV — core remit</td></tr>
+        <tr><td>CV proof</td><td>5</td><td>MIP + CPLEX workflow explicit; Chatterjee co-author on stochastic scheduling refs</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>3</td><td>49k-block model needs Cloud Function; toy subset in browser</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Published aggregates + <a href="synthetic-data-generator-spec.html">PR-07b</a> block generator</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>US$898M NPV case — strongest textbook scheduling evidence in Wave 2</td></tr>
+        <tr><td>Effort</td><td>L</td><td>MIP + precedence + multi-period penalties</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Shovel-truck queuing (composite 3.93)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T2)</td><td>5</td><td>Haulage fleet sizing — direct Ukwazi truck-shovel theme</td></tr>
+        <tr><td>CV proof</td><td>3</td><td>Queuing on CV; Ch 10 closes theory–practice gap vs Hillier Ch 17</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Table 10.5 fits Worker; closed-form M/M/1/K/K in TypeScript</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>30-event sample published in book; synthetic extension trivial</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Field-data Odisha case vs generic Hillier queue examples</td></tr>
+        <tr><td>Effort</td><td>M</td><td>PDF fit + fleet sweep UI</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — DP copper UPL (composite 3.55)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1/T4)</td><td>4</td><td>Pit limit + strip ratio — planning analyst scope</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>DP on CV; Matlab appendix reproducible logic</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>2-D DP tractable in Worker; 3-D stitch narrative only</td></tr>
+        <tr><td>Data feasibility</td><td>3</td><td>Confidential mine — synthetic section grades</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>DP UPL with published tonnage/grade vs Whittle-only demos</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Section DP + pit viewer</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>9. Suggested Angular+Firebase sketch (Seed A flagship)</h2>
+  <p>
+    Module <code>OpenPitScheduleLab</code>: import or generate toy block model (20×20×10 m analogue, Fe grade, economic value).
+    Period slider (12–24) with mining/processing/metal capacity caps and penalty weights from Ch 5.4.
+    Toggle “soft targets” to show front-loaded cashflow vs uniform production.
+    Cloud Function solves reduced MIP (OR-Tools); Angular shows east–west section (Fig. 5.18 style) and period ore/metal charts.
+    Firestore <code>scheduleScenarios/{id}</code>, <code>mipRuns/{id}</code>; sidebar cites <strong>US$898M</strong> industrial NPV and contrasts <a href="source-natural-resources-handbook-2007.html">PR-13</a> branch-and-cut uplift.
+    Pair with Seed B for T1+T2 pillar story in PR-19.
+  </p>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard (artifact)</h3>
+    <p class="meta">This source summary document. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>Highest-priority method source: T1 (Ch 5–6–7), T2 (Ch 10), T4 (Ch 3–4)</td></tr>
+        <tr><td>CV proof</td><td>5</td><td>LP/MIP/DP/queuing/network — full OR stack on CV</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Queuing + toy LP/DP in Worker; industrial MIP via Cloud Function</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>In-book tables (10.5, 3.14–17, 4.43) + synthetic blocks</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Six in-book cases with published economics (Ch 3.6, 4.5, 5.4, 6.6, 10.8, 11.4) plus Ch 7–8 pedagogy — unique in Wave 2</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Wave 2 summary; flagship demo Effort L (Seed A)</td></tr>
+        <tr><td><strong>Composite (doc)</strong></td><td><strong>4.55</strong></td><td>(4×5 + 3×5 + 2×4 + 2×5 + 2×5) / 13 − 0.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-17.md</code> ·
+    Registry row: <code>index.html#pr-17</code>
+  </footer>
+</body>
+</html>

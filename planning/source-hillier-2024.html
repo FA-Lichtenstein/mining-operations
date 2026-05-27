@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hillier &amp; Lieberman 2024 — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Hillier &amp; Lieberman — Introduction to Operations Research (2024)</h1>
+  <p class="meta">
+    Task ID: PR-10 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a> ·
+    Source: <code>sources/processed/Frederick Hillier, Gerald Lieberman - Introduction to Operations Research-McGraw Hill (2024).txt</code> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+    Read depth: deep Ch 3–4, 7, 10–12, 14, 17, 19–20, 22; TOC skim elsewhere
+  </p>
+
+  <p class="lead">
+    The 2024 release of Hillier &amp; Lieberman remains the canonical graduate OR textbook: LP/simplex (Ch 3–4),
+    uncertainty and recourse (Ch 7), network and integer models (Ch 10–12), metaheuristics (Ch 14), queueing and simulation
+    (Ch 17, 20), MDPs (Ch 19), and PERT/CPM (Ch 22). Duality and alternative LP algorithms (Ch 5–6, 8–9) were TOC-skimmed only.
+    The text contains <strong>no mining case studies</strong>; portfolio value comes from method transfer —
+    especially queueing + DES for haulage (Ch 17, 20), network flow for material routing (Ch 10), equipment-replacement MDPs
+    (Ch 19), two-stage stochastic LP (Ch 7.6), and fixed-charge method selection (Ch 12.3). Five seeds below map these
+    chapters to Ukwazi themes; top three score composite ≥ 3.5 on the PR-19 formula.
+  </p>
+
+  <h2>1. Scope &amp; audience</h2>
+  <ul>
+    <li><strong>Text:</strong> 11th edition, 2024 release (McGraw Hill). ~118k sentencized lines; full LP/network/simulation/MDP coverage plus website supplements (Ch 18 inventory, Ch 21–28).</li>
+    <li><strong>Audience:</strong> Quantitative Planning Analyst portfolio — method vocabulary and solver framing for browser demos per <a href="angular-firebase-or-stack.html">PR-04</a>; not a substitute for Gorai/Dunbar mining-domain sources (<a href="index.html#pr-15">PR-15</a>, <a href="index.html#pr-17">PR-17</a>).</li>
+    <li><strong>Read boundary:</strong> Deep read on Ch 3–4 (LP foundations), 7 (uncertainty), 10–12 (network/IP), 14 (metaheuristics), 17 (queueing), 19–20 (MDP/simulation), 22 (PERT). Ch 1–2, 5–6, 8–9, 13, 15–16, 18, 21, 23–28 skimmed via TOC only.</li>
+    <li><strong>Cross-refs:</strong> External mining OR cases in <a href="mining-or-real-world-examples.html">PR-05</a>; SA KPI context in <a href="sa-mining-context.html">PR-09</a>; synthetic haulage data in <a href="synthetic-data-generator-spec.html">PR-07b</a>.</li>
+  </ul>
+
+  <h2>2. Chapter map</h2>
+  <p class="meta">Page numbers from print TOC; body read via sentencized line offsets. “Deep” = sections read in full for this task.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Ch</th>
+        <th>Title</th>
+        <th>Key sections</th>
+        <th>Read</th>
+        <th>Portfolio hook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Introduction</td><td>1.1–1.7 OR impact, analytics</td><td>TOC</td><td>Framing only</td></tr>
+      <tr><td>2</td><td>Problem analysis overview</td><td>2.1–2.6 descriptive → prescriptive</td><td>TOC</td><td>First Bank case — analytics pipeline pattern</td></tr>
+      <tr><td>3</td><td>Introduction to LP</td><td>3.1 Wyndor; 3.2–3.4 model &amp; applications; 3.5–3.6 spreadsheet/LINGO</td><td><strong>Deep</strong></td><td>Product-mix / resource allocation; Swift vignette (45 LP models)</td></tr>
+      <tr><td>4</td><td>Simplex method</td><td>4.1–4.4 geometry &amp; tableau; 4.9 postoptimality; 4.11 interior-point</td><td><strong>Deep</strong></td><td>CPF optimality; solver transparency for toy LP demos</td></tr>
+      <tr><td>5</td><td>Theory of simplex</td><td>5.1–5.5 matrix form, revised simplex</td><td>TOC</td><td>Sensitivity foundation (links Ch 7)</td></tr>
+      <tr><td>6</td><td>Duality</td><td>6.1–6.5 primal-dual, shadow prices</td><td>TOC</td><td>Constraint marginal values → fleet/capacity shadow prices</td></tr>
+      <tr><td>7</td><td>LP under uncertainty</td><td>7.1–7.3 sensitivity; 7.4 robust; 7.5 chance; <strong>7.6 stochastic recourse</strong></td><td><strong>Deep</strong></td><td>Two-stage planning under scenario uncertainty</td></tr>
+      <tr><td>8</td><td>Other LP algorithms</td><td>8.1 dual simplex; 8.4 interior-point</td><td>TOC</td><td>Re-optimisation after parameter drift</td></tr>
+      <tr><td>9</td><td>Transportation &amp; assignment</td><td>9.1–9.4 P&amp;T Co.; assignment algorithm</td><td>TOC</td><td>Truckload routing prototype (Ch 9.1)</td></tr>
+      <tr><td>10</td><td>Network optimization</td><td>10.3 shortest path; 10.5 max flow; 10.6 min cost flow; 10.8 CPM time-cost</td><td><strong>Deep</strong></td><td>Haul-road capacity; CSX rail vignette; project crash</td></tr>
+      <tr><td>11</td><td>Dynamic programming</td><td>11.1 stagecoach; 11.3–11.4 deterministic &amp; probabilistic DP</td><td>TOC</td><td>Multi-stage route/equipment decisions (methods catalog cites 11.3)</td></tr>
+      <tr><td>12</td><td>Integer programming</td><td>12.1 BIP; <strong>12.3 fixed charges</strong>; 12.6–12.8 branch-and-bound/cut</td><td><strong>Deep</strong></td><td>Setup costs for IPCC/truck method activation</td></tr>
+      <tr><td>13</td><td>Nonlinear programming</td><td>13.1–13.10 convex/nonconvex</td><td>TOC</td><td>Pit slope / non-LP scheduling (Gorai territory)</td></tr>
+      <tr><td>14</td><td>Metaheuristics</td><td>14.1–14.4 tabu, simulated annealing, genetic algorithms</td><td><strong>Deep</strong></td><td>Large dispatch heuristics when MIP too heavy for browser</td></tr>
+      <tr><td>15</td><td>Game theory</td><td>15.1–15.7 two-person zero-sum</td><td>TOC</td><td>Low mining relevance</td></tr>
+      <tr><td>16</td><td>Decision analysis</td><td>16.1–16.8 decision trees, utility</td><td>TOC</td><td>Closure / investment gates (T6 overlap with PR-05 #10–11)</td></tr>
+      <tr><td>17</td><td>Queueing theory</td><td>17.1–17.3 structure; 17.6 M/M/s; <strong>17.10 server sizing E(TC)</strong></td><td><strong>Deep</strong></td><td>Loader/truck queues; shovel fleet count trade-off</td></tr>
+      <tr><td>18</td><td>Inventory (eBook)</td><td>18.1–18.9 supply chain inventory</td><td>TOC</td><td>Spares/consumables — secondary for open-pit</td></tr>
+      <tr><td>19</td><td>Markov decision processes</td><td>19.1 machine replacement; 19.3 LP policy; 19.5 approximate DP</td><td><strong>Deep</strong></td><td>Haul-truck / shovel replace-vs-operate policy</td></tr>
+      <tr><td>20</td><td>Simulation</td><td>20.1–20.2 DES essence &amp; applications; 20.5 simulation optimisation</td><td><strong>Deep</strong></td><td>Flagship DES for haulage; manufacturing vignette (Syngenta)</td></tr>
+      <tr><td>21</td><td>Spreadsheet modeling (web)</td><td>21.1–21.5</td><td>TOC</td><td>Excel parity for stakeholder handoff</td></tr>
+      <tr><td>22</td><td>PERT/CPM</td><td>22.1–22.7 Reliable Construction; 22.4 uncertain durations; 22.5 time-cost</td><td><strong>Deep</strong></td><td>Pushback / capital project scheduling</td></tr>
+      <tr><td>23–28</td><td>Supplements (web)</td><td>Transshipment, probability, reliability, queueing apps, forecasting, Markov chains</td><td>TOC</td><td>Ch 26 queueing decision models; Ch 27 forecasting (T5)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Methods catalog</h2>
+  <p>Methods extracted from deep-read chapters; “mining transfer” notes how each maps to open-pit / underground planning without claiming in-text mining examples.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Hillier chapter</th>
+        <th>Core idea</th>
+        <th>Mining transfer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Linear programming (product mix)</td><td>Ch 3.1–3.4</td><td>Allocate scarce plant hours to maximise profit</td><td>Mill/plant throughput mix; contractor hour allocation</td></tr>
+      <tr><td>Simplex / CPF geometry</td><td>Ch 4.1–4.4</td><td>Adjacent corner-point search; optimality test</td><td>Explain toy LP solutions in portfolio UI</td></tr>
+      <tr><td>Sensitivity &amp; shadow prices</td><td>Ch 7.1–7.3</td><td>Allowable ranges; dual prices for resources</td><td>“What if” on shovel hours, crusher capacity</td></tr>
+      <tr><td>Robust / chance-constrained LP</td><td>Ch 7.4–7.5</td><td>Worst-case or probabilistic constraint satisfaction</td><td>Grade/recovery uncertainty in plan constraints</td></tr>
+      <tr><td>Stochastic programming (recourse)</td><td>Ch 7.6</td><td>Stage-1 now, stage-2 after scenario revealed</td><td>Commit pushback now; adjust cut sequence later</td></tr>
+      <tr><td>Shortest path</td><td>Ch 10.3</td><td>Min-distance route on directed network</td><td>Empty vs loaded haul route selection</td></tr>
+      <tr><td>Maximum flow</td><td>Ch 10.5</td><td>Capacity-limited throughput on arcs</td><td>Haul-road tonnage caps; ramp congestion</td></tr>
+      <tr><td>Minimum cost flow</td><td>Ch 10.6</td><td>Source–sink shipping at least cost</td><td>Pit → stockpile → plant material routing</td></tr>
+      <tr><td>CPM time-cost trade-off</td><td>Ch 10.8, 22.5</td><td>Crash activities for deadline at minimum cost</td><td>Accelerate pushback to meet LOM milestone</td></tr>
+      <tr><td>Deterministic DP</td><td>Ch 11.3</td><td>Multi-stage decisions without uncertainty</td><td>Strip sequence over pushbacks (small state)</td></tr>
+      <tr><td>Binary IP / fixed charge</td><td>Ch 12.1, 12.3</td><td>Yes/no + setup cost if activity activated</td><td>IPCC install vs trucking; fleet purchase gates</td></tr>
+      <tr><td>Branch-and-bound</td><td>Ch 12.6–12.7</td><td>LP relaxations + fathoming for IP</td><td>Small dispatch MIP in Cloud Function</td></tr>
+      <tr><td>Metaheuristics (tabu, GA, SA)</td><td>Ch 14.2–14.4</td><td>Escape local optima on hard NLP/IP</td><td>Heuristic shovel-truck assignment at scale</td></tr>
+      <tr><td>M/M/s queueing</td><td>Ch 17.6, 17.10</td><td>Poisson arrivals, exponential service; minimise E(TC)</td><td>Loading-point queue; extra truck vs wait cost</td></tr>
+      <tr><td>MDP / policy LP</td><td>Ch 19.1–19.4</td><td>Markov states, actions, costs; optimal policy</td><td>Replace vs continue operating haul units</td></tr>
+      <tr><td>Discrete-event simulation</td><td>Ch 20.1–20.2</td><td>Event-driven stochastic system imitation</td><td>Truck-shovel cycle DES (PR-05 #01–03 pattern)</td></tr>
+      <tr><td>PERT with uncertainty</td><td>Ch 22.4; Ch 20.2</td><td>Three-estimate durations; simulate deadline prob.</td><td>Capital / closure project on-time probability</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. Mining-relevant sections</h2>
+  <p>The textbook is industry-agnostic. The table below lists sections with the strongest <em>method</em> transfer to mining operations research, with analogous Hillier vignettes where present.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Topic</th>
+        <th>Why it matters for mining</th>
+        <th>Hillier anchor example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Ch 3.1, 3.4</td><td>LP product mix</td><td>Resource-constrained production rates across plants/pits</td><td>Wyndor Glass; Swift &amp; Co. 45-model scheduling ($12.7M benefit)</td></tr>
+      <tr><td>Ch 7.1–7.3</td><td>Sensitivity analysis</td><td>Monitor plan when capacity or cost estimates drift</td><td>Wyndor shadow prices on plant hours</td></tr>
+      <tr><td>Ch 7.6</td><td>Stochastic recourse</td><td>Two-stage decisions under commodity/grade scenarios</td><td>Wyndor delayed product-2 decision</td></tr>
+      <tr><td>Ch 9.1</td><td>Transportation problem</td><td>Minimum-cost movement of discrete loads (truckloads)</td><td>P&amp;T Co. cannery → warehouse</td></tr>
+      <tr><td>Ch 10.3–10.6</td><td>Network flows</td><td>Haul routes, road capacity, cost-minimising material flow</td><td>Seervada Park roads; CSX rail equipment ($1.4B capex saved)</td></tr>
+      <tr><td>Ch 10.8, 22.3–22.5</td><td>Project scheduling</td><td>Pushback sequencing, critical path, crash costs</td><td>Reliable Construction Co. ($5.4M contract)</td></tr>
+      <tr><td>Ch 12.3</td><td>Fixed-charge IP</td><td>Methods with setup/investment (IPCC, new fleet)</td><td>Nori &amp; Leets smokestack fixed charges (Ch 3 abatement extended)</td></tr>
+      <tr><td>Ch 17.6, 17.10</td><td>Queueing + staffing</td><td>Shovel/truck queues; size fleet to minimise total cost</td><td>Acme tool crib (M/M/s, add 3rd clerk)</td></tr>
+      <tr><td>Ch 19.1</td><td>MDP replacement</td><td>Equipment deterioration states; replace vs operate</td><td>Production machine weekly inspection states 0–3</td></tr>
+      <tr><td>Ch 20.2</td><td>DES applications</td><td>Manufacturing/queueing systems too complex for formulas</td><td>Bank tellers; Syngenta soybean process simulation</td></tr>
+      <tr><td>Ch 14.2–14.4</td><td>Metaheuristics</td><td>Large combinatorial dispatch when exact IP impractical</td><td>Nonconvex local-optima example (Fig 14.1)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Portfolio seeds</h2>
+  <p>Five seeds tagged T1–T6; chapter/section cited for each. Gorai in-book cases remain reserved for <a href="index.html#pr-17">PR-17</a>.
+    Seeds D and E score below the PR-19 showcase threshold (composite ~3.16 and ~3.77); retained for T4/T1 breadth.</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Shovel–truck queue DES + fleet sizing <span class="tag">T2</span> <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 17.1–17.3 (queue structure), 17.6 (M/M/s), 17.10 (minimise E(TC) = C<sub>s</sub>s + C<sub>w</sub>L); Ch 20.1–20.2 (DES when queue formulas insufficient).</p>
+    <p><strong>Idea:</strong> Model a loading point as M/M/s (s = shovels or berths), then wrap in discrete-event simulation for non-exponential load times, breakdowns, and blended fleets. Compare deterministic queue formulas vs simulated cycle times — mirrors PR-05 Peru fleet DES (#01).</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Haul-network min-cost / max-flow dispatcher <span class="tag">T1</span> <span class="tag">T2</span></h3>
+    <p><strong>Source:</strong> Ch 10.2–10.6 (network terminology, shortest path, max flow, min cost flow); Ch 9.1 (transportation as LP special case).</p>
+    <p><strong>Idea:</strong> Pit → stockpile → plant as min-cost flow; haul-road segments as capacitated arcs (max-flow subproblem for shift tonnage target). CSX rail vignette (Ch 10.6) validates network OR at industrial scale.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Haul-truck replacement MDP <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 19.1 (four-state machine deterioration, replace at state 3), 19.2–19.3 (MDP formulation, LP for optimal policy), 19.4 (practice).</p>
+    <p><strong>Idea:</strong> Weekly inspection states for CAT 793-class units; actions = operate, repair, replace; transition matrix from synthetic PM history. Policy heatmap and expected cost vs age — complements PR-05 equipment SLP (#09) with MDP framing.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed D — Fixed-charge IPCC vs trucking selector <span class="tag">T4</span></h3>
+    <p><strong>Source:</strong> Ch 12.3 (fixed-charge y<sub>j</sub> binary), Ch 3.3–3.4 (LP assumptions, pollution abatement mix); Ch 7.1 (sensitivity on chosen mix).</p>
+    <p><strong>Idea:</strong> Binary activate IPCC corridor (setup capex + fixed OPEX) vs variable trucking cost per tonne-km. Small BIP solvable in browser; sensitivity on fuel/energy price — aligns PR-05 IPCC DES (#02) with explicit investment gate.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed E — Pushback PERT with simulated deadline risk <span class="tag">T1</span></h3>
+    <p><strong>Source:</strong> Ch 22.1–22.5 (Reliable Construction CPM/PERT, time-cost crash); Ch 10.8 (network time-cost); Ch 20.2 (simulate project deadline probability vs PERT approximations).</p>
+    <p><strong>Idea:</strong> Network of pushback activities (drill, blast, load, rehandle) with three-point durations; critical path + optional crash; Monte Carlo completion before LOM milestone — SA context from PR-09 strip-ratio KPIs.</p>
+  </div>
+
+  <h2>6. Angular+Firebase angle per seed</h2>
+  <dl>
+    <dt>Seed A (queue DES)</dt>
+    <dd>
+      Angular Material dashboard: sliders for λ, μ, fleet count s; Chart.js for L, W, utilisation. Web Worker runs M/M/s formulas and optional DES event engine (<a href="angular-firebase-or-stack.html">PR-04</a> DES row). Firestore stores scenario presets; Auth for demo user. Synthetic interarrival/service CSV from PR-07b.
+    </dd>
+    <dt>Seed B (network flow)</dt>
+    <dd>
+      ngx-graph or Cytoscape.js for pit haul network; node/arc editors write to Firestore <code>networks/{id}</code>. Worker runs max-flow / min-cost flow (small LP via <code>javascript-lp-solver</code>); map overlay optional GeoJSON from PR-07b. Scenario compare panel for route changes.
+    </dd>
+    <dt>Seed C (MDP)</dt>
+    <dd>
+      Reactive forms for transition matrix and costs; Worker value-iteration loop; heatmap component for policy π(state). Firestore <code>mdpPolicies/{id}</code> stores matrices; Cloud Function only if state space &gt; ~20 states.
+    </dd>
+    <dt>Seed D (fixed-charge BIP)</dt>
+    <dd>
+      Two-method toggle UI (truck vs IPCC) with capex/setup fields; Worker BIP via <code>glpk.js</code> WASM for ≤20 binary vars. Firestore audit trail of solves; sensitivity chart reusing Ch 7.1 allowable-range metaphor on cost coefficients.
+    </dd>
+    <dt>Seed E (PERT + simulation)</dt>
+    <dd>
+      Activity table + network diagram (Ch 22.2); forward/backward pass in Worker; second Worker Monte Carlo for completion time CDF. Firestore project templates; export Gantt-friendly JSON. Lightweight — Effort S.
+    </dd>
+  </dl>
+
+  <h2>7. Scorecard — top 3 seeds</h2>
+  <p class="meta">Composite = (4×Ukwazi + 3×CV + 2×Stack + 2×Data + 2×Diff) / 13 − effort penalty (<a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>).</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Shovel–truck queue DES (composite 4.16)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T2/T5)</td><td>5</td><td>Core haulage simulation remit; Ch 17.10 cost curve directly models fleet vs wait trade-off</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>DES/interactive models on CV; Hillier Ch 20.2 bank-teller demos are transferable pattern</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>PR-04 flagship DES Worker pattern; no external solver licence</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>PR-07b synthetic cycle times; public queueing benchmarks for validation</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Mining-specific queue narrative vs generic OR portfolio</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Dual analytic + DES layer</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Haul-network flow (composite 4.16)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1/T2)</td><td>5</td><td>Dispatch and routing under capacity — Ch 10.5–10.6</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Network LP + visual dashboards align with planning analyst CV</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Graph UI + Worker LP; larger networks may need Cloud Function</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Small synthetic pit networks in GeoJSON/JSON</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>CSX-scale vignette credibility; haul-network is distinctly mining</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Network editor + solver integration</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Haul-truck MDP (composite 3.62)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T5)</td><td>5</td><td>Equipment planning under uncertainty — Ch 19.1 replacement prototype</td></tr>
+        <tr><td>CV proof</td><td>3</td><td>MDP less prominent on CV than DES/LP</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Small state MDP fits Worker; policy heatmap is polished UI</td></tr>
+        <tr><td>Data feasibility</td><td>3</td><td>Transition matrix must be synthetic or heavily anonymised</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Equipment policy demo rare in generic OR portfolios</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Matrix editing UX + validation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>8. Suggested Angular+Firebase sketch (Seed A flagship)</h2>
+  <p>
+    Standalone Angular app module <code>HaulQueueLab</code>: landing view with pit persona selector (PR-09),
+    parameter panel (arrival rate, mean load time, shovel count, cost rates from Ch 17.10),
+    and dual-pane output (analytic M/M/s vs DES time-series). Firestore collections
+    <code>scenarios/{id}</code>, <code>simRuns/{id}</code>; Auth optional.
+    All optimisation/simulation in <code>haul-queue.worker.ts</code>; Chart.js for L and W vs s curve (Fig 17.13 shape).
+    Offline-capable PWA shell; no Whittle/Deswik integration.
+  </p>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-10.md</code> ·
+    Registry row: <code>index.html#pr-10</code>
+  </footer>
+</body>
+</html>

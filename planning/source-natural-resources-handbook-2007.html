@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Huirne et al. 2007 — Portfolio Research</title>
+
+  <style>
+
+    :root {
+
+      --text: #1a1a1a;
+
+      --muted: #555;
+
+      --accent: #2c5f2d;
+
+      --border: #ddd;
+
+      --bg-soft: #f7f9f7;
+
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+
+      font-family: "Segoe UI", system-ui, sans-serif;
+
+      line-height: 1.55;
+
+      color: var(--text);
+
+      max-width: 52rem;
+
+      margin: 0 auto;
+
+      padding: 2rem 1.5rem 3rem;
+
+    }
+
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+
+    h2 {
+
+      font-size: 1.2rem;
+
+      margin-top: 2rem;
+
+      margin-bottom: 0.6rem;
+
+      color: var(--accent);
+
+      border-bottom: 1px solid var(--border);
+
+      padding-bottom: 0.25rem;
+
+    }
+
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+
+    p, li { font-size: 0.95rem; }
+
+    .meta {
+
+      color: var(--muted);
+
+      font-size: 0.875rem;
+
+      margin-bottom: 1.5rem;
+
+    }
+
+    .lead {
+
+      font-size: 1.02rem;
+
+      background: var(--bg-soft);
+
+      border-left: 4px solid var(--accent);
+
+      padding: 0.85rem 1rem;
+
+      margin: 1rem 0 1.5rem;
+
+    }
+
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+
+    li { margin-bottom: 0.35rem; }
+
+    dl { margin: 0.5rem 0; }
+
+    dt { font-weight: 600; margin-top: 0.6rem; }
+
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+
+    table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+      font-size: 0.9rem;
+
+      margin: 0.75rem 0 1rem;
+
+    }
+
+    th, td {
+
+      border: 1px solid var(--border);
+
+      padding: 0.45rem 0.6rem;
+
+      text-align: left;
+
+      vertical-align: top;
+
+    }
+
+    th { background: var(--bg-soft); font-weight: 600; }
+
+    .tag {
+
+      display: inline-block;
+
+      font-size: 0.75rem;
+
+      font-weight: 600;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.03em;
+
+      color: var(--accent);
+
+      margin-right: 0.35rem;
+
+    }
+
+    .portfolio-box {
+
+      background: #fff;
+
+      border: 1px solid var(--border);
+
+      border-radius: 6px;
+
+      padding: 1rem 1.1rem;
+
+      margin-top: 0.75rem;
+
+    }
+
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+
+    a { color: var(--accent); }
+
+    code {
+
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+
+      font-size: 0.85em;
+
+      background: var(--bg-soft);
+
+      padding: 0.1rem 0.3rem;
+
+      border-radius: 3px;
+
+    }
+
+    footer {
+
+      margin-top: 2.5rem;
+
+      padding-top: 1rem;
+
+      border-top: 1px solid var(--border);
+
+      font-size: 0.8rem;
+
+      color: var(--muted);
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <h1>Huirne, Meuwissen &amp; Van Asseldonk — Handbook of Operations Research in Natural Resources (2007)</h1>
+
+  <p class="meta">
+
+    Task ID: PR-13 · Date: 2026-05-27 ·
+
+    Upstream deps: <a href="index.html#pr-01">PR-01</a> ·
+
+    Source: <code>sources/processed/Ruud Huirne, Miranda Meuwissen, Marcel Van Asseldonk - Handbook of Operations Research in Natural Resources (2007).txt</code> ·
+
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+
+    Read depth: deep Part IV mining Ch 29–32 (Caccetta, Alford/Brazil/Lee, Kiruna, copper chain); skim ag Ch 1, 7, 9 and forestry Ch 22, 26, 28 for method transfer only
+
+  </p>
+
+
+
+  <p class="lead">
+
+    Springer ISORMS handbook (Hillier series; Weintraub/Romero/Epstein editors) spanning agriculture, fisheries, forestry, and mining.
+
+    Part IV (Ch 29–32) is the portfolio’s <strong>only mining-native OR source</strong> in Wave 2: Caccetta on open-pit pit design and branch-and-cut
+
+    scheduling (≥15% NPV uplift on operating gold mines); Alford/Brazil/Lee on underground stope, network, and scheduling decomposition;
+
+    Newman/Kuchta/Martinez on LKAB Kiruna combined long/short-term MILP (69.6% contract-deviation reduction); and Caro/Epstein/Weintraub on
+
+    integrated copper mine-metallurgy chain planning. Deep read centred on T1 scheduling and T2 stochastic/simulation threads; ag/forestry skimmed
+
+    for LP+simulation and metaheuristic scheduling transfer only. Five seeds below; top three by composite: A → C → B (all ≥ 3.5). Seed A anchors T1; Seed C anchors T2/T5 simulation.
+
+  </p>
+
+
+
+  <h2>1. Scope &amp; audience</h2>
+
+  <ul>
+
+    <li><strong>Text:</strong> Edited handbook, Springer 2007. ~36k sentencized lines; 32 chapters across four domains + index. Part IV mining (pp. 545–609) is four application chapters with published mine case studies — unlike Hillier (<a href="source-hillier-2024.html">PR-10</a>) or Boucherie (<a href="source-mdp-practice-2017.html">PR-12</a>).</li>
+
+    <li><strong>Audience:</strong> Quantitative Planning Analyst portfolio — citeable mining MILP/scheduling/simulation vocabulary for browser demos per <a href="angular-firebase-or-stack.html">PR-04</a>; complements Gorai mining formulations (<a href="index.html#pr-17">PR-17</a>) with industry deployment narratives (LKAB Interfaces, Codelco, Caccetta branch-and-cut).</li>
+
+    <li><strong>Read boundary:</strong> Deep Ch 29 (block model, Lerchs–Grossmann/max-closure, MILP scheduling, branch-and-cut); Ch 30 (infill drilling, cut-off, stope optimisation, Steiner decline networks, Kiruna precursor, conditional simulation); Ch 31 (Kiruna MILP, variable reduction, numerical results); Ch 32 (copper chain integration, hardness/recovery nonlinearity, water/energy limits). Skim ag Ch 1 (farm risk), Ch 7 (MCDM+simulation), Ch 9 (PMP calibration); forestry Ch 22 (harvest ops), Ch 26 (heuristics/SA scheduling), Ch 28 (LP+simulation strategy). TOC only: fisheries, remaining ag/forestry.</li>
+
+    <li><strong>Cross-refs:</strong> Hillier Ch 10 network, Ch 12 IP (<a href="source-hillier-2024.html">PR-10</a>); haulage DES patterns (<a href="mining-or-real-world-examples.html">PR-05</a>); SA iron-ore personas (<a href="sa-mining-context.html">PR-09</a>); synthetic block models (<a href="synthetic-data-generator-spec.html">PR-07b</a>); Epstein/Weintraub also author forest transport Ch 22 and copper Ch 32.</li>
+
+  </ul>
+
+
+
+  <h2>2. Chapter map</h2>
+
+  <p class="meta">Four parts, 32 chapters. Mining rows are deep-read; ag/forestry rows note method-transfer hooks only.</p>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>Ch</th>
+
+        <th>Title</th>
+
+        <th>Key sections</th>
+
+        <th>Read</th>
+
+        <th>Portfolio hook</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr><td colspan="5"><strong>Part I — Agriculture (Ch 1–9)</strong></td></tr>
+
+      <tr><td>1</td><td>Whole-farm risk management</td><td>1 stochastic farm planning overview</td><td>Skim</td><td>Risk framing for T5; low mining transfer</td></tr>
+
+      <tr><td>7</td><td>Agriculture–environment interactions</td><td>7 simulation + MCDM coupling</td><td>Skim</td><td>Simulation outputs → optimisation input pattern (T2 adjacency)</td></tr>
+
+      <tr><td>9</td><td>Positive mathematical programming</td><td>9 PMP calibration/simulation</td><td>Skim</td><td>Behavioural calibration before scenario simulation</td></tr>
+
+      <tr><td colspan="5"><strong>Part II — Fisheries (Ch 10–16)</strong></td></tr>
+
+      <tr><td>10–16</td><td>Fisheries management, games, bioeconomics, capacity</td><td>—</td><td>TOC</td><td>Resource extraction under uncertainty — conceptual only</td></tr>
+
+      <tr><td colspan="5"><strong>Part III — Forestry (Ch 17–28)</strong></td></tr>
+
+      <tr><td>22</td><td>Harvest operational models</td><td>22 bucking, routing</td><td>Skim</td><td>Epstein/Weintraub — same author team as Ch 32; logistics OR</td></tr>
+
+      <tr><td>26</td><td>Heuristics in forest planning</td><td>26.7 LP/IP/heuristic survey; 26.8.1 ODF SA harvest scheduling</td><td>Skim</td><td>Parallel to mine block scheduling heuristics (Ch 29.4, 30.6)</td></tr>
+
+      <tr><td>28</td><td>Adaptive optimisation (stochastic world)</td><td>28 LP + simulation at forest level</td><td>Skim</td><td>Two-stage plan/simulate loop for T2 demos</td></tr>
+
+      <tr><td colspan="5"><strong>Part IV — Mining (Ch 29–32) — deep read</strong></td></tr>
+
+      <tr><td>29</td><td>Optimisation in open pit mining (Caccetta)</td><td>2 block model/cones; 3 pit design (LGA, network flow, PITOPTIM 3.17M blocks); 4 MILP scheduling, parameterisation, branch-and-cut (≥15% NPV)</td><td><strong>Deep</strong></td><td>T1 flagship — pit limit + production schedule MILP</td></tr>
+
+      <tr><td>30</td><td>Optimisation in underground mining (Alford, Brazil, Lee)</td><td>3.1–3.2 infill drilling, cut-off; 3.3 stope optimisation; 3.4–3.5 Steiner decline networks; 3.6 scheduling (Kiruna precursor, SA); 3.7 integrated underground</td><td><strong>Deep</strong></td><td>T1/T2/T4 — stope, access network, simulation under uncertainty</td></tr>
+
+      <tr><td>31</td><td>Kiruna long/short-term scheduling (Newman, Kuchta, Martinez)</td><td>3 MILP formulation; 4 variable reduction (early/late start/finish); 5 numerical results (69.6% deviation cut)</td><td><strong>Deep</strong></td><td>T1 flagship — published underground contract scheduling</td></tr>
+
+      <tr><td>32</td><td>Integrated copper mine-metallurgy planning (Caro, Epstein, et al.)</td><td>1–2 sequential vs integrated planning; 4.1 hardness/recovery/pollutants; 4.2 smelter-refinery; 4.2.2 water/energy limits; 5 integration gap (conclusions)</td><td><strong>Deep</strong></td><td>T4 value-chain; T6 water/pollutant liability adjacency</td></tr>
+
+    </tbody>
+
+  </table>
+
+
+
+  <h2>3. Methods catalog</h2>
+
+  <p>Methods from deep-read mining chapters plus ag/forestry transfer rows cited in read boundary.</p>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>Method</th>
+
+        <th>Handbook chapter</th>
+
+        <th>Core idea</th>
+
+        <th>Mining transfer</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr><td>Block model + precedence cones</td><td>Ch 29.2</td><td>3D fixed blocks; minimum search pattern; digraph precedence</td><td>Foundation for all open-pit schedule MILPs</td></tr>
+
+      <tr><td>Maximum-weight closure / LGA</td><td>Ch 29.3</td><td>Pit limit as graph closure; Lerchs–Grossmann or Picard min-cut</td><td>Ultimate pit; nested pushbacks (Whittle parameterisation)</td></tr>
+
+      <tr><td>Network flow pit design (PITOPTIM)</td><td>Ch 29.3</td><td>Up to 3,175,200 blocks; 20 min CPU; sensitivity on slopes/costs</td><td>Exact pit limit at mine scale — benchmark for toy demos</td></tr>
+
+      <tr><td>Open-pit MILP scheduling</td><td>Ch 29.4</td><td>Multi-site, multi-product, cut-off in model; capacity/logistics constraints</td><td>T1 long-range mine plan; 68 pits / 16-year iron ore case</td></tr>
+
+      <tr><td>Branch and cut (mine scheduling)</td><td>Ch 29.4</td><td>Structure-exploiting cuts; ~30k LOC C++; ≥15% NPV vs parametric schedules</td><td>Exact schedule vs Whittle pushback heuristics</td></tr>
+
+      <tr><td>Lagrangian relaxation scheduling</td><td>Ch 29.4</td><td>Dualise capacity; subgradient; within 5% optimality on mine data</td><td>Approximate MILP when branch-and-cut too heavy</td></tr>
+
+      <tr><td>Metaheuristics (GA, SA, neural nets)</td><td>Ch 29.4; Ch 30.6</td><td>Denby &amp; Schofield GA; Thomas GA/SA; Whittle (2004) SA underground</td><td>T2 heuristic schedule search; pairs Hillier Ch 14 metaheuristics</td></tr>
+
+      <tr><td>Lane cut-off grade theory</td><td>Ch 30.3.2</td><td>Break-even vs value-maximising cut-off; mine/mill/market capacity limits</td><td>Links open-pit cut-off in Ch 29.4 MILP; underground harder at scale</td></tr>
+
+      <tr><td>Stope optimisation (Floating Stope, SMB)</td><td>Ch 30.3</td><td>Envelopes, octree, Stopesizor; conditional simulation grade risk</td><td>Underground reserve definition before scheduling</td></tr>
+
+      <tr><td>Gradient-constrained Steiner networks</td><td>Ch 30.3.4–3.5</td><td>Decline/ramp layout with max gradient 1/7–1/9; Dubins navigability</td><td>T4 access design; truck vs shaft haulage trade-off</td></tr>
+
+      <tr><td>Underground MILP scheduling (RCPSP)</td><td>Ch 30.6; Ch 31</td><td>Machine placements, drawdown lines, LHD limits; min contract deviation</td><td>Kiruna sublevel caving — T1 reference case</td></tr>
+
+      <tr><td>Critical-path variable elimination</td><td>Ch 31.4–5</td><td>Early/late start/finish; 80% binary reduction; combined long/short model</td><td>Tractability pattern for browser-scale toy MILPs</td></tr>
+
+      <tr><td>Conditional simulation + stope risk</td><td>Ch 30.3.3</td><td>Floating Stope on simulated ore bodies (Grieco &amp; Dimitrakopoulos)</td><td>T2 grade-risk distribution over stope designs</td></tr>
+
+      <tr><td>Integrated mine-metallurgy MILP (vision)</td><td>Ch 32</td><td>Simultaneous mine, plant, investment; hardness → mill capacity nonlinear</td><td>T4 IPCC/plant/mine co-planning; T6 water/arsenic limits</td></tr>
+
+      <tr><td>Forest SA harvest scheduling (transfer)</td><td>Ch 26.8.1</td><td>ODF spatial Model II; 300k–900k binaries; 15–20 min on 3.2 GHz</td><td>Metaheuristic scheduling template for mine blocks</td></tr>
+
+      <tr><td>LP + simulation coupling (transfer)</td><td>Ch 7; Ch 28</td><td>Simulation outputs feed MCDM/LP; adaptive forest planning</td><td>Two-layer T2: simulate ore body → optimise schedule</td></tr>
+
+    </tbody>
+
+  </table>
+
+
+
+  <h2>4. Mining-relevant sections (deep read)</h2>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>Section</th>
+
+        <th>Topic</th>
+
+        <th>Why it matters for mining</th>
+
+        <th>Handbook anchor</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr><td>Ch 29.2</td><td>Block model &amp; precedence graph</td><td>Cones S<sub>x</sub>; closure = feasible pit; MILP xi−xj≤0</td><td>Kriging grades; Fig. 1 material flow pit→ROM→plant</td></tr>
+
+      <tr><td>Ch 29.3</td><td>Ultimate pit design</td><td>LGA vs network flow; PITOPTIM 3.17M blocks in 20 min</td><td>Commercial Whittle/CPLEX limits cited</td></tr>
+
+      <tr><td>Ch 29.4</td><td>Production scheduling MILP</td><td>Multi-pit, cut-off, blending; branch-and-cut ≥15% NPV</td><td>68 pits, 6 sites, 16-year iron ore; gold single-pit cases</td></tr>
+
+      <tr><td>Ch 30.3.2</td><td>Lane cut-off grade</td><td>Break-even vs optimum cut-off; mine/mill/market limits (Lane 1988)</td><td>Feeds Ch 29.4 cut-off-in-MILP; Poniewierski et al. scheduling linkage</td></tr>
+
+      <tr><td>Ch 30.3</td><td>Stope optimisation</td><td>Floating Stope; conditional simulation grade risk</td><td>Alford (2006) optimal stope+pillar; Grieco &amp; Dimitrakopoulos case study (body OCR: Greico)</td></tr>
+
+      <tr><td>Ch 30.3.1</td><td>Infill drilling optimisation</td><td>Network design for drill drives; stochastic simulation (Boucher et al.)</td><td>Brazil et al. Pajingo 10% drilling-cost savings</td></tr>
+
+      <tr><td>Ch 30.3.4–3.5</td><td>Decline/network design</td><td>Steiner trees with gradient bound m; construction+haulage cost</td><td>Brazil et al. gradient-constrained 3D Steiner networks</td></tr>
+
+      <tr><td>Ch 30.6</td><td>Underground scheduling survey</td><td>Kuchta Kiruna precursor (56 machine placements); Whittle SA</td><td>RCPSP scale challenge; Mt Isa, Cannington refs</td></tr>
+
+      <tr><td>Ch 31.2–3</td><td>Kiruna mine context &amp; MILP</td><td>Sublevel caving; 24 Mt/y; 3 ore products B1/B2/D3; vertical/horizontal sequencing</td><td>10 production areas; LHD cable limits (2–3 per shaft group)</td></tr>
+
+      <tr><td>Ch 31.4–5</td><td>Tractability &amp; results</td><td>4,000+ binaries → 20% after reduction; combined model 69.6% less deviation</td><td>24-month LKAB data; CPLEX 9.0; 4 s vs 4,350 s to 5% gap</td></tr>
+
+      <tr><td>Ch 32.1</td><td>Sequential vs integrated planning</td><td>Mine → plant → investment iterated; suboptimal globally</td><td>20–50 year horizon; Codelco/Epstein underground+open pit</td></tr>
+
+      <tr><td>Ch 32.4.1</td><td>Mine-concentrator integration</td><td>Hardness W<sub>i</sub> → tpd nonlinear; recovery vs size; pollutant blend</td><td>Fig. 2–3 capacity/recovery curves; moly byproduct value</td></tr>
+
+      <tr><td>Ch 32.4.2.2</td><td>Water &amp; energy limits</td><td>Crushing-grinding-flotation 53% water, 48% energy (Tables 1–2); Atacama context</td><td>T6 closure/resource liability; open-pit→UG energy trade-off</td></tr>
+
+    </tbody>
+
+  </table>
+
+
+
+  <h2>5. Ag/forestry method transfer (skim only)</h2>
+
+  <p>Non-mining chapters supply scheduling/simulation patterns without domain case studies. Not duplicated as portfolio seeds unless PR-19 needs metaheuristic breadth.</p>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>Section</th>
+
+        <th>Transfer pattern</th>
+
+        <th>Mining reframe</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr><td>Ag Ch 7</td><td>Crop simulation → MCDM without manual interface</td><td>Ore-body simulator → pit/stope MILP input (<a href="synthetic-data-generator-spec.html">PR-07b</a>)</td></tr>
+
+      <tr><td>Forestry Ch 26.7</td><td>LP, IP, SA, tabu, GA for harvest scheduling; 300k+ binaries</td><td>Block scheduling metaheuristic when MILP intractable (Ch 29.4 contrast)</td></tr>
+
+      <tr><td>Forestry Ch 26.8.1 (ODF)</td><td>Spatial SA harvest; greenup/road tree; goal programming penalties</td><td>Pit pushback sequencing with geotechnical adjacency constraints</td></tr>
+
+      <tr><td>Forestry Ch 28</td><td>Adaptive optimisation under stochastic growth</td><td>Rolling-horizon mine plan (Ch 31 Kiruna rolling 24-month)</td></tr>
+
+      <tr><td>Forestry Ch 22</td><td>Epstein transport/routing models</td><td>Same author lineage as Ch 32 logistics integration</td></tr>
+
+    </tbody>
+
+  </table>
+
+
+
+  <h2>6. Portfolio seeds</h2>
+
+  <p>Five seeds tagged T1–T6; chapter citations for each. Rank by composite: A (3.86) → C (3.78) → B (3.55) → D (3.24) → E (3.08). Seeds A–C clear PR-19 threshold (≥ 3.5); A prioritises T1 scheduling, C prioritises T2/T5 simulation.</p>
+
+
+
+  <div class="portfolio-box">
+
+    <h3>Seed A — Kiruna combined long/short-term MILP <span class="tag">T1</span></h3>
+
+    <p><strong>Source:</strong> Ch 31.3–5 (combined model (P); machine placement binaries y<sub>at</sub>; block variables x<sub>bt</sub>; drawdown w<sub>lt</sub>; min ∑(z<sup>+</sup>+z<sup>−</sup>) contract deviation); Ch 31.4 (critical-path early/late start/finish elimination); Ch 30.6 (Kuchta precursor, 56 machine placements).</p>
+
+    <p><strong>Idea:</strong> Toy underground schedule: 8–12 machine placements, 3 ore types, 12-month horizon. Compare long-term-only (placement starts) vs combined (block-level rates within active placements). Show 69.6%-style deviation KPI reduction on synthetic contract demands — flagship T1 cite for real mine deployment (Interfaces 34(2)).</p>
+
+  </div>
+
+
+
+  <div class="portfolio-box">
+
+    <h3>Seed B — Caccetta branch-and-cut open-pit scheduling <span class="tag">T1</span></h3>
+
+    <p><strong>Source:</strong> Ch 29.2–4 (block MILP; parameterisation vs exact methods); Ch 29.4 branch-and-cut (≥15% NPV; 68-pit multi-site case); Lagrangian within 5% (Ch 29.4 refs).</p>
+
+    <p><strong>Idea:</strong> Small block model (50–100 blocks) with precedence: compare nested-pit parameterisation heuristic vs simplified MILP or Lagrangian bound. Narrate industrial NPV uplift; full branch-and-cut stays Cloud Function or citation-only — Effort L lowers composite.</p>
+
+  </div>
+
+
+
+  <div class="portfolio-box">
+
+    <h3>Seed C — Conditional simulation stope grade risk <span class="tag">T2</span> <span class="tag">T5</span></h3>
+
+    <p><strong>Source:</strong> Ch 30.3.3 (Grieco &amp; Dimitrakopoulos Floating Stope on conditionally simulated ore bodies); Ch 30.3.1 (Boucher et al. stochastic drilling simulation); Ch 29.4 (GA/SA scheduling refs).</p>
+
+    <p><strong>Idea:</strong> Generate N synthetic block models (PR-07b); run Floating-Stope-style envelope on each; histogram of stope NPV or grade. Compare deterministic vs P10/P50/P90 stope value — T2 simulation pillar with published mining citation (not generic DES).</p>
+
+  </div>
+
+
+
+  <div class="portfolio-box">
+
+    <h3>Seed D — Integrated copper mine-metallurgy chain <span class="tag">T4</span> <span class="tag">T6</span></h3>
+
+    <p><strong>Source:</strong> Ch 32.1–2 (sequential vs integrated); Ch 32.4.1 (hardness W<sub>i</sub>→tpd, recovery vs µm, pollutant blend); Ch 32.4.2.2 (water 53% / energy 48% at crushing-grinding-flotation, Tables 1–2).</p>
+
+    <p><strong>Idea:</strong> Two-mine, one-concentrator toy LP/MILP: monthly ore feed by hardness class affects mill tpd and recovery; water cap binds in dry-site persona (<a href="sa-mining-context.html">PR-09</a>). Vision doc + small solver — integration gap is the story (Ch 32.5).</p>
+
+  </div>
+
+
+
+  <div class="portfolio-box">
+
+    <h3>Seed E — Underground decline Steiner network <span class="tag">T4</span></h3>
+
+    <p><strong>Source:</strong> Ch 30.3.4–3.5 (gradient-constrained Steiner trees; max slope m=1/7–1/9; Dubins navigability); cross-ref Ch 30.3.1 Pajingo infill drilling network case.</p>
+
+    <p><strong>Idea:</strong> 2D/3D toy portal-to-drawpoint network optimizer with gradient cap; compare truck-haul decline vs shaft shortcut CAPEX. Distinctive T4 geometry demo; lower composite (~3.08) — defer unless PR-19 needs T4 breadth.</p>
+
+  </div>
+
+
+
+  <h2>7. Angular+Firebase angle per seed</h2>
+
+  <dl>
+
+    <dt>Seed A (Kiruna MILP)</dt>
+
+    <dd>
+
+      Gantt of machine placements + ore-type demand chart; sliders for LHD limits and contract targets. Cloud Function or Worker with CPLEX/OR-Tools on reduced toy instance (Ch 31.4 elimination logic ported in TypeScript). Firestore <code>kirunaScenarios/{id}</code>, <code>scheduleRuns/{id}</code>; deviation KPI card (z<sup>+</sup>, z<sup>−</sup> by month).
+
+    </dd>
+
+    <dt>Seed B (Caccetta scheduling)</dt>
+
+    <dd>
+
+      Block-grid pit viewer; precedence edges. Worker: nested pit parametric sweep vs small MILP. Firestore <code>pitBlocks/{id}</code>; Chart.js NPV vs schedule method. Branch-and-cut cited in panel; industrial 15% benchmark from Ch 29.4.
+
+    </dd>
+
+    <dt>Seed C (conditional simulation)</dt>
+
+    <dd>
+
+      Worker runs N conditional realisations (<a href="synthetic-data-generator-spec.html">PR-07b</a>); stope envelope per realisation. Histogram + P10/P50/P90 cards. Firestore <code>simRealisations/{id}</code>; pairs Hillier DES narrative (<a href="source-hillier-2024.html">PR-10</a> Seed A) with mining-native uncertainty source.
+
+    </dd>
+
+    <dt>Seed D (copper chain)</dt>
+
+    <dd>
+
+      Flow diagram mine→concentrator→smelter; hardness/recovery curve editors (Ch 32 Fig. 2–3). LP in Worker; water/energy cap sliders. Firestore <code>chainScenarios/{id}</code>.
+
+    </dd>
+
+    <dt>Seed E (decline network)</dt>
+
+    <dd>
+
+      Canvas/SVG network editor; gradient constraint validator. Worker shortest-path / Steiner heuristic on grid. Firestore <code>declineNetworks/{id}</code>.
+
+    </dd>
+
+  </dl>
+
+
+
+  <h2>8. Scorecard — top 3 seeds</h2>
+
+  <p class="meta">Composite = (4×Ukwazi + 3×CV + 2×Stack + 2×Data + 2×Diff) / 13 − effort penalty (<a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>).</p>
+
+
+
+  <div class="portfolio-box">
+
+    <h3>Seed A — Kiruna combined scheduling (composite 3.86)</h3>
+
+    <table>
+
+      <thead>
+
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr><td>Ukwazi fit (T1)</td><td>5</td><td>Only published underground contract-scheduling case in Wave 2 sources</td></tr>
+
+        <tr><td>CV proof</td><td>4</td><td>MILP on CV; Ch 31 explicit formulation</td></tr>
+
+        <tr><td>Angular+Firebase fit</td><td>3</td><td>Toy instance + variable reduction; full model needs Cloud Function</td></tr>
+
+        <tr><td>Data feasibility</td><td>5</td><td>Interfaces 34(2); 24-month LKAB structure reproducible synthetically</td></tr>
+
+        <tr><td>Differentiation</td><td>5</td><td>69.6% deviation reduction; iron-ore contract narrative rare in OR portfolios</td></tr>
+
+        <tr><td>Effort</td><td>L</td><td>MILP + sequencing constraints + dual-resolution model</td></tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+  <div class="portfolio-box">
+
+    <h3>Seed C — Conditional simulation stope risk (composite 3.78)</h3>
+
+    <table>
+
+      <thead>
+
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr><td>Ukwazi fit (T2/T5)</td><td>5</td><td>Mining-native stochastic/simulation — Ch 30.3.3</td></tr>
+
+        <tr><td>CV proof</td><td>3</td><td>Simulation on CV via Hillier DES; mining conditional sim less explicit</td></tr>
+
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>N-realisation loop in Worker; histogram UI</td></tr>
+
+        <tr><td>Data feasibility</td><td>4</td><td>Synthetic block models (<a href="synthetic-data-generator-spec.html">PR-07b</a>)</td></tr>
+
+        <tr><td>Differentiation</td><td>4</td><td>Grade-risk over stopes vs generic queue DES</td></tr>
+
+        <tr><td>Effort</td><td>M</td><td>Ensemble + simple stope envelope heuristic</td></tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+  <div class="portfolio-box">
+
+    <h3>Seed B — Caccetta branch-and-cut scheduling (composite 3.55)</h3>
+
+    <table>
+
+      <thead>
+
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr><td>Ukwazi fit (T1)</td><td>5</td><td>Open-pit production scheduling — core Ukwazi remit</td></tr>
+
+        <tr><td>CV proof</td><td>4</td><td>MILP/IP; complements Hillier Ch 12 (<a href="source-hillier-2024.html">PR-10</a>)</td></tr>
+
+        <tr><td>Angular+Firebase fit</td><td>2</td><td>Branch-and-cut 30k LOC — demo heuristic/Lagrangian only</td></tr>
+
+        <tr><td>Data feasibility</td><td>4</td><td>Small block models; industrial NPV claims as validation story</td></tr>
+
+        <tr><td>Differentiation</td><td>5</td><td>≥15% NPV; 68-pit case — strongest open-pit OR evidence in handbook</td></tr>
+
+        <tr><td>Effort</td><td>L</td><td>Exact method narrative; toy MILP subset only</td></tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+  <h2>9. Suggested Angular+Firebase sketch (Seed A flagship)</h2>
+
+  <p>
+
+    Module <code>KirunaScheduleLab</code>: persona selector (<a href="sa-mining-context.html">PR-09</a> iron-ore buyer), 12-month horizon, three ore-type demand series (B1/B2/D3 analogues).
+
+    Upload or generate machine-placement list with vertical/horizontal precedence (Ch 31.2). Toggle long-term-only vs combined model; display monthly deviation chart (Fig. 3 analogue).
+
+    Port Ch 31.4 early/late start elimination in TypeScript to shrink toy binary count before solve. Cloud Function OR-Tools/CPLEX for reduced MILP; Angular shows placement Gantt + KPI “deviation reduction vs long-term.”
+
+    Firestore <code>kirunaScenarios/{id}</code>, <code>scheduleRuns/{id}</code>; cite Interfaces 34(2) in sidebar. Pair with Seed C for T1+T2 pillar story.
+
+  </p>
+
+
+
+  <div class="portfolio-box">
+
+    <h3>Portfolio relevance scorecard (artifact)</h3>
+
+    <p class="meta">This source summary document. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+
+    <table>
+
+      <thead>
+
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>Primary T1 source; T2 via Ch 30 simulation; T4/T6 via Ch 32 chain</td></tr>
+
+        <tr><td>CV proof</td><td>4</td><td>MILP scheduling matches CV; simulation less explicit</td></tr>
+
+        <tr><td>Angular+Firebase fit</td><td>3</td><td>Toy MILP + simulation feasible; industrial scale needs Cloud Function</td></tr>
+
+        <tr><td>Data feasibility</td><td>5</td><td>LKAB, Caccetta, Codelco published cases; synthetic block models</td></tr>
+
+        <tr><td>Differentiation</td><td>5</td><td>Only mining-native OR handbook chapter in Wave 2</td></tr>
+
+        <tr><td>Effort</td><td>M</td><td>Wave 2 summary; demo effort per seed M–L</td></tr>
+
+        <tr><td><strong>Composite (doc)</strong></td><td><strong>4.16</strong></td><td>(4×5 + 3×4 + 2×3 + 2×5 + 2×5) / 13 − 0.3</td></tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+
+
+  <footer>
+
+    Handover: see <code>sources/html/_handover/PR-13.md</code> ·
+
+    Registry row: <code>index.html#pr-13</code>
+
+  </footer>
+
+</body>
+
+</html>
+
+

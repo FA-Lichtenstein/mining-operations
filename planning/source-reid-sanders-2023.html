@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reid &amp; Sanders 2023 — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Reid &amp; Sanders — Operations Management: An Integrated Approach (2023)</h1>
+  <p class="meta">
+    Task ID: PR-11 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a> ·
+    Source: <code>sources/processed/R. Dan Reid, Nada R. Sanders - Operations Management_ An Integrated Approach (2023, Wiley).txt</code> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+    Read depth: deep Ch 5–6, 8, 12–13, 15; TOC skim Ch 1–4, 7, 9–11, 14, 16 and supplements
+  </p>
+
+  <p class="lead">
+    The eighth edition (Wiley, 2023) is an undergraduate–graduate OM survey: strategy and SCM (Ch 2–4),
+    quality and SPC (Ch 5–6), lean (Ch 7), then the planning stack — forecasting (Ch 8), capacity (Ch 9),
+    inventory (Ch 12), sales and operations planning / aggregate planning (Ch 13), MRP/ERP (Ch 14), and
+    scheduling with OPT/TOC (Ch 15). The text has <strong>no mining case studies</strong>; portfolio value is
+    operational planning vocabulary for browser demos — especially demand forecasting with accuracy control
+    (Ch 8), S&amp;OP hierarchy and level/chase/hybrid aggregate plans (Ch 13), shop/bottleneck scheduling
+    (Ch 15), and SPC as a reconciliation analogue for plan-vs-actual KPIs (Ch 6). Five seeds map these
+    chapters to Ukwazi themes; top three composites are ≥ 3.5 on the PR-19 formula.
+  </p>
+
+  <h2>1. Scope &amp; audience</h2>
+  <ul>
+    <li><strong>Text:</strong> 8th edition, 2023 (Wiley). ~74k sentencized lines; integrated OM across functions with spreadsheet/analytics supplements (A–D).</li>
+    <li><strong>Audience:</strong> Quantitative Planning Analyst portfolio — planning, forecasting, and execution framing complementary to Hillier OR methods (<a href="source-hillier-2024.html">PR-10</a>) and mining-domain sources (<a href="index.html#pr-15">PR-15</a>, <a href="index.html#pr-17">PR-17</a>).</li>
+    <li><strong>Read boundary:</strong> Deep read Ch 5–6 (TQM/SQC), 8 (forecasting), 12 (inventory), 13 (S&amp;OP/aggregate planning), 15 (scheduling/TOC). Ch 1–4, 7, 9–11, 14, 16 and supplements A–D skimmed via brief/contents TOC only.</li>
+    <li><strong>Cross-refs:</strong> DES haulage patterns in <a href="mining-or-real-world-examples.html">PR-05</a>; SA KPI context in <a href="sa-mining-context.html">PR-09</a>; synthetic tonnage/grade series in <a href="synthetic-data-generator-spec.html">PR-07b</a>; stack patterns in <a href="angular-firebase-or-stack.html">PR-04</a>.</li>
+  </ul>
+
+  <h2>2. Chapter map</h2>
+  <p class="meta">Page numbers from print brief contents; body read via sentencized line offsets. “Deep” = sections read in full for this task.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Ch</th>
+        <th>Title</th>
+        <th>Key sections</th>
+        <th>Read</th>
+        <th>Portfolio hook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Introduction to OM</td><td>1.1–1.7 OM decisions, history, SCM/AI</td><td>TOC</td><td>Framing; links all functions</td></tr>
+      <tr><td>2</td><td>Operations strategy</td><td>2.1–2.6 competitive priorities, strategy</td><td>TOC</td><td>Cost vs response trade-offs for pit planning</td></tr>
+      <tr><td>3</td><td>Product &amp; process design</td><td>3.1–3.8 design types, sustainability</td><td>TOC</td><td>Process choice (project/job/batch/line)</td></tr>
+      <tr><td>4</td><td>Supply chain management</td><td>4.1–4.9 SCM drivers, bullwhip, risk</td><td>TOC</td><td>Contractor/material coordination (T2 adjacency)</td></tr>
+      <tr><td>5</td><td>Total quality management</td><td>5.1–5.6 defining quality, costs of quality, Six Sigma intro</td><td><strong>Deep</strong></td><td>Customer-defined quality; conformance vs fitness for use</td></tr>
+      <tr><td>6</td><td>Statistical quality control</td><td>6.1–6.4 SQC categories; 6.5–6.7 x̄/R, p/c charts; 6.8 Cpk; 6.9 Six Sigma</td><td><strong>Deep</strong></td><td>Plan-vs-actual variance control (T3 reconciliation analog)</td></tr>
+      <tr><td>7</td><td>JIT and lean</td><td>7.1–7.7 pull, kanban, JIT requirements</td><td>TOC</td><td>Waste reduction on haul routes (conceptual)</td></tr>
+      <tr><td>8</td><td>Forecasting</td><td>8.1–8.3 principles &amp; process; 8.4 time series (MA, ES, trend, season); 8.5–8.6 causal/regression; 8.7 MAD/MSE/tracking signal; 8.8 CPFR</td><td><strong>Deep</strong></td><td>Tonnage/grade/demand forecasts; Intel/Ben &amp; Jerry’s vignettes</td></tr>
+      <tr><td>9</td><td>Capacity &amp; facility location</td><td>9.1–9.6 capacity decisions, location</td><td>TOC</td><td>Shovel/plant capacity sizing (feeds Ch 13)</td></tr>
+      <tr><td>10</td><td>Facility layout</td><td>10.1–10.5 layout types, line balancing</td><td>TOC</td><td>High-volume flow layout (links Ch 15)</td></tr>
+      <tr><td>11</td><td>Work system design</td><td>11.1–11.5 methods, work measurement</td><td>TOC</td><td>Standards for scheduling (Ch 15 prerequisite)</td></tr>
+      <tr><td>12</td><td>Inventory management</td><td>12.1–12.3 types &amp; objectives; 12.4 ABC; 12.5 EOQ/safety stock; 12.6 periodic review</td><td><strong>Deep</strong></td><td>Spares/consumables; anticipation inventory for seasonal pits</td></tr>
+      <tr><td>13</td><td>Aggregate planning</td><td>13.1 S&amp;OP hierarchy (Fig 13.1); 13.2 demand/capacity options; 13.3 level/chase/hybrid; 13.4 plan development</td><td><strong>Deep</strong></td><td>Medium-term pit tonnage &amp; workforce plan; G’s Fresh/UPS cases</td></tr>
+      <tr><td>14</td><td>Resource planning</td><td>14.1–14.4 ERP/MRP logic, CRP, lot sizing</td><td>TOC</td><td>Closed-loop MRP ties to S&amp;OP (Ch 13)</td></tr>
+      <tr><td>15</td><td>Scheduling</td><td>15.1–15.4 Gantt, infinite/finite loading; 15.5–15.6 priority rules (SPT, S/RO); 15.7–15.8 bottlenecks, OPT/TOC (Table 15.6)</td><td><strong>Deep</strong></td><td>Job-shop dispatch; Akito’s Flowers bottleneck narrative</td></tr>
+      <tr><td>16</td><td>Project management</td><td>16.1–16.5 CPM/PERT, crashing</td><td>TOC</td><td>Capital/pushback projects (Hillier Ch 22 overlap)</td></tr>
+      <tr><td>Supp A–D</td><td>Spreadsheet, optimization, queues, master scheduling</td><td>MPS/RCCP (Supp D)</td><td>TOC</td><td>Excel parity; queue models overlap Hillier Ch 17</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Methods catalog</h2>
+  <p>Methods from deep-read chapters; “mining transfer” notes operational mapping without in-text mining examples.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Reid &amp; Sanders chapter</th>
+        <th>Core idea</th>
+        <th>Mining transfer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Forecasting process (5 steps)</td><td>Ch 8.2</td><td>Define item/units/horizon → analyze data → select model → generate → monitor accuracy</td><td>Weekly/monthly ROM tonnes, metal production, contractor hours</td></tr>
+      <tr><td>Moving average / exponential smoothing</td><td>Ch 8.4</td><td>Level patterns: F<sub>t+1</sub> = αA<sub>t</sub> + (1−α)F<sub>t</sub></td><td>Short-horizon truck requirement from dispatch history</td></tr>
+      <tr><td>Trend-adjusted exponential smoothing</td><td>Ch 8.4</td><td>Level + trend (α, β); FIT<sub>t+1</sub> = S<sub>t</sub> + T<sub>t</sub></td><td>Rising strip ratio or declining grade trend in plan KPIs</td></tr>
+      <tr><td>Seasonal indices</td><td>Ch 8.4</td><td>Multiplicative indices by season vs deseasonalized average</td><td>Rainy-season haulage, maintenance shutdown windows</td></tr>
+      <tr><td>Linear / multiple regression (causal)</td><td>Ch 8.5</td><td>Y = a + bX; driver-based demand</td><td>Tonnage vs commodity price, head grade, fleet count</td></tr>
+      <tr><td>MAD, MSE, tracking signal</td><td>Ch 8.7</td><td>Error metrics; bias control when |TS| exceeds limits (e.g. ±4)</td><td>Forecast governance for monthly mine plan updates</td></tr>
+      <tr><td>S&amp;OP / business planning hierarchy</td><td>Ch 13.1</td><td>Strategic → marketing → aggregate (6–18 mo) → MPS weekly/daily</td><td>Integrate geology, operations, finance on tonnage targets</td></tr>
+      <tr><td>Level / chase / hybrid aggregate plan</td><td>Ch 13.3</td><td>Stable output + inventory/backlog vs match demand with overtime/hire-fire</td><td>Stable shovel crews with stockpile swing vs chase contractor fleet</td></tr>
+      <tr><td>Demand- vs capacity-based AP options</td><td>Ch 13.2</td><td>Inventory/backorder/shift demand vs OT/subcontract/hire-fire</td><td>Peak-season temps (UPS vignette); undertime in low-commodity cycles</td></tr>
+      <tr><td>EOQ + safety stock</td><td>Ch 12.5–12.6</td><td>Trade order cost vs holding cost; buffer for demand variation</td><td>MRO/spares at remote sites; tyre/consumable replenishment</td></tr>
+      <tr><td>ABC classification</td><td>Ch 12.4</td><td>Pareto dollar usage → A/B/C control intensity</td><td>Prioritize critical spares vs low-value items</td></tr>
+      <tr><td>SPC (x̄-R, p, c charts)</td><td>Ch 6.5–6.7</td><td>Common vs assignable causes; in-control process limits</td><td>Grade/recovery or cycle-time control charts vs plan bands</td></tr>
+      <tr><td>Process capability (C<sub>pk</sub>)</td><td>Ch 6.8</td><td>Voice of process vs specification limits</td><td>Mill recovery or blast fragmentation within spec</td></tr>
+      <tr><td>Priority rules (SPT, S/RO, due date)</td><td>Ch 15.5–15.6</td><td>Job sequencing; flow time vs tardiness trade-offs</td><td>Workshop job queue; shovel support tasks at single resource</td></tr>
+      <tr><td>OPT / Theory of Constraints</td><td>Ch 15.7–15.8</td><td>Bottleneck sets throughput; balance flow not capacity (Table 15.6)</td><td>Loader or crusher as system constraint; protect bottleneck hour</td></tr>
+      <tr><td>Gantt load / progress charts</td><td>Ch 15.3–15.4</td><td>Visual workload and schedule adherence</td><td>Shift plan board for maintenance or pushback crews</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. Mining-relevant sections</h2>
+  <p>Industry-agnostic text; strongest <em>method</em> transfer to open-pit / concentrator planning and site accountability.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Topic</th>
+        <th>Why it matters for mining</th>
+        <th>Reid &amp; Sanders anchor example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Ch 8.1–8.2</td><td>Forecasting principles &amp; process</td><td>All OM plans start with demand/tonnage outlook; errors propagate to fleet and mill</td><td>Intel over/under-forecast obsolete inventory risk</td></tr>
+      <tr><td>Ch 8.1, 8.4, 8.7</td><td>Time series + accuracy</td><td>Match model to level/trend/season; MAD/MSE/tracking signal for plan review gates</td><td>Ben &amp; Jerry’s Oracle BI (Ch 8.1); Handy-Wrench exponential smoothing (Ch 8.4); tracking signal ±4 (Ch 8.7)</td></tr>
+      <tr><td>Ch 13.1</td><td>S&amp;OP hierarchy</td><td>Cross-functional medium-term plan (marketing ↔ operations ↔ finance)</td><td>Fig 13.1 strategic → aggregate → MPS; actual vs planned feedback</td></tr>
+      <tr><td>Ch 13.2–13.3</td><td>Aggregate options &amp; strategies</td><td>Stockpile vs overtime vs subcontract for volatile ROM demand</td><td>G’s Naturally Fresh seasonal lettuce (Spain/UK); UPS 100k seasonal hires</td></tr>
+      <tr><td>Ch 12.4–12.5</td><td>ABC + EOQ</td><td>Remote-site spares investment and reorder discipline</td><td>Nadan inventory turns; basic EOQ assumptions (Ch 12.3 fig)</td></tr>
+      <tr><td>Ch 6.2–6.4</td><td>Variation &amp; SPC</td><td>Distinguish noise vs assignable cause in KPI deviations (reconciliation mindset)</td><td>Steinway hand-crafted process monitoring</td></tr>
+      <tr><td>Ch 6.8</td><td>Process capability</td><td>Spec limits for recovery, product size, or assay tolerance</td><td>C<sub>pk</sub> vs customer spec (general manufacturing framing)</td></tr>
+      <tr><td>Ch 15.5–15.8</td><td>Scheduling &amp; TOC</td><td>Constraint resource sets shift throughput; priority rules for job shops</td><td>Akito’s Flowers — arrangers as bottleneck; airline schedule realism</td></tr>
+      <tr><td>Ch 5.1</td><td>Defining quality</td><td>Conformance to spec vs fitness for use — aligns survey/plan tolerance language</td><td>Ford Six Sigma / J.D. Power quality awards</td></tr>
+      <tr><td>Ch 14.2 (TOC)</td><td>MRP / closed-loop</td><td>Links aggregate plan to dependent demand (explosives, steel, reagents)</td><td>Closed-loop MRP includes S&amp;OP (Ch 13.1 cross-ref; Ch 14 skimmed)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Portfolio seeds</h2>
+  <p>Five seeds tagged T1–T6; chapter citations for each. Seeds D and E score below the PR-19 showcase threshold (composite ~3.54 and ~3.47); retained for T5/T3 breadth.</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — ROM tonnage forecast lab (MAPE + tracking signal) <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 8.1–8.4 (principles, MA, exponential &amp; trend-adjusted smoothing, seasonality); Ch 8.7 (MAD, MSE, tracking signal ±4 rule).</p>
+    <p><strong>Idea:</strong> Upload synthetic monthly ROM tonnes (PR-07b); compare naive, moving average, and exponential smoothing; plot actual vs forecast and compute MAD/MSE/tracking signal to trigger model review — mirrors monthly mine-plan forecast governance.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — S&amp;OP aggregate plan simulator (level vs chase) <span class="tag">T1</span> <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 13.1 (S&amp;OP, Fig 13.1 hierarchy); Ch 13.2 (demand/capacity options); Ch 13.3 (level, chase, hybrid strategies).</p>
+    <p><strong>Idea:</strong> Six- to twelve-period demand series for pit tonnes; user toggles level plan (inventory/backorder swing) vs chase (overtime/temp labour); chart workforce, stockpile, and cost proxies — G’s Fresh/UPS vignettes as narrative anchors.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Bottleneck shift scheduler (SPT + TOC) <span class="tag">T1</span></h3>
+    <p><strong>Source:</strong> Ch 15.3–15.6 (Gantt, priority rules, flow time/tardiness); Ch 15.7–15.8 (OPT principles, Table 15.6).</p>
+    <p><strong>Idea:</strong> Small job-shop: shovel maintenance tasks or truck service jobs at one constraint work center; compare SPT vs due-date rules on mean flow time and tardiness; highlight bottleneck utilization — complements Hillier queue DES (<a href="source-hillier-2024.html">PR-10</a> Seed A) with deterministic sequencing.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed D — Pit spares ABC–EOQ dashboard <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 12.4 (ABC analysis); Ch 12.5 (EOQ assumptions, Q formula, total cost curve).</p>
+    <p><strong>Idea:</strong> Synthetic spares usage table; Pareto ABC chart and EOQ slider for top A-items (tyres, liners). Lower differentiation than Seeds A–C; useful CV breadth for inventory literacy.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed E — Grade/recovery SPC control chart <span class="tag">T3</span></h3>
+    <p><strong>Source:</strong> Ch 6.2–6.4 (common vs assignable causes); Ch 6.5–6.6 (x̄-R chart logic); Ch 6.8 (process capability).</p>
+    <p><strong>Idea:</strong> Stream of daily mill recovery or truck cycle-time samples vs plan target; x̄ chart with control limits, flag assignable causes when points exceed limits — operational analogue to production reconciliation dashboards (survey vs plan variance).</p>
+  </div>
+
+  <h2>6. Angular+Firebase angle per seed</h2>
+  <dl>
+    <dt>Seed A (forecast lab)</dt>
+    <dd>
+      Angular Material: horizon selector, α slider, method dropdown. Web Worker runs smoothing loops and error metrics (<a href="angular-firebase-or-stack.html">PR-04</a>). Chart.js actual/forecast and tracking-signal band. Firestore <code>forecasts/{id}</code> stores parameters and backtest results; CSV import from PR-07b.
+    </dd>
+    <dt>Seed B (S&amp;OP simulator)</dt>
+    <dd>
+      Reactive forms for demand vector and cost rates (inventory holding 20–35% cite Ch 13.2). Worker computes level/chase/hybrid tables; stacked bar chart for production/workforce/inventory. Firestore scenario compare; optional Auth for demo user.
+    </dd>
+    <dt>Seed C (bottleneck scheduler)</dt>
+    <dd>
+      Job table + Gantt-style timeline (ngx-gantt or custom SVG). Worker implements SPT and S/RO sequences (Ch 15.6); KPI cards for flow time and tardiness. Firestore <code>schedules/{id}</code>; highlight bottleneck row per Table 15.6 principles.
+    </dd>
+    <dt>Seed D (ABC–EOQ)</dt>
+    <dd>
+      Upload/grid for SKU annual usage; Worker ABC sort + EOQ formula; Pareto chart + cost curve for selected SKU. Effort M (ABC + EOQ sliders); Firestore optional audit of runs.
+    </dd>
+    <dt>Seed E (SPC chart)</dt>
+    <dd>
+      Time-series input; Worker computes subgroup means, UCL/LCL, optional C<sub>pk</sub>; alert badges for out-of-control points. Links PR-09 reconciliation KPI labels in tooltips. Chart.js control chart; Firestore <code>spcRuns/{id}</code>.
+    </dd>
+  </dl>
+
+  <h2>7. Scorecard — top 3 seeds</h2>
+  <p class="meta">Composite = (4×Ukwazi + 3×CV + 2×Stack + 2×Data + 2×Diff) / 13 − effort penalty (<a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>).</p>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Bottleneck shift scheduler (composite 4.32)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1)</td><td>5</td><td>Constraint scheduling directly matches short-term planning remit; pair with Hillier DES (PR-10 Seed A) for T2 breadth</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Gantt/sequencing demos are CV-friendly; TOC narrative is distinctive</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Small job sets fit Worker; visual Gantt is polished portfolio UI</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Synthetic job times from PR-07b; no proprietary dispatch data</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Mining bottleneck story (loader/crusher) vs generic job-shop only</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Multiple rules + Gantt UX</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed A — ROM tonnage forecast lab (composite 4.16)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T5)</td><td>5</td><td>Forecasting is foundation for capacity and mine plan updates (Ch 8)</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Time-series dashboards common on planning CVs</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Pure Worker math; Chart.js; no external solver</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Synthetic tonnage series; public forecast examples for validation</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Tracking-signal governance story is stronger than generic MA demo</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Several methods + accuracy panel</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — S&amp;OP aggregate plan simulator (composite 4.01)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1/T5)</td><td>5</td><td>Medium-term integrated planning is core Ukwazi vocabulary (Ch 13.1)</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>S&amp;OP exposure valued; less common than forecasting in student portfolios</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Tabular Worker + charts; scenario compare in Firestore</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Hand-entered or synthetic demand vectors suffice</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Level vs chase for pit stockpile/workforce is mining-specific framing</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Three strategies + cost proxies</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>8. Suggested Angular+Firebase sketch (Seed C flagship)</h2>
+  <p>
+    Module <code>ConstraintScheduleLab</code>: pit persona (PR-09), job list editor, constraint work-center selector,
+    priority-rule toggle (SPT vs S/RO). Worker returns sequence, Gantt bars, mean flow time, mean tardiness.
+    Bottleneck panel cites Ch 15.8 OPT principles (protect constraint hour). Firestore <code>jobs/{id}</code>,
+    <code>runs/{id}</code>; PWA shell per PR-04. Pairs with Hillier queue seed for analytic vs sequencing views.
+  </p>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-11.md</code> ·
+    Registry row: <code>index.html#pr-11</code>
+  </footer>
+</body>
+</html>

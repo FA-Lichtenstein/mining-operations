@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Data &amp; APIs (Mining) — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Open Data &amp; APIs (Mining)</h1>
+  <p class="meta">
+    Task ID: PR-07 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a>, <a href="index.html#pr-02">PR-02</a> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+    Out of scope: CV matrix (<a href="index.html#pr-03">PR-03</a>), synthetic generators (<a href="index.html#pr-07b">PR-07b</a>)
+  </p>
+
+  <p class="lead">
+    South Africa and broader Africa offer strong <em>macro</em> and <em>spatial</em> open data for mining portfolio demos — production time series, mine directories, geology, closure-risk atlases, and commodity benchmarks — but almost no public operational datasets (block models, dispatch logs, survey reconciliations) and <strong>no government bulk API for mining rights</strong> (SAMRAD legacy or Project Indwe). This doc catalogues 19 sources with licensing notes, API/machine-readability ratings, and per-theme (T1–T6) data-package recommendations. Synthetic mine-level seeds remain mandatory for T1/T2/T3 demos; see PR-07b.
+  </p>
+
+  <h2>Scope and method</h2>
+  <ul>
+    <li><strong>Geography:</strong> Primary = South Africa (Stats SA, DMPR/DMRE, CGS, WRC, Minerals Council); secondary = SADC/Africa (CGS SADC series, USGS Africa geodatabase, Mozambique cadastre REST).</li>
+    <li><strong>Boundary:</strong> Public or requestable datasets only; no proprietary mine feeds. CV alignment matrix is PR-03; parameter generators are PR-07b.</li>
+    <li><strong>Research date:</strong> 2026-05-27. Note: DMRE split into DMPR (minerals/petroleum, effective April 2025) and Department of Electricity and Energy; legacy <code>dmre.gov.za</code> may redirect. Prefer <code>dmpr.gov.za</code> for operating-mines and licensing portals.</li>
+    <li><strong>API column:</strong> <em>REST/OGC</em> = programmatic query; <em>Bulk</em> = ZIP/CSV/PDF download; <em>Portal</em> = interactive only; <em>Subscription</em> = email or paid gate.</li>
+  </ul>
+
+  <h2>Boundary — PR-07 vs PR-07b</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>PR-07 (this doc)</th>
+        <th>PR-07b (synthetic spec)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Catalogue <em>public</em> sources: URLs, license tiers, REST/portal access, theme mapping</td>
+        <td>Define <em>generator schemas</em>: field names, distributions, units, and calibration hooks</td>
+      </tr>
+      <tr>
+        <td>Name <em>derived seed filenames</em> at aggregate level (<code>entities.csv</code>, <code>benchmark_kpi.csv</code>)</td>
+        <td>Specify pit/haul/reconciliation/MDP/closure synthetic files tied to PR-05 clone cases</td>
+      </tr>
+      <tr>
+        <td>One-off ETL patterns (ScienceBase, ArcGIS proxy, PDF extraction)</td>
+        <td>Reproducible generation rules, version IDs, and PR-05 case cross-refs</td>
+      </tr>
+      <tr>
+        <td>Document cadastre/licensing <em>gaps</em> (no rights bulk export)</td>
+        <td>Do <em>not</em> re-research sources; consume anchors listed here</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Executive summary — best source per theme</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Theme</th>
+        <th>Best open-data anchor</th>
+        <th>What it gives demos</th>
+        <th>Gap → PR-07b</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag">T1</span> Scheduling</td>
+        <td>DMPR D1/2024 operating mines + USGS Africa facilities geodatabase</td>
+        <td>Entity counts, commodity mix, OP/UG type, provincial clustering for network topology</td>
+        <td>Pit blocks, dig rates, geotech constraints</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T2</span> DES/ABS</td>
+        <td>Stats SA P2041 + USGS Africa infrastructure layers (roads, ports, rail)</td>
+        <td>Commodity throughput priors, national production volatility, haulage network skeleton</td>
+        <td>Truck cycle times, queue distributions, contractor roster</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T3</span> Reconciliation</td>
+        <td>Stats SA P2041 (monthly) + DMPR ME Bulletin quarterly tables</td>
+        <td>National/commodity production &amp; sales benchmarks for KPI sanity checks</td>
+        <td>Mine-level survey vs plan, spatial polygons</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T4</span> Trade-offs</td>
+        <td>USGS Mineral Commodity Summaries (CC0) + Minerals Council Facts &amp; Figures</td>
+        <td>Price, reserve, cost context for IPCC vs trucking / OP–UG transition narratives</td>
+        <td>Haul profiles, capex curves, mine-specific LCC inputs</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T5</span> Forecasting / MDP</td>
+        <td>Stats SA P2041 long series + QES employment + USGS MCS production trends</td>
+        <td>Capacity and workforce scaling priors, commodity demand uncertainty bands</td>
+        <td>Fleet state transitions, shift-level MDP states</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T6</span> Closure liability</td>
+        <td>WRC Mine Closure Risk &amp; Opportunity Atlas + Global Tailings Portal + WRC Mine Water Atlas</td>
+        <td>Closure likelihood, tailings inventory, water-threat rasters, socio-economic overlays</td>
+        <td>Site-specific liability cashflows, stochastic cost draws</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Source catalog — South Africa</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>Data</th>
+        <th>Access</th>
+        <th>Licensing / constraints</th>
+        <th>Themes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Stats SA P2041</strong><br>
+          <a href="https://www.statssa.gov.za/?PPN=P2041&amp;page_id=1854">Mining: Production and sales</a></td>
+        <td>Monthly &amp; annual mining production and sales by mineral group; Excel/ASCII time series back to 1980</td>
+        <td>Bulk ZIP on <a href="https://www.statssa.gov.za/?page_id=1847">time-series page</a>; PDF bulletins monthly</td>
+        <td>Official statistics; Stats SA copyright on publications. Time-series files widely reused in research; cite Stats SA + release date. No mine-level disaggregation.</td>
+        <td>T2, T3, T5</td>
+      </tr>
+      <tr>
+        <td><strong>DMPR Operating Mines (D1)</strong><br>
+          <a href="https://www.dmpr.gov.za/Services/Mining-Minerals-Petroleum-Policy-Development/Operating-Mines">dmpr.gov.za Operating Mines</a></td>
+        <td>~1,700+ operating mines/quarries/plants: owner, commodity, mine type (OP/UG/etc.), province, magisterial district</td>
+        <td>HTML tables by province (filterable browse) + PDF download; no official CSV/REST API — scrape or one-off export</td>
+        <td>Copyright reserved (D1/2024 ISBN 978-0-621-51601-9). Disclaimer on accuracy. Free of charge; commercial republication needs permission.</td>
+        <td>T1, T2, T5, T6</td>
+      </tr>
+      <tr>
+        <td><strong>DMPR Mineral Economics Bulletin</strong><br>
+          ME Bulletin (quarterly PDF)</td>
+        <td>Quarterly sector performance: production by commodity, GDP contribution, employment context; cross-refs Stats SA</td>
+        <td>Free PDF from DMPR publications portal</td>
+        <td>Copyright reserved; disclaimer — authors’ views may not reflect department. Tables extractable for benchmark KPIs.</td>
+        <td>T3, T5</td>
+      </tr>
+      <tr>
+        <td><strong>DMPR B1 statistical tables</strong><br>
+          B1/2023 Minerals SA 2000–2021</td>
+        <td>Long-run commodity production/sales/employment aggregates</td>
+        <td>Free PDF; referenced in D1 front matter</td>
+        <td>Same as other DMPR bulletins. Useful for calibrating synthetic generators (PR-07b).</td>
+        <td>T3, T5</td>
+      </tr>
+      <tr>
+        <td><strong>Minerals Council SA</strong><br>
+          <a href="https://www.mineralscouncil.org.za/">Facts &amp; Figures</a></td>
+        <td>Industry GDP share, export value, employment, royalty/tax contributions; aggregates Stats SA + DMPR + SARB</td>
+        <td>Annual PDF/pocketbook download</td>
+        <td>Industry association copyright; cite Minerals Council + edition year. Secondary compilation — check against primary Stats SA/DMPR for demos.</td>
+        <td>T4, T5</td>
+      </tr>
+      <tr>
+        <td><strong>CGS downloadable material</strong><br>
+          <a href="https://www.geoscience.org.za/cgs/systems/publications/downloadable-material/">geoscience.org.za</a></td>
+        <td>1:1M geological shapefile, simplified geology/mineral maps (PGM, coal, gold, Bushveld)</td>
+        <td>Bulk shapefile/PDF download</td>
+        <td>Free for public informational use per download page; <a href="https://www.geoscience.org.za/cgs/about-us/who-we-are/terms-and-conditions/">CGS terms</a> reserve IP — commercial use requires written permission. No warranty on accuracy.</td>
+        <td>T1, T4, T6</td>
+      </tr>
+      <tr>
+        <td><strong>CGS maps portal</strong><br>
+          <a href="https://maps.geoscience.org.za/">maps.geoscience.org.za</a></td>
+        <td>Interactive geology, hazards, mineral resources, water layers; WMS via OneGeology</td>
+        <td>Portal + OGC WMS (<code>ZAF_CGS_1M_BLS</code> bedrock layer)</td>
+        <td>WMS: personal, non-commercial use only (OneGeology contribution). Broader catalogue: priced tiers per <a href="https://www.geoscience.org.za/wp-content/uploads/2022/10/CGS_DATA_CATALOGUE_FY2122.pdf">CGS data catalogue</a>. Contact <code>data@geoscience.org.za</code>.</td>
+        <td>T1, T4, T6</td>
+      </tr>
+      <tr>
+        <td><strong>SAMRAD Online (legacy)</strong><br>
+          <a href="https://portal.samradonline.co.za/forms/login.aspx">portal.samradonline.co.za</a></td>
+        <td>Locality of applications, rights, and permits under MPRDA; electronic lodgement</td>
+        <td>Registration required; interactive map for registered users — <strong>no bulk download or open API</strong></td>
+        <td>Government administrative data; not redistributable. Being retired province-by-province as Project Indwe rolls out. Contrast: Botswana cadastre allows anonymous map search (see PR-09).</td>
+        <td>T4, T6</td>
+      </tr>
+      <tr>
+        <td><strong>Project Indwe / Mining Licensing System</strong><br>
+          <a href="https://mininglicense.dmpr.gov.za/indwe/splash.html">mininglicense.dmpr.gov.za</a></td>
+        <td>Mining rights grid, public map viewer, online application lodgement (phased provincial rollout from 2025)</td>
+        <td>Public map viewer; full application workflow requires registration</td>
+        <td>Government administrative data; no bulk rights export API documented (web research + DMPR briefing, May 2026). Public viewer for qualitative tenure overlays only. Replaces SAMRAD per province.</td>
+        <td>T4, T6</td>
+      </tr>
+      <tr>
+        <td><strong>WRC Mine Closure Atlas</strong><br>
+          <a href="https://wrcwebsite.azurewebsites.net/programmes/mine-closure-risk-and-opportunity-atlas/">WRC programme page</a></td>
+        <td>65+ layers: operating mines, communities, closure likelihood, environmental &amp; socio-economic risk, land-use opportunity</td>
+        <td>Interactive ArcGIS web app; open-source QGIS/ArcGIS project cited in literature</td>
+        <td>WRC disclaimer — planning tool, not guaranteed error-free; no financial liability. Datasets integratable for research; cite WRC + Esau et al. papers.</td>
+        <td>T6</td>
+      </tr>
+      <tr>
+        <td><strong>WRC Mine Water Atlas</strong><br>
+          <a href="https://www.wrc.org.za/programmes/mine-water-atlas/">wrc.org.za</a></td>
+        <td>Groundwater vulnerability, mine water threat, mineral maps by WMA; ZIP GIS downloads</td>
+        <td>Bulk ZIP (groundwater, mining/mineral, threat maps) + online viewer</td>
+        <td>WRC publication (ISBN 978-1-4312-0806-7); quaternary-catchment scale disclaimer. Free download from WRC site.</td>
+        <td>T6</td>
+      </tr>
+      <tr>
+        <td><strong>DataFirst (UCT)</strong><br>
+          <a href="https://datafirst.uct.ac.za/">datafirst.uct.ac.za</a></td>
+        <td>Stats SA microdata: Census 2011, Community Survey 2016, QLFS — used in closure atlas for community profiling</td>
+        <td>Registration + tiered download; some open, some licensed</td>
+        <td>Per-dataset license on portal (open → licensed → secure onsite). Non-commercial research typical; cite DataFirst + Stats SA. Spatial microdata restricted.</td>
+        <td>T6</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Source catalog — Africa &amp; global (SA-relevant)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>Data</th>
+        <th>Access</th>
+        <th>Licensing / constraints</th>
+        <th>Themes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>USGS Mineral Commodity Summaries</strong><br>
+          <a href="https://www.usgs.gov/data/us-geological-survey-mineral-commodity-summaries-2025-data-release-ver-20-april-2025">MCS 2025 data release</a></td>
+        <td>90+ commodities: world &amp; US production, price, trade, reserves; SA figures for PGMs, gold, coal, chrome, manganese</td>
+        <td>CSV bulk + <a href="https://www.sciencebase.gov/catalog/">ScienceBase REST</a> (<code>?format=json</code>)</td>
+        <td><strong>CC0 1.0 Universal</strong> — unrestricted reuse with attribution. Best-licensed source in this catalog.</td>
+        <td>T4, T5</td>
+      </tr>
+      <tr>
+        <td><strong>USGS Africa mineral industries GIS</strong><br>
+          <a href="https://data.usgs.gov/datacatalog/data/USGS%3A607611a9d34e018b3201cbbf">Science Data Catalog</a></td>
+        <td>Production/processing facilities, exploration sites, deposits, ports, rail, roads, power lines across Africa</td>
+        <td>Geodatabase download; ScienceBase API</td>
+        <td>USGS public domain / CC0 typical for data releases — verify per item metadata. Includes SA facility points.</td>
+        <td>T1, T2, T4</td>
+      </tr>
+      <tr>
+        <td><strong>CGS SADC geology &amp; commodity series</strong><br>
+          CGS data catalogue §Africa Minerals</td>
+        <td>1:2.5M SADC geology vector (free); PDF monographs on SADC gold, copper-cobalt, diamonds, bauxite, heavy-mineral sands</td>
+        <td>Vector free; PDFs free; printed books at cost</td>
+        <td>PDF/vector: no-cost download; same CGS IP terms for commercial reuse.</td>
+        <td>T1, T4</td>
+      </tr>
+      <tr>
+        <td><strong>Global Tailings Portal</strong><br>
+          <a href="https://tailing.grida.no/">tailing.grida.no</a></td>
+        <td>1,800+ tailings storage facilities: location, height, volume, risk, operator; includes SA majors</td>
+        <td>Searchable portal; bulk CSV/Excel on request from GRID-Arendal</td>
+        <td><strong>CC BY-NC-SA 4.0</strong> on portal content. Non-commercial portfolio demos OK; commercial use restricted. Email <code>tailingsdam@grida.no</code> for dataset.</td>
+        <td>T6</td>
+      </tr>
+      <tr>
+        <td><strong>Mozambique MIREME / MozGIS</strong><br>
+          ArcGIS REST endpoints</td>
+        <td>Mineral occurrences, geological resources (GeoJSON queryable)</td>
+        <td>REST: <code>https://mis.mireme.gov.mz/arcgis/rest/services/</code> (verify layer IDs at deploy time)</td>
+        <td>Public REST layers; national cadastre — useful Africa API pattern demo. Attribute quality varies.</td>
+        <td>T1, T4</td>
+      </tr>
+      <tr>
+        <td><strong>SADC Groundwater Information Portal</strong><br>
+          <a href="https://sadc-gip.org/">sadc-gip.org</a></td>
+        <td>Regional hydrogeology maps, links to SA Mine Water Atlas layers, Africa Groundwater Atlas country profiles</td>
+        <td>Portal browse/download; GeoNode-style aggregation</td>
+        <td>Varies by contributing dataset; mostly open for groundwater research. Cross-links WRC SA products.</td>
+        <td>T6</td>
+      </tr>
+      <tr>
+        <td><strong>ICE Data API (DMRE suite)</strong><br>
+          <a href="https://developer.ice.com/fixed-income-data-services/catalog/south-african-department-mineral-resources-and-energy-dmre">ICE developer portal</a></td>
+        <td>DMRE mining/energy statistics, historical series — enterprise delivery</td>
+        <td>Commercial API via ICE Connect subscription</td>
+        <td>Licensed commercial product — not suitable for free portfolio hosting. Listed for completeness; prefer Stats SA + free DMPR PDFs.</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Licensing quick reference</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Sources</th>
+        <th>Portfolio demo use</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Permissive (reuse-friendly)</strong></td>
+        <td>USGS MCS &amp; Africa GIS (CC0); Stats SA time series (cite source)</td>
+        <td>Ship CSV seeds in repo; display charts with attribution footer</td>
+      </tr>
+      <tr>
+        <td><strong>Non-commercial OK</strong></td>
+        <td>CGS WMS/maps (personal/non-commercial); Global Tailings Portal (CC BY-NC-SA)</td>
+        <td>Interview portfolio &amp; GitHub demos fine; avoid commercial SaaS without permission</td>
+      </tr>
+      <tr>
+        <td><strong>Free but restricted IP</strong></td>
+        <td>DMPR bulletins/directories, WRC atlases, Minerals Council PDFs</td>
+        <td>Extract benchmark tables; cite publication + year; do not republish full PDFs</td>
+      </tr>
+      <tr>
+        <td><strong>Gated / registration</strong></td>
+        <td>DataFirst microdata, Global Tailings bulk CSV, CGS paid vector layers</td>
+        <td>Apply early if demo needs community microdata or full tailings export</td>
+      </tr>
+      <tr>
+        <td><strong>Not for portfolio</strong></td>
+        <td>ICE DMRE commercial API</td>
+        <td>Use free government sources instead</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Per-theme data package recommendations</h2>
+  <p>Each package lists a <em>public anchor</em> (credibility), <em>derived seed files</em> (what to pre-process for Angular+Firebase), and <em>synthetic gap</em> (PR-07b).</p>
+
+  <h3><span class="tag">T1</span> Short/medium-term scheduling &amp; sequencing</h3>
+  <dl>
+    <dt>Public anchor</dt>
+    <dd>DMPR Operating Mines (D1) filtered to one commodity hub (e.g. PGM Bushveld or Northern Cape manganese) + CGS 1:1M geology for domain boundaries.</dd>
+    <dt>Derived seeds</dt>
+    <dd><code>entities.csv</code> — mine name, owner, commodity, mine_type, province (from provincial HTML scrape or D1 PDF); <code>facilities.geojson</code> — USGS Africa processing/plant points merged with D1 entities (manual geocode or province centroids).</dd>
+    <dt>Calibration</dt>
+    <dd>B1/ME Bulletin commodity production totals → annual tonnage caps per entity group.</dd>
+    <dt>Synthetic gap (PR-07b)</dt>
+    <dd><code>gen-block-model</code> → <code>blocks.csv</code>, <code>precedence_edges.csv</code>, <code>blocks.geojson</code> — block precedence, shovel/extraction rates, geotech slope constraints.</dd>
+  </dl>
+
+  <h3><span class="tag">T2</span> DES/ABS simulation (haulage, equipment, contractors)</h3>
+  <dl>
+    <dt>Public anchor</dt>
+    <dd>Stats SA P2041 monthly production indices by mineral group + USGS Africa infrastructure (roads, ports, rail) for network graph.</dd>
+    <dt>Derived seeds</dt>
+    <dd><code>throughput_priors.json</code> — mean/variance of monthly production by commodity; <code>network.graphml</code> — simplified haulage graph between USGS facility nodes and nearest port/rail.</dd>
+    <dt>Calibration</dt>
+    <dd>Minerals Council employment (~470k direct, 2025 pocketbook) → fleet/crew order-of-magnitude.</dd>
+    <dt>Synthetic gap (PR-07b)</dt>
+    <dd><code>gen-truck-cycle</code> → <code>cycles.csv</code>, <code>fleet_events.csv</code>, <code>fleet_state.json</code> — inter-arrival times, load–haul–dump cycles, breakdown MTBF (PR-05 #01–#03).</dd>
+  </dl>
+
+  <h3><span class="tag">T3</span> Production reconciliation &amp; spatial KPIs</h3>
+  <dl>
+    <dt>Public anchor</dt>
+    <dd>Stats SA P2041 production <em>and</em> sales series (monthly) — national reconciliation benchmark (production vs sales lag).</dd>
+    <dt>Derived seeds</dt>
+    <dd><code>benchmark_kpi.csv</code> — month, commodity_group, production_index, sales_index, delta_pct; suitable for SPC control-chart demos at aggregate level.</dd>
+    <dt>Calibration</dt>
+    <dd>DMPR ME Bulletin quarterly tables for sector-level variance bands.</dd>
+    <dt>Synthetic gap (PR-07b)</dt>
+    <dd><code>gen-plan-survey-var</code> → <code>reconciliation_daily.csv</code>, <code>bench_variance.csv</code>, <code>survey_polygons.geojson</code> (PR-05 #04–#05).</dd>
+  </dl>
+
+  <h3><span class="tag">T4</span> Techno-economic trade-offs &amp; transition timing</h3>
+  <dl>
+    <dt>Public anchor</dt>
+    <dd>USGS MCS 2025 — PGM/gold/coal/iron ore price &amp; reserve trajectories; CGS Bushveld/PGM map for geological context; Minerals Council Facts &amp; Figures for SA cost/GDP context.</dd>
+    <dt>Derived seeds</dt>
+    <dd><code>commodity_macro.csv</code> — 5-year USGS salient stats for 4–6 SA-relevant commodities; <code>geology_context.json</code> — metadata links to CGS map layers.</dd>
+    <dt>Calibration</dt>
+    <dd>Project Indwe public map — illustrate tenure/constraint overlays (qualitative only until bulk export exists).</dd>
+    <dt>Synthetic gap (PR-07b)</dt>
+    <dd>Re-run <code>gen-truck-cycle</code> with <code>scenario_id=ipcc-conveyor</code> + <code>gen-block-model</code> tonnage; WSM uses <code>commodity_macro.csv</code> (PR-05 #02, #08, #15).</dd>
+  </dl>
+
+  <h3><span class="tag">T5</span> Forecasting / MDP / capacity-constrained planning</h3>
+  <dl>
+    <dt>Public anchor</dt>
+    <dd>Stats SA P2041 long monthly series (1980+) + QES via Stats SA/DataFirst for sector employment trends.</dd>
+    <dt>Derived seeds</dt>
+    <dd><code>capacity_series.csv</code> — rolling 12-month production, YoY%, seasonal indices; <code>workforce_prior.json</code> — mining employment share from Minerals Council + QES.</dd>
+    <dt>Calibration</dt>
+    <dd>USGS world production share for SA commodities → export-demand scenario bounds.</dd>
+    <dt>Synthetic gap (PR-07b)</dt>
+    <dd><code>gen-truck-cycle</code> → <code>fleet_state.json</code> shift snapshots calibrated to <code>capacity_series.csv</code>.</dd>
+  </dl>
+
+  <h3><span class="tag">T6</span> Closure liability &amp; risk-based financial modelling</h3>
+  <dl>
+    <dt>Public anchor</dt>
+    <dd>WRC Mine Closure Risk &amp; Opportunity Atlas (closure likelihood, community deprivation) + Global Tailings Portal (SA TSF inventory) + WRC Mine Water Atlas threat rasters.</dd>
+    <dt>Derived seeds</dt>
+    <dd><code>closure_risk.csv</code> — mine name, likelihood_score, water_threat_class, tailings_flag; <code>tailings_sa.geojson</code> — filtered Global Tailings SA points (after GRID-Arendal request or manual portal export).</dd>
+    <dt>Calibration</dt>
+    <dd>Esau et al. / MDPI closure rating methodology for indicator weights; D1 mine type for underground vs surface water threat lookup.</dd>
+    <dt>Synthetic gap (PR-07b)</dt>
+    <dd>No generator for liability cashflows — join <code>closure_risk.csv</code> + block site metadata; MC draws in demo Worker (PR-05 #10–#11).</dd>
+  </dl>
+
+  <h2>API &amp; ingestion patterns for Angular+Firebase</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Pattern</th>
+        <th>Example</th>
+        <th>Firebase fit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Static CSV/GeoJSON in Storage</td>
+        <td>Pre-processed P2041 benchmark, USGS MCS commodity CSV</td>
+        <td>Cloud Storage + client parse; Firestore holds dataset metadata &amp; version hash</td>
+      </tr>
+      <tr>
+        <td>ScienceBase REST → Cloud Function ETL</td>
+        <td>Nightly fetch MCS JSON, normalize to Firestore <code>commodities/{id}</code></td>
+        <td>Scheduled Function; cache to avoid rate limits; CC0 allows redistribution of derived tables</td>
+      </tr>
+      <tr>
+        <td>ArcGIS REST → GeoJSON proxy</td>
+        <td>Mozambique mineral occurrences; CGS WMS tile layer in map component</td>
+        <td>HTTPS Callable Function wraps <code>/query?f=geojson</code>; map via Leaflet/MapLibre in Angular</td>
+      </tr>
+      <tr>
+        <td>HTML/PDF extraction (one-off)</td>
+        <td>DMPR Operating Mines provincial tables or D1 PDF → <code>entities.csv</code></td>
+        <td>One-time admin upload; not live-synced — document extraction date in Firestore metadata</td>
+      </tr>
+      <tr>
+        <td>Avoid for portfolio</td>
+        <td>ICE DMRE paid API, DataFirst secure microdata</td>
+        <td>Registration friction + license incompatible with public demo deploy</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Gaps and risks</h2>
+  <ul>
+    <li><strong>No mine-level operations data:</strong> Public sources stop at national/commodity or mine-directory granularity. T1/T2/T3 portfolio modules cannot claim “live pit data” without PR-07b synthetics.</li>
+    <li><strong>No open cadastre API:</strong> Neither SAMRAD nor Project Indwe publishes bulk mining-rights GeoJSON/CSV; ICE DMRE API is commercial only. Portfolio maps must use D1 entity points + qualitative tenure screenshots, not live rights sync.</li>
+    <li><strong>D1 extraction:</strong> Provincial HTML tables ease scraping vs PDF-only, but there is still no official CSV — budget time for structured export or province-centroid geocoding.</li>
+    <li><strong>DMPR transition:</strong> DMRE → DMPR split (April 2025) and Project Indwe rollout may shift URLs; SAMRAD retirement is provincial and ongoing.</li>
+    <li><strong>CGS commercial boundary:</strong> Geology WMS is non-commercial; portfolio hosted on a public URL should use downloadable shapefiles + attribution, not embed paid layers.</li>
+    <li><strong>Tailings bulk access:</strong> Global Tailings CSV requires email request — plan lead time before T6 demo.</li>
+    <li><strong>Overlap with PR-09:</strong> SA mining context doc should cite this catalog rather than re-research sources.</li>
+  </ul>
+
+  <h2>Optional extensions (out of PR-07 scope)</h2>
+  <ul>
+    <li><strong>PR-07b (complete):</strong> See <a href="synthetic-data-generator-spec.html">synthetic-data-generator-spec.html</a> for <code>gen-block-model</code>, <code>gen-truck-cycle</code>, <code>gen-plan-survey-var</code>.</li>
+    <li><strong>D1 scrape script:</strong> One-off parser for DMPR provincial HTML tables → <code>entities.csv</code> with extraction timestamp in metadata.</li>
+    <li><strong>ScienceBase ETL spike:</strong> Cloud Function ingesting USGS MCS CC0 release into Firestore (sketch in scorecard below).</li>
+    <li><strong>PR-09 cadastre contrast:</strong> Botswana Minerals Management System anonymous map vs SA SAMRAD/Indwe registration gates.</li>
+    <li><strong>Historical NMPS dump (2010):</strong> Archived provincial application PDFs (removed from DMR site); useful for methodology context only — stale for live demos.</li>
+  </ul>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard</h3>
+    <p class="meta">Artifact-level scores for this research doc. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score (1–5)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukwazi fit (T1–T6)</td>
+          <td>5</td>
+          <td>Directly unblocks data-feasibility scoring for all six themes; T6 uniquely strong via WRC atlases.</td>
+        </tr>
+        <tr>
+          <td>CV proof</td>
+          <td>2</td>
+          <td>Research catalog only — no ingested dataset or dashboard yet.</td>
+        </tr>
+        <tr>
+          <td>Angular+Firebase fit</td>
+          <td>4</td>
+          <td>CSV/GeoJSON + ScienceBase/ArcGIS REST map cleanly to Storage, Functions, Firestore metadata pattern (PR-04).</td>
+        </tr>
+        <tr>
+          <td>Data feasibility</td>
+          <td>3</td>
+          <td>Macro/spatial anchors adequate for credibility layers; operational mine data still requires PR-07b synthetics.</td>
+        </tr>
+        <tr>
+          <td>Differentiation</td>
+          <td>4</td>
+          <td>SA/Africa-specific source map uncommon in generic OR portfolios; WRC closure atlas is distinctive.</td>
+        </tr>
+        <tr>
+          <td>Effort</td>
+          <td>M</td>
+          <td>Catalog complete; building ETL + extracted D1 CSV is separate implementation work.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Suggested Angular+Firebase sketch</h3>
+    <p>
+      Add a <code>/data/catalog</code> lazy module: Firestore collection <code>dataSources</code> with documents keyed by source ID (e.g. <code>stats-sa-p2041</code>, <code>usgs-mcs-2025</code>, <code>wrc-closure-atlas</code>) storing title, URL, license tier, theme tags T1–T6, last-ingested timestamp, and Storage path to normalized CSV/GeoJSON. Admin Cloud Function <code>ingestCommoditySummaries</code> pulls USGS ScienceBase MCS release (CC0) into <code>commodities/{symbol}</code>; a one-off script parses D1 PDF into <code>entities.csv</code> uploaded to Storage. Public views: (1) theme-filtered source browser with license badges, (2) <code>benchmark-chart</code> component plotting P2041 production vs sales from cached CSV, (3) <code>closure-map</code> overlaying WRC/tailings GeoJSON on Leaflet. Keep live API calls behind Functions with 24h cache — government portals have no SLA. Link each package row to generator IDs in <a href="synthetic-data-generator-spec.html">synthetic-data-generator-spec.html</a> (per-theme synthetic gap lines above).
+    </p>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-07.md</code> ·
+    Registry row: <code>index.html#pr-07</code>
+  </footer>
+</body>
+</html>

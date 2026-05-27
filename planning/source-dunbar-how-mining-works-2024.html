@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dunbar 2024 — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>W. Scott Dunbar — How Mining Works, 2nd ed. (2024)</h1>
+  <p class="meta">
+    Task ID: PR-15 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a> ·
+    Source: <code>sources/processed/W_ Scott Dunbar - How Mining Works 2nd Edition (2024).txt</code> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+    Read depth: full value-chain narrative (8 chapters + appendices skim); deep Ch 2 (methods/equipment), Ch 5–6 (waste/society), Ch 7 (resources/reserves/economics), Ch 8 (future trends); Ch 1 exploration/block model; Ch 3–4 processing/nonmetals skim
+  </p>
+
+  <p class="lead">
+    SME introductory text (~10.4k sentencized lines) tracing the metal supply value chain from ore formation and
+    exploration through extraction, processing, waste, society, economics, and future innovation. Unlike OR handbooks
+    (<a href="source-hillier-2024.html">PR-10</a>, <a href="source-natural-resources-handbook-2007.html">PR-13</a>), Dunbar is the
+    <strong>domain narrative anchor</strong> for portfolio demo copy and hiring-manager language — strip ratio, mining cycle,
+    dilution, cut-off grade, tailings/ARD liability, JORC/NI 43-101 reporting, Scope 1–3 emissions, and autonomous haulage.
+    Five seeds below; top three by composite: B → C → E (all ≥ 3.5). Seed A (~3.77) also clears the PR-19 threshold; D (~3.47) is below — kept for T6 breadth. Seed B is the flagship planning-vocabulary calculator.
+  </p>
+
+  <h2>1. Scope &amp; audience</h2>
+  <ul>
+    <li><strong>Text:</strong> 2nd ed. (SME, 2024). Eight chapters + appendices A–B. Accessible survey for science-literate readers; no optimisation theory.</li>
+    <li><strong>Audience:</strong> Quantitative Planning Analyst portfolio — fluent value-chain vocabulary for Ukwazi-facing demos and interview framing; complements Sloan MIS control (<a href="source-sloan-mine-management-2012.html">PR-14</a>) and Gorai formulations (<a href="index.html#pr-17">PR-17</a>).</li>
+    <li><strong>Role in Wave 2:</strong> Primary <em>domain narrative</em> source (vs method sources). Use for UI labels, persona stories, and constraint explanations before citing MILP/DES from handbook sources.</li>
+    <li><strong>Cross-refs:</strong> SA context in <a href="sa-mining-context.html">PR-09</a>; synthetic tonnage/grade in <a href="synthetic-data-generator-spec.html">PR-07b</a>; stack patterns in <a href="angular-firebase-or-stack.html">PR-04</a>; OR examples in <a href="mining-or-real-world-examples.html">PR-05</a>; citeable fleet/NPV formulas in <a href="source-sme-mining-reference-handbook-2020.html">PR-16</a> (E=A×U, match factor, study bands).</li>
+  </ul>
+
+  <h2>2. Chapter map</h2>
+  <p class="meta">Page numbers from print contents; body read via sentencized text. “Deep” = sections read in full for this task.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Ch</th>
+        <th>Title</th>
+        <th>Key sections</th>
+        <th>Read</th>
+        <th>Portfolio hook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>The Where, What, and How</td><td>Definitions, grade units, rock cycle, ore-forming processes, exploration (mapping, geophysics, geochem, drilling), block model</td><td>Deep (exploration → block model)</td><td>Grade units (g/t, % Cu); block model → mine sequence; Horn cake/muffin analogy</td></tr>
+      <tr><td>2</td><td>Mining Methods</td><td>Surface (pit slopes, pushbacks, strip ratio); underground (methods Table 2.4, block cave Table 2.3); mining cycle Fig 2.18; drills, blast, ventilation, trucks/shovels/LHD; grade control/dilution</td><td><strong>Deep</strong></td><td>T1/T2/T4 vocabulary — strip ratio, cycle bottlenecks, method cost/recovery trade-offs</td></tr>
+      <tr><td>3</td><td>Mineral Processing &amp; Metal Refining</td><td>Comminution, flotation CF, smelting/hydromet overview</td><td>Skim</td><td>Concentration factor; recovery links to cut-off (Ch 7)</td></tr>
+      <tr><td>4</td><td>Nonmetallic Minerals</td><td>Coal, diamonds, aggregates</td><td>Skim</td><td>Breadth; aggregates adjacency to T6 land use</td></tr>
+      <tr><td>5</td><td>Mine Waste Management</td><td>Four waste streams; tailings slurry/thickened/paste/filtered (Table 5.1); embankment designs; waste rock ARD; Equity Silver treatment costs; co-disposal, sequestration, wetlands</td><td><strong>Deep</strong></td><td>T6 closure/ARD liability; 802 Mt tailings worked example</td></tr>
+      <tr><td>6</td><td>Mining, Society, and the Environment</td><td>HR, safety culture, SLO/IMA/IBA, metal supply footprint, Scope 1–3 GHG, SDGs, ESG, ASM, sustainability</td><td><strong>Deep</strong></td><td>Stakeholder language; emissions scopes for transition-metal narrative</td></tr>
+      <tr><td>7</td><td>Mining and Money</td><td>Metal supply system Fig 7.2; product streams; prices (LME/LBMA); resources vs reserves (JORC); cut-off grade Fig 7.11; scoping/PFS/FS; economic analysis Fig 7.12</td><td><strong>Deep</strong></td><td>T4/T5 — cut-off sensitivity, NI 43-101/Sedar, metal supply chain</td></tr>
+      <tr><td>8</td><td>A Future of Mining</td><td>Innovation drivers; NZE copper demand Fig 8.2; Paths 1–3 (automation, ore sorting, small assets); biotech/MMAP; drones/digital twins; virtual metal supply Fig 8.9</td><td><strong>Deep</strong></td><td>T2 autonomy; T6 energy-transition demand; demo “future mine” copy</td></tr>
+      <tr><td>App A–B</td><td>Chemistry; grade–tonnage curves</td><td>Appendix B grade distributions</td><td>Skim</td><td>Supports Ch 7 cut-off / reserves curve</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Value-chain narrative</h2>
+  <p>End-to-end metal supply as Dunbar frames it — the story arc for demo onboarding and hiring conversations.</p>
+  <ol>
+    <li><strong>Discovery &amp; definition (Ch 1):</strong> Low crustal concentrations → exploration toolkit → drill core → 3-D ore-body and block models. Planning inputs: grade, tonnage, geometry, hardness proxies.</li>
+    <li><strong>Extraction (Ch 2):</strong> Open pit (ore + waste + tailings facility + plant) or underground (shaft/decline, stopes, minimal waste rock). Material flows governed by strip ratio, mining method (Table 2.4 cost/recovery/flexibility), and the cyclic bottleneck at drill + load-haul-dump. Grade control limits dilution (internal vs external).</li>
+    <li><strong>Beneficiation (Ch 3 skim):</strong> Comminution → separation → concentrate or doré. Recovery and concentration factor feed economic cut-off calculations.</li>
+    <li><strong>Waste &amp; water (Ch 5):</strong> Tailings (often largest long-term liability), waste rock (ARD risk), wastewater, acid drainage. Management plan required pre-permit; Equity Silver shows post-closure treatment ~US$2.065M/yr (2009–2013 avg) decades after mining.</li>
+    <li><strong>Social licence (Ch 6):</strong> Safety culture, CSR continuum, IMAs/IBAs, physical + biodiversity + climate footprint. Scope 1–3 emissions along the value chain; mining ~4–10% of global GHG (Scope 1+2) but Scope 3 dominates for steel/clean-energy metals.</li>
+    <li><strong>Economics &amp; reporting (Ch 7):</strong> MineCo → RefineCo → exchange/traders; resources (potential) vs reserves (extractable today); JORC/CRIRSCO/NI 43-101; cut-off grade ties block model to mine life and capacity sizing.</li>
+    <li><strong>Future paradigm (Ch 8):</strong> Lower discovery rates, NZE metal demand, automation/sorting/small fleets, biotech and digital twins — or a virtual, modular metal supply network (Fig 8.9).</li>
+  </ol>
+
+  <h2>4. Domain concepts catalog</h2>
+  <p>Concepts for demo UI labels, tooltips, and interview vocabulary — mapped to portfolio themes.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Concept</th>
+        <th>Dunbar anchor</th>
+        <th>Planning / demo use</th>
+        <th>Theme</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Strip ratio (waste/ore)</td><td>Ch 2; Table 2.1 (0.45–2.2 examples)</td><td>Daily material balance; pushback waste phases</td><td>T1, T4</td></tr>
+      <tr><td>Mining cycle phases</td><td>Ch 2 Fig 2.18</td><td>Cycle-time bottleneck at drill + LHD; shift scheduling analogue</td><td>T1, T2</td></tr>
+      <tr><td>Method cost / recovery / flexibility</td><td>Ch 2 Table 2.4</td><td>Underground method trade-off narrative (cut-and-fill vs block cave)</td><td>T4</td></tr>
+      <tr><td>Dilution &amp; grade control</td><td>Ch 2 § grade control; Fig 2.31–2.32</td><td>Effective grade g×(1−d); GPS shovel positioning</td><td>T3</td></tr>
+      <tr><td>Block model &amp; mining sequence</td><td>Ch 1 Figs 1.28–1.29</td><td>Precedence / stockpile routing (feeds OR sources)</td><td>T1</td></tr>
+      <tr><td>Tailings forms &amp; embankment types</td><td>Ch 5 Table 5.1; upstream/downstream designs</td><td>Closure design choices; freeboard / pond water</td><td>T6</td></tr>
+      <tr><td>ARD &amp; perpetual treatment</td><td>Ch 5 Equity Silver; pyrite oxidation reaction</td><td>NPV liability scenarios; lime treatment costs</td><td>T6</td></tr>
+      <tr><td>Co-disposal / sulfide sequestration</td><td>Ch 5 Figs 5.18–5.19</td><td>Waste-plan integration with mine sequence</td><td>T6, T4</td></tr>
+      <tr><td>Scope 1 / 2 / 3 emissions</td><td>Ch 6</td><td>GHG dashboard labels; haulage vs purchased power</td><td>T6</td></tr>
+      <tr><td>Social licence / IMA / IBA</td><td>Ch 6; Table community agreements</td><td>Stakeholder panel copy; not optimisation</td><td>T6 adjacency</td></tr>
+      <tr><td>Resources vs reserves (JORC)</td><td>Ch 7; inferred → measured; probable/proven</td><td>Reporting literacy; feasibility study types</td><td>T5</td></tr>
+      <tr><td>Cut-off grade &amp; reserves curve</td><td>Ch 7 Figs 7.10–7.11; f = costs/recovery</td><td>Mine-life vs capacity trade-off; too-low vs too-high cut-off scenarios</td><td>T4, T5</td></tr>
+      <tr><td>Metal supply system</td><td>Ch 7 Fig 7.2</td><td>Value-chain explorer; MineCo product streams (5 types)</td><td>T4</td></tr>
+      <tr><td>Autonomous haulage / electric fleet</td><td>Ch 8 Path 1; Fig 8.3</td><td>Future haulage DES narrative; Pilbara 2008 reference</td><td>T2</td></tr>
+      <tr><td>Sensor-based ore sorting</td><td>Ch 8 Path 2; 20–50% waste rejection</td><td>Capital productivity / pre-concentration story</td><td>T4</td></tr>
+      <tr><td>NZE copper demand gap</td><td>Ch 8 Fig 8.2</td><td>Energy-transition context for planning CV</td><td>T6</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Hiring-manager &amp; demo language</h2>
+  <p>Phrases grounded in Dunbar that signal mining fluency in interviews and portfolio README copy.</p>
+  <ul>
+    <li>“I frame short-term plans in the <strong>mining cycle</strong> — drill and load-haul-dump are the high-cost phases that constrain shift throughput.” (Ch 2 Fig 2.18)</li>
+    <li>“Material movement is driven by <strong>strip ratio</strong> and pushback sequencing — e.g. Bagdad at 1.4, Cortez dewatering at 100,000 L/min.” (Ch 2 Table 2.1; Fig 2.30)</li>
+    <li>“Plan vs actual reconciliation needs <strong>dilution control</strong> language — internal vs external dilution and effective grade g×(1−d).” (Ch 2)</li>
+    <li>“Cut-off grade links the block model to mine life: too low overstates reserves and oversizes plant; too high strands economic ore.” (Ch 7; Fig 7.11)</li>
+    <li>“Closure isn’t optional — <strong>ARD treatment</strong> at Equity Silver still runs ~US$2.065M/yr (2009–2013 avg) with 4,000 t lime annually, decades after stop.” (Ch 5)</li>
+    <li>“I distinguish <strong>resources</strong> (potential) from <strong>reserves</strong> (extractable under NI 43-101/JORC) when discussing mine-life scenarios.” (Ch 7)</li>
+    <li>“Energy-transition planning should reference <strong>Scope 1–3</strong> along the metal value chain, not pit diesel alone.” (Ch 6)</li>
+    <li>“Autonomous haulage and ore sorting are capital-productivity levers — 20–50% waste rejection before the mill.” (Ch 8 Paths 1–2)</li>
+  </ul>
+
+  <h2>6. Deep-read highlights (Ch 2, 5–8)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Topic</th>
+        <th>Key numbers / examples</th>
+        <th>Demo / seed link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Ch 2 surface</td><td>Pit slopes &amp; pushbacks</td><td>5° shallower slope → US$168M extra waste (small pit model); Bagdad 2009–2012 pushback</td><td>Seed B strip/pushback narrative</td></tr>
+      <tr><td>Ch 2 underground</td><td>Block caving</td><td>El Teniente 150 kt/d; Resolution 2 km / 80°C; Table 2.3 mines</td><td>T4 method selection copy</td></tr>
+      <tr><td>Ch 2 equipment</td><td>Truck/shovel fleet</td><td>218 t truck US$5–6M; 10–60 truck fleets; shovel US$15M</td><td>Seed E fleet/cycle</td></tr>
+      <tr><td>Ch 5 tailings</td><td>Mass balance</td><td>170 kt/d Cu @ 0.5%, SR 0.5 → 802 Mt tailings over 20 y</td><td>Seed D liability scale</td></tr>
+      <tr><td>Ch 5 ARD</td><td>Post-closure cost</td><td>Equity Silver ~US$2.065M/yr avg 2009–2013; 4,000 t lime/yr (2012)</td><td>Seed D NPV scenario</td></tr>
+      <tr><td>Ch 6 climate</td><td>GHG scopes</td><td>Mining Scope 1+2: 4–10% global; steel chemistry 7% + power 2–3%</td><td>Scope dashboard labels</td></tr>
+      <tr><td>Ch 6 society</td><td>IMA / SLO</td><td>434 active IMAs in Canada (2023); IBA ≠ SLO</td><td>Stakeholder panels</td></tr>
+      <tr><td>Ch 7 economics</td><td>Cut-off scenarios</td><td>Low cut-off → long life, oversized plant; high cut-off → stranded expansion option</td><td>Seed C slider</td></tr>
+      <tr><td>Ch 7 reporting</td><td>Feasibility ladder</td><td>Scoping → PFS → FS; Sedar/Edgar technical reports</td><td>External data path (PR-07)</td></tr>
+      <tr><td>Ch 8 demand</td><td>NZE copper</td><td>Fig 8.2 — supply gap past ~2030 without trade-offs</td><td>Transition narrative</td></tr>
+      <tr><td>Ch 8 innovation</td><td>Autonomy &amp; sorting</td><td>Pilbara autonomous trucks 2008; sorting 20–50% waste rejection</td><td>Seed E; T2 story</td></tr>
+      <tr><td>Ch 8 future</td><td>Virtual supply</td><td>Fig 8.9 — modular sources, swarms, biotech accumulators</td><td>Vision copy only</td></tr>
+    </tbody>
+  </table>
+
+  <h2>7. Portfolio seeds</h2>
+  <p>Five seeds tagged T1–T6; Dunbar supplies domain copy, not algorithms. Seed A (~3.77) clears composite ≥ 3.5 for value-chain breadth; Seed D (~3.47) is below threshold — retained for T6 closure/ARD narrative.</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Metal supply value-chain explorer <span class="tag">T4</span></h3>
+    <p><strong>Source:</strong> Ch 7 Fig 7.2 (metal supply system); five product streams (§ mine product streams); Ch 6 value-chain GHG framing.</p>
+    <p><strong>Idea:</strong> Interactive diagram: click MineCo → concentrator → RefineCo → exchange → manufacturer. Each node shows Dunbar vocabulary (concentrate vs doré vs direct-shipping ore), stakeholder tooltips (communities, regulators, financiers), and Scope 1–3 examples. Onboarding module for non-mining reviewers.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Strip ratio &amp; daily material balance calculator <span class="tag">T1</span> <span class="tag">T4</span></h3>
+    <p><strong>Source:</strong> Ch 2 strip ratio definition &amp; algebra (T, S → ore O and waste W); Table 2.1 mine examples; pushback waste narrative (Bagdad Fig 2.7).</p>
+    <p><strong>Idea:</strong> Inputs: total mined kt/d and strip ratio S → ore and waste split; optional life-of-mine strip curve. Chart ore vs waste tonnes; cite Cortez 2.2 vs Highland Valley 0.45. Flagship domain-narrative demo for planning analyst interviews.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Cut-off grade &amp; reserves sensitivity lab <span class="tag">T4</span> <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 7 Figs 7.10–7.11 (% reserves vs grade); cut-off f = costs/recovery; too-low / too-high capacity scenarios; Appendix B grade–tonnage concept.</p>
+    <p><strong>Idea:</strong> Synthetic grade–tonnage curve (lognormal-ish from PR-07b); slider for mining cut-off → % reserves above cut-off, implied mine life at fixed throughput, and warning cards for over/under-sized plant scenarios from Ch 7 text.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed D — Tailings &amp; ARD post-closure liability estimator <span class="tag">T6</span></h3>
+    <p><strong>Source:</strong> Ch 5 tailings mass balance (802 Mt example); Table 5.1 disposal forms; Equity Silver ARD costs (~US$2.065M/yr); co-disposal / sequestration options.</p>
+    <p><strong>Idea:</strong> Scenario toggles: wet slurry vs filtered tailings; ARD yes/no on waste rock. NPV of treatment OPEX (lime, power, labour) over indefinite horizon vs upfront thickened/filtered CAPEX. Narrative cards for Highland Valley embankment scale.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed E — Mining cycle phase timer &amp; bottleneck board <span class="tag">T1</span> <span class="tag">T2</span></h3>
+    <p><strong>Source:</strong> Ch 2 Fig 2.18 (mining cycle); drill/LHD as $ phases; Ch 8 Path 1 autonomous haulage reducing repetitive transport.</p>
+    <p><strong>Idea:</strong> Editable phase durations for one stope cycle (drill → blast → ventilate → LHD → support → survey). Gantt + bottleneck highlight when drill or LHD exceeds plan; optional “autonomous haul” scenario reduces haul phase. Pairs with Reid TOC (<a href="source-reid-sanders-2023.html">PR-11</a> Seed C) on deterministic vs constraint framing.</p>
+  </div>
+
+  <h2>8. Angular+Firebase angle per seed</h2>
+  <dl>
+    <dt>Seed A (value-chain explorer)</dt>
+    <dd>
+      Angular Material stepper or SVG flow diagram; node detail panels with Firestore <code>glossaryTerms/{id}</code> seeded from Dunbar quotes. No Worker needed; optional Auth for demo tours. Link nodes to PR-09 personas.
+    </dd>
+    <dt>Seed B (strip ratio calculator)</dt>
+    <dd>
+      Reactive form: T (kt/d), S, days/year. Worker computes O = T/(1+S), W = T−O and annual totals. Chart.js stacked bars; Firestore <code>materialBalanceScenarios/{id}</code>. Import mine names from Table 2.1 as presets.
+    </dd>
+    <dt>Seed C (cut-off lab)</dt>
+    <dd>
+      Upload synthetic block grades (PR-07b CSV); Worker builds cumulative tonnage curve and cut-off sweep. Slider for g_cut; KPI cards for mine life and capacity mismatch warnings (Ch 7 scenarios). Firestore <code>cutoffRuns/{id}</code>.
+    </dd>
+    <dt>Seed D (liability estimator)</dt>
+    <dd>
+      Parameter form: production rate, grade, SR, tailings type, ARD flag, treatment $/yr. Worker NPV over 30–50 yr horizon vs CAPEX delta for filtered tailings. Firestore <code>liabilityScenarios/{id}</code>; cite Equity Silver defaults in tooltips.
+    </dd>
+    <dt>Seed E (cycle board)</dt>
+    <dd>
+      Phase duration grid; Worker computes cycle time and bottleneck phase. Simple Gantt (custom SVG or ngx-gantt); compare baseline vs autonomous-haul reduction. Firestore <code>cycleTemplates/{id}</code>.
+    </dd>
+  </dl>
+
+  <h2>9. Scorecard — top 3 seeds</h2>
+  <p class="meta">Composite = (4×Ukwazi + 3×CV + 2×Stack + 2×Data + 2×Diff) / 13 − effort penalty (<a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>).</p>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Strip ratio &amp; material balance (composite 4.77)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1/T4)</td><td>5</td><td>Daily ore/waste split is core open-pit planning vocabulary (Ch 2)</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Material balance calculators are CV-friendly; Table 2.1 presets add mining credibility</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Trivial Worker algebra; immediate chart feedback</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Hand-entered T/S or synthetic; named mines from text</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Mining-native strip ratio vs generic production planning</td></tr>
+        <tr><td>Effort</td><td>S</td><td>Single-screen calculator + chart</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Cut-off grade sensitivity (composite 4.32)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T4/T5)</td><td>5</td><td>Cut-off ↔ reserves ↔ mine life is central techno-economic planning (Ch 7)</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Sensitivity sliders common on planning CVs</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Worker grade–tonnage sweep; Chart.js cumulative curve</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Synthetic grade distribution; Fig 7.11 shape as validation target</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Capacity mismatch warnings distinctive vs generic break-even demos</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Curve build + scenario cards</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed E — Mining cycle bottleneck board (composite 4.16)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1/T2)</td><td>5</td><td>Cycle phase bottlenecks map to short-term planning and haulage (Ch 2, Ch 8)</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Gantt/cycle-time demos align with scheduling CV claims</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Gantt UX + Worker sum/max phase logic</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Default phase times as editable narrative; no proprietary dispatch data</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Mining cycle Fig 2.18 is stronger domain signal than generic job-shop</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Gantt + autonomy scenario toggle</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>10. Suggested Angular+Firebase sketch (Seed B flagship)</h2>
+  <p>
+    Module <code>StripRatioLab</code>: preset dropdown (Highland Valley 0.45, Bagdad 1.4, Cortez 2.2 from Table 2.1),
+    inputs for total mined kt/d and strip ratio S, optional calendar days. Worker returns ore kt/d, waste kt/d, and annual tonnes.
+    Stacked bar chart with Dunbar tooltip copy on pushback waste phases. Sidebar “hiring-manager lines” from §5.
+    Firestore <code>materialBalanceScenarios/{id}</code> for scenario compare; PWA shell per <a href="angular-firebase-or-stack.html">PR-04</a>.
+    Pair with Seed C on same site persona (<a href="sa-mining-context.html">PR-09</a>) for material movement → economic cut-off story.
+  </p>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard (artifact)</h3>
+    <p class="meta">This source summary document. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>Primary domain narrative; T1/T4/T6 strongest; T2 via cycle/autonomy; T3 via dilution</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Vocabulary + lightweight calculators; not MILP proof</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>All five seeds browser-native</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Worked examples throughout text; PR-07b for grade curves</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Only Wave 2 full value-chain survey written for non-specialists</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Wave 2 summary; flagship Seed B effort S</td></tr>
+        <tr><td><strong>Composite (doc)</strong></td><td><strong>4.47</strong></td><td>(4×5 + 3×4 + 2×5 + 2×5 + 2×5) / 13 − 0.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-15.md</code> ·
+    Registry row: <code>index.html#pr-15</code>
+  </footer>
+</body>
+</html>

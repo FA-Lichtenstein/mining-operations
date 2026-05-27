@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Ideas Catalog — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+      --pass-bg: #f0f7f0;
+      --fail-bg: #fafafa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    h4 { font-size: 0.92rem; margin: 0.85rem 0 0.3rem; color: var(--muted); }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box.gate-pass { background: var(--pass-bg); }
+    .portfolio-box.gate-fail { background: var(--fail-bg); opacity: 0.92; }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    .composite-badge {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .gate-yes { color: var(--accent); }
+    .gate-no { color: #888; }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Portfolio Ideas Catalog</h1>
+  <p class="meta">
+    Task ID: PR-19 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-18">PR-18</a>,
+    <a href="index.html#pr-07b">PR-07b</a>,
+    <a href="index.html#pr-05">PR-05</a>,
+    <a href="index.html#pr-07">PR-07</a>,
+    <a href="index.html#pr-13">PR-13</a>–<a href="index.html#pr-17">PR-17</a> ·
+    Anchor: <a href="ukwazi-services-summary.html">ukwazi-services-summary.html</a> §5 ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6 taxonomy</a> ·
+    Matrix: <a href="method-theme-matrix.html">method-theme-matrix.html</a>
+  </p>
+
+  <p class="lead">
+    Twelve seed ideas evaluated against Ukwazi portfolio themes using the composite formula from
+    <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.
+    Each idea cites <code>sourceCites[]</code> anchors from the PR-18 method ↔ theme matrix and Wave 2 source summaries.
+    <strong>Nine ideas</strong> clear the PR-19 gate (composite ≥ 3.5); three are documented below threshold for PR-20 user gate.
+    Recommended pillar mix: <strong>T1</strong> (<a href="#idea-01">idea-01</a> schedule, rank #4),
+    <strong>T2</strong> (<a href="#idea-02">idea-02</a> haulage DES, rank #1),
+    <strong>T3</strong> (<a href="#idea-03">idea-03</a> reconciliation, rank #2),
+    plus optional <strong>T6</strong> (<a href="#idea-10">idea-10</a> closure, rank #9) or
+    <strong>T5</strong> (<a href="#idea-06">idea-06</a> fleet MDP, rank #3).
+  </p>
+
+  <h2>1. Scoring method</h2>
+  <pre><code>composite = (4×Ukwazi + 3×CV + 2×Stack + 2×Data + 2×Diff) / 13 − effort_penalty
+effort_penalty: S = 0 · M = 0.3 · L = 0.6
+gate: composite ≥ 3.5</code></pre>
+  <p>
+    Dimensions scored 1–5 per <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.
+    Data scores assume PR-07b generators (<code>gen-block-model</code>, <code>gen-truck-cycle</code>, <code>gen-plan-survey-var</code>)
+    and PR-07 open-data anchors where noted.
+  </p>
+
+  <h2>2. Ranked summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>ID</th>
+        <th>Idea</th>
+        <th>Theme(s)</th>
+        <th>Composite</th>
+        <th>Gate</th>
+        <th>Module ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>idea-02</td><td>Truck-shovel vs K-Tec scraper DES</td><td>T2, T4</td><td><strong>4.70</strong></td><td class="gate-yes">✓</td><td><code>haulage-des</code></td></tr>
+      <tr><td>2</td><td>idea-03</td><td>Production reconciliation dashboard</td><td>T3</td><td><strong>3.93</strong></td><td class="gate-yes">✓</td><td><code>reconciliation-dashboard</code></td></tr>
+      <tr><td>3</td><td>idea-06</td><td>Fleet maintenance MDP</td><td>T5</td><td><strong>3.93</strong></td><td class="gate-yes">✓</td><td><code>fleet-capacity-mdp</code></td></tr>
+      <tr><td>4</td><td>idea-01</td><td>Open-pit short-term schedule optimizer</td><td>T1</td><td><strong>3.86</strong></td><td class="gate-yes">✓</td><td><code>pit-schedule-gantt</code></td></tr>
+      <tr><td>5</td><td>idea-12</td><td>Grade control / short-term forecast</td><td>T3, T5</td><td><strong>3.85</strong></td><td class="gate-yes">✓</td><td><code>grade-forecast-lab</code></td></tr>
+      <tr><td>6</td><td>idea-05</td><td>Underground stope sequence optimizer</td><td>T1</td><td><strong>3.70</strong></td><td class="gate-yes">✓</td><td><code>stope-sequence-milp</code></td></tr>
+      <tr><td>7</td><td>idea-08</td><td>Haul road network simulation</td><td>T2, T4</td><td><strong>3.70</strong></td><td class="gate-yes">✓</td><td><code>haul-network-des</code></td></tr>
+      <tr><td>8</td><td>idea-09</td><td>Contractor vs owner shift allocation</td><td>T5</td><td><strong>3.62</strong></td><td class="gate-yes">✓</td><td><code>crew-staffing-mdp</code></td></tr>
+      <tr><td>9</td><td>idea-10</td><td>Closure liability scenario model</td><td>T6</td><td><strong>3.55</strong></td><td class="gate-yes">✓</td><td><code>closure-liability-mc</code></td></tr>
+      <tr><td>10</td><td>idea-04</td><td>Dragline/strip mine block sequencing</td><td>T1</td><td>2.63</td><td class="gate-no">✗</td><td><code>dragline-sequence</code></td></tr>
+      <tr><td>11</td><td>idea-07</td><td>Open-pit to underground transition timing</td><td>T4</td><td>2.63</td><td class="gate-no">✗</td><td><code>op-ug-transition</code></td></tr>
+      <tr><td>12</td><td>idea-11</td><td>Integrated mine-to-plant production chain</td><td>T4</td><td>2.17</td><td class="gate-no">✗</td><td><code>mine-plant-chain</code></td></tr>
+    </tbody>
+  </table>
+  <p class="meta">
+    <strong>ID legend:</strong> <code>idea-XX</code> = stable slug (Firestore <code>portfolioSeeds</code>, fragment links).
+    Header <strong>#N</strong> in §4 = composite rank (1 = highest). Do not confuse rank #4 (open-pit schedule) with rank #1 (truck-shovel DES).
+  </p>
+
+  <h2>3. Theme coverage (gate-pass ideas)</h2>
+  <table>
+    <thead>
+      <tr><th>Theme</th><th>Gate-pass ideas</th><th>Flagship cite</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>T1</td><td><a href="#idea-01">idea-01</a> schedule (rank #4), <a href="#idea-05">idea-05</a> stope (rank #6)</td><td><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai Ch 5.4</a> + <a href="source-natural-resources-handbook-2007.html">Handbook Ch 31</a> Kiruna</td></tr>
+      <tr><td>T2</td><td><a href="#idea-02">idea-02</a> haulage DES (rank #1), <a href="#idea-08">idea-08</a> haul network (rank #7)</td><td><a href="mining-or-real-world-examples.html">PR-05</a> #01–03 + <a href="source-hillier-2024.html">Hillier Ch 20</a></td></tr>
+      <tr><td>T3</td><td><a href="#idea-03">idea-03</a> reconciliation (rank #2), <a href="#idea-12">idea-12</a> grade forecast (rank #5)</td><td><a href="source-sloan-mine-management-2012.html">Sloan Ch 6</a> + PR-05 #04–05</td></tr>
+      <tr><td>T4</td><td><a href="#idea-02">idea-02</a> IPCC trade-off, <a href="#idea-08">idea-08</a> road design</td><td>PR-05 #02 + <a href="source-sme-mining-reference-handbook-2020.html">SME Ch 13</a></td></tr>
+      <tr><td>T5</td><td><a href="#idea-06">idea-06</a> fleet MDP (rank #3), <a href="#idea-09">idea-09</a> crew MDP (rank #8), <a href="#idea-12">idea-12</a> forecast</td><td><a href="source-mdp-practice-2017.html">MDP Practice Ch 19</a> + <a href="cv-ukwazi-alignment.html">PR-03</a> Honours</td></tr>
+      <tr><td>T6</td><td><a href="#idea-10">idea-10</a> closure MC (rank #9)</td><td>PR-05 #10–11 + <a href="source-dunbar-how-mining-works-2024.html">Dunbar Ch 5</a></td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. Idea entries</h2>
+
+  <!-- IDEA 01 -->
+  <div class="portfolio-box gate-pass" id="idea-01">
+    <h3>#4 · Open-pit short-term schedule optimizer <span class="tag">T1</span>
+      <span class="composite-badge">composite 3.86 · gate ✓</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Turn the block model and pushback plan into a cashflow-maximising production schedule — ore and waste moved through the mining cycle (Fig 2.18)
+      under shovel, plant, and geotechnical limits, with cut-off and dilution awareness from Ch 7.</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li><strong>MIP / branch-and-cut</strong> — max NPV with precedence, capacity, soft metal targets
+        (<a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai Ch 5.4</a> US$898M, 49,603 blocks;
+        <a href="source-natural-resources-handbook-2007.html">Handbook Ch 29.4</a> ≥15% NPV uplift;
+        <a href="method-theme-matrix.html">PR-18</a> MIP × T1 flagship pairing)</li>
+      <li><strong>Underground analogue</strong> — Kiruna combined MILP 69.6% deviation reduction (<a href="source-natural-resources-handbook-2007.html">Handbook Ch 31</a>)</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>NPV (Eq 8.27); study-stage accuracy bands (Table 9.1); effective grade EG = grade + RRF + GCF (Eq 12.9); pushback strip-ratio targets (Ch 10).</p>
+    <h4>SA context</h4>
+    <p>Reference site <code>syn-pgm-bushveld-01</code> (PGM open pit, Limpopo) — DMPR D1 commodity mix, ME Bulletin tonnage calibration (<a href="sa-mining-context.html">PR-09</a>).</p>
+    <h4>Data plan</h4>
+    <p><code>gen-block-model</code> → blocks.csv + precedence + GeoJSON; pre-computed toy MIP schedule for browser Gantt; Cloud Function OR-Tools on reduced instance. Anchor: P2041 + USGS CC0 macro bands.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Module <code>PitScheduleGantt</code>: bench map + period Gantt; soft vs hard metal penalty toggle. Firestore <code>portfolioSeeds/idea-01</code>, <code>scheduleScenarios/{id}</code>, <code>mipRuns/{id}</code>; Storage block bundles.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>5</td><td>Core T1 short/medium-term scheduling remit</td></tr>
+        <tr><td>CV</td><td>4</td><td>MIP/CPLEX on CV; scheduling demo must prove depth (PR-18 CV gap note)</td></tr>
+        <tr><td>Stack</td><td>3</td><td>Industrial scale via Cloud Function; toy Gantt in SPA</td></tr>
+        <tr><td>Data</td><td>5</td><td>PR-07b block generator + published Gorai/Handbook aggregates</td></tr>
+        <tr><td>Diff</td><td>5</td><td>Dual textbook + handbook industrial NPV anchors</td></tr>
+        <tr><td>Effort</td><td>L</td><td>MIP + precedence + multi-period UI</td></tr>
+      </tbody>
+    </table>
+    <p><strong>sourceCites[] (PR-18):</strong>
+      Gorai Ch 5.4 (US$898M, 49,603 blocks);
+      Handbook Ch 29.4 (branch-and-cut ≥15% NPV);
+      Handbook Ch 31 Kiruna (69.6% deviation);
+      Dunbar Ch 7–10 (cut-off, pushbacks).</p>
+    <p><strong>Risks:</strong> 49k-block scale exceeds browser — never claim Whittle parity; cite anchors only on toy subset. T1 CV remains weakest pillar until demo ships.</p>
+  </div>
+
+  <!-- IDEA 02 -->
+  <div class="portfolio-box gate-pass" id="idea-02">
+    <h3>#1 · Truck-shovel vs K-Tec scraper DES <span class="tag">T2</span> <span class="tag">T4</span>
+      <span class="composite-badge">composite 4.70 · gate ✓</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Compare conventional truck-and-shovel fleets against scraper-train alternatives on the same material movement task —
+      cycle times through load–haul–dump (Fig 2.18), fleet economics (218 t trucks), and strip-ratio context (Ch 2, Table 2.1).</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li><strong>Discrete-event simulation</strong> — PR-05 #01 Peru copper DES, #02 iron-ore IPCC SimPy, #03 haulage KPI alert (<a href="mining-or-real-world-examples.html">PR-05</a> clone score 5)</li>
+      <li><strong>Analytic complement</strong> — <a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai Ch 10.8</a> queuing (5 vs 22 trucks); Hillier Ch 20 (<a href="source-hillier-2024.html">PR-10</a>)</li>
+      <li><strong>IPCC trade-off</strong> — PR-05 #02 + PR-18 IPCC fixed-charge × T4</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Match factor N<sub>h</sub> = T<sub>ch</sub>/T<sub>l</sub> (Eq 12.27); E = A×U (Eq 12.14); rolling resistance Table 12.2; haul cycle phases.</p>
+    <h4>SA context</h4>
+    <p>Platinum-group open-pit persona; contractor haulage common in Bushveld — compare owner fleet vs contractor shift patterns (<a href="sa-mining-context.html">PR-09</a>).</p>
+    <h4>Data plan</h4>
+    <p><code>gen-truck-cycle</code> → cycles.csv + fleet events; dual <code>scenario_id</code> for truck-shovel vs scraper-train paths; Gorai Table 10.5 calibration hook.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Module <code>HaulageDesLab</code>: Learn route (cycle anatomy) + Decide route (SimPy Worker). Scenario picker: truck-shovel vs K-Tec vs IPCC. Firestore <code>haulageDesRuns/{id}</code>; animated queue chart (PR-06 pattern #6).</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>5</td><td>Flagship T2 haulage / equipment simulation</td></tr>
+        <tr><td>CV</td><td>5</td><td>DES + SimPy clones; strongest CV match in catalog</td></tr>
+        <tr><td>Stack</td><td>5</td><td>Worker DES per PR-04; integraldecision.com pattern</td></tr>
+        <tr><td>Data</td><td>5</td><td>PR-07b truck-cycle generator; Table 10.5 published sample</td></tr>
+        <tr><td>Diff</td><td>5</td><td>Mining-native DES vs generic HSMA templates</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Dual-scenario DES + KPI compare panel</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> K-Tec parameters are synthetic — label as illustrative trade-off, not vendor benchmark. Keep queuing (Gorai) as analytic sidebar, not DES duplicate.</p>
+  </div>
+
+  <!-- IDEA 03 -->
+  <div class="portfolio-box gate-pass" id="idea-03">
+    <h3>#2 · Production reconciliation dashboard <span class="tag">T3</span>
+      <span class="composite-badge">composite 3.93 · gate ✓</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Close the loop between mine plan, survey, and plant feed — surface accountability for where tonnes and grade went,
+      aligned with grade-control GPS practice (Ch 2) and resources-vs-reserves discipline (Ch 7).</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li><strong>Variance analysis + SPC dashboards</strong> — Sloan Ch 6 flexible budget / method-draw mix (<a href="source-sloan-mine-management-2012.html">PR-14</a> Seed A composite 4.32)</li>
+      <li><strong>External clones</strong> — PR-05 #04 proactive reconciliation Brazil, #05 mine-to-mill control charts</li>
+      <li><strong>Matrix</strong> — reconciliation domain row × T3 (<a href="method-theme-matrix.html">PR-18</a>)</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Table 9.2 due-diligence checklist (COG, dilution, grade control, reconciliation); production completion 90–180 day test; avail/util from Ch 12.</p>
+    <h4>SA context</h4>
+    <p>P2041 production/sales series + ME Bulletin bands for national benchmark overlay; DMPR entity list for mine naming (<a href="open-data-apis-mining.html">PR-07</a>).</p>
+    <h4>Data plan</h4>
+    <p><code>gen-plan-survey-var</code> → reconciliation_daily.csv + bench_variance.csv + survey GeoJSON; <code>benchmark_kpi.csv</code> delta_pct calibration.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Module <code>ReconciliationDashboard</code>: plan vs survey vs plant waterfall; spatial bench heatmap; alert rules on |Δ| &gt; threshold. Firestore <code>reconSnapshots/{id}</code>; Storage CSV uploads.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>5</td><td>Core T3 spatial KPI / transparency remit</td></tr>
+        <tr><td>CV</td><td>3</td><td>Dashboard + variance on CV; MIS depth gap vs Sloan culture</td></tr>
+        <tr><td>Stack</td><td>4</td><td>GeoJSON map + Chart.js; no solver latency</td></tr>
+        <tr><td>Data</td><td>5</td><td>PR-07b plan-survey generator purpose-built</td></tr>
+        <tr><td>Diff</td><td>4</td><td>Mining-native reconciliation rare in generic OR portfolios</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Dashboard + spatial layer + alert logic</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> No public mine reconciliation feeds — synthetic data must carry prominent disclaimer. T3 CV proof needs polished spatial narrative.</p>
+  </div>
+
+  <!-- IDEA 04 - BELOW -->
+  <div class="portfolio-box gate-fail" id="idea-04">
+    <h3>#10 · Dragline/strip mine block sequencing <span class="tag">T1</span>
+      <span class="composite-badge">composite 2.63 · gate ✗</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Sequence dragline strips and truck pre-strip in a strip mine — push material per strip ratio algebra (Ch 2, Table 2.1) under geotechnical bench limits.</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li><a href="mining-or-real-world-examples.html">PR-05</a> #12 CADSIM dragline simulation; <a href="source-dunbar-how-mining-works-2024.html">Dunbar Ch 2</a> open-pit strip ratio; <a href="source-natural-resources-handbook-2007.html">Handbook Ch 29</a> precedence cones (adjacency)</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Pushback sequence for constant SR (Ch 10); bench 10–20 m; dragline reach / strip width.</p>
+    <h4>SA context</h4>
+    <p>Weak fit for Bushveld PGM persona — stronger for Mpumalanga coal / iron-ore strip contexts (<a href="sa-mining-context.html">PR-09</a>).</p>
+    <h4>Data plan</h4>
+    <p>No dedicated PR-07b generator; would need custom strip-block topology — Data score 3.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Strip block Gantt + dragline move animation; Firestore <code>draglineSequences/{id}</code>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>4</td><td>T1 valid but niche vs Ukwazi PGM/UG focus</td></tr>
+        <tr><td>CV</td><td>2</td><td>No dragline/strip demo on CV</td></tr>
+        <tr><td>Stack</td><td>3</td><td>Custom animation + sequencing logic</td></tr>
+        <tr><td>Data</td><td>3</td><td>Missing synthetic strip-mine seed</td></tr>
+        <tr><td>Diff</td><td>4</td><td>Distinctive if SA coal persona added later</td></tr>
+        <tr><td>Effort</td><td>L</td><td>Strip geometry + dragline DES</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> SA persona mismatch; defer to PR-20 unless user prioritises coal strip mines.</p>
+  </div>
+
+  <!-- IDEA 05 -->
+  <div class="portfolio-box gate-pass" id="idea-05">
+    <h3>#6 · Underground stope sequence optimizer <span class="tag">T1</span>
+      <span class="composite-badge">composite 3.70 · gate ✓</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Sequence stopes and drawpoints in sublevel open stoping or caving — respect the underground mining cycle (drill, blast, muck, ground support)
+      and method choice from Table 2.4, with dilution control.</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li><strong>MILP / RCPSP</strong> — Handbook Ch 31 Kiruna (69.6% deviation reduction); Ch 30 stope optimisation survey</li>
+      <li><strong>Stochastic grade</strong> — Ch 30.3.3 conditional simulation stope risk (Seed C composite 3.78)</li>
+      <li><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai Ch 6.5</a> stope DP (underground T1 adjacency)</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Table 10.4 method recovery/dilution %; ground support lag; draw compliance; effective grade.</p>
+    <h4>SA context</h4>
+    <p>Platinum/UG Bushveld persona — Merensky/UG2 stoping vocabulary (<a href="sa-mining-context.html">PR-09</a>); contrast OP flagship #1.</p>
+    <h4>Data plan</h4>
+    <p><code>gen-block-model</code> UG mode (stope IDs, drawpoints); conditional grade realisations for risk histogram; toy MILP pre-solve.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Module <code>StopeSequenceLab</code>: level plan view + period ring schedule; risk overlay from grade realisations. Firestore <code>stopeScenarios/{id}</code>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>5</td><td>UG scheduling within T1 remit</td></tr>
+        <tr><td>CV</td><td>2</td><td>UG MILP not demonstrated on CV</td></tr>
+        <tr><td>Stack</td><td>4</td><td>Toy MILP in Worker; Kiruna narrative anchor</td></tr>
+        <tr><td>Data</td><td>4</td><td>Block generator + conditional realisations (PR-07b extension)</td></tr>
+        <tr><td>Diff</td><td>5</td><td>Kiruna 69.6% deviation — strong handbook evidence</td></tr>
+        <tr><td>Effort</td><td>M</td><td>UG UI + stochastic overlay</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> LKAB data confidential — structure-only replication. CV gap; pair with #1 for OP+UG breadth story.</p>
+  </div>
+
+  <!-- IDEA 06 -->
+  <div class="portfolio-box gate-pass" id="idea-06">
+    <h3>#3 · Fleet maintenance MDP <span class="tag">T5</span>
+      <span class="composite-badge">composite 3.93 · gate ✓</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Balance preventive maintenance against production targets — keep shovels and trucks available through the mining cycle (Fig 2.18)
+      without starving ore feed to the plant.</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li><strong>MDP / policy iteration</strong> — MDP Practice Ch 19 flexible staffing (PR-12 composite 4.24); Honours nurse MDP mapping (<a href="cv-ukwazi-alignment.html">PR-03</a> CV score 5 on T5)</li>
+      <li>SME Ch 22 PM cost curve, criticality Pareto; Sloan avail/util Table 6.4</li>
+      <li>PR-07b <code>fleet_state.json</code> snapshots</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Availability A, utilization U, E = A×U; PM vs breakdown cost trade-off (Fig 22.1); match factor linkage when units down.</p>
+    <h4>SA context</h4>
+    <p>Contractor-maintained vs owner-maintained fleet split common in SA platinum; P2041 equipment-intensity priors.</p>
+    <h4>Data plan</h4>
+    <p><code>gen-truck-cycle</code> → fleet_state.json + capacity_series.csv; synthetic failure/PM transition matrices.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Module <code>FleetMaintenanceMdp</code>: state grid (operating / PM / down); policy heatmap; simulate 52-week horizon. Firestore <code>mdpPolicies/{id}</code>, <code>fleetSimRuns/{id}</code>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>4</td><td>T5 capacity-constrained fleet planning</td></tr>
+        <tr><td>CV</td><td>5</td><td>MDP proof on CV (Honours + MDP Practice)</td></tr>
+        <tr><td>Stack</td><td>4</td><td>Policy iteration tractable in Worker</td></tr>
+        <tr><td>Data</td><td>4</td><td>Synthetic fleet states; no public PM logs</td></tr>
+        <tr><td>Diff</td><td>4</td><td>Maintenance MDP framed with SME KPIs</td></tr>
+        <tr><td>Effort</td><td>M</td><td>MDP solver + fleet narrative UI</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> Parameter credibility — cite SME curves, not OEM confidential rates. Distinct from #9 (crew staffing same MDP family).</p>
+  </div>
+
+  <!-- IDEA 07 - BELOW -->
+  <div class="portfolio-box gate-fail" id="idea-07">
+    <h3>#11 · Open-pit to underground transition timing <span class="tag">T4</span>
+      <span class="composite-badge">composite 2.63 · gate ✗</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Decide when to switch from open-pit pushbacks to underground stoping — cut-off grade sensitivity (Ch 7 Fig 7.11),
+      capacity mismatch scenarios, and method Table 2.4 trade-offs.</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li><a href="mining-or-real-world-examples.html">PR-05</a> #15 SA OP–UG IP (<a href="http://www.scielo.org.za/scielo.php?pid=S2225-62532016000800016&script=sci_arttext">SCIELO JSAIMM 2016</a>); <a href="source-dunbar-how-mining-works-2024.html">Dunbar Ch 7</a> cut-off; Handbook Ch 32 integrated chain vision</li>
+      <li>PR-05 #16–17 stochastic SIP — clone score 2 (cloud MIP)</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Table 10.4 relative cost/recovery; NPV Eq 8.27; study ladder Table 9.1.</p>
+    <h4>SA context</h4>
+    <p>Strong SA narrative (PR-05 #15 SCIELO) — but browser IP intractable without toy reduction.</p>
+    <h4>Data plan</h4>
+    <p>Block model + UG stope shell synthetic; no PR-07b transition package — Data 3.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Transition year slider + NPV compare; Firestore <code>transitionScenarios/{id}</code>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>4</td><td>T4 method/timing — valid remit</td></tr>
+        <tr><td>CV</td><td>2</td><td>No OP–UG IP demo</td></tr>
+        <tr><td>Stack</td><td>3</td><td>Real SIP needs Cloud Function at scale</td></tr>
+        <tr><td>Data</td><td>3</td><td>Missing dedicated transition seed</td></tr>
+        <tr><td>Diff</td><td>4</td><td>SA case exists but hard to clone</td></tr>
+        <tr><td>Effort</td><td>L</td><td>Dual-mode model + stochastic layer</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> Over-promising Whittle-style transition — PR-04 anti-pattern. Revisit if PR-07b adds OP–UG shell generator.</p>
+  </div>
+
+  <!-- IDEA 08 -->
+  <div class="portfolio-box gate-pass" id="idea-08">
+    <h3>#7 · Haul road network simulation <span class="tag">T2</span> <span class="tag">T4</span>
+      <span class="composite-badge">composite 3.70 · gate ✓</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Model how rolling resistance, grade, and intersection delay on haul roads constrain fleet productivity —
+      the physical link between pit and plant in the mining cycle (Ch 2 fleet economics).</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li><strong>Network DES</strong> — PR-05 #01–03 haulage clones; Hillier Ch 20</li>
+      <li>SME Ch 13 stopping distance ≤61 m, safe following Eq 13.3; rolling resistance Table 12.2</li>
+      <li>PR-18 haulage domain row</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Rolling resistance factor; average speed derating Table 12.3; match factor when road segments congest.</p>
+    <h4>SA context</h4>
+    <p>Wet-season road deterioration on Bushveld haul routes; USGS Africa infrastructure GIS overlay (<a href="open-data-apis-mining.html">PR-07</a>).</p>
+    <h4>Data plan</h4>
+    <p><code>gen-truck-cycle</code> with network graph (nodes/edges); segment RRF presets from SME Table 12.2.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Module <code>HaulNetworkDes</code>: GeoJSON road graph + moving truck entities; segment RRF slider. Firestore <code>haulNetworkRuns/{id}</code>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>4</td><td>T2 haulage bottleneck + T4 road design</td></tr>
+        <tr><td>CV</td><td>4</td><td>Network sim + VRP patterns on CV</td></tr>
+        <tr><td>Stack</td><td>4</td><td>GeoJSON + Worker DES</td></tr>
+        <tr><td>Data</td><td>4</td><td>Truck-cycle generator + public GIS</td></tr>
+        <tr><td>Diff</td><td>4</td><td>Road physics from SME — not generic VRP</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Graph editor + DES</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> Overlaps #2 — position as “network congestion layer” or merge modules in PR-20. Road geometry synthetic only.</p>
+  </div>
+
+  <!-- IDEA 09 -->
+  <div class="portfolio-box gate-pass" id="idea-09">
+    <h3>#8 · Contractor vs owner shift allocation <span class="tag">T5</span>
+      <span class="composite-badge">composite 3.62 · gate ✓</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Staff owner vs contractor crews across shifts to meet production targets while controlling labour cost —
+      the human side of the mining cycle alongside autonomous trends (Ch 8).</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li>MDP Practice Ch 19 flexible staffing (composite 4.24); PR-03 Honours nurse roster MDP</li>
+      <li>PR-05 contractor coordination cases; Sloan labour productivity KPIs</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Shift coverage rules; production completion test; contractor availability clauses.</p>
+    <h4>SA context</h4>
+    <p>Contractor-heavy PGM sector; QES employment series for macro calibration (<a href="open-data-apis-mining.html">PR-07</a> T5 package).</p>
+    <h4>Data plan</h4>
+    <p>Synthetic shift demand series; P2041 throughput priors; no public roster data — Data 3.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Module <code>CrewStaffingMdp</code>: weekly demand forecast → staffing policy; cost vs service level chart. Firestore <code>crewPolicies/{id}</code>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>4</td><td>T5 workforce planning analogue</td></tr>
+        <tr><td>CV</td><td>5</td><td>Same MDP family as Honours proof</td></tr>
+        <tr><td>Stack</td><td>4</td><td>Small state-space MDP in Worker</td></tr>
+        <tr><td>Data</td><td>3</td><td>Synthetic demand; weak public roster feeds</td></tr>
+        <tr><td>Diff</td><td>3</td><td>Mining contractor framing adds context vs nurse demo</td></tr>
+        <tr><td>Effort</td><td>M</td><td>MDP + roster UI</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> Sensitive labour politics — keep synthetic site. Near-duplicate of #6 MDP family; PR-20 should pick one T5 MDP flagship.</p>
+  </div>
+
+  <!-- IDEA 10 -->
+  <div class="portfolio-box gate-pass" id="idea-10">
+    <h3>#9 · Closure liability scenario model <span class="tag">T6</span>
+      <span class="composite-badge">composite 3.55 · gate ✓</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Estimate post-closure water treatment and tailings stewardship liability — ARD worked example (~US$2.065M/yr Equity Silver),
+      802 Mt tailings context (Ch 5), and pit backfill options (Kidston).</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li>Monte Carlo / decision trees — PR-05 #10–11 closure MC; Dunbar Ch 5 Seed D; SME Ch 21–25 bond phases</li>
+      <li>PR-07 WRC Closure Atlas + Mine Water Atlas; Global Tailings Portal</li>
+      <li>PR-18 closure domain row × T6</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Upstream raise &gt;5 m/yr failure risk; SMCRA bond Phases I–III; environmental liability due diligence outline.</p>
+    <h4>SA context</h4>
+    <p>WRC 65+ layer closure atlas; DMPR water-use licensing adjacency; Merafong/Witwatersrand acid mine drainage narrative (<a href="sa-mining-context.html">PR-09</a>).</p>
+    <h4>Data plan</h4>
+    <p>PR-07 <code>closure_risk.csv</code> + WRC atlas layers; MC draws in Worker; Global Tailings bulk CSV request on critical path.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Module <code>ClosureLiabilityMc</code>: scenario tree (base/ARD/wet climate); NPV liability distribution; map overlay from atlas. Firestore <code>closureScenarios/{id}</code>, <code>mcRuns/{id}</code>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>5</td><td>T6 closure liability — Ukwazi valuation/sustainability remit</td></tr>
+        <tr><td>CV</td><td>2</td><td>Weakest CV pillar (PR-03 gap); MC on CV only</td></tr>
+        <tr><td>Stack</td><td>4</td><td>MC in Worker + map layers</td></tr>
+        <tr><td>Data</td><td>4</td><td>WRC atlas + synthetic closure_risk.csv</td></tr>
+        <tr><td>Diff</td><td>4</td><td>SA closure atlas integration distinctive</td></tr>
+        <tr><td>Effort</td><td>M</td><td>MC + geo overlay + narrative</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> CV proof = 1–2 for T6; optional breadth only per taxonomy. Tailings bulk CSV lead time. Regulatory numbers are illustrative.</p>
+  </div>
+
+  <!-- IDEA 11 - BELOW -->
+  <div class="portfolio-box gate-fail" id="idea-11">
+    <h3>#12 · Integrated mine-to-plant production chain <span class="tag">T4</span>
+      <span class="composite-badge">composite 2.17 · gate ✗</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Trace metal from pit through crush–grind–flotation to product streams (Ch 7 Fig 7.2) — water and energy limits at the concentrator bind the mine plan.</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li>Handbook Ch 32 integrated mine→plant vision (Seed D ~3.24); no published integrated MILP</li>
+      <li>Dunbar Ch 7 five product streams; Ch 32 53% water / 48% energy at crush-flotation</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Plant throughput vs mine rate; recovery/dilution from Table 10.4; water cap.</p>
+    <h4>SA context</h4>
+    <p>PGM concentrator linkage on Bushveld persona — water-stressed Limpopo (<a href="sa-mining-context.html">PR-09</a> water-cap note).</p>
+    <h4>Data plan</h4>
+    <p>No integrated chain generator; would combine block + plant LP toy — Data 3.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Sankey mine→plant→product; toy LP balance; Firestore <code>chainScenarios/{id}</code>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>3</td><td>Adjacent to remit; plant detail exceeds planning analyst scope</td></tr>
+        <tr><td>CV</td><td>2</td><td>No mine-to-mill optimisation demo</td></tr>
+        <tr><td>Stack</td><td>3</td><td>Multi-echelon LP + Sankey</td></tr>
+        <tr><td>Data</td><td>3</td><td>No PR-07b package</td></tr>
+        <tr><td>Diff</td><td>3</td><td>Handbook cites gap — honest narrative</td></tr>
+        <tr><td>Effort</td><td>L</td><td>Multi-node chain model</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> Handbook authors state no reproducible integrated model — demo would be speculative. Lowest composite in catalog.</p>
+  </div>
+
+  <!-- IDEA 12 -->
+  <div class="portfolio-box gate-pass" id="idea-12">
+    <h3>#5 · Grade control / short-term forecast <span class="tag">T3</span> <span class="tag">T5</span>
+      <span class="composite-badge">composite 3.85 · gate ✓</span></h3>
+    <p><strong>Pitch (Dunbar 2024):</strong>
+      Forecast short-term grade and tonnage from blast-hole samples and GPS grade control (Ch 2) —
+      bridge geology, mine planning, and plant feed under JORC/CRIRSCO discipline (Ch 7).</p>
+    <h4>OR method + source basis</h4>
+    <ul>
+      <li>SME Ch 3 kriging SE, CI sample size; Table 9.2 grade-control checklist</li>
+      <li>Handbook Ch 30.3.3 conditional simulation; Sloan reconciliation variance</li>
+      <li>Dunbar Ch 2 dilution internal/external</li>
+    </ul>
+    <h4>SME constraints / KPIs</h4>
+    <p>Cut-off grade; confidence intervals; dilution/recovery %; effective grade equation.</p>
+    <h4>SA context</h4>
+    <p>PGM 4E grade variability on Bushveld; ME Bulletin grade bands for sanity check.</p>
+    <h4>Data plan</h4>
+    <p><code>gen-plan-survey-var</code> bench variance + conditional grade realisations; PR-07b validation rules on tonnage conservation.</p>
+    <h4>Angular + Firebase sketch</h4>
+    <p>Module <code>GradeForecastLab</code>: blast-hole scatter + kriging-style smooth (simplified); forecast vs actual replay. Firestore <code>gradeForecasts/{id}</code>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi</td><td>4</td><td>T3 spatial KPI + T5 short-horizon forecast</td></tr>
+        <tr><td>CV</td><td>4</td><td>Forecasting/stats on CV; kriging simplified OK</td></tr>
+        <tr><td>Stack</td><td>4</td><td>Chart + map; Worker for variogram toy fit</td></tr>
+        <tr><td>Data</td><td>5</td><td>Plan-survey generator + grade realisations</td></tr>
+        <tr><td>Diff</td><td>4</td><td>Grade-control narrative vs generic time-series</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Spatial forecast UI + validation</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Risks:</strong> Full kriging oversells — label as “simplified variogram demo”. Overlaps #3 reconciliation; merge dashboards or sequence plan→forecast→recon in PR-20.</p>
+  </div>
+
+  <h2>5. Firestore schema sketch</h2>
+  <p>Central catalog collection for PR-20 shortlist gate:</p>
+  <pre><code>portfolioSeeds/{ideaId}
+  title, pitch, themes[], moduleId
+  composite, gatePass, effort
+  sourceCites[]: { doc, section, url }
+  scorecard: { ukwazi, cv, stack, data, diff, effort }
+  dataPlan: { generators[], openData[] }
+  risks[]</code></pre>
+
+  <h2>6. Suggested pillar shortlist (PR-20 input)</h2>
+  <table>
+    <thead>
+      <tr><th>Pillar</th><th>Recommended idea</th><th>Composite</th><th>Rationale</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>T1 flagship</td><td><a href="#idea-01">idea-01</a> Open-pit schedule (rank #4)</td><td>3.86</td><td>Gorai + Handbook dual cite; core analyst remit</td></tr>
+      <tr><td>T2 flagship</td><td><a href="#idea-02">idea-02</a> Truck-shovel DES (rank #1)</td><td>4.70</td><td>Highest composite; CV=5; PR-05 clone path proven</td></tr>
+      <tr><td>T3 flagship</td><td><a href="#idea-03">idea-03</a> Reconciliation (rank #2)</td><td>3.93</td><td>Sloan + spatial dashboard; distinct from <a href="#idea-12">idea-12</a> forecast</td></tr>
+      <tr><td>T5 optional</td><td><a href="#idea-06">idea-06</a> Fleet MDP (rank #3)</td><td>3.93</td><td>Strongest MDP CV proof vs <a href="#idea-09">idea-09</a> crew roster</td></tr>
+      <tr><td>T6 optional</td><td><a href="#idea-10">idea-10</a> Closure MC (rank #9)</td><td>3.55</td><td>SA atlas data; breadth for sustainability narrative — <a href="portfolio-shortlist-briefs.html">deferred in PR-20</a></td></tr>
+      <tr><td>UG breadth</td><td><a href="#idea-05">idea-05</a> Stope sequence (rank #6)</td><td>3.70</td><td>Pairs with <a href="#idea-01">idea-01</a> for OP+UG story if user wants</td></tr>
+    </tbody>
+  </table>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard (artifact)</h3>
+    <p class="meta">This catalog document. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>Full theme coverage across 12 seeds; 9 pass gate</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Catalog exposes T1/T3/T6 CV gaps honestly for PR-20</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Every idea maps to module ID + Firestore paths</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>PR-07b generators unblock T1–T3 pillar data scores</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Mining-native cites vs PR-06 generic OR demos</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Wave 3 synthesis doc; flagship demos Effort M–L</td></tr>
+        <tr><td><strong>Composite (doc)</strong></td><td><strong>4.47</strong></td><td>(4×5 + 3×4 + 2×5 + 2×5 + 2×5) / 13 − 0.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-19.md</code> ·
+    Registry row: <code>index.html#pr-19</code> ·
+    Next: <a href="portfolio-shortlist-briefs.html">portfolio-shortlist-briefs.html</a> (PR-20 complete)
+  </footer>
+</body>
+</html>

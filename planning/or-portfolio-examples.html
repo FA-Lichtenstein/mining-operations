@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OR Portfolio Examples — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+      --warn-bg: #fff8f0;
+      --warn-border: #c45c00;
+      --ok-bg: #f0f7f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    .pattern-ok {
+      background: var(--ok-bg);
+      border-left: 4px solid var(--accent);
+      padding: 0.65rem 0.85rem;
+      margin: 0.5rem 0;
+    }
+    .pattern-warn {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn-border);
+      padding: 0.65rem 0.85rem;
+      margin: 0.5rem 0;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>OR Portfolio Examples</h1>
+  <p class="meta">
+    Task ID: PR-06 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a>, <a href="index.html#pr-02">PR-02</a>,
+    <a href="index.html#pr-04">PR-04</a>, <a href="index.html#pr-05">PR-05</a> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a>
+  </p>
+
+  <p class="lead">
+    Eighteen external operations-research portfolio demos from GitHub, Kaggle, and consultancy platforms,
+    evaluated for UI patterns that transfer to a mining OR portfolio on Angular+Firebase (PR-04).
+    Scope is cross-industry OR tooling and presentation — not mining case studies (see
+    <a href="mining-or-real-world-examples.html">PR-05</a>) and not South African regulatory context
+    (<a href="index.html#pr-09">PR-09</a>).
+    Finance “portfolio optimization” notebooks (mean–variance asset selection) are excluded; they share vocabulary
+    but not the haulage/scheduling/reconciliation problems Ukwazi themes target.
+  </p>
+
+  <h2>Scope and method</h2>
+  <ul>
+    <li><strong>Boundary:</strong> Public GitHub repos, Kaggle kernels, and vendor/consultancy demo UIs with OR or simulation at the core. Mining-specific citations deferred to PR-05; SA context to PR-09.</li>
+    <li><strong>Portable (1–5):</strong> How readily the demo’s <em>UI pattern</em> ports to Angular+Firebase with Workers and synthetic data — not whether the original stack was Angular. Fourteen of 18 catalog entries score ≥4.</li>
+    <li><strong>Theme tags:</strong> Which Ukwazi themes (T1–T6) the example’s interaction model best supports when re-skinned for mining KPIs.</li>
+    <li><strong>Research date:</strong> May 2026 web search; live demo URLs verified where hosted (Streamlit Cloud, GitHub Pages, vendor sites).</li>
+  </ul>
+
+  <h2>Summary catalog</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Example</th>
+        <th>Source</th>
+        <th>OR method</th>
+        <th>UI stack</th>
+        <th>Theme(s)</th>
+        <th>Portable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>01</td><td>PathMatrix VRP optimizer</td><td>GitHub</td><td>VRP / network MIP (OR-Tools)</td><td>Streamlit + FastAPI</td><td>T1, T2</td><td>5</td></tr>
+      <tr><td>02</td><td>Last-mile logistics CVRP + agent replan</td><td>GitHub</td><td>CVRP, baseline vs OR-Tools</td><td>Streamlit</td><td>T1, T2</td><td>4</td></tr>
+      <tr><td>03</td><td>NYC medical supply VRP</td><td>GitHub</td><td>CVRP; greedy vs OR-Tools</td><td>Dash + Plotly</td><td>T1, T2</td><td>4</td></tr>
+      <tr><td>04</td><td>Project Atlas fleet intelligence</td><td>GitHub</td><td>K-Means zones, dispatch KPIs</td><td>Streamlit + PyDeck</td><td>T1, T2</td><td>3</td></tr>
+      <tr><td>05</td><td>optimax (KTH linear optimization)</td><td>GitHub</td><td>LP, IP, column gen, stochastic</td><td>React + FastAPI</td><td>T1, T4, T5, T6</td><td>5</td></tr>
+      <tr><td>06</td><td>Horizon systems OR simulator</td><td>GitHub</td><td>Queueing, inventory, TSP/VRP</td><td>React + D3/Chart.js</td><td>T2, T5</td><td>5</td></tr>
+      <tr><td>07</td><td>IBM Decision Optimization dashboard</td><td>GitHub / IBM</td><td>General DO (MIP/LP)</td><td>Plotly Dash</td><td>T1–T6</td><td>5</td></tr>
+      <tr><td>08</td><td>IBM DO scheduling quick start</td><td>Consultancy</td><td>Scheduling / Gantt</td><td>Cloud Pak UI</td><td>T1</td><td>4</td></tr>
+      <tr><td>09</td><td>AIMMS Development apps</td><td>Consultancy</td><td>LP/MIP/CP/NLP</td><td>Low-code UI builder</td><td>T1, T4</td><td>3</td></tr>
+      <tr><td>10</td><td>Optilogic composable apps</td><td>Consultancy</td><td>Supply-chain opt + sim</td><td>NL-assembled apps</td><td>T1, T2, T4</td><td>3</td></tr>
+      <tr><td>11</td><td>Simfluence interactive simulation</td><td>Consultancy</td><td>Process / agent simulation</td><td>Browser widgets</td><td>T2, T4</td><td>4</td></tr>
+      <tr><td>12</td><td>HSMA DES concepts (stlite)</td><td>GitHub</td><td>DES teaching (SimPy)</td><td>Streamlit / stlite</td><td>T2</td><td>5</td></tr>
+      <tr><td>13</td><td>SimPy visualisation library</td><td>GitHub</td><td>DES + animated flow</td><td>Streamlit + Plotly</td><td>T2</td><td>5</td></tr>
+      <tr><td>14</td><td>STARS SimPy Streamlit deployment</td><td>GitHub</td><td>DES (healthcare template)</td><td>Streamlit Cloud</td><td>T2</td><td>4</td></tr>
+      <tr><td>15</td><td>OpenScienceNerd SimPy app template</td><td>GitHub</td><td>Call-centre DES</td><td>Streamlit</td><td>T2</td><td>5</td></tr>
+      <tr><td>16</td><td>TSP routing app (Medium tutorial)</td><td>GitHub / article</td><td>TSP (Pyomo / OR-Tools)</td><td>Streamlit + Folium</td><td>T1</td><td>4</td></tr>
+      <tr><td>17</td><td>Kaggle supply-chain gurobipy</td><td>Kaggle</td><td>LP / MIP supply chain</td><td>Jupyter notebook</td><td>T1</td><td>2</td></tr>
+      <tr><td>18</td><td>integraldecision.com (production OR portfolio)</td><td>Production</td><td>WSM, tutorials, DES patterns</td><td>Angular + Firebase</td><td>T2, T4</td><td>5</td></tr>
+    </tbody>
+  </table>
+
+  <h2>UI patterns — what works</h2>
+  <p>
+    Patterns below appear repeatedly in high-rated examples (#01, #05–#07, #12–#15, #18) and align with
+    dashboard UX guidance on operational coherence, progressive disclosure, and scenario comparison
+    (ThoughtSpot, UXPin, Pencil &amp; Paper, 2025–2026).
+  </p>
+
+  <div class="pattern-ok">
+    <p><strong>1. Learn / Decide route split</strong> — Tutorial route explains method; sibling Decide route runs the engine with user parameters and optional save. Proven on <a href="https://integraldecision.com/learn">integraldecision.com</a> (PR-04); maps to T2 haulage basics → fleet mix and T4 WSM method selection.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>2. Scenario picker + compare</strong> — Top-bar or sidebar dropdown switches scenarios; delta KPIs vs baseline highlighted. IBM <code>dse-do-dashboard</code> uses DB-backed scenario sets; PathMatrix and last-mile demos compare optimized vs heuristic routes with quantified savings.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>3. Sidebar parameters + explicit Run/Solve</strong> — Sliders and inputs in a fixed sidebar; user clicks Run to invoke solver (Worker or API). OpenScienceNerd SimPy template and IBM DO “Build model → Explore solution” avoid auto-rerun on every keystroke — critical for MIP/DES latency.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>4. Optimizer vs baseline twin view</strong> — Side-by-side map or KPI strip showing greedy/heuristic vs OR-Tools output (#02, #03). Makes optimization value legible to non-OR reviewers — portable to haulage dispatch heuristics (PR-05 #06–#07).</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>5. Map + schedule dual pane</strong> — Route map (Folium, PyDeck, Leaflet) paired with Gantt or timeline (#01 PathMatrix, IBM DO scheduling Gantt). Direct analogue for truck routes + shift schedule in T1/T2 mining demos.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>6. Animated entity-flow for DES</strong> — Plotly animations of entities moving through queues (#12, #13 HSMA). Surfaces bottleneck buildup faster than static histograms; strongest T2 pattern for re-skinning to load–haul–dump cycles.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>7. Cards-menu demo catalog</strong> — Grid of titled cards with theme badges and deep links (integraldecision Learn index; PR-04 portable module). Scales to T1–T6 portfolio without one monolithic dashboard.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>8. Inverted-pyramid KPI layout</strong> — Critical metrics top (distance, cost, utilisation), trends middle, detail tables bottom. Project Atlas and PathMatrix follow this; avoids “metric soup” on first paint.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>9. Input-table review → output-table explore</strong> — IBM DO dashboard pages: Prepare Data (input DataFrames) → Explore Solution (decision variables). Builds trust with planners who expect spreadsheet-like transparency (T3 reconciliation dashboards).</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>10. Algorithm transparency visualizations</strong> — optimax shows branch-and-bound trees, feasible regions, and stochastic scenario profit distributions; Horizon shows Jackson network diagrams and inventory saw-tooth plots. Teaching-grade visuals double as interview credibility for T5/T6.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>11. Schema-driven parameter panels</strong> — JSON/TypeScript config drives dynamic forms across demos (PR-04 ecosystem.Ai Workbench pattern). Reduces per-demo form boilerplate when shipping T1–T6 modules.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>12. Exportable results</strong> — PathMatrix Excel/HTML download; batch CSV experiment upload (OpenScienceNerd template). Lets reviewers reproduce runs offline — useful for Ukwazi-style site studies without live Firebase access.</p>
+  </div>
+
+  <h2>UI patterns — what fails</h2>
+
+  <div class="pattern-warn">
+    <p><strong>Notebook-only “portfolio”</strong> — Kaggle kernels (#17 gurobipy supply chain, DES Poisson tutorials) show code but no hosted interactive app. Interviewers cannot click through; fails the portfolio bar PR-04 sets for integraldecision-style demos.</p>
+  </div>
+  <div class="pattern-warn">
+    <p><strong>Streamlit full-page rerun on every slider</strong> — Default Streamlit reruns entire script per interaction; long OR-Tools solves block UI unless isolated behind <code>st.form</code> + Run button or FastAPI backend (#01 PathMatrix split). PR-04 Workers + explicit Run avoid this in Angular.</p>
+  </div>
+  <div class="pattern-warn">
+    <p><strong>Metric overload on one screen</strong> — Enterprise dashboards that cram every chart into a single view (common anti-pattern in generic BI templates) hide the one KPI the planner must act on. Split into operational vs analytical views or use tabs.</p>
+  </div>
+  <div class="pattern-warn">
+    <p><strong>Optimizer output without baseline</strong> — Showing only the “optimal” route or schedule (#02 without comparison mode) reads as a black box. Always pair with naive policy, previous plan, or deterministic plan (PR-05 Peru DES case).</p>
+  </div>
+  <div class="pattern-warn">
+    <p><strong>Unre-skinned domain chrome</strong> — Healthcare ED and call-centre DES repos (#12–#14) are strong technically but fail mining portfolio positioning if copy, icons, and KPIs stay clinical (PR-04 anti-pattern: gym/hospital headline).</p>
+  </div>
+  <div class="pattern-warn">
+    <p><strong>Finance “portfolio optimization” confusion</strong> — GitHub/Kaggle repos on mean–variance asset selection (PyPortfolioOpt, MILP stock picking) dominate search results but do not demonstrate scheduling, haulage, or reconciliation — exclude from OR portfolio narrative.</p>
+  </div>
+  <div class="pattern-warn">
+    <p><strong>LLM narrative replacing model I/O</strong> — Last-mile demo’s LLM “business report” is additive only when inputs, constraints, and KPI tables remain visible; LLM-only summaries fail technical review.</p>
+  </div>
+  <div class="pattern-warn">
+    <p><strong>Browser-incompatible deployment</strong> — HSMA stlite apps note Firefox failures; portfolio links for interviews must declare supported browsers or use Angular+Firebase Hosting instead.</p>
+  </div>
+  <div class="pattern-warn">
+    <p><strong>Solver on main thread</strong> — OR-Tools MIP or long DES in Streamlit’s synchronous script freezes tab; split frontend/backend (#01) or Worker (#04 stack row).</p>
+  </div>
+  <div class="pattern-warn">
+    <p><strong>Static screenshot portfolios</strong> — README-only “dashboard” PNGs without runnable hosted URL (seen in some ML portfolio repos) do not prove OR delivery; prefer live Firebase or Streamlit Cloud links.</p>
+  </div>
+
+  <h2>Example notes (selected)</h2>
+
+  <h3>01 — PathMatrix VRP <span class="tag">T1</span> <span class="tag">T2</span> · Portable 5</h3>
+  <p>
+    <strong>Source:</strong> <a href="https://github.com/rimchmielowitz/pathmatrix-app">rimchmielowitz/pathmatrix-app</a> ·
+    Live: <a href="https://pathmatrix.streamlit.app/">pathmatrix.streamlit.app</a>.
+    Streamlit UI → FastAPI → OR-Tools MIP; map routes, Gantt schedules, Excel export. Best external template for
+    dispatch/route demo architecture on PR-04 stack (Leaflet map + Worker OR-Tools via Function optional).
+  </p>
+
+  <h3>02 — Last-mile logistics CVRP + agent replan <span class="tag">T1</span> <span class="tag">T2</span> · Portable 4</h3>
+  <p>
+    <strong>Source:</strong>
+    <a href="https://github.com/kangwooho0126-prog/Intelligent-Last-Mile-Logistics-Optimization-System">Intelligent-Last-Mile-Logistics-Optimization-System</a>.
+    Streamlit CVRP with OR-Tools, greedy baseline vs optimized KPI strip, and natural-language replanning (capacity constraints).
+    Pattern #4 twin-view and pattern #7 LLM-as-additive-only both validated here.
+  </p>
+
+  <h3>03 — NYC medical supply VRP <span class="tag">T1</span> <span class="tag">T2</span> · Portable 4</h3>
+  <p>
+    <strong>Source:</strong>
+    <a href="https://github.com/AbhayR1104/supply-chain-optimizer">AbhayR1104/supply-chain-optimizer</a>.
+    Dash + Plotly map of NYC taxi-proxy deliveries; fleet size and capacity controls; greedy vs OR-Tools CVRP comparison.
+    Dash layout maps to PR-04 map + KPI centre pane without adopting Dash stack.
+  </p>
+
+  <h3>04 — Project Atlas fleet intelligence <span class="tag">T1</span> <span class="tag">T2</span> · Portable 3</h3>
+  <p>
+    <strong>Source:</strong>
+    <a href="https://github.com/TheLogeek/Logistics-Intelligence">TheLogeek/Logistics-Intelligence</a>.
+    Streamlit + PyDeck 3D density heatmap and K-Means zone clustering for dispatch KPIs — useful for T3-style KPI pyramid (pattern #8), not a solver-first demo.
+  </p>
+
+  <h3>05 — optimax <span class="tag">T1</span> <span class="tag">T4</span> <span class="tag">T5</span> <span class="tag">T6</span> · Portable 5</h3>
+  <p>
+    <strong>Source:</strong> <a href="https://github.com/dhruvhaldar/optimax">dhruvhaldar/optimax</a>.
+    React (Vite) + FastAPI on Vercel; visualizes LP feasible regions, B&amp;B trees, Lagrangian convergence, two-stage
+    stochastic farmer problem. Closest open-source analogue to a multi-method OR teaching portfolio in a modern SPA —
+    validates React+API split PR-04 recommends for Angular.
+  </p>
+
+  <h3>06 — Horizon <span class="tag">T2</span> <span class="tag">T5</span> · Portable 5</h3>
+  <p>
+    <strong>Source:</strong> <a href="https://github.com/dhruvhaldar/horizon">dhruvhaldar/horizon</a>.
+    Queueing Jackson networks (D3), inventory saw-tooth charts, TSP/VRP graphs. Strong T2/T5 visualization patterns
+    for fleet and inventory modules without mining domain lock-in.
+  </p>
+
+  <h3>07 — IBM dse-do-dashboard <span class="tag">T1–T6</span> · Portable 5</h3>
+  <p>
+    <strong>Source:</strong> <a href="https://github.com/IBM/dse-do-dashboard">IBM/dse-do-dashboard</a>.
+    Reusable Dash framework: scenario dropdown, Prepare Data / Run Model / Explore Solution / Visualization sidebar.
+    Scenario = named input/output DataFrames in DB2. Direct pattern for Firestore <code>scenarios/{id}</code> snapshots in PR-04 sketch.
+  </p>
+
+  <h3>08 — IBM DO scheduling quick start <span class="tag">T1</span> · Portable 4</h3>
+  <p>
+    <strong>Source:</strong>
+    <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/get-started-do.html">IBM Cloud Pak DO quick start</a>;
+    samples in <a href="https://github.com/IBMDecisionOptimization/DO-Samples">IBMDecisionOptimization/DO-Samples</a>.
+    Native Gantt for scheduling experiments — layout reference for T1 pit/shift timelines; stack not portable (Cloud Pak UI).
+  </p>
+
+  <h3>16 — TSP routing (Streamlit + Folium tutorial) <span class="tag">T1</span> · Portable 4</h3>
+  <p>
+    <strong>Source:</strong>
+    <a href="https://towardsdatascience.com/designing-operations-research-solutions-a-user-friendly-routing-application-with-streamlit-17212553861d/">Towards Data Science tutorial</a>
+    (Bruno Scalia C. F. Leite) — Pyomo MIP + OR-Tools heuristic modes, OpenStreetMap distances, <code>streamlit-folium</code> map.
+    Article-first (no single canonical repo); pair with PathMatrix (#01) for full hosted reference.
+  </p>
+
+  <h3>17 — Kaggle / notebook supply-chain gurobipy <span class="tag">T1</span> · Portable 2</h3>
+  <p>
+    <strong>Source (anti-pattern):</strong>
+    <a href="https://www.kaggle.com/code/waiyankhinemyo/2-supply-chain-optimization-with-gurobipy">Kaggle gurobipy kernel</a>
+    (viewer often unstable) · stable analogue:
+    <a href="https://github.com/Gurobi/modeling-examples/blob/master/supply_network_design/supply_network_design_1.ipynb">Gurobi supply_network_design</a>.
+    Listed as failure pattern #1 — code-only, no interview-clickable UI.
+  </p>
+
+  <h3>12–13 — HSMA SimPy DES <span class="tag">T2</span> · Portable 5</h3>
+  <p>
+    <strong>Sources:</strong>
+    <a href="https://github.com/hsma-programme/Teaching_DES_Concepts_Streamlit">Teaching_DES_Concepts_Streamlit</a>,
+    <a href="https://github.com/hsma-programme/simpy_visualisation">simpy_visualisation</a> ·
+    Live: <a href="https://hsma-programme.github.io/Teaching_DES_Concepts_Streamlit/">GitHub Pages (stlite)</a>,
+    <a href="https://simpy-visualisation.streamlit.app/">simpy-visualisation.streamlit.app</a>.
+    Animated entity flow, replication controls, resource sliders — clone interaction model for haulage DES (PR-05 #01–#03).
+  </p>
+
+  <h3>15 — OpenScienceNerd SimPy template <span class="tag">T2</span> · Portable 5</h3>
+  <p>
+    <strong>Source:</strong> <a href="https://github.com/TheOpenScienceNerd/streamlit_simpy_app">streamlit_simpy_app</a> ·
+    Live: <a href="https://osnerd-simpy.streamlit.app/">osnerd-simpy.streamlit.app</a>.
+    Sidebar params, Run button, Plotly histograms, batch CSV upload — reference implementation for DES UX checklist.
+  </p>
+
+  <h3>18 — integraldecision.com <span class="tag">T2</span> <span class="tag">T4</span> · Portable 5</h3>
+  <p>
+    <strong>Source:</strong> <a href="https://integraldecision.com/">integraldecision.com</a> (PR-02/PR-04 baseline).
+    Only production example in catalog already on Angular+Firebase; cards-menu, Learn/Decide split, WSM Decide route.
+    External Streamlit/Dash repos inform UX; this site is the stack anchor.
+  </p>
+
+  <h2>Consultancy platform patterns (reference only)</h2>
+  <ul>
+    <li><strong>AIMMS Development</strong> (<a href="https://www.aimms.com/platform/aimms-development/">aimms.com</a>) — integrated model + UI builder, one-step deploy; useful reference for “planner-facing” polish, not portable stack.</li>
+    <li><strong>Optilogic composable apps</strong> (<a href="https://optilogic.com/platform/composable-apps">optilogic.com</a>) — role-based supply-chain apps, NL app assembly; shows executive vs analyst view split relevant to T4 trade-off briefings.</li>
+    <li><strong>Simfluence interactive widgets</strong> (<a href="https://simfluence.io/interactive-simulation-tool-product-demo-scenario-testing/">simfluence.io</a>) — browser what-if sliders for sales/workshop demos; pattern for T4 scenario exploration without full solver backend.</li>
+    <li><strong>IBM Cloud Pak DO</strong> (<a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/get-started-do.html">quick start</a>, <a href="https://github.com/IBMDecisionOptimization/DO-Samples">DO-Samples</a>) — native Gantt for scheduling experiments; input for T1 schedule visualization layout.</li>
+  </ul>
+
+  <h2>Theme coverage (UI patterns)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Theme</th>
+        <th>Strongest external UI patterns</th>
+        <th>Best catalog refs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="tag">T1</span> Scheduling &amp; sequencing</td><td>Map + Gantt; scenario compare; schedule Gantt (IBM DO)</td><td>#01, #03, #07, #08, #16</td></tr>
+      <tr><td><span class="tag">T2</span> DES / simulation</td><td>Animated entity flow; replication slider; KPI alert banner</td><td>#06, #11, #12–#15, #18</td></tr>
+      <tr><td><span class="tag">T3</span> Reconciliation KPIs</td><td>Input/output table transparency; KPI pyramid; delta highlights</td><td>#07, #04 (Atlas KPI strip)</td></tr>
+      <tr><td><span class="tag">T4</span> Techno-economic trade-offs</td><td>Scenario toggles; WSM Decide route; what-if widgets</td><td>#05, #11, #18</td></tr>
+      <tr><td><span class="tag">T5</span> Capacity / MDP</td><td>Queue network diagrams; inventory saw-tooth; fleet sizing sliders</td><td>#06, #05 (stochastic module)</td></tr>
+      <tr><td><span class="tag">T6</span> Closure / risk finance</td><td>Scenario distribution charts; exceedance curves (stochastic module)</td><td>#05 (two-stage stochastic viz)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Top five patterns to port (ranked)</h2>
+  <ol>
+    <li><strong>Learn / Decide + cards-menu catalog</strong> (#18) — portfolio shell; already on target stack.</li>
+    <li><strong>Scenario picker with baseline delta</strong> (#07, #02) — every optimization demo should compare against naive/heuristic/plan.</li>
+    <li><strong>Sidebar params + Worker Run + KPI strip</strong> (#15, PR-04) — standard DES/MIP interaction loop.</li>
+    <li><strong>Animated DES entity flow</strong> (#13) — flagship T2 differentiator vs static Jupyter.</li>
+    <li><strong>Map + timeline dual pane</strong> (#01) — T1 dispatch credibility without Whittle integration.</li>
+  </ol>
+
+  <h2>Cross-links</h2>
+  <ul>
+    <li><strong>PR-05:</strong> Mining case content; use PR-06 patterns to wrap PR-05 clone-5 cases (#01–#05).</li>
+    <li><strong>PR-04:</strong> Stack boundaries (Workers, Firestore scenarios, anti-patterns).</li>
+    <li><strong><a href="index.html#pr-09">PR-09</a>:</strong> SA context layer — do not import here.</li>
+    <li><strong>PR-19:</strong> Seed tags <code>ui-scenario-compare</code>, <code>ui-des-animation</code>, <code>ui-map-gantt</code> from this catalog.</li>
+  </ul>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard</h3>
+    <p class="meta">Artifact-level scores for this UI-pattern research doc. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score (1–5)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukwazi fit (T1–T6)</td>
+          <td>4</td>
+          <td>All themes have at least one portable UI pattern; examples are cross-industry — mining framing comes from PR-05 content + re-skin.</td>
+        </tr>
+        <tr>
+          <td>CV proof</td>
+          <td>4</td>
+          <td>Confirms integraldecision patterns against 17 external benchmarks; provides interview vocabulary for UX choices.</td>
+        </tr>
+        <tr>
+          <td>Angular+Firebase fit</td>
+          <td>5</td>
+          <td>Fourteen examples score portable ≥4 (#01–#03, #05–#08, #11–#16, #18); #18 already on target stack; Streamlit patterns map cleanly to Worker + Firestore scenarios.</td>
+        </tr>
+        <tr>
+          <td>Data feasibility</td>
+          <td>5</td>
+          <td>Catalog examples use public/synthetic data (NYC taxi, toy VRP, teaching LPs); no proprietary dependency.</td>
+        </tr>
+        <tr>
+          <td>Differentiation</td>
+          <td>4</td>
+          <td>Mining KPI re-skin + Angular beats crowded Streamlit OR repos; scenario-compare and DES animation remain uncommon.</td>
+        </tr>
+        <tr>
+          <td>Effort</td>
+          <td>S</td>
+          <td>Research artifact complete; implementing shared UI shell is M effort in PR-19/20.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Suggested Angular+Firebase sketch</h3>
+    <p>
+      Add a shared <code>features/portfolio-shell/</code> module: <code>/learn</code> cards-menu (theme badges T1–T6,
+      clone score from PR-05) and reusable <code>ScenarioWorkbenchComponent</code> ported from IBM DO layout — left sidebar
+      (Prepare inputs form from JSON schema), centre tabs (Map | Gantt | Charts | Output table), top scenario dropdown
+      with “Compare to baseline” toggle writing to Firestore <code>scenarios/{uid}/{demoId}</code>. Each OR demo lazy-loads
+      its Worker kernel on Run; results JSON and KPI deltas only persist to Firestore (not event logs). Include
+      <code>DesAnimationComponent</code> (Plotly-style canvas or SVG entity flow from #13) as optional T2 panel.
+      Export CSV/PNG via client download for offline review. Cross-link external GitHub sources in a collapsible
+      “Pattern reference” panel per demo for credibility without implying code reuse.
+    </p>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-06.md</code> ·
+    Registry row: <code>index.html#pr-06</code>
+  </footer>
+</body>
+</html>

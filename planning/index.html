@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Research — Task Registry</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 64rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    .planned-output {
+      color: var(--muted);
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.82em;
+    }
+    .status {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 0.15rem 0.45rem;
+      border-radius: 3px;
+    }
+    .status-complete {
+      background: var(--bg-soft);
+      color: var(--accent);
+    }
+    .status-pending {
+      background: #f5f5f5;
+      color: var(--muted);
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Portfolio Research — Task Registry</h1>
+  <p class="meta">
+    Local agent task tracker · PR-XX labels are workflow IDs, not git pull requests ·
+    Anchor: <a href="ukwazi-services-summary.html">ukwazi-services-summary.html</a> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6 taxonomy</a> ·
+    Last registry update: 2026-05-27
+  </p>
+
+  <h2>Wave 0 — Foundation</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Task ID</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Depends on</th>
+        <th>Output path</th>
+        <th>Last updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="pr-01">
+        <td>PR-01</td>
+        <td>Planning infrastructure</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>—</td>
+        <td><a href="index.html">index.html</a>, <a href="_template.html">_template.html</a>, <a href="_handover/">_handover/</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-02">
+        <td>PR-02</td>
+        <td>Anchor registration (Ukwazi summary)</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01</td>
+        <td><a href="ukwazi-services-summary.html">ukwazi-services-summary.html</a>, <a href="_handover/PR-02.md">PR-02.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Wave 1 — External &amp; stack research</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Task ID</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Depends on</th>
+        <th>Output path</th>
+        <th>Last updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="pr-03">
+        <td>PR-03</td>
+        <td>CV ↔ Ukwazi alignment</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01, PR-02</td>
+        <td><a href="cv-ukwazi-alignment.html">cv-ukwazi-alignment.html</a>, <a href="_handover/PR-03.md">PR-03.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-04">
+        <td>PR-04</td>
+        <td>Angular+Firebase OR stack</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01, PR-02</td>
+        <td><a href="angular-firebase-or-stack.html">angular-firebase-or-stack.html</a>, <a href="_handover/PR-04.md">PR-04.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-05">
+        <td>PR-05</td>
+        <td>Mining OR real-world examples</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01, PR-02</td>
+        <td><a href="mining-or-real-world-examples.html">mining-or-real-world-examples.html</a>, <a href="_handover/PR-05.md">PR-05.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-06">
+        <td>PR-06</td>
+        <td>OR portfolio examples</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01, PR-02, PR-04, PR-05</td>
+        <td><a href="or-portfolio-examples.html">or-portfolio-examples.html</a>, <a href="_handover/PR-06.md">PR-06.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-07">
+        <td>PR-07</td>
+        <td>Open data &amp; APIs</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01, PR-02</td>
+        <td><a href="open-data-apis-mining.html">open-data-apis-mining.html</a>, <a href="_handover/PR-07.md">PR-07.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-07b">
+        <td>PR-07b</td>
+        <td>Synthetic data spec</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-07</td>
+        <td><a href="synthetic-data-generator-spec.html">synthetic-data-generator-spec.html</a>, <a href="_handover/PR-07b.md">PR-07b.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-08">
+        <td>PR-08</td>
+        <td>Mine planning software landscape</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01, PR-02, PR-04</td>
+        <td><a href="mine-planning-software-landscape.html">mine-planning-software-landscape.html</a>, <a href="_handover/PR-08.md">PR-08.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-09">
+        <td>PR-09</td>
+        <td>SA mining context</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01, PR-02</td>
+        <td><a href="sa-mining-context.html">sa-mining-context.html</a>, <a href="_handover/PR-09.md">PR-09.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Wave 2 — Source summaries</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Task ID</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Depends on</th>
+        <th>Output path</th>
+        <th>Last updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="pr-10">
+        <td>PR-10</td>
+        <td>Hillier 2024</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01</td>
+        <td><a href="source-hillier-2024.html">source-hillier-2024.html</a>, <a href="_handover/PR-10.md">PR-10.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-11">
+        <td>PR-11</td>
+        <td>Reid &amp; Sanders 2023</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01</td>
+        <td><a href="source-reid-sanders-2023.html">source-reid-sanders-2023.html</a>, <a href="_handover/PR-11.md">PR-11.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-12">
+        <td>PR-12</td>
+        <td>MDP in Practice</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01</td>
+        <td><a href="source-mdp-practice-2017.html">source-mdp-practice-2017.html</a>, <a href="_handover/PR-12.md">PR-12.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-13">
+        <td>PR-13</td>
+        <td>Natural Resources Handbook</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01</td>
+        <td><a href="source-natural-resources-handbook-2007.html">source-natural-resources-handbook-2007.html</a>, <a href="_handover/PR-13.md">PR-13.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-14">
+        <td>PR-14</td>
+        <td>Sloan Mine Management 2012</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01</td>
+        <td><a href="source-sloan-mine-management-2012.html">source-sloan-mine-management-2012.html</a>, <a href="_handover/PR-14.md">PR-14.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-15">
+        <td>PR-15</td>
+        <td>Dunbar 2nd ed 2024</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01</td>
+        <td><a href="source-dunbar-how-mining-works-2024.html">source-dunbar-how-mining-works-2024.html</a>, <a href="_handover/PR-15.md">PR-15.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-16">
+        <td>PR-16</td>
+        <td>SME Handbook 2020</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01</td>
+        <td><a href="source-sme-mining-reference-handbook-2020.html">source-sme-mining-reference-handbook-2020.html</a>, <a href="_handover/PR-16.md">PR-16.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-17">
+        <td>PR-17</td>
+        <td>Gorai &amp; Chatterjee 2022</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-01</td>
+        <td><a href="source-gorai-chatterjee-optimization-mines-2022.html">source-gorai-chatterjee-optimization-mines-2022.html</a>, <a href="_handover/PR-17.md">PR-17.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Wave 3 — Synthesis</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Task ID</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Depends on</th>
+        <th>Output path</th>
+        <th>Last updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="pr-18">
+        <td>PR-18</td>
+        <td>Method ↔ theme matrix</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-02, PR-03–PR-09, PR-07b, PR-10–PR-17</td>
+        <td><a href="method-theme-matrix.html">method-theme-matrix.html</a>, <a href="_handover/PR-18.md">PR-18.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-19">
+        <td>PR-19</td>
+        <td>Portfolio ideas catalog</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-18, PR-07b</td>
+        <td><a href="portfolio-ideas-catalog.html">portfolio-ideas-catalog.html</a>, <a href="_handover/PR-19.md">PR-19.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+      <tr id="pr-20">
+        <td>PR-20</td>
+        <td>Shortlist briefs (user gate)</td>
+        <td><span class="status status-complete">complete</span></td>
+        <td>PR-19</td>
+        <td><a href="portfolio-shortlist-briefs.html">portfolio-shortlist-briefs.html</a>, <a href="_handover/PR-20.md">PR-20.md</a></td>
+        <td>2026-05-27</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    Row-ID protocol: agents update only their own <code>&lt;tr id="pr-XX"&gt;</code> row.
+    Planned filenames use <code>.planned-output</code> until complete.
+    See <a href="_handover/README-template.md">_handover/README-template.md</a> for handover format.
+  </footer>
+</body>
+</html>

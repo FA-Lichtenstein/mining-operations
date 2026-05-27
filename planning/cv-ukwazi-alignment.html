@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV ↔ Ukwazi Alignment — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .score { font-weight: 600; text-align: center; }
+    .score-weak { color: #8b4513; }
+    .score-mid { color: #666; }
+    .score-strong { color: var(--accent); }
+    .matrix-compact { font-size: 0.82rem; }
+    .matrix-compact th, .matrix-compact td { text-align: center; padding: 0.35rem 0.4rem; }
+    .matrix-compact td:first-child { text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>CV ↔ Ukwazi Alignment</h1>
+  <p class="meta">
+    Task ID: PR-03 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a>, <a href="index.html#pr-02">PR-02</a> ·
+    Anchor: <a href="ukwazi-services-summary.html">ukwazi-services-summary.html</a> §5 ·
+    CV: <code>sources/docs/text/Francois Lichtenstein - CV - Ukwazi Quantitative Planning Analyst.txt</code>
+  </p>
+
+  <p class="lead">
+    This document maps demonstrable CV evidence to Ukwazi’s six portfolio themes (T1–T6) from the anchor §5 alignment guide.
+    Strongest proof sits in simulation (T2) and capacity-constrained optimisation (T5); weakest in mine scheduling (T1),
+    spatial reconciliation (T3), techno-economic trade-offs (T4), and closure finance (T6). No mining industry experience
+    appears on the CV — alignment is methodological. Portfolio demos must supply mining context; this doc quantifies gaps only.
+  </p>
+
+  <h2>Scoring rubric</h2>
+  <p>
+    CV proof scores (1–5) follow <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>:
+    1 = no evidence; 2 = weak / analog only; 3 = adequate with caveats; 4 = strong path to demo; 5 = flagship-ready proof.
+    Crosswalk cells use the same scale for how strongly each CV item supports a theme.
+  </p>
+
+  <h2>CV evidence × T1–T6 matrix</h2>
+  <p>
+    Primary view: theme-level CV proof with citations. Secondary crosswalk: selected CV evidence blocks scored per theme.
+  </p>
+
+  <h3>Theme summary (north star)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Theme</th>
+        <th>Anchor priority</th>
+        <th>CV proof</th>
+        <th>Key CV evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag">T1</span> Short/medium-term scheduling &amp; sequencing</td>
+        <td>Strong fit</td>
+        <td class="score score-weak">2</td>
+        <td>
+          Gym app (React/TypeScript, PostgreSQL; in development): session/instructor scheduling, attendance vs plan
+          <em>(CV: Professional Experience — Crazy Monkey; Selected Projects — Gym Management Application)</em> — workforce analog, not pit/strip/UG sequencing.
+          OR honours provides optimisation framing only.
+        </td>
+      </tr>
+      <tr>
+        <td><span class="tag">T2</span> DES/ABS simulation</td>
+        <td>Strong fit</td>
+        <td class="score score-strong">5</td>
+        <td>
+          Profile cites DES/ABS; SIOPSA workshops 2017 (computational modelling), 2018 (ABS);
+          <em>integraldecision.com</em> hosts interactive simulation/tutorials
+          <em>(CV: Profile, Core Competencies, Conference Workshops, Decision Website)</em>.
+        </td>
+      </tr>
+      <tr>
+        <td><span class="tag">T3</span> Production reconciliation &amp; spatial KPIs</td>
+        <td>Strong fit</td>
+        <td class="score score-mid">3</td>
+        <td>
+          Baobab: receive, track, clean, summarise, visualise audit data; VBA automation for monthly/annual reports
+          <em>(CV: Consulting Analyst, Baobab)</em> — reconciliation <em>workflow</em> and dashboards, not survey-to-plan spatial KPIs.
+        </td>
+      </tr>
+      <tr>
+        <td><span class="tag">T4</span> Techno-economic trade-offs &amp; transition timing</td>
+        <td>Strong fit</td>
+        <td class="score score-weak">2</td>
+        <td>
+          Decision analysis and mathematical modelling in competencies; Cum Laude BSc Honours OR
+          <em>(CV: Core Competencies, Education, Honours)</em> — no feasibility, method-selection, IPCC/transition, or stage-gate examples.
+        </td>
+      </tr>
+      <tr>
+        <td><span class="tag">T5</span> Forecasting / MDP / capacity-constrained planning</td>
+        <td>Good fit</td>
+        <td class="score score-strong">5</td>
+        <td>
+          Honours MDP for nurse workforce under capacity constraints; forecasting in core competencies;
+          gym scheduling as secondary workforce-capacity analog
+          <em>(CV: Profile, Core Competencies, Honours MDP Project, Gym app)</em>.
+        </td>
+      </tr>
+      <tr>
+        <td><span class="tag">T6</span> Closure liability &amp; risk-based financial modelling</td>
+        <td>Good fit</td>
+        <td class="score score-weak">1</td>
+        <td>
+          No closure liability, stochastic financial modelling, valuation, or provisioning work cited on CV.
+          Decision-analysis skills are transferable but undemonstrated in this domain.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Evidence crosswalk (selected CV blocks)</h3>
+  <table class="matrix-compact">
+    <thead>
+      <tr>
+        <th>CV evidence</th>
+        <th><span class="tag">T1</span></th>
+        <th><span class="tag">T2</span></th>
+        <th><span class="tag">T3</span></th>
+        <th><span class="tag">T4</span></th>
+        <th><span class="tag">T5</span></th>
+        <th><span class="tag">T6</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Profile: DES/ABS, MDP, forecasting, decision analysis</td>
+        <td>1</td><td>5</td><td>2</td><td>2</td><td>4</td><td>1</td>
+      </tr>
+      <tr>
+        <td>Honours MDP — nurse workforce capacity</td>
+        <td>1</td><td>2</td><td>1</td><td>1</td><td>5</td><td>1</td>
+      </tr>
+      <tr>
+        <td>SIOPSA workshops (2017–2018 computational/ABS)</td>
+        <td>1</td><td>5</td><td>1</td><td>1</td><td>2</td><td>1</td>
+      </tr>
+      <tr>
+        <td><em>integraldecision.com</em> — tutorials &amp; simulation models</td>
+        <td>1</td><td>4</td><td>2</td><td>3</td><td>3</td><td>1</td>
+      </tr>
+      <tr>
+        <td>Baobab audit data pipeline (clean, summarise, visualise, VBA)</td>
+        <td>1</td><td>1</td><td>3</td><td>1</td><td>2</td><td>1</td>
+      </tr>
+      <tr>
+        <td>ecosystem.Ai Workbench — Angular modules, JSON-schema UI</td>
+        <td>1</td><td>2</td><td>3</td><td>1</td><td>1</td><td>1</td>
+      </tr>
+      <tr>
+        <td>Gym app — React/TS scheduling &amp; attendance (in dev)</td>
+        <td>2</td><td>1</td><td>2</td><td>1</td><td>2</td><td>1</td>
+      </tr>
+      <tr>
+        <td>BSc Honours OR + decision analysis training</td>
+        <td>2</td><td>3</td><td>2</td><td>2</td><td>3</td><td>1</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="meta">
+    Mean CV proof by theme: T1=2, T2=5, T3=3, T4=2, T5=5, T6=1.
+    Anchor §5 “Strong fit” themes (T1–T4) average 3.0 — below PR-19 composite CV weight expectations for flagship demos.
+  </p>
+
+  <h2>Gap analysis by theme</h2>
+
+  <h3><span class="tag">T1</span> Scheduling &amp; sequencing</h3>
+  <p>
+    <strong>Gap:</strong> No pit pushback, strip/dragline block, or underground ring sequencing; no equipment or geotechnical
+    constraints in mining context. Gym app proves calendar/resource assignment logic only.
+  </p>
+  <p>
+    <strong>Portfolio need:</strong> One surface or UG scheduling demo with explicit constraints (fleet, shift, geotech) and
+    KPIs — reframe gym scheduling as supporting analog, not primary evidence (per PR-02 risk note).
+  </p>
+
+  <h3><span class="tag">T2</span> DES/ABS simulation</h3>
+  <p>
+    <strong>Gap:</strong> Published simulations are decision-science tutorials, not truck-shovel vs scraper haulage or contractor
+    coordination. Method is proven; mining domain vocabulary and realistic entities are missing.
+  </p>
+  <p>
+    <strong>Portfolio need:</strong> Reframe existing ABS/DES skill toward material-handling or fleet bottleneck scenarios aligned
+    with site services and K-Tec value cases (anchor §5) — domain framing from Wave 1/2 research, not CV alone.
+  </p>
+
+  <h3><span class="tag">T3</span> Reconciliation &amp; spatial KPIs</h3>
+  <p>
+    <strong>Gap:</strong> Baobab work shows ETL → dashboard → accountability reporting for quality audits, not survey-to-plan
+    variance or spatial performance measurement on a mine plan.
+  </p>
+  <p>
+    <strong>Portfolio need:</strong> Demo that ties planned vs actual tonnage/grade (or block-level variance) to a reconciliation
+    dashboard; leverage data-pipeline and VBA/dashboard skills with synthetic spatial data (PR-07b).
+  </p>
+
+  <h3><span class="tag">T4</span> Techno-economic trade-offs</h3>
+  <p>
+    <strong>Gap:</strong> No IPCC vs trucking, open-pit-to-underground transition, or feasibility stage-gate models on CV.
+    Decision analysis and OR training are foundational only.
+  </p>
+  <p>
+    <strong>Portfolio need:</strong> One trade-off model with two or more method alternatives and explicit NPV/throughput/risk
+    metrics — optional breadth pillar per taxonomy suggested mix (T4 or T6).
+  </p>
+
+  <h3><span class="tag">T5</span> Forecasting / MDP / capacity planning</h3>
+  <p>
+    <strong>Gap:</strong> Honours MDP is healthcare workforce, not mine fleet or crew sizing. Forecasting competency is stated
+    but not tied to a mining case on CV.
+  </p>
+  <p>
+    <strong>Portfolio need:</strong> Reframe MDP or forecasting for equipment/crew capacity under uncertainty; strongest
+    transferable proof — lowest lift among “Good fit” themes if mining entities substituted.
+  </p>
+
+  <h3><span class="tag">T6</span> Closure &amp; risk-based finance</h3>
+  <p>
+    <strong>Gap:</strong> Complete absence of closure liability, stochastic provisioning, or valuation examples. Weakest theme
+    on CV (score 1).
+  </p>
+  <p>
+    <strong>Portfolio need:</strong> Optional scenario-based closure cost model if breadth desired; otherwise defer to T4 for
+    techno-economic showcase unless PR-19 seeds score highly on differentiation.
+  </p>
+
+  <h2>Ukwazi role fit (from CV lens)</h2>
+  <p>
+    Anchor §5 positions the Quantitative Planning Analyst role around <em>operational technical services</em> (scheduling,
+    reconciliation, data-driven improvement) plus quantitative feasibility/valuation backbone. CV strengths align best with
+    T2 and T5 delivery mechanics (simulation, optimisation, forecasting) and partial T3 data pipeline skills. T1, T4, and T6
+    — all high-priority at Ukwazi — require net-new portfolio proof. Generic frontend CV items (ecosystem.Ai, gym app) should
+    support demos, not lead the narrative.
+  </p>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard</h3>
+    <p class="meta">Scores for this alignment research artifact (not individual themes). See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score (1–5)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukwazi fit (T1–T6)</td>
+          <td>5</td>
+          <td>Directly maps CV to anchor §5 themes; essential input for PR-18–PR-20 pillar mix.</td>
+        </tr>
+        <tr>
+          <td>CV proof</td>
+          <td>3</td>
+          <td>Weighted mean ~3.0 on Strong-fit themes; T2/T5 strong, T1/T4/T6 weak — honest baseline for PR-19 CV column.</td>
+        </tr>
+        <tr>
+          <td>Angular+Firebase fit</td>
+          <td>4</td>
+          <td>CV cites Angular+Firebase on <em>integraldecision.com</em> and Angular Workbench at ecosystem.Ai — sufficient proof that browser demos are feasible; stack architecture deferred to PR-04.</td>
+        </tr>
+        <tr>
+          <td>Data feasibility</td>
+          <td>—</td>
+          <td>N/A for gap-analysis doc; defer to PR-07/PR-07b per theme when scoring seed ideas.</td>
+        </tr>
+        <tr>
+          <td>Differentiation</td>
+          <td>4</td>
+          <td>Explicit gap quantification avoids over-claiming generic dev CV; guides mining-framed demo priorities.</td>
+        </tr>
+        <tr>
+          <td>Effort</td>
+          <td>S</td>
+          <td>Research/audit deliverable; no implementation.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Suggested Angular+Firebase sketch</h3>
+    <p>
+      CV evidence supports browser-based portfolio delivery: <em>integraldecision.com</em> (Angular+Firebase tutorials) and
+      ecosystem.Ai Workbench (Angular modules). Tag each demo to a T1–T6 theme and lead with mining KPIs from anchor §5, not
+      gym or hospital entities. Route structure, Firestore schema, lazy loading, and compute boundaries belong in
+      <a href="index.html#pr-04">PR-04</a>; synthetic datasets in PR-07b.
+    </p>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-03.md</code> ·
+    Registry row: <code>index.html#pr-03</code>
+  </footer>
+</body>
+</html>

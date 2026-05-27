@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Shortlist Briefs — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    h4 { font-size: 0.92rem; margin: 0.85rem 0 0.3rem; color: var(--muted); }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul, ol { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    .composite-badge {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    pre {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.78rem;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 0.85rem 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 0.6rem 0 1rem;
+      line-height: 1.45;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+    .mermaid {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 0.75rem 0 1rem;
+      font-size: 0.85rem;
+      overflow-x: auto;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Portfolio Shortlist Briefs</h1>
+  <p class="meta">
+    Task ID: PR-20 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-19">PR-19</a>,
+    <a href="portfolio-ideas-catalog.html">portfolio-ideas-catalog.html</a>,
+    <a href="angular-firebase-or-stack.html">PR-04</a>,
+    <a href="synthetic-data-generator-spec.html">PR-07b</a>,
+    <a href="cv-ukwazi-alignment.html">PR-03</a> ·
+    Anchor: <a href="ukwazi-services-summary.html">ukwazi-services-summary.html</a> §5 ·
+    Persona: <a href="sa-mining-context.html">syn-pgm-bushveld-01</a>
+  </p>
+
+  <p class="lead">
+    Four build-ready briefs selected from the PR-19 catalog using the default pillar mix:
+    <strong>T2</strong> (<a href="portfolio-ideas-catalog.html#idea-02">idea-02</a> truck-shovel DES, composite 4.70),
+    <strong>T3</strong> (<a href="portfolio-ideas-catalog.html#idea-03">idea-03</a> reconciliation, 3.93),
+    <strong>T1</strong> (<a href="portfolio-ideas-catalog.html#idea-01">idea-01</a> open-pit schedule, 3.86),
+    and <strong>T5</strong> (<a href="portfolio-ideas-catalog.html#idea-06">idea-06</a> fleet maintenance MDP, 3.93).
+    The fourth slot goes to fleet MDP over closure MC (<a href="portfolio-ideas-catalog.html#idea-10">idea-10</a>, 3.55):
+    higher composite, CV proof 5 vs 1 on T6, and T4 breadth is already covered by idea-02’s IPCC trade-off sidebar.
+    Recommended build sequence: T2 → T3 → T5 → T1 (flagship DES first; schedule optimizer last due to Effort L).
+  </p>
+
+  <h2>1. Shortlist summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Idea</th>
+        <th>Theme</th>
+        <th>Module ID</th>
+        <th>Composite</th>
+        <th>Effort</th>
+        <th>Build order</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><a href="#brief-02">idea-02</a> Truck-shovel vs K-Tec scraper DES</td>
+        <td><span class="tag">T2</span> <span class="tag">T4</span></td>
+        <td><code>haulage-des</code></td>
+        <td><strong>4.70</strong></td>
+        <td>M</td>
+        <td>Weeks 1–3</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="#brief-03">idea-03</a> Production reconciliation dashboard</td>
+        <td><span class="tag">T3</span></td>
+        <td><code>reconciliation-dashboard</code></td>
+        <td><strong>3.93</strong></td>
+        <td>M</td>
+        <td>Weeks 4–6</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><a href="#brief-06">idea-06</a> Fleet maintenance MDP</td>
+        <td><span class="tag">T5</span></td>
+        <td><code>fleet-capacity-mdp</code></td>
+        <td><strong>3.93</strong></td>
+        <td>M</td>
+        <td>Weeks 7–9</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><a href="#brief-01">idea-01</a> Open-pit short-term schedule optimizer</td>
+        <td><span class="tag">T1</span></td>
+        <td><code>pit-schedule-gantt</code></td>
+        <td><strong>3.86</strong></td>
+        <td>L</td>
+        <td>Weeks 10–16</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="meta">
+    <strong>Deferred:</strong> <a href="portfolio-ideas-catalog.html#idea-10">idea-10</a> closure liability MC (T6, 3.55) —
+    optional breadth if sustainability narrative needed; weakest CV pillar (score 1).
+  </p>
+
+  <h2>2. Shared persona</h2>
+  <p>
+    <strong>Naledi Mokoena</strong> — Quantitative Planning Analyst, Ukwazi Mineral Services, embedded at
+    <code>syn-pgm-bushveld-01</code> (PGM open pit, Limpopo). She supports the mine planning team with short-term schedules,
+    haulage trade-off studies, monthly reconciliation packs, and fleet availability forecasts. She does not run Whittle or Deswik;
+    she interprets model outputs, builds accountability dashboards, and presents options to the Technical Services superintendent.
+    All demos use synthetic data with the PR-07b disclaimer footer.
+  </p>
+
+  <h2>3. Project briefs</h2>
+
+  <!-- BRIEF 02 -->
+  <div class="portfolio-box" id="brief-02">
+    <h3>Brief 1 · Truck-shovel vs K-Tec scraper DES
+      <span class="tag">T2</span> <span class="tag">T4</span>
+      <span class="composite-badge">idea-02 · composite 4.70 · haulage-des</span></h3>
+
+    <h4>Problem &amp; persona</h4>
+    <p>
+      Naledi’s superintendent asks whether adding K-Tec scraper trains can reduce unit cost on a 12 Mt/a waste-stripping push
+      without starving ore feed. Conventional truck-shovel cycles dominate the pit; contractor haulage is common in the Bushveld.
+      She needs a defensible DES comparison — cycle times, queueing, match factor, tonnes/shift — not a vendor brochure.
+    </p>
+
+    <h4>MVP vs stretch</h4>
+    <table>
+      <thead><tr><th>Scope</th><th>Deliverables</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>MVP</strong></td>
+          <td>
+            Learn route: haul cycle anatomy (load–haul–dump). Decide route: dual-scenario DES (truck-shovel vs scraper-train)
+            in Web Worker; KPI panel (throughput, queue wait, match factor N<sub>h</sub>); save/compare two runs in Firestore.
+            Seed from <code>gen-truck-cycle</code>.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Stretch</strong></td>
+          <td>
+            Third scenario (IPCC fixed-charge sidebar per T4); Gorai Ch 10.8 analytic queuing overlay (5 vs 22 trucks);
+            animated queue chart (PR-06 pattern #6); contractor shift calendar toggle; export PDF summary for superintendent pack.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Firestore schema &amp; JSON samples</h4>
+    <pre><code>portfolioSeeds/idea-02          // catalog mirror from PR-19
+haulageDesRuns/{runId}
+  uid, mineId, scenarioId       // "truck_shovel" | "scraper_train" | "ipcc"
+  createdAt, seed, configHash
+  status: "running" | "complete" | "error"
+  kpis: { throughput_tpd, avgCycle_min, queueWait_min, matchFactor, cost_index }
+  summaryRef: "storage://seeds/.../cycles.csv"   // full log in Storage
+
+// Scenario config (also in Storage seeds/)
+{
+  "scenario_id": "truck_shovel",
+  "mine_id": "syn-pgm-bushveld-01",
+  "fleet": { "shovels": 2, "trucks": 18, "payload_t": 218 },
+  "cycle_params": { "load_min": 3.2, "haul_min": 12.5, "dump_min": 2.1, "return_min": 11.0 },
+  "horizon_shifts": 30,
+  "seed": 42
+}</code></pre>
+
+    <h4>Angular module breakdown</h4>
+    <dl>
+      <dt><code>features/haulage-des/</code></dt>
+      <dd>Lazy route bundle; Learn + Decide child routes.</dd>
+      <dt><code>HaulageDesLearnComponent</code></dt>
+      <dd>Static cycle diagram; SME Eq 12.27 match factor explainer.</dd>
+      <dt><code>HaulageDesDecideComponent</code></dt>
+      <dd>Scenario picker, parameter panel (schema-driven forms), run button, KPI cards.</dd>
+      <dt><code>DesWorkerService</code></dt>
+      <dd>Web Worker pool; posts config, receives event stream + aggregates.</dd>
+      <dt><code>QueueChartComponent</code></dt>
+      <dd>Chart.js time-series of shovel queue depth (stretch).</dd>
+      <dt><code>HaulageRunStore</code></dt>
+      <dd>Firestore CRUD for <code>haulageDesRuns</code>; Storage refs for CSV logs.</dd>
+    </dl>
+
+    <h4>Firebase architecture</h4>
+    <pre class="mermaid">flowchart TB
+  subgraph Client["Angular SPA"]
+    Learn["/learn/haulage-des"]
+    Decide["/decide/haulage-des"]
+    Worker["Web Worker DES engine"]
+    Learn --> Decide
+    Decide --> Worker
+  end
+  subgraph Firebase
+    Auth["Firebase Auth"]
+    FS["Firestore haulageDesRuns"]
+    ST["Storage seeds/cycles.csv"]
+    Host["Hosting SPA"]
+  end
+  Decide --> Auth
+  Decide --> FS
+  Worker --> ST
+  Host --> Client</pre>
+
+    <h4>5-minute demo script</h4>
+    <ol>
+      <li><strong>0:00–0:45</strong> — Open Learn route; walk through load–haul–dump phases on a Bushveld waste route map thumbnail.</li>
+      <li><strong>0:45–1:30</strong> — Switch to Decide; show default truck-shovel fleet (18×218 t) seeded from <code>gen-truck-cycle</code>.</li>
+      <li><strong>1:30–2:30</strong> — Run 30-shift DES; highlight throughput and match factor vs SME target band.</li>
+      <li><strong>2:30–3:30</strong> — Clone scenario → scraper-train; re-run; side-by-side KPI delta table.</li>
+      <li><strong>3:30–4:15</strong> — Toggle IPCC stretch scenario (or queuing sidebar); note T4 trade-off framing.</li>
+      <li><strong>4:15–5:00</strong> — Save both runs to Firestore; show saved scenario list; state synthetic-data disclaimer.</li>
+    </ol>
+
+    <h4>Week-by-week build order</h4>
+    <table>
+      <thead><tr><th>Week</th><th>Tasks</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Scaffold <code>haulage-des</code> feature; DES Worker kernel (queue + resource calendar); load <code>gen-truck-cycle</code> seed.</td></tr>
+        <tr><td>2</td><td>Decide UI + KPI panel; dual-scenario config; Chart.js queue depth.</td></tr>
+        <tr><td>3</td><td>Firestore persistence; Learn route; Hosting deploy; Playwright smoke test.</td></tr>
+      </tbody>
+    </table>
+
+    <h4>CV bullet supported</h4>
+    <p>
+      <em>“Built interactive discrete-event simulation models for material-handling trade-offs (truck-shovel vs alternative haulage),
+      deployed as Angular/Firebase web modules with Web Worker compute — extending DES/ABS portfolio on integraldecision.com
+      to mining fleet KPIs (match factor, cycle time, throughput).”</em>
+      — maps to CV Profile DES/ABS, SIOPSA workshops, integraldecision.com (T2 proof 5).
+    </p>
+  </div>
+
+  <!-- BRIEF 03 -->
+  <div class="portfolio-box" id="brief-03">
+    <h3>Brief 2 · Production reconciliation dashboard
+      <span class="tag">T3</span>
+      <span class="composite-badge">idea-03 · composite 3.93 · reconciliation-dashboard</span></h3>
+
+    <h4>Problem &amp; persona</h4>
+    <p>
+      Month-end: planned tonnes and 4E grade from the short-term schedule do not match survey polygons or plant feed.
+      Naledi must explain variance by bench and shift — who owns the gap (mining, survey, plant) — before the accountability
+      meeting. Sloan Ch 6 flexible-budget logic and SME Table 9.2 checklist frame the narrative.
+    </p>
+
+    <h4>MVP vs stretch</h4>
+    <table>
+      <thead><tr><th>Scope</th><th>Deliverables</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>MVP</strong></td>
+          <td>
+            Waterfall chart: plan → survey → plant tonnes and grade; bench-level heatmap (Leaflet + GeoJSON);
+            alert badges when |Δ| exceeds threshold; daily series from <code>gen-plan-survey-var</code>.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Stretch</strong></td>
+          <td>
+            P2041 national benchmark overlay (<code>benchmark_kpi.csv</code>); SPC control chart on weekly variance;
+            CSV upload for user scenarios; drill-down narrative export (PDF/HTML) for MIS pack.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Firestore schema &amp; JSON samples</h4>
+    <pre><code>portfolioSeeds/idea-03          // catalog mirror from PR-19
+reconSnapshots/{snapshotId}
+  uid, mineId, periodMonth        // "2026-04"
+  createdAt, status
+  aggregates: {
+    plan_t, survey_t, plant_t,
+    plan_grade_4e_gpt, survey_grade_4e_gpt, plant_grade_4e_gpt,
+    delta_t_pct, delta_grade_pct
+  }
+  benchVarianceRef: "storage://.../bench_variance.csv"
+  mapRef: "storage://.../survey_polygons.geojson"
+  alerts: [{ benchId, metric, delta_pct, severity }]
+
+// Daily row sample (reconciliation_daily.csv)
+{
+  "date": "2026-04-15",
+  "shift": "A",
+  "plan_t": 12400,
+  "survey_t": 11850,
+  "plant_t": 11720,
+  "plan_grade_4e_gpt": 3.82,
+  "survey_grade_4e_gpt": 3.71,
+  "bench_id": "B7-W12"
+}</code></pre>
+
+    <h4>Angular module breakdown</h4>
+    <dl>
+      <dt><code>features/reconciliation-dashboard/</code></dt>
+      <dd>Lazy route; dashboard shell with period selector.</dd>
+      <dt><code>ReconWaterfallComponent</code></dt>
+      <dd>Chart.js waterfall for tonnes and grade reconciliation chain.</dd>
+      <dt><code>BenchHeatmapComponent</code></dt>
+      <dd>Leaflet map coloured by variance magnitude; bench tooltips.</dd>
+      <dt><code>ReconAlertService</code></dt>
+      <dd>Rule engine: |Δ| &gt; configurable threshold → alert chips.</dd>
+      <dt><code>ReconAggregateWorker</code></dt>
+      <dd>Worker for &gt;10k daily rows → period aggregates.</dd>
+      <dt><code>ReconSnapshotStore</code></dt>
+      <dd>Firestore + Storage orchestration for saved monthly views.</dd>
+    </dl>
+
+    <h4>Firebase architecture</h4>
+    <pre class="mermaid">flowchart TB
+  subgraph Client["Angular SPA"]
+    Dash["/decide/reconciliation-dashboard"]
+    Map["Leaflet bench heatmap"]
+    Charts["Chart.js waterfall + SPC"]
+    AggW["Aggregate Worker"]
+    Dash --> Map
+    Dash --> Charts
+    Dash --> AggW
+  end
+  subgraph Firebase
+    Auth["Firebase Auth"]
+    FS["Firestore reconSnapshots"]
+    ST["Storage CSV + GeoJSON"]
+  end
+  AggW --> ST
+  Dash --> FS
+  Dash --> Auth</pre>
+
+    <h4>5-minute demo script</h4>
+    <ol>
+      <li><strong>0:00–0:40</strong> — Open April snapshot for <code>syn-pgm-bushveld-01</code>; show plan vs survey vs plant headline KPIs.</li>
+      <li><strong>0:40–1:40</strong> — Walk waterfall: −4.4% tonnage gap, grade dilution on B7.</li>
+      <li><strong>1:40–2:40</strong> — Pan bench heatmap; click worst bench; read alert rule (|Δ| &gt; 5%).</li>
+      <li><strong>2:40–3:30</strong> — Toggle national P2041 benchmark band (stretch); contextualise vs SA PGM sector.</li>
+      <li><strong>3:30–4:20</strong> — Show SPC chart on weekly variance trend (stretch).</li>
+      <li><strong>4:20–5:00</strong> — Save snapshot; emphasise Baobab-style ETL → dashboard accountability chain; synthetic disclaimer.</li>
+    </ol>
+
+    <h4>Week-by-week build order</h4>
+    <table>
+      <thead><tr><th>Week</th><th>Tasks</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Load <code>gen-plan-survey-var</code> seed; aggregate Worker; waterfall component.</td></tr>
+        <tr><td>2</td><td>Leaflet bench heatmap; alert rules; period selector.</td></tr>
+        <tr><td>3</td><td>Firestore snapshots; benchmark overlay; deploy + smoke test.</td></tr>
+      </tbody>
+    </table>
+
+    <h4>CV bullet supported</h4>
+    <p>
+      <em>“Developed production reconciliation dashboards linking planned, surveyed, and plant feed KPIs with spatial bench
+      variance maps — applying audit-style data pipeline and visualisation skills to mining accountability workflows.”</em>
+      — maps to Baobab audit ETL/visualisation, ecosystem.Ai Angular dashboards (T3 proof 3 → demo lifts to 4).
+    </p>
+  </div>
+
+  <!-- BRIEF 06 -->
+  <div class="portfolio-box" id="brief-06">
+    <h3>Brief 3 · Fleet maintenance MDP
+      <span class="tag">T5</span>
+      <span class="composite-badge">idea-06 · composite 3.93 · fleet-capacity-mdp</span></h3>
+
+    <h4>Problem &amp; persona</h4>
+    <p>
+      Two shovels and eighteen trucks must hit 42 kt/d through the wet season, but unplanned downtime and PM windows
+      compete for the same maintenance bay. Naledi needs a policy: when to pull units for PM vs run-to-failure, given
+      contractor-maintained vs owner-maintained split — without OEM confidential rates. SME availability/utilisation
+      (A, U, E = A×U) and Fig 22.1 PM cost curve anchor the model.
+    </p>
+
+    <h4>MVP vs stretch</h4>
+    <table>
+      <thead><tr><th>Scope</th><th>Deliverables</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>MVP</strong></td>
+          <td>
+            Discrete MDP: states {operating, PM, down} × criticality class; policy iteration in Worker;
+            heatmap of optimal action by state; 52-week simulation replay vs static PM calendar.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Stretch</strong></td>
+          <td>
+            Multi-unit fleet (shovel + truck classes); link to haulage DES (#brief-02) when units down reduce throughput;
+            P2041 capacity_series drift; export policy JSON for superintendent review.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Firestore schema &amp; JSON samples</h4>
+    <pre><code>portfolioSeeds/idea-06          // catalog mirror from PR-19
+mdpPolicies/{policyId}
+  uid, mineId, fleetTemplateId
+  createdAt, solver: "policy_iteration"
+  stateSpace: { states[], actions[], gamma }
+  policy: [[actionIndex, ...], ...]   // compact 2D array
+  metrics: { avgAvailability, avgUtilisation, pmCost_index, lostTonnage_t }
+
+fleetSimRuns/{runId}
+  policyId, horizonWeeks, seed
+  weeklySeries: [{ week, avail_pct, util_pct, tonnes_delivered_t }]
+
+// fleet_state.json seed excerpt (gen-truck-cycle)
+{
+  "mine_id": "syn-pgm-bushveld-01",
+  "units": [
+    { "unit_id": "SHV-01", "class": "shovel", "state": "operating", "hours_to_pm": 120 },
+    { "unit_id": "TRK-07", "class": "truck", "state": "operating", "criticality": "high" }
+  ],
+  "transition_rates": {
+    "operating_to_down": 0.02,
+    "operating_to_pm": 0.08,
+    "pm_to_operating": 0.95
+  },
+  "daily_tonnage_target_t": 42000
+}</code></pre>
+
+    <h4>Angular module breakdown</h4>
+    <dl>
+      <dt><code>features/fleet-capacity-mdp/</code></dt>
+      <dd>Lazy route; Learn (MDP primer) + Decide (policy lab).</dd>
+      <dt><code>MdpLearnComponent</code></dt>
+      <dd>State-transition diagram; Honours nurse-roster → fleet mapping callout.</dd>
+      <dt><code>PolicyLabComponent</code></dt>
+      <dd>Parameter sliders (transition probs, PM cost); run policy iteration.</dd>
+      <dt><code>PolicyHeatmapComponent</code></dt>
+      <dd>Chart.js heatmap: state × action → optimal policy.</dd>
+      <dt><code>FleetSimReplayComponent</code></dt>
+      <dd>52-week line chart: availability, utilisation, tonnes vs target.</dd>
+      <dt><code>MdpWorkerService</code></dt>
+      <dd>Policy iteration + simulation roll-forward in Worker.</dd>
+    </dl>
+
+    <h4>Firebase architecture</h4>
+    <pre class="mermaid">flowchart TB
+  subgraph Client["Angular SPA"]
+    Learn["/learn/fleet-capacity-mdp"]
+    Lab["/decide/fleet-capacity-mdp"]
+    MDPw["MDP Worker policy iteration"]
+    Learn --> Lab
+    Lab --> MDPw
+  end
+  subgraph Firebase
+    Auth["Firebase Auth"]
+    Pol["Firestore mdpPolicies"]
+    Sim["Firestore fleetSimRuns"]
+    ST["Storage fleet_state.json"]
+  end
+  Lab --> Pol
+  Lab --> Sim
+  MDPw --> ST
+  Lab --> Auth</pre>
+
+    <h4>5-minute demo script</h4>
+    <ol>
+      <li><strong>0:00–0:45</strong> — Learn route: map nurse-roster MDP states to shovel/truck maintenance states.</li>
+      <li><strong>0:45–1:30</strong> — Load <code>fleet_state.json</code> for Bushveld fleet; show initial transition matrix.</li>
+      <li><strong>1:30–2:30</strong> — Run policy iteration; display optimal-policy heatmap.</li>
+      <li><strong>2:30–3:30</strong> — Simulate 52 weeks: compare MDP policy vs fixed PM calendar on availability and lost tonnes.</li>
+      <li><strong>3:30–4:15</strong> — Adjust PM aggressiveness slider; re-solve; show trade-off curve.</li>
+      <li><strong>4:15–5:00</strong> — Save policy to Firestore; cite SME illustrative rates; synthetic disclaimer.</li>
+    </ol>
+
+    <h4>Week-by-week build order</h4>
+    <table>
+      <thead><tr><th>Week</th><th>Tasks</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>MDP Worker (policy iteration + roll-forward sim); load fleet seed.</td></tr>
+        <tr><td>2</td><td>Policy heatmap + replay charts; parameter panel.</td></tr>
+        <tr><td>3</td><td>Firestore policies/runs; Learn route; deploy.</td></tr>
+      </tbody>
+    </table>
+
+    <h4>CV bullet supported</h4>
+    <p>
+      <em>“Formulated and solved a Markov decision process for fleet maintenance under production capacity constraints,
+      re-framing Honours workforce MDP methods for mining equipment availability (A/U/E KPIs) with policy-iteration
+      solvers in browser Web Workers.”</em>
+      — maps to Honours MDP, MDP Practice Ch 19, forecasting competency (T5 proof 5).
+    </p>
+  </div>
+
+  <!-- BRIEF 01 -->
+  <div class="portfolio-box" id="brief-01">
+    <h3>Brief 4 · Open-pit short-term schedule optimizer
+      <span class="tag">T1</span>
+      <span class="composite-badge">idea-01 · composite 3.86 · pit-schedule-gantt</span></h3>
+
+    <h4>Problem &amp; persona</h4>
+    <p>
+      Quarterly pushback review: which blocks to mine in which periods to maximise NPV while respecting bench-down
+      precedence, shovel capacity, and soft 4E grade targets? Naledi cannot run Whittle in-browser; she needs a toy
+      instance (≤500 blocks) with honest Gorai Ch 5.4 / Handbook Ch 29.4 citation anchors and a Gantt the team can edit.
+    </p>
+
+    <h4>MVP vs stretch</h4>
+    <table>
+      <thead><tr><th>Scope</th><th>Deliverables</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>MVP</strong></td>
+          <td>
+            Bench map (GeoJSON) + period Gantt from pre-solved toy MIP; toggle soft vs hard metal penalty;
+            block precedence validator; <code>gen-block-model</code> seed (~200 blocks).
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Stretch</strong></td>
+          <td>
+            Cloud Function OR-Tools re-solve on user-edited subset; NPV waterfall vs baseline;
+            export schedule CSV; Kiruna 69.6% deviation narrative sidebar (Handbook Ch 31).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Firestore schema &amp; JSON samples</h4>
+    <pre><code>portfolioSeeds/idea-01          // catalog mirror from PR-19
+scheduleScenarios/{scenarioId}
+  uid, mineId, title, horizonPeriods
+  blockModelRef: "storage://.../blocks.csv"
+  precedenceRef: "storage://.../precedence_edges.csv"
+  schedule: [{ blockId, period, tonnes_t, grade_4e_gpt, phase: "ore"|"waste" }]
+  npvSummary: { npv_index, ore_t, waste_t, avg_grade_4e_gpt }
+  penaltyMode: "soft" | "hard"
+
+mipRuns/{runId}
+  scenarioId, status, solver: "ortools_cf" | "precomputed"
+  startedAt, completedAt, objectiveValue
+
+// Block row sample (blocks.csv)
+{
+  "block_id": "B7-042",
+  "bench": 7,
+  "tonnage_t": 18500,
+  "ore_t": 9200,
+  "waste_t": 9300,
+  "grade_4e_gpt": 4.12,
+  "geotech_class": "stable",
+  "npv_contrib_index": 1.04
+}</code></pre>
+
+    <h4>Angular module breakdown</h4>
+    <dl>
+      <dt><code>features/pit-schedule-gantt/</code></dt>
+      <dd>Lazy route; largest feature bundle — load last.</dd>
+      <dt><code>BenchMapComponent</code></dt>
+      <dd>Leaflet block polygons coloured by scheduled period.</dd>
+      <dt><code>ScheduleGanttComponent</code></dt>
+      <dd>Period × block Gantt; drag blocked (read-only MVP) or lock periods (stretch).</dd>
+      <dt><code>PenaltyToggleComponent</code></dt>
+      <dd>Soft vs hard 4E target penalty; re-fetch precomputed schedule variant.</dd>
+      <dt><code>PrecedenceValidatorService</code></dt>
+      <dd>Client-side check: no block scheduled before predecessors.</dd>
+      <dt><code>MipCloudService</code></dt>
+      <dd>Callable Cloud Function for stretch re-solve; progress spinner + timeout UI.</dd>
+    </dl>
+
+    <h4>Firebase architecture</h4>
+    <pre class="mermaid">flowchart TB
+  subgraph Client["Angular SPA"]
+    Gantt["/decide/pit-schedule-gantt"]
+    Map["Leaflet bench map"]
+    Val["Precedence validator"]
+    Gantt --> Map
+    Gantt --> Val
+  end
+  subgraph Firebase
+    Auth["Firebase Auth"]
+    Scn["Firestore scheduleScenarios"]
+    Run["Firestore mipRuns"]
+    CF["Cloud Function OR-Tools"]
+    ST["Storage blocks.csv + GeoJSON"]
+  end
+  Gantt --> Scn
+  Gantt --> ST
+  Gantt -->|"stretch"| CF
+  CF --> Run
+  Gantt --> Auth</pre>
+
+    <h4>5-minute demo script</h4>
+    <ol>
+      <li><strong>0:00–0:45</strong> — Open toy pushback (<code>syn-pgm-bushveld-01</code>, ~200 blocks); cite Gorai scale vs demo scale disclaimer.</li>
+      <li><strong>0:45–1:45</strong> — Show period Gantt: ore/waste phases, 8-period horizon.</li>
+      <li><strong>1:45–2:45</strong> — Bench map synced to selected period; green ore / grey waste.</li>
+      <li><strong>2:45–3:30</strong> — Toggle soft → hard 4E penalty; NPV and grade KPI shift (precomputed variants).</li>
+      <li><strong>3:30–4:15</strong> — Run precedence validator on edited scenario (stretch: trigger Cloud Function re-solve).</li>
+      <li><strong>4:15–5:00</strong> — Save scenario; Handbook Ch 29.4 ≥15% NPV uplift cited as literature anchor only; synthetic disclaimer.</li>
+    </ol>
+
+    <h4>Week-by-week build order</h4>
+    <table>
+      <thead><tr><th>Week</th><th>Tasks</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Load <code>gen-block-model</code>; bench map; data models.</td></tr>
+        <tr><td>2</td><td>Gantt component; precomputed schedule variants (soft/hard penalty).</td></tr>
+        <tr><td>3</td><td>Precedence validator; Firestore scenarios; MVP deploy.</td></tr>
+        <tr><td>4</td><td>Cloud Function OR-Tools (stretch); NPV summary panel.</td></tr>
+        <tr><td>5–6</td><td>Polish, Kiruna sidebar, integration with portfolio shell Learn index.</td></tr>
+      </tbody>
+    </table>
+
+    <h4>CV bullet supported</h4>
+    <p>
+      <em>“Implemented a short-term open-pit production schedule optimiser (MIP) with precedence constraints and grade penalties,
+      visualised as an interactive Gantt and bench map — demonstrating mixed-integer programming and mine scheduling KPIs
+      at teaching scale with industrial citation anchors.”</em>
+      — maps to Honours OR/MIP, gym scheduling analog, CPLEX coursework (T1 proof 2 → demo lifts to 4).
+    </p>
+  </div>
+
+  <h2>4. Portfolio shell integration</h2>
+  <p>
+    All four modules plug into the shared integraldecision-style shell from
+    <a href="angular-firebase-or-stack.html">PR-04</a>: <code>/learn</code> card catalog with T1–T6 badges,
+    lazy <code>loadComponent</code> per feature, Firebase Auth for saved scenarios, shared disclaimer footer.
+    Cross-links: brief-06 stretch imports downtime events into brief-02 DES; brief-03 consumes schedule plan tonnes from brief-01 exports.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Module ID</th><th>Learn route</th><th>Decide route</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>haulage-des</code></td><td><code>/learn/haulage-des</code></td><td><code>/decide/haulage-des</code></td><td>Learn + Decide (PR-04 pattern)</td></tr>
+      <tr><td><code>reconciliation-dashboard</code></td><td>—</td><td><code>/decide/reconciliation-dashboard</code></td><td>Decide-first dashboard; Sloan primer as in-app sidebar</td></tr>
+      <tr><td><code>fleet-capacity-mdp</code></td><td><code>/learn/fleet-capacity-mdp</code></td><td><code>/decide/fleet-capacity-mdp</code></td><td>Learn + Decide; route slug matches module ID</td></tr>
+      <tr><td><code>pit-schedule-gantt</code></td><td>—</td><td><code>/decide/pit-schedule-gantt</code></td><td>Decide-first Gantt; Gorai scale disclaimer in header</td></tr>
+    </tbody>
+  </table>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard (artifact)</h3>
+    <p class="meta">This briefs document. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>T1+T2+T3+T5 pillars; T4 via idea-02 IPCC sidebar; T6 deferred</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Four briefs target weakest pillars T1/T3 with demos; T2/T5 leverage existing proof</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Every brief has module tree, Firestore paths, mermaid arch, Worker boundaries</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>All seeds from PR-07b generators; no proprietary block models</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Mining-native KPIs + SA persona vs generic OR portfolio</td></tr>
+        <tr><td>Effort</td><td>M</td><td>~16 weeks solo sequential; ~10 weeks if T2+T3 parallel after shell</td></tr>
+        <tr><td><strong>Composite (doc)</strong></td><td><strong>4.47</strong></td><td>Matches PR-19 catalog artifact score</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-20.md</code> ·
+    Registry row: <code>index.html#pr-20</code> ·
+    Source catalog: <a href="portfolio-ideas-catalog.html">portfolio-ideas-catalog.html</a>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+  </script>
+</body>
+</html>

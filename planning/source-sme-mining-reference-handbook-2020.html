@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SME Mining Reference Handbook 2020 — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Heather N. Dougherty &amp; Andrew P. Schissler (eds.) — SME Mining Reference Handbook, 2nd ed. (2020)</h1>
+  <p class="meta">
+    Task ID: PR-16 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a> ·
+    Source: <code>sources/processed/Heather N_ Dougherty - SME Mining Reference Handbook (2020).txt</code> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+    Read depth: deep Ch 3, 8–9, 10–13, 20–21, 22, 24–25; lookup Ch 1–2, 4–7, 14–19, 23, 26
+  </p>
+
+  <p class="lead">
+    SME desk reference (~74k sentencized lines, 26 chapters) of conversion factors, material properties, statistics,
+    economics, project evaluation, mining methods, haulage formulas, processing, tailings, maintenance, and closure
+    bonding. Unlike narrative Dunbar (<a href="source-dunbar-how-mining-works-2024.html">PR-15</a>) or MIS-focused Sloan
+    (<a href="source-sloan-mine-management-2012.html">PR-14</a>), this handbook is the
+    <strong>formula and KPI-definition anchor</strong> for portfolio demos — availability × utilization, truck match factor,
+    effective grade, NPV/IRR study ladders, method-selection matrices, tailings embankment constraints, and bonding
+    phase release. Five seeds below; top three by composite: A → C → B (all ≥ 3.5). Seed A is the flagship fleet KPI calculator.
+  </p>
+
+  <h2>1. Scope &amp; audience</h2>
+  <ul>
+    <li><strong>Text:</strong> 2nd ed. (SME, 2020). 26 chapters + index. Concise reference for everyday engineering calculations — not a textbook narrative or optimisation treatise.</li>
+    <li><strong>Audience:</strong> Quantitative Planning Analyst portfolio — citeable equations, KPI labels, and constraint thresholds for browser calculators and interview fluency; complements Dunbar vocabulary and Sloan reconciliation patterns.</li>
+    <li><strong>Role in Wave 2:</strong> Primary <em>operational formula catalog</em>. Use for Worker algebra, tooltip definitions, and study-stage accuracy bands before citing MILP/DES from <a href="source-natural-resources-handbook-2007.html">PR-13</a> or Gorai (<a href="index.html#pr-17">PR-17</a>).</li>
+    <li><strong>Cross-refs:</strong> SA personas (<a href="sa-mining-context.html">PR-09</a>); synthetic fleet/grade data (<a href="synthetic-data-generator-spec.html">PR-07b</a>); stack patterns (<a href="angular-firebase-or-stack.html">PR-04</a>); Dunbar strip ratio / cut-off narrative (<a href="source-dunbar-how-mining-works-2024.html">PR-15</a>); Sloan avail/util variance (<a href="source-sloan-mine-management-2012.html">PR-14</a> Table 6.4).</li>
+  </ul>
+
+  <h2>2. Chapter map</h2>
+  <p class="meta">26 chapters. “Deep” = task brief sections read in full; “Lookup” = TOC/skim for catalog completeness.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Ch</th>
+        <th>Title</th>
+        <th>Key sections</th>
+        <th>Read</th>
+        <th>Portfolio hook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Conversion factors, constants, symbols</td><td>Unit conversions; Greek symbols</td><td>Lookup</td><td>Worker unit normalisation</td></tr>
+      <tr><td>2</td><td>Material properties</td><td>Densities, swell factors (Table 2.1)</td><td>Lookup</td><td>BCM/LCM conversions for Ch 12 production calcs</td></tr>
+      <tr><td>3</td><td>Mathematics, statistics, probability</td><td>Confidence intervals; sample size; hypothesis tests (Tables 3.8–3.9)</td><td><strong>Deep</strong></td><td>T3/T5 — grade estimation confidence; QA/QC sample planning</td></tr>
+      <tr><td>4</td><td>Physical science &amp; engineering</td><td>Mechanics, thermodynamics snippets</td><td>Lookup</td><td>Supporting formulas only</td></tr>
+      <tr><td>5</td><td>Geology &amp; geophysics</td><td>Rock mass, exploration methods</td><td>Lookup</td><td>Geotech context for Ch 10 pit slopes</td></tr>
+      <tr><td>6</td><td>Sampling &amp; analysis</td><td>Sample prep, assay QA/QC</td><td>Lookup</td><td>Feeds Ch 9 resource checklist</td></tr>
+      <tr><td>7</td><td>Mineral products</td><td>Commodity specs</td><td>Lookup</td><td>Product stream labels (pairs Dunbar Ch 7)</td></tr>
+      <tr><td>8</td><td>Economics &amp; costing</td><td>NPV (Eq 8.27), ROR, payback; cash-flow components (Tables 8.8–8.10); capital structure</td><td><strong>Deep</strong></td><td>T4/T6 — project economics calculators</td></tr>
+      <tr><td>9</td><td>Project evaluation</td><td>Table 9.1 study content (PEA/PFS/FS); due diligence checklist; kriging/semivariogram; COG assumptions</td><td><strong>Deep</strong></td><td>T4/T5 — study-stage accuracy bands; resource estimation QA</td></tr>
+      <tr><td>10</td><td>Mining methods</td><td>Surface/UG methods; Table 10.4 selection matrix; pushbacks, benches, strip ratio</td><td><strong>Deep</strong></td><td>T1/T4 — method trade-offs, pushback sequencing vocabulary</td></tr>
+      <tr><td>11</td><td>Blasting &amp; explosives</td><td>Explosive properties (Table 11.1); blast pattern variables</td><td><strong>Deep</strong></td><td>T1 cycle-time adjacency (drill–blast bottleneck)</td></tr>
+      <tr><td>12</td><td>Excavation, loading, transport</td><td>E = A×U (Eq 12.14); rolling resistance (Table 12.2); truck count N<sub>h</sub> = T<sub>ch</sub>/T<sub>l</sub> (Eq 12.27); production Eqs 12.17–12.21</td><td><strong>Deep</strong></td><td>T2 flagship — fleet sizing, match factor, operating efficiency</td></tr>
+      <tr><td>13</td><td>Haul roads</td><td>Stopping distance charts (Figs 13.1–13.3); safe following distance (Eq 13.3); ≤200 ft design limit</td><td><strong>Deep</strong></td><td>T2 haulage constraints; road design safety KPIs</td></tr>
+      <tr><td>14</td><td>Ground control &amp; support</td><td>Support design, pillar formulas</td><td>Lookup</td><td>Geotechnical constraint context for T1</td></tr>
+      <tr><td>15</td><td>Ventilation</td><td>Air quantity, fan laws</td><td>Lookup</td><td>UG planning constraint adjacency</td></tr>
+      <tr><td>16–17</td><td>Power; pumping</td><td>Electrical load, pump curves</td><td>Lookup</td><td>Infrastructure cost inputs for Ch 8</td></tr>
+      <tr><td>18–19</td><td>Placer; in situ leaching</td><td>Specialty methods</td><td>Lookup</td><td>Table 10.4 placer/ISL rows only</td></tr>
+      <tr><td>20</td><td>Mineral processing</td><td>Comminution, flotation, recovery; mill availability 90–98%</td><td><strong>Deep</strong></td><td>T3/T4 — recovery → cut-off link; plant availability KPIs</td></tr>
+      <tr><td>21</td><td>Tailings &amp; water management</td><td>Table 21.1 siting; upstream/downstream/centerline embankments; staged development tied to mine plan</td><td><strong>Deep</strong></td><td>T6 — closure liability; mine-plan ↔ TSF coupling</td></tr>
+      <tr><td>22</td><td>Maintenance</td><td>Avail vs util definitions; PM cost curve (Fig 22.1); criticality ranking (Table 22.1)</td><td><strong>Deep</strong></td><td>T2/T3 — fleet availability accountability (pairs Sloan Table 6.4)</td></tr>
+      <tr><td>23</td><td>Health &amp; safety</td><td>MSHA/OSHA references</td><td>Lookup</td><td>Compliance context; low demo priority</td></tr>
+      <tr><td>24</td><td>Environment &amp; reclamation</td><td>Table 24.2–24.4 permits by jurisdiction; ESIA/Equator Principles</td><td><strong>Deep</strong></td><td>T6 — regulatory constraint catalog; pairs Ch 9 ESIA due diligence</td></tr>
+      <tr><td>25</td><td>Bonding &amp; liabilities</td><td>SMCRA Phase I–III bond release; environmental due diligence outline; contingent liability checklist</td><td><strong>Deep</strong></td><td>T6 — financial assurance NPV scenarios</td></tr>
+      <tr><td>26</td><td>Key resources</td><td>Industry orgs, codes, standards</td><td>Lookup</td><td>External reference index for PR-07</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. KPI, constraint &amp; terminology catalog</h2>
+  <p>Primary seed bank for demo labels, validation rules, and Worker constraint checks — mapped to themes.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Term / KPI</th>
+        <th>Definition (handbook)</th>
+        <th>Typical target / constraint</th>
+        <th>Ch</th>
+        <th>Theme</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Availability (A)</strong></td><td>Portion of scheduled time equipment is mechanically/electrically ready (Eq 12.14)</td><td>Sloan scooptram example 92% plan vs 89% actual (PR-14); mill 95–98% scheduled time</td><td>12, 20, 22</td><td>T2, T3</td></tr>
+      <tr><td><strong>Utilization (U)</strong></td><td>Portion of available time operated at full potential (Eq 12.14); distinct from maintenance availability (Ch 22)</td><td>Sloan example 90% plan vs 74% actual; power plant 98% annual schedule</td><td>12, 22</td><td>T2, T3</td></tr>
+      <tr><td><strong>Operating efficiency (E)</strong></td><td>E = A × U (uniform conditions) or E = JC × MC (variable conditions, Eq 12.15)</td><td>Primary input to loading production Eq 12.17</td><td>12</td><td>T2</td></tr>
+      <tr><td><strong>Match factor / truck count</strong></td><td>N<sub>h</sub> = T<sub>ch</sub> / T<sub>l</sub> — trucks per shovel/loader (Eq 12.27); spare trucks for breakdowns</td><td>Integer ≥ 1; bottleneck when N<sub>h</sub> fractional → queue at loader</td><td>12</td><td>T2</td></tr>
+      <tr><td><strong>Effective grade (EG)</strong></td><td>EG = grade + RRF + GCF — resistance as equivalent % grade (Eq 12.9)</td><td>Table 12.2: packed gravel RRF 2.3% weight; loose sand 14%</td><td>12</td><td>T2</td></tr>
+      <tr><td><strong>Fill factor (FF)</strong></td><td>Actual bucket load vs heaped capacity (Eq 12.16)</td><td>Material-dependent; feeds Eq 12.17 loading rate</td><td>12</td><td>T2</td></tr>
+      <tr><td><strong>Haul cycle time (T<sub>ch</sub>)</strong></td><td>T<sub>l</sub> + T<sub>To</sub> + T<sub>dp</sub> + T<sub>Tr</sub>; corrected adds wait/delay (Eqs 12.19–12.20)</td><td>Match factor driver; average speed derated via Table 12.3</td><td>12</td><td>T2</td></tr>
+      <tr><td><strong>Stopping distance</strong></td><td>Empirical charts by GVW and grade (Figs 13.1–13.3); brake fade “unsafe braking area”</td><td><strong>≤ 61 m (200 ft)</strong> design limit (BC Dept of Mines); 4.5 s brake reaction on large trucks</td><td>13</td><td>T2</td></tr>
+      <tr><td><strong>Safe following distance (d<sub>b</sub>)</strong></td><td>Function of speed, gradient, reaction time ~1.5 s, +5 m allowance (Eq 13.3)</td><td>Road design constraint for fleet dispatch</td><td>13</td><td>T2</td></tr>
+      <tr><td><strong>Strip ratio / pushbacks</strong></td><td>Pushback sequence maintains relatively constant ore, waste, and SR over mine life (Ch 10)</td><td>Bench height 10–20 m; intermediate slope angle with haul road vs final slope 40–60°</td><td>10</td><td>T1, T4</td></tr>
+      <tr><td><strong>Method recovery / dilution</strong></td><td>Table 10.4 — e.g. open pit high recovery/low dilution; block cave 90%/20%; cut-and-fill 100%/0</td><td>Selection matrix: cost, selectivity, t/employee, environment</td><td>10</td><td>T4</td></tr>
+      <tr><td><strong>Cutoff grade (COG)</strong></td><td>Table 9.1 — manual calc at PEA; strategic mine planning software at PFS/FS; dilution/losses at FS</td><td>Must reconcile with reserve estimate and cash flow (Ch 9 due diligence)</td><td>9</td><td>T4, T5</td></tr>
+      <tr><td><strong>NPV / IRR / payback</strong></td><td>NPV Eq 8.27; ROR where NPV = 0; payback ignores time value (Eq 8.28) — use judiciously</td><td>Table 8.10 cash-flow factor checklist (pre/pro/post production)</td><td>8</td><td>T4, T6</td></tr>
+      <tr><td><strong>Study accuracy bands</strong></td><td>Table 9.1 — capital ±50% PEA, ±25% PFS, ±15% FS; opex ±35/25/15%; contingency 25/15/10%</td><td>PEA not for final decision; Ch 9 narrative also cites PFS ±30% and FS ±20% bankable — use Table 9.1 for demo presets, footnote both where they differ</td><td>9</td><td>T4, T5</td></tr>
+      <tr><td><strong>Kriging standard error</strong></td><td>Ordinary kriging weights from semivariogram; standard error → confidence levels</td><td>Table 9.2 checklist: variography, capping, model validation</td><td>9</td><td>T3, T5</td></tr>
+      <tr><td><strong>Confidence interval (grade mean)</strong></td><td>CI for μ: x̄ ± Z<sub>α/2</sub> σ/√n (σ known) or t-distribution (σ unknown); Table 3.9 Z values</td><td>95% → Z = 1.96; drives sample size for grade control</td><td>3</td><td>T3, T5</td></tr>
+      <tr><td><strong>Mill / circuit availability</strong></td><td>Ball mills up to 98% (95% typical rod); SAG 90–92%; screens 92–96%</td><td>Recovery estimates must use realistic avail not nameplate</td><td>20</td><td>T3</td></tr>
+      <tr><td><strong>Tailings raise rate</strong></td><td>Upstream embankment: raise &gt; <strong>5 m/yr</strong> considered excessively high failure risk</td><td>Staged development must track mine plan changes (Ch 21)</td><td>21</td><td>T6</td></tr>
+      <tr><td><strong>Embankment type</strong></td><td>Upstream (lowest cost, highest risk, banned some jurisdictions) vs downstream vs centerline compromise</td><td>Table 21.1 siting: climate, seismicity, ARD geochemistry, social proximity</td><td>21</td><td>T6</td></tr>
+      <tr><td><strong>Maintenance availability</strong></td><td>Historical runtime % of scheduled time excluding operating delays (Ch 22)</td><td>Fig 22.1 — too much PM raises total cost; focus critical few (Table 22.1 Pareto)</td><td>22</td><td>T2, T3</td></tr>
+      <tr><td><strong>Bond release phases</strong></td><td>SMCRA Phase I–III progressive release on revegetation, hydrologic balance, post-mining land use</td><td>Phase III only after success standards + responsibility period</td><td>25</td><td>T6</td></tr>
+      <tr><td><strong>Environmental liability</strong></td><td>Permitting timeliness + contingent cleanup obligations; due diligence checklist (Ch 25)</td><td>Equator Principles / IFC standards referenced in Ch 9 ESIA review</td><td>9, 24, 25</td><td>T6</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. Formulas &amp; methods catalog</h2>
+  <p>Equations and tables suitable for Worker implementations (deep-read chapters).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Method / formula</th>
+        <th>Chapter</th>
+        <th>Core idea</th>
+        <th>Portfolio transfer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Operating efficiency E = A × U</td><td>Ch 12 Eq 12.14</td><td>Adjust nameplate production for fleet readiness and active time</td><td>T2 fleet KPI cards; pairs Sloan avail/util variance</td></tr>
+      <tr><td>Loading production P<sub>l</sub></td><td>Ch 12 Eq 12.17</td><td>P<sub>l</sub> = 3600 × C<sub>b</sub> × SF × E × FF × PT / T<sub>cl</sub></td><td>Shovel/loader rate calculator</td></tr>
+      <tr><td>Truck count (match factor)</td><td>Ch 12 Eq 12.27</td><td>N<sub>h</sub> = T<sub>ch</sub> / T<sub>l</sub></td><td>T2 DES analogue — queue when under-trucked</td></tr>
+      <tr><td>Effective grade</td><td>Ch 12 Eq 12.9</td><td>Rolling resistance + physical grade → speed/ fuel constraint</td><td>Haul profile simulator input</td></tr>
+      <tr><td>Average speed derating</td><td>Ch 12 Table 12.3</td><td>Max speed × segment factor by haul length and start/stop</td><td>Cycle time realism for match factor</td></tr>
+      <tr><td>NPV summation</td><td>Ch 8 Eq 8.27</td><td>Discount periodic cash flows CF<sub>j</sub> at rate i</td><td>T4 project screening slider</td></tr>
+      <tr><td>Cash-flow build-up</td><td>Ch 8 Tables 8.8–8.10</td><td>Revenue → royalties → opex → tax → capex → net annual CF</td><td>Income statement → NPV pipeline UI</td></tr>
+      <tr><td>Study content ladder</td><td>Ch 9 Table 9.1</td><td>PEA → PFS → FS requirements for pit opt, COG, schedule, economics</td><td>Progressive disclosure demo by study stage</td></tr>
+      <tr><td>Due diligence checklist</td><td>Ch 9 Table 9.2</td><td>Geology → resource → mining → processing QA items</td><td>T3 reconciliation checklist UI</td></tr>
+      <tr><td>Geostatistics (kriging)</td><td>Ch 9 § geostatistics</td><td>Semivariogram → weighted estimate + standard error</td><td>Grade block confidence heat-map (synthetic)</td></tr>
+      <tr><td>Method selection matrix</td><td>Ch 10 Table 10.4</td><td>Relative cost, selectivity, recovery/dilution %, productivity t/employee</td><td>T4 method trade-off radar/table</td></tr>
+      <tr><td>Pushback / bench geometry</td><td>Ch 10 Figs 10.3–10.5</td><td>Constant SR via pushback sequence; bench 10–20 m; haul road in wall</td><td>T1 sequencing vocabulary (pairs Dunbar Seed B)</td></tr>
+      <tr><td>Stopping distance charts</td><td>Ch 13 Figs 13.1–13.3</td><td>GVW × speed × grade → stop distance; unsafe brake fade zone</td><td>Road design validation rule</td></tr>
+      <tr><td>Mill availability benchmarks</td><td>Ch 20</td><td>SAG 90–92%; ball up to 98%</td><td>T3 plant factor for reconciliation</td></tr>
+      <tr><td>Tailings staged development</td><td>Ch 21</td><td>TSF schedule coupled to mine plan; review on plan change</td><td>T6 mine-plan ↔ closure coupling</td></tr>
+      <tr><td>Maintenance cost curve</td><td>Ch 22 Fig 22.1</td><td>Under-PM → breakdown losses; over-PM → excess cost</td><td>T2 optimal PM level narrative</td></tr>
+      <tr><td>Bond phase release</td><td>Ch 25</td><td>Progressive SMCRA Phases I–III criteria</td><td>T6 liability timeline Gantt</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Hiring-manager &amp; demo language</h2>
+  <ul>
+    <li>“Fleet plans should separate <strong>availability</strong> (maintenance readiness) from <strong>utilization</strong> (active production time) — operating efficiency is their product.” (Ch 12 Eq 12.14; Ch 22 definitions)</li>
+    <li>“Truck fleet sizing is a <strong>match-factor</strong> problem: cycle time divided by load time, with spares for breakdowns.” (Ch 12 Eq 12.27)</li>
+    <li>“Haul road resistance shows up as <strong>effective grade</strong> — packed gravel adds ~2.3% equivalent grade before you account for physical ramp.” (Ch 12 Table 12.2; Eq 12.9)</li>
+    <li>“Study-stage economics carry explicit <strong>accuracy bands</strong> — ±50% capital at scoping (Table 9.1), ±15% at feasibility; narrative also cites ±20% bankable FS — PEA is not a bankable decision document.” (Ch 9 Table 9.1; Ch 9 text)</li>
+    <li>“Reserve due diligence checks <strong>cutoff grade assumptions</strong>, dilution, grade control method, and reconciliation of ore produced to the geologic model.” (Ch 9 Table 9.2)</li>
+    <li>“Method selection balances <strong>recovery vs dilution</strong> — block cave 90%/20% vs cut-and-fill 100%/0% — against productivity and geotechnical risk.” (Ch 10 Table 10.4)</li>
+    <li>“Tailings staging must track the <strong>mine plan</strong>; upstream raises above 5 m/yr are a red flag for stability.” (Ch 21)</li>
+    <li>“Closure liability includes <strong>progressive bond release</strong> phases and contingent environmental obligations, not just end-of-life capex.” (Ch 25)</li>
+  </ul>
+
+  <h2>6. Deep-read highlights</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Topic</th>
+        <th>Key numbers / examples</th>
+        <th>Demo / seed link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Ch 3 statistics</td><td>Confidence intervals</td><td>95% CI → Z<sub>α/2</sub> = 1.96 (Table 3.9); sample size for grade mean</td><td>Seed E grade QA planner</td></tr>
+      <tr><td>Ch 8 economics</td><td>NPV / payback</td><td>Eq 8.27–8.28; Table 8.10 pre/pro/post production cost factors</td><td>Seed B NPV lab</td></tr>
+      <tr><td>Ch 9 evaluation</td><td>Study ladder</td><td>Table 9.1 capital ±50/25/15%; contingency 25/15/10%; narrative PFS ±30%, FS ±20% bankable</td><td>Seed B accuracy-band cards</td></tr>
+      <tr><td>Ch 9 geostatistics</td><td>Kriging</td><td>Semivariogram → ordinary kriging + standard error for confidence</td><td>Seed E block confidence</td></tr>
+      <tr><td>Ch 9 due diligence</td><td>Production completion</td><td>90–180 day test: min capacity, grade, recovery, unit costs; ore vs geologic model reconciliation</td><td>T3 checklist (pairs Sloan)</td></tr>
+      <tr><td>Ch 10 open pit</td><td>Pushbacks</td><td>Constant ore, waste, SR; bench 10–20 m; large pit &gt;10 M stpy</td><td>T1 narrative (pairs Dunbar Seed B)</td></tr>
+      <tr><td>Ch 10 Table 10.4</td><td>Method matrix</td><td>Block cave rel. cost 0.20, 90%/20%, high t/employee; open pit 0.10 rel. cost</td><td>Seed C method explorer</td></tr>
+      <tr><td>Ch 12 fleet</td><td>Match factor</td><td>N<sub>h</sub> = T<sub>ch</sub>/T<sub>l</sub>; E = A×U; swell/density from Ch 2</td><td>Seed A flagship</td></tr>
+      <tr><td>Ch 12 resistance</td><td>Rolling resistance</td><td>Loose sand 140 kg/t (14% weight); packed gravel 22.5 kg/t</td><td>Seed A effective grade</td></tr>
+      <tr><td>Ch 13 haul roads</td><td>Stopping distance</td><td>Design limit 61 m (200 ft); unsafe brake fade zone on charts</td><td>Seed A road constraint toggle</td></tr>
+      <tr><td>Ch 20 processing</td><td>Availability</td><td>SAG 90–92%; ball mill to 98%</td><td>T3 plant factor input</td></tr>
+      <tr><td>Ch 21 tailings</td><td>Embankments</td><td>Upstream banned some jurisdictions; raise &gt;5 m/yr high risk</td><td>Seed D liability scoping</td></tr>
+      <tr><td>Ch 21 coupling</td><td>Mine plan sync</td><td>TSF staging defined at design; mine plan changes trigger TSF review</td><td>T1/T6 integration story</td></tr>
+      <tr><td>Ch 22 maintenance</td><td>Definitions</td><td>Maintenance availability vs utilization delays; criticality Pareto (Table 22.1)</td><td>Seed A avail/util split</td></tr>
+      <tr><td>Ch 24 environment</td><td>Permits</td><td>Table 24.2–24.4 by country; ESIA for Equator Principles financiers</td><td>T6 regulatory panel</td></tr>
+      <tr><td>Ch 25 bonding</td><td>Phase release</td><td>SMCRA Phases I–III; hydrologic balance + revegetation success standards</td><td>Seed D bond timeline</td></tr>
+    </tbody>
+  </table>
+
+  <h2>7. Portfolio seeds</h2>
+  <p>Five seeds tagged T1–T6; handbook supplies formulas and KPI definitions, not algorithms. Top three by composite: A → C → B (all ≥ 3.5). Seeds D and E (~3.54) also clear threshold — D for T6 breadth, E for T3/T5 grade QA.</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Fleet operating efficiency &amp; match-factor calculator <span class="tag">T2</span></h3>
+    <p><strong>Source:</strong> Ch 12 Eqs 12.9, 12.14, 12.17, 12.27; Table 12.2 rolling resistance; Table 12.3 speed derating; Ch 13 stopping-distance limit.</p>
+    <p><strong>Idea:</strong> Inputs: shovel cycle time, truck load/spot time, haul profile (grade + surface type), availability A and utilization U. Worker computes E, match factor N<sub>h</sub>, implied queue risk, and effective grade. Optional constraint flags when stopping distance exceeds 200 ft at design speed. Flagship formula demo — pairs Sloan Table 6.4 avail/util accountability (<a href="source-sloan-mine-management-2012.html">PR-14</a>).</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Study-stage NPV &amp; accuracy-band sensitivity lab <span class="tag">T4</span> <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 8 Eq 8.27, Tables 8.9–8.10; Ch 9 Table 9.1 (PEA/PFS/FS capital ±50/25/15%, opex ±35/25/15%, contingency 25/15/10%).</p>
+    <p><strong>Idea:</strong> Toggle study stage → auto-apply accuracy bands to capex/opex inputs; slider price, grade, recovery; NPV/IRR cards with warning when user selects PEA-grade inputs for “bankable” label. Techno-economic literacy demo for planning interviews.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Mining method trade-off explorer <span class="tag">T4</span></h3>
+    <p><strong>Source:</strong> Ch 10 Table 10.4 (relative cost, selectivity, recovery/dilution %, productivity t/employee, environment/safety); Ch 10 pushback/SR narrative.</p>
+    <p><strong>Idea:</strong> Interactive matrix: filter methods by deposit type (tabular/massive), rank by recovery–dilution trade-off and relative cost index. Tooltip hiring-manager lines from §5. Complements Dunbar method narrative (<a href="source-dunbar-how-mining-works-2024.html">PR-15</a> Table 2.4) with quantified handbook indices.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed D — Tailings staging &amp; bond-release timeline <span class="tag">T6</span></h3>
+    <p><strong>Source:</strong> Ch 21 Table 21.1 siting parameters; embankment types Fig 21.2; raise-rate constraint; Ch 25 SMCRA Phase I–III bond release; environmental liability checklist.</p>
+    <p><strong>Idea:</strong> Scenario toggles: upstream vs centerline vs downstream; climate/seismic/social proximity from Table 21.1. Timeline Gantt for bond phases; flag when mine-plan change should trigger TSF review. Pairs Dunbar tailings narrative (<a href="source-dunbar-how-mining-works-2024.html">PR-15</a> Seed D) with regulatory/formula depth.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed E — Grade confidence &amp; COG due-diligence checklist <span class="tag">T3</span> <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 3 confidence intervals (Table 3.9); Ch 9 kriging/semivariogram; Table 9.2 items (cutoff grade assumptions, dilution, grade control, model validation).</p>
+    <p><strong>Idea:</strong> Sample-size calculator for grade mean CI; synthetic block model with kriging-error bands; interactive due-diligence checklist with RAG status per Table 9.2 mining section. T3 reconciliation literacy without proprietary block models.</p>
+  </div>
+
+  <h2>8. Angular+Firebase angle per seed</h2>
+  <dl>
+    <dt>Seed A (fleet calculator)</dt>
+    <dd>
+      Reactive form: A, U, T<sub>cl</sub>, T<sub>l</sub>, haul segments (grade + Table 12.2 surface preset). Worker returns E, N<sub>h</sub>, rounded fleet count, effective grade, production BCM/h. Firestore <code>fleetScenarios/{id}</code>. Chart.js gauge for match factor vs spare-truck policy. Constraint badge when Ch 13 stop distance exceeded.
+    </dd>
+    <dt>Seed B (NPV / study stage)</dt>
+    <dd>
+      Study-stage dropdown applies ± bands to capex/opex from Table 9.1 (footnote PFS ±30% / FS ±20% narrative where they differ from table). Worker builds CF array per Table 8.9 (income statement → net annual CF) with Table 8.10 pre/pro/post factor checklist; discounts via Eq 8.27. Firestore <code>npvRuns/{id}</code>; sensitivity tornado optional. Warn card if PEA selected with “financing ready” toggle.
+    </dd>
+    <dt>Seed C (method matrix)</dt>
+    <dd>
+      Sortable Table 10.4 data grid; filter chips for deposit geometry. Firestore <code>methodFilters/{id}</code> for saved comparisons. No Worker required; optional radar chart for recovery/dilution/cost axes.
+    </dd>
+    <dt>Seed D (tailings / bond)</dt>
+    <dd>
+      Embankment type + siting parameter form; Worker computes qualitative risk score from Table 21.1 weights. Timeline component for Ch 25 phases. Firestore <code>closureScenarios/{id}</code>.
+    </dd>
+    <dt>Seed E (grade QA)</dt>
+    <dd>
+      CI sample-size Worker from Ch 3 formulas; checklist state in Firestore <code>ddChecklists/{id}</code>. Synthetic grade CSV from <a href="synthetic-data-generator-spec.html">PR-07b</a> for block-error heat-map.
+    </dd>
+  </dl>
+
+  <h2>9. Scorecard — top 3 seeds</h2>
+  <p class="meta">Composite = (4×Ukwazi + 3×CV + 2×Stack + 2×Data + 2×Diff) / 13 − effort penalty (<a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>).</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Fleet match factor &amp; operating efficiency (composite 4.77)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T2)</td><td>5</td><td>Core open-pit haulage KPIs — availability, utilization, match factor (Ch 12)</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Fleet algebra and cycle-time demos are CV-friendly</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Deterministic Worker; immediate KPI feedback</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Hand-entered cycle times; Table 12.2 surface presets</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Mining-native match factor vs generic job-shop balancing</td></tr>
+        <tr><td>Effort</td><td>S</td><td>Single-screen calculator + constraint badges</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Mining method trade-off explorer (composite 4.31)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T4)</td><td>4</td><td>Method selection matrix is central techno-economic planning (Ch 10 Table 10.4)</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Trade-off tables common on planning CVs</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Static table + filters; optional radar chart</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Table 10.4 fully in text — no external data</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Quantified recovery/dilution indices vs generic method picker</td></tr>
+        <tr><td>Effort</td><td>S</td><td>Data grid + tooltips</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Study-stage NPV sensitivity (composite 4.23)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T4/T5)</td><td>5</td><td>PEA/PFS/FS accuracy bands and NPV are core project evaluation (Ch 8–9)</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>NPV sensitivity sliders align with planning/finance CV claims</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Worker discounting; stage preset applies bands automatically</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Synthetic cash flows; bands from Table 9.1</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Study-stage guardrails distinctive vs generic NPV demo</td></tr>
+        <tr><td>Effort</td><td>M</td><td>CF builder + sensitivity cards</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>10. Suggested Angular+Firebase sketch (Seed A flagship)</h2>
+  <p>
+    Module <code>FleetMatchLab</code>: inputs for shovel/load cycle times, number of haul segments (grade % + Table 12.2
+    surface preset), availability A and utilization U (default to Sloan-style 92%/90% plan with explain link to PR-14).
+    Worker returns operating efficiency E, match factor N<sub>h</sub>, recommended integer truck count (+1 spare toggle),
+    loading production rate (Eq 12.17 with default fill factor), and effective grade per segment.
+    Sidebar constraint panel: Ch 13 stopping-distance check at user-entered ramp speed; Ch 22 definition tooltips
+    distinguishing maintenance availability from utilization delays.
+    Firestore <code>fleetScenarios/{id}</code> for scenario compare; PWA shell per <a href="angular-firebase-or-stack.html">PR-04</a>.
+    Pair with Dunbar strip-ratio calculator (PR-15 Seed B) on same open-pit persona (<a href="sa-mining-context.html">PR-09</a>)
+    for material movement → fleet sizing story.
+  </p>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard (artifact)</h3>
+    <p class="meta">This source summary document. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>Formula catalog spans T2 (fleet), T4 (economics/methods), T3 (grade QA), T6 (tailings/bonding)</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>KPI calculators + checklist UIs; not MILP proof</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>All five seeds browser-native with Worker algebra</td></tr>
+        <tr><td>Data feasibility</td><td>5</td><td>Tables and equations self-contained; PR-07b for grade synthetics</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Only Wave 2 citeable mining KPI/formula reference handbook</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Wave 2 summary; flagship Seed A effort S</td></tr>
+        <tr><td><strong>Composite (doc)</strong></td><td><strong>3.70</strong></td><td>(4×5 + 3×4 + 2×5 + 2×5 + 2×5) / 13 − 0.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-16.md</code> ·
+    Registry row: <code>index.html#pr-16</code>
+  </footer>
+</body>
+</html>

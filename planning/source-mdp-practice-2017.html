@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boucherie &amp; van Dijk 2017 — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Boucherie &amp; van Dijk — Markov Decision Processes in Practice (2017)</h1>
+  <p class="meta">
+    Task ID: PR-12 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a> ·
+    Source: <code>sources/processed/Richard J_ Boucherie, Nico M_ van Dijk - Markov Decision Processes in Practice (2017).txt</code> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a> ·
+    Read depth: deep Ch 1–3, 8–9, 19; selective Ch 10, 13; TOC skim Ch 4–7, 11–12, 14–18, 20–21
+  </p>
+
+  <p class="lead">
+    This Springer handbook (Vol. 248, ISORMS; Hillier foreword) is a curated collection of 21 application chapters
+    across six domains — general theory, healthcare, transportation, production, communications, and finance — each
+    following problem → MDP formulation → solution → validation. The text contains <strong>no mining case studies</strong>;
+    portfolio value is method transfer for capacity-constrained stochastic control under uncertainty (T5), haulage/fleet
+    dispatch (T1/T2), and crew/equipment staffing. Deep read centred on Ch 3 (ADP via nomadic trucker, freight consolidation,
+    hospital tactical planning), healthcare staffing/scheduling (Ch 8–9), and call-centre flexible staffing (Ch 19), with
+    explicit mapping from the CV Honours nurse-workforce MDP (<a href="cv-ukwazi-alignment.html">PR-03</a>) to in-book healthcare chapters
+    and mining reframes. Five seeds below; full scorecards for ranked top three (B, A, E); Seed C (~3.77) also clears the PR-19 threshold.
+  </p>
+
+  <h2>1. Scope &amp; audience</h2>
+  <ul>
+    <li><strong>Text:</strong> Edited handbook, Springer 2017. ~32k sentencized lines; 21 chapters + appendices (notation, chapter dichotomy). Complements Hillier Ch 19 theory (<a href="source-hillier-2024.html">PR-10</a>) with practice-oriented ADP, policy improvement, and domain vignettes.</li>
+    <li><strong>Audience:</strong> Quantitative Planning Analyst portfolio — MDP/ADP vocabulary for browser demos per <a href="angular-firebase-or-stack.html">PR-04</a>; bridges CV Honours nurse MDP proof to mining crew/fleet reframes per <a href="cv-ukwazi-alignment.html">PR-03</a> T5 gap note.</li>
+    <li><strong>Read boundary:</strong> Deep Ch 1 (policy improvement), 2 (M/M/s relative values, call-centre routing skim), 3 (ADP tutorial — all three examples), 8 (LP-ADP appointment scheduling), 9 (ambulance dispatch MDP), 19 (flexible call-centre staffing). Selective Part II (Ch 6–7 POMDP skim, Ch 10 platelet inventory preface); Part III transport (Ch 13 traffic-light MDP skim). TOC only: Ch 4–5 (infinite state), 11–12, 14, 15–18, 20–21.</li>
+    <li><strong>Cross-refs:</strong> Hillier Ch 19.1 machine-replacement MDP (<a href="source-hillier-2024.html">PR-10</a> Seed C); haulage DES patterns (<a href="mining-or-real-world-examples.html">PR-05</a>); synthetic fleet/crew data (<a href="synthetic-data-generator-spec.html">PR-07b</a>); SA KPI personas (<a href="sa-mining-context.html">PR-09</a>).</li>
+  </ul>
+
+  <h2>2. Chapter map</h2>
+  <p class="meta">Six parts, 21 chapters. “Deep” = sections read in full for this task.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Ch</th>
+        <th>Title</th>
+        <th>Key sections</th>
+        <th>Read</th>
+        <th>Portfolio hook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="5"><strong>Part I — General theory</strong></td></tr>
+      <tr><td>1</td><td>One-step improvement &amp; computation</td><td>1.2 relative values; 1.3 policy iteration; 1.4 suboptimal improvement; 1.5 look-ahead</td><td><strong>Deep</strong></td><td>Practical policy-improvement heuristics when exact VI fails</td></tr>
+      <tr><td>2</td><td>Value function approximation in queueing</td><td>2.2–2.3 birth-death, M/M/s; 2.5 multiskill call-centre routing</td><td><strong>Deep</strong> (2.3, 2.5); TOC elsewhere</td><td>Relative-value routing; links Hillier Ch 17 queueing</td></tr>
+      <tr><td>3</td><td>ADP by practical examples</td><td>3.2 nomadic trucker; 3.3 freight consolidation; 3.4 hospital tactical planning</td><td><strong>Deep</strong></td><td>Flagship ADP tutorial — haulage + healthcare capacity</td></tr>
+      <tr><td>4</td><td>Server optimization (infinite states)</td><td>4.3 parallel servers; 4.4 decomposition</td><td>TOC</td><td>Infinite-state truncation pattern for large fleet models</td></tr>
+      <tr><td>5</td><td>Structures with unbounded jumps</td><td>5 SRT truncation; structural policy preservation</td><td>TOC</td><td>Stability when state space truncated for browser solvers</td></tr>
+      <tr><td colspan="5"><strong>Part II — Healthcare</strong></td></tr>
+      <tr><td>6</td><td>Screening &amp; treatment (chronic disease)</td><td>6.3 MDP/POMDP framework; 6.4 diabetes; 6.5 prostate screening</td><td>TOC</td><td>Medical decision MDP template; low mining transfer</td></tr>
+      <tr><td>7</td><td>Breast cancer follow-up (POMDP)</td><td>7.2–7.4 QALY-maximizing screening allocation</td><td>TOC</td><td>Resource allocation under partial observability — conceptual only</td></tr>
+      <tr><td>8</td><td>Advance patient appointment scheduling</td><td>8.2–8.3 MDP state (u,v,w); LP-ADP affine VFA; CT/radiation cases</td><td><strong>Deep</strong></td><td>Capacity booking with wait targets — workshop/maintenance analog</td></tr>
+      <tr><td>9</td><td>Optimal ambulance dispatching</td><td>9 MDP with idle count + future location; 13% late-arrival reduction</td><td><strong>Deep</strong></td><td>Mobile resource dispatch — service truck / shovel support analog</td></tr>
+      <tr><td>10</td><td>Blood platelet inventory</td><td>10 MDP + simulation; outdating minimization; holiday interruptions</td><td>Selective</td><td>Perishable spares / reagent inventory (secondary T5)</td></tr>
+      <tr><td colspan="5"><strong>Part III — Transportation</strong></td></tr>
+      <tr><td>11</td><td>Noise load management (runway selection)</td><td>11 SDP; continuous state discretization; weather uncertainty</td><td>TOC</td><td>Macro routing under environmental constraints</td></tr>
+      <tr><td>12</td><td>Vertical rotary car park allocation</td><td>12 job allocation overflow; MDP heuristic</td><td>TOC</td><td>Level/stock allocation in vertical storage — weak pit analog</td></tr>
+      <tr><td>13</td><td>Dynamic traffic-light control</td><td>13 policy iteration + decomposition; mean waiting time</td><td>Selective</td><td>Haul-road intersection control; tandem queue (Ch 17) adjacency</td></tr>
+      <tr><td>14</td><td>Smart EV charging</td><td>14 SDP; i.i.d. price heuristic vs DSM</td><td>TOC</td><td>Shift energy/load management for fixed plant</td></tr>
+      <tr><td colspan="5"><strong>Part IV — Production</strong></td></tr>
+      <tr><td>15</td><td>Stochastic lot scheduling (strict due dates)</td><td>15 CSLSP admission + scheduling; setup between families</td><td>TOC</td><td>Crusher/mill campaign scheduling with changeovers (T1)</td></tr>
+      <tr><td>16</td><td>Optimal fishery policies</td><td>16 bi-level MDP; stock + fleet capacity states</td><td>TOC</td><td>Resource + fleet co-state — conceptual extraction analog</td></tr>
+      <tr><td>17</td><td>Tandem queue switching</td><td>17 near-optimal switching curve; DES validation</td><td>TOC</td><td>Two-stage haul chain (load point → stockpile)</td></tr>
+      <tr><td colspan="5"><strong>Part V — Communications</strong></td></tr>
+      <tr><td>18</td><td>Wireless channel selection (RMAB)</td><td>18 Whittle index; POMDP</td><td>TOC</td><td>Low mining relevance</td></tr>
+      <tr><td>19</td><td>Flexible call-centre staffing</td><td>19.2–19.3 MDP on staffing epochs; known/unknown λ; SL penalty</td><td><strong>Deep</strong></td><td>Core crew vs flexible contractor staffing (Honours nurse analog)</td></tr>
+      <tr><td>20</td><td>Wireless sensor query MDP</td><td>20 continuous-time uniformization</td><td>TOC</td><td>Query routing — low mining relevance</td></tr>
+      <tr><td colspan="5"><strong>Part VI — Financial modeling</strong></td></tr>
+      <tr><td>21</td><td>Portfolio &amp; derivatives (transaction costs)</td><td>21 optimal pricing; martingale policy</td><td>TOC</td><td>T6 adjacency only; defer to closure finance seeds</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Methods catalog</h2>
+  <p>Methods from deep-read chapters; “mining transfer” notes operational mapping without in-text mining examples.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>Boucherie chapter</th>
+        <th>Core idea</th>
+        <th>Mining transfer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>One-step policy improvement</td><td>Ch 1.4</td><td>Upgrade suboptimal policy with single improvement step</td><td>Refine dispatch heuristic from mine planner rules</td></tr>
+      <tr><td>Relative value function (M/M/s)</td><td>Ch 2.3</td><td>Birth-death difference calculus for queue control</td><td>Loader queue relative values; pairs Hillier Ch 17.6</td></tr>
+      <tr><td>ADP — post-decision state</td><td>Ch 3.2.3</td><td>S<sup>x</sup><sub>t</sub> after action, before random outcome; Monte Carlo VFA update</td><td>Haul-truck reposition when load board stochastic</td></tr>
+      <tr><td>ADP — basis-function VFA</td><td>Ch 3.2.3, 3.3.3</td><td>Linear approximation of value over features; state aggregation</td><td>Scale dispatch MDP beyond exact VI in browser</td></tr>
+      <tr><td>ADP — LP value function approximation</td><td>Ch 8</td><td>Affine VFA in booking-horizon state variables; booking guidelines</td><td>Workshop slot booking with SLA wait targets</td></tr>
+      <tr><td>MDP mobile dispatch</td><td>Ch 9</td><td>State = idle units + incident geography; beats closest-idle</td><td>Field service / water truck dispatch to breakdowns</td></tr>
+      <tr><td>Flexible staffing MDP</td><td>Ch 19</td><td>Permanent + flexible agents; service-level soft constraint; time-varying λ</td><td>Core shift crew + contractor surge for peak haul</td></tr>
+      <tr><td>Multiskill routing (call centre)</td><td>Ch 2.5</td><td>One-step improvement on skill-based routing</td><td>Multi-certified operators routed to bottleneck tasks</td></tr>
+      <tr><td>Traffic-light MDP decomposition</td><td>Ch 13</td><td>Policy iteration on decomposed traffic streams</td><td>Haul-road intersection give-way timing</td></tr>
+      <tr><td>CSLSP admission/scheduling MDP</td><td>Ch 15</td><td>Accept/reject orders; family setups; strict due dates</td><td>Mill campaign orders with grade changeovers</td></tr>
+      <tr><td>Hospital tactical network MDP</td><td>Ch 3.4</td><td>Queues J, resources R, capacity η<sub>r,t</sub>; waiting-time costs</td><td>Multi-stage crew/equipment capacity across pit stages</td></tr>
+      <tr><td>Freight consolidation MDP</td><td>Ch 3.3</td><td>Multi-period consolidate vs postpone on long-haul</td><td>Stockpile batching vs direct plant feed</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. Mining-relevant sections</h2>
+  <p>Industry-agnostic handbook; strongest <em>method</em> transfer to open-pit haulage, fleet dispatch, and crew/equipment capacity. Healthcare chapters supply the closest in-book analogues to the CV Honours nurse MDP.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Topic</th>
+        <th>Why it matters for mining</th>
+        <th>Boucherie anchor example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Ch 3.2</td><td>Nomadic trucker ADP</td><td>Stochastic load board; reposition empty vs loaded; multi-attribute state (location, day, resource vector)</td><td>256 locations; R<sub>t</sub> settings 5376 (256×7×3) × 2<sup>256</sup> load outcomes — ADP essential</td></tr>
+      <tr><td>Ch 3.3</td><td>Freight consolidation</td><td>When to batch material vs ship immediately; capacity modes</td><td>Long-haul consolidate vs postpone; VFA feature sensitivity</td></tr>
+      <tr><td>Ch 3.4</td><td>Hospital tactical planning</td><td>Capacity η<sub>r,t</sub> over queues; waiting-time cost control</td><td>Care stages as queues; doctor time as resource — crew/equipment analog</td></tr>
+      <tr><td>Ch 8.2–8.3</td><td>Advance appointment scheduling</td><td>Book scarce slots under stochastic demand; overtime/h overflow</td><td>CT scan &amp; radiation therapy; wait-target penalties c<sub>in</sub></td></tr>
+      <tr><td>Ch 9</td><td>Ambulance dispatch</td><td>Which idle unit to send when future demand matters</td><td>13% late-arrival reduction vs closest-idle (Flevoland)</td></tr>
+      <tr><td>Ch 19.2–19.3</td><td>Call-centre flexible staffing</td><td>Core vs flexible capacity under time-varying demand + SL target</td><td>Real call-centre data; penalty P when SL &lt; α</td></tr>
+      <tr><td>Ch 2.5</td><td>Multiskill call-centre routing</td><td>Route work to parallel servers with skills</td><td>Three-skill centre; one-step improvement 0–13% gain</td></tr>
+      <tr><td>Ch 13</td><td>Traffic-light control</td><td>Dynamic control reduces mean waiting vs static</td><td>Decomposed MDP; single policy iteration step effective</td></tr>
+      <tr><td>Ch 15</td><td>Lot scheduling (CSLSP)</td><td>Admission + sequence with setups between product families</td><td>Paper mill / packaging industrial motivation</td></tr>
+      <tr><td>Ch 17</td><td>Tandem queue switching</td><td>Control first-stage service when downstream cost higher</td><td>Load point vs stockpile waiting-cost asymmetry</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Honours nurse MDP mapping</h2>
+  <p>
+    <a href="cv-ukwazi-alignment.html">PR-03</a> cites a BSc Honours OR project: nurse workforce planning under capacity constraints (CV proof T5 = 5).
+    This handbook’s healthcare and staffing chapters provide the published vocabulary to reframe that work for mining crew/equipment demos.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Honours MDP element (CV)</th>
+        <th>In-book chapter anchor</th>
+        <th>Mining crew / equipment reframe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Nurses as capacity-constrained resource</td><td>Ch 3.4 (η<sub>r,t</sub> resource caps); Ch 19 (permanent agents s<sub>t</sub>)</td><td>Core pit crew or owned shovel fleet as fixed capacity</td></tr>
+      <tr><td>Patient demand / acuity queues</td><td>Ch 3.4 (S<sub>t,j,u</sub> waiting states); Ch 8 (patient types I, wait targets T<sub>i</sub>)</td><td>Maintenance jobs, breakdown call-outs, or ROM surge backlog</td></tr>
+      <tr><td>Shift / period staffing decisions</td><td>Ch 19 (staffing epochs T; flexible f<sub>t</sub> at interval starts)</td><td>Contractor trucks or temp crews added at shift boundaries</td></tr>
+      <tr><td>Service-level / wait-time targets</td><td>Ch 19 (SL ≥ α); Ch 8 (penalties c<sub>in</sub> beyond T<sub>i</sub>)</td><td>Dispatch queue SLA or maintenance turnaround targets</td></tr>
+      <tr><td>Stochastic arrivals over time</td><td>Ch 8 (Poisson appointment requests m<sub>i</sub>); Ch 19 (non-stationary λ<sub>t</sub>)</td><td>Variable truck cycle arrivals; rain-season demand uplift</td></tr>
+      <tr><td>Overtime / overflow capacity</td><td>Ch 8 (overtime slots C<sub>o</sub>, cost h per slot)</td><td>Weekend shift, extra contractor fleet, or stockpile swing</td></tr>
+      <tr><td>Large state space → ADP</td><td>Ch 3 (post-decision state, basis-function VFA); Ch 8 (LP-ADP)</td><td>Exact VI infeasible for full pit dispatch — ADP per PR-04 Worker pattern</td></tr>
+      <tr><td>Myopic vs forward-looking policy</td><td>Ch 8.1 (myopic booking vs ADP guidelines)</td><td>Planner “fill today’s gap” vs cost-to-go aware crew roster</td></tr>
+    </tbody>
+  </table>
+  <p class="meta">
+    Portfolio narrative: lead with Honours MDP credibility (healthcare), then show mining reframe using Ch 19 or Ch 3.4 structure —
+    satisfies PR-03 T5 gap (“reframe for equipment/crew capacity under uncertainty”).
+  </p>
+
+  <h2>6. Portfolio seeds</h2>
+  <p>Five seeds tagged T1–T6; chapter citations for each. Rank order by composite: B (4.24) → A (4.16) → E (3.78) → C (~3.77) → D (~3.25, below 3.5). Seed D kept for T1/T5 LP-ADP breadth; Seed E for Honours structural match (Ch 3.4) despite Effort L.</p>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Nomadic trucker ADP haul dispatch <span class="tag">T1</span> <span class="tag">T2</span></h3>
+    <p><strong>Source:</strong> Ch 3.2 (nomadic trucker MDP; post-decision state Sect. 3.2.3; basis-function VFA); Ch 3.3 (consolidation contrast).</p>
+    <p><strong>Idea:</strong> Single haul truck on synthetic pit load board (256-cell grid or PR-07b locations): daily decision to reposition empty, accept loaded move, or wait; ADP with post-decision states when exact VI fails. Compare myopic “nearest load” vs learned policy — direct haulage narrative complementing Hillier queue DES (<a href="source-hillier-2024.html">PR-10</a> Seed A).</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Flexible shift crew staffing MDP <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 19.2–19.3 (permanent s<sub>t</sub> + flexible f<sub>t</sub>; service level SL ≥ α; penalty P; known/unknown λ); Ch 2.3 (M/M/s relative values as sanity check).</p>
+    <p><strong>Idea:</strong> Model a shift as m intervals with time-varying truck-arrival intensity; core crew fixed, contractor slots adjustable at epoch set T. Minimize staffing cost subject to soft dispatch SLA — explicit reframe of Honours nurse MDP and PR-03 T5 flagship path.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Mobile unit dispatch (ambulance analog) <span class="tag">T1</span> <span class="tag">T2</span></h3>
+    <p><strong>Source:</strong> Ch 9 (MDP state: idle units + future incident location; heuristic from optimal policy; 13% late-arrival improvement vs closest-idle).</p>
+    <p><strong>Idea:</strong> Two field-service water trucks or shovel-support units on a simplified pit map; stochastic breakdown locations. Policy heatmap vs closest-idle benchmark — quantified KPI uplift mirrors Ch 9 validation style.</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed D — Workshop appointment LP-ADP <span class="tag">T1</span> <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 8.2–8.3 (state (u,v,w); patient types; wait targets; overtime; LP-ADP affine VFA).</p>
+    <p><strong>Idea:</strong> Book maintenance bay slots for truck PM jobs with priority classes and turnaround targets; booking guidelines vs myopic fill. Effort L — LP-ADP layer likely needs Cloud Function; lower composite (~3.25).</p>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed E — Multi-stage crew capacity network (hospital tactical) <span class="tag">T5</span></h3>
+    <p><strong>Source:</strong> Ch 3.4 (queues J, resources R, η<sub>r,t</sub>, waiting-time costs c<sub>j,u</sub>; transition q<sub>j,i</sub>).</p>
+    <p><strong>Idea:</strong> Map pit stages (drill → load → haul) as queues; crew hours as resources; ADP or truncated MDP for admission/treatment analog. Strongest structural match to Honours nurse project; Effort L, composite ~3.78.</p>
+  </div>
+
+  <h2>7. Angular+Firebase angle per seed</h2>
+  <dl>
+    <dt>Seed A (nomadic trucker ADP)</dt>
+    <dd>
+      Grid map component (256 cells or PR-07b haul nodes); daily decision UI. Web Worker runs ADP loop with post-decision VFA updates (<a href="angular-firebase-or-stack.html">PR-04</a> MDP row). Firestore <code>haulBoards/{id}</code>, <code>adpRuns/{id}</code>; Chart.js profit vs iteration. Exact VI toggle for toy single-attribute case (Ch 3.2.2.5 benchmarks: 8364.31 infinite-horizon value).
+    </dd>
+    <dt>Seed B (flexible staffing)</dt>
+    <dd>
+      Shift timeline with λ(t) editor; sliders for c<sub>1</sub>, c<sub>2</sub>, P, α. Worker finite-horizon DP on staffing epochs (Ch 19.3); compare known vs unknown λ scenarios. Firestore scenario presets; optional M/M/s analytic panel from Ch 2.3 for validation.
+    </dd>
+    <dt>Seed C (mobile dispatch)</dt>
+    <dd>
+      Pit map markers for units and incidents; policy vs closest-idle simulation over synthetic day. Worker MDP value iteration on compact state (idle count + zone); KPI card for late-arrival fraction. Firestore <code>dispatchRuns/{id}</code>.
+    </dd>
+    <dt>Seed D (workshop LP-ADP)</dt>
+    <dd>
+      Appointment horizon grid (Ch 8 Fig 8.2); patient-type table → job-priority table. Cloud Function for LP-ADP solve; Angular displays booking guidelines. Higher effort — defer unless PR-19 needs T1/T5 breadth.
+    </dd>
+    <dt>Seed E (crew network)</dt>
+    <dd>
+      Stage-queue diagram (ngx-graph); resource capacity per period. Worker truncated MDP or simplified ADP on aggregated states (Ch 3.4 + 4 infinite-state truncation). Firestore network templates; Honours narrative panel linking healthcare → mining labels.
+    </dd>
+  </dl>
+
+  <h2>8. Scorecard — top 3 seeds (+ Seed C)</h2>
+  <p class="meta">Composite = (4×Ukwazi + 3×CV + 2×Stack + 2×Data + 2×Diff) / 13 − effort penalty (<a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>). Seed C included for T1/T2 dispatch breadth (ranks fourth, ~0.01 below E).</p>
+
+  <div class="portfolio-box">
+    <h3>Seed B — Flexible shift crew staffing (composite 4.24)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T5)</td><td>5</td><td>Core crew + contractor sizing under uncertainty — Ch 19 direct match</td></tr>
+        <tr><td>CV proof</td><td>5</td><td>Strongest link to Honours nurse MDP (<a href="cv-ukwazi-alignment.html">PR-03</a> T5 = 5)</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Finite-horizon DP fits Worker; interval-based UI is polished</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Synthetic λ(t) from PR-07b; Ch 19 real-data pattern as validation story</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Mining crew reframe of call-centre staffing is distinctive vs generic MDP toy</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Known-λ case sufficient for demo; unknown-λ as stretch</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed A — Nomadic trucker ADP haul dispatch (composite 4.16)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1/T2)</td><td>5</td><td>Only in-book haulage-native example — Ch 3.2 nomadic trucker</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>MDP on CV; ADP extends Honours exact-MDP experience</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>ADP Worker + grid UI; exact VI for toy subset</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Ch 3 appendix probabilities or PR-07b synthetic load matrix</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Explicit truck reposition narrative; pairs Hillier haul DES</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Post-decision ADP loop + map visualization</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed E — Multi-stage crew capacity network (composite 3.78)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T5)</td><td>5</td><td>Multi-resource capacity across stages — Ch 3.4 hospital network</td></tr>
+        <tr><td>CV proof</td><td>5</td><td>Structural twin of Honours nurse queue/resource MDP</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>3</td><td>Full network ADP heavy; needs aggregation/truncation (Ch 4–5)</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Small synthetic queue network suffices</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Healthcare→mining reframe with published chapter citation</td></tr>
+        <tr><td>Effort</td><td>L</td><td>Network state space; consider toy 3-queue instance only</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Seed C — Mobile unit dispatch (composite 3.77)</h3>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1/T2)</td><td>5</td><td>Field dispatch under uncertainty — Ch 9 ambulance MDP</td></tr>
+        <tr><td>CV proof</td><td>3</td><td>MDP on CV via Honours; dispatch less explicit than staffing</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>Compact state VI in Worker; pit-map KPI panel</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Synthetic incident zones; Ch 9 validation narrative (13% late-arrival reduction)</td></tr>
+        <tr><td>Differentiation</td><td>4</td><td>Quantified benchmark vs closest-idle — rare in generic OR demos</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Policy vs heuristic simulation over synthetic day</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>9. Suggested Angular+Firebase sketch (Seed B flagship)</h2>
+  <p>
+    Module <code>CrewStaffingLab</code>: pit persona selector (PR-09), shift interval editor (m periods, epoch set T from Ch 19),
+    λ(t) upload or synthetic generator (PR-07b), cost sliders (c<sub>1</sub> core, c<sub>2</sub> contractor, penalty P, target α).
+    Worker runs finite-horizon staffing DP; output charts staffing level f<sub>t</sub>, expected SL, total cost.
+    Side panel cites Honours nurse MDP → Ch 19 mapping (§5). Firestore <code>staffingScenarios/{id}</code>, <code>staffingRuns/{id}</code>;
+    PWA shell per PR-04. Pairs with Seed A for dispatch + capacity story (T2 + T5 pillars).
+  </p>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard (artifact)</h3>
+    <p class="meta">This source summary document. See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Score</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>Primary T5 source; strong T1/T2 via Ch 3.2, 9; closes PR-03 Honours→mining gap</td></tr>
+        <tr><td>CV proof</td><td>5</td><td>Direct citation path for Honours nurse MDP (T5 flagship evidence)</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>4</td><td>ADP/MDP Worker patterns; LP-ADP (Ch 8) may need Cloud Function</td></tr>
+        <tr><td>Data feasibility</td><td>4</td><td>Ch 3 published test instances + PR-07b synthetic series</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Practice MDP handbook rare in mining portfolios; Hillier foreword link</td></tr>
+        <tr><td>Effort</td><td>M</td><td>Wave 2 summary; demo effort per seed M–L</td></tr>
+        <tr><td><strong>Composite (doc)</strong></td><td><strong>4.16</strong></td><td>(4×5 + 3×5 + 2×4 + 2×4 + 2×5) / 13 − 0.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-12.md</code> ·
+    Registry row: <code>index.html#pr-12</code>
+  </footer>
+</body>
+</html>

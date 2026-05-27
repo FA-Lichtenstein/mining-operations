@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mining OR Real-World Examples — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    dl { margin: 0.5rem 0; }
+    dt { font-weight: 600; margin-top: 0.6rem; }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Mining OR Real-World Examples</h1>
+  <p class="meta">
+    Task ID: PR-05 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-01">PR-01</a>, <a href="index.html#pr-02">PR-02</a>,
+    <a href="index.html#pr-03">PR-03</a>, <a href="index.html#pr-04">PR-04</a> ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a>
+  </p>
+
+  <p class="lead">
+    Twenty external mining operations-research cases from peer-reviewed literature and industry practice,
+    each tagged to portfolio themes T1–T6 and rated for cloneability on an Angular+Firebase demo stack (1–5).
+    Gorai &amp; Chatterjee (2022) in-book case studies are intentionally excluded — those are reserved for
+    <a href="index.html#pr-17">PR-17</a>. Cloneability reflects browser-feasibility with synthetic data per
+    <a href="angular-firebase-or-stack.html">PR-04</a>: DES/MDP dashboards score highest; large MIP pit optimisers score lowest.
+  </p>
+
+  <h2>Scope and method</h2>
+  <ul>
+    <li><strong>Boundary:</strong> External academic/industry sources only; no duplication of Gorai textbook cases (Indonesian coal LPP, Indian iron-ore MILP, copper-cobalt DP, conveyor reliability, shovel-truck queuing, African non-linear scheduling).</li>
+    <li><strong>Cloneability (1–5):</strong> How readily the case becomes a polished Angular+Firebase portfolio module using synthetic CSV/GeoJSON and Web Workers — not whether the original authors used that stack.</li>
+    <li><strong>Theme tags:</strong> Primary theme first; secondary where the case spans domains (see <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>).</li>
+    <li><strong>Research date:</strong> May 2026 web/literature search; URLs verified at authoring time. Case #05 is industry practice (not peer-reviewed); labelled accordingly in detail.</li>
+  </ul>
+
+  <h2>Summary catalog</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Case (short title)</th>
+        <th>Theme(s)</th>
+        <th>OR method</th>
+        <th>Clone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>01</td><td>Peru copper fleet DES</td><td>T2, T5</td><td>DES (Arena), fleet sizing</td><td>5</td></tr>
+      <tr><td>02</td><td>Iron-ore IPCC vs truck DES</td><td>T2, T4</td><td>SimPy DES, scenario analysis</td><td>5</td></tr>
+      <tr><td>03</td><td>Haulage KPI alert + DES</td><td>T2, T3</td><td>DES + KPI alert system</td><td>5</td></tr>
+      <tr><td>04</td><td>Proactive mine-to-mill reconciliation</td><td>T3</td><td>Reconciliation KPI matrices</td><td>5</td></tr>
+      <tr><td>05</td><td>Mine-to-mill control charts</td><td>T3</td><td>SPC / rolling-average TARPs</td><td>5</td></tr>
+      <tr><td>06</td><td>MIP truck dispatch + pit DES</td><td>T1, T2</td><td>MIP heuristic + DES validation</td><td>4</td></tr>
+      <tr><td>07</td><td>Sungun copper real-time dispatch</td><td>T1, T2</td><td>Multi-objective MILP + DES</td><td>4</td></tr>
+      <tr><td>08</td><td>Bauxite IPCC vs load-and-haul</td><td>T4</td><td>Life-cycle cost comparison</td><td>4</td></tr>
+      <tr><td>09</td><td>Equipment selection + replacement SLP</td><td>T5</td><td>Stochastic linear programming</td><td>4</td></tr>
+      <tr><td>10</td><td>Probabilistic closure liability</td><td>T6</td><td>Monte Carlo + component options</td><td>4</td></tr>
+      <tr><td>11</td><td>Closure decision tree + Monte Carlo</td><td>T6</td><td>Decision tree, exceedance curves</td><td>4</td></tr>
+      <tr><td>12</td><td>CADSIM dragline strip planning</td><td>T1, T2</td><td>Dragline simulation (CADSIM)</td><td>4</td></tr>
+      <tr><td>13</td><td>Three-stage truck dispatch (network LP)</td><td>T1</td><td>Shortest path + LP + DP</td><td>3</td></tr>
+      <tr><td>14</td><td>Holingol autonomous coal truck MILP</td><td>T1</td><td>MILP, branch-and-price</td><td>3</td></tr>
+      <tr><td>15</td><td>OP–UG transition (integer programming)</td><td>T4</td><td>IP pit outline + crown pillar</td><td>3</td></tr>
+      <tr><td>16</td><td>Stochastic OP–UG transition depth</td><td>T4, T5</td><td>Two-stage SIP scheduling</td><td>2</td></tr>
+      <tr><td>17</td><td>Joint stochastic fleet + short-term schedule</td><td>T1, T5</td><td>Simulated annealing, mining complex</td><td>2</td></tr>
+      <tr><td>18</td><td>Kiruna underground MILP aggregation</td><td>T1</td><td>MILP + time aggregation heuristic</td><td>2</td></tr>
+      <tr><td>19</td><td>US gold mine stochastic RCPSP</td><td>T1, T5</td><td>Stochastic IP, tactical scheduling</td><td>2</td></tr>
+      <tr><td>20</td><td>Potash block selection MILP</td><td>T1</td><td>MILP + constructive heuristic</td><td>3</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Theme coverage</h2>
+  <p class="meta">Counts are unique cases per theme (multi-tagged cases appear once per theme).</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Theme</th>
+        <th>Cases (count)</th>
+        <th>Best clone candidates</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="tag">T1</span> Scheduling &amp; sequencing</td><td>9</td><td>#06 dispatch heuristic (toy LP); #12 dragline blocks</td></tr>
+      <tr><td><span class="tag">T2</span> DES/ABS simulation</td><td>6</td><td>#01 Peru fleet; #02 IPCC DES; #03 KPI alerts</td></tr>
+      <tr><td><span class="tag">T3</span> Reconciliation &amp; spatial KPIs</td><td>3</td><td>#04 proactive reconciliation; #05 control charts</td></tr>
+      <tr><td><span class="tag">T4</span> Techno-economic trade-offs</td><td>4</td><td>#02 IPCC scenarios; #08 bauxite LCC; #15 OP–UG</td></tr>
+      <tr><td><span class="tag">T5</span> Forecasting / MDP / capacity</td><td>5</td><td>#09 equipment SLP; #01 fleet sizing</td></tr>
+      <tr><td><span class="tag">T6</span> Closure liability &amp; risk finance</td><td>2</td><td>#10 Monte Carlo closure; #11 decision-tree exceedance</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Case studies (detail)</h2>
+
+  <h3>01 — Peru open-pit copper fleet DES <span class="tag">T2</span> <span class="tag">T5</span> · Clone 5</h3>
+  <p>
+    <strong>Source:</strong> Huayanca, Bujaico &amp; Delgado, <em>Appl. Sci.</em> 2023 —
+    <a href="https://www.mdpi.com/2076-3417/13/7/4093">MDPI</a>.
+    Stochastic DES (Arena) calibrates a 1-day operation then scales to annual plan for a 4500&nbsp;m Peru copper mine
+    expanding from 100&nbsp;kt/d to 140&nbsp;kt/d; DES required more trucks and longer queues vs deterministic planning.
+  </p>
+  <p><strong>Portfolio hook:</strong> Flagship T2 Worker DES — queue charts, fleet count slider, deterministic vs stochastic toggle.</p>
+
+  <h3>02 — Iron-ore IPCC vs truck-shovel DES <span class="tag">T2</span> <span class="tag">T4</span> · Clone 5</h3>
+  <p>
+    <strong>Source:</strong> Zamani et al., APCOM 2024 —
+    <a href="https://sites.ualberta.ca/MOL/DataFiles/2024_Papers/205_Zamani.pdf">U Alberta MOL</a>.
+    SimPy DES of truck-shovel, IPCC, and OPCC scenarios on an active iron-ore pit; validated against operational data;
+    scenario panel compares OPEX, throughput, and timeline.
+  </p>
+  <p><strong>Portfolio hook:</strong> Combined T2+T4 module — scenario switcher + cost waterfall chart (PR-04 WSM fork for method selection).</p>
+
+  <h3>03 — Haulage cycle KPI alert + DES <span class="tag">T2</span> <span class="tag">T3</span> · Clone 5</h3>
+  <p>
+    <strong>Source:</strong> Coronado &amp; Tenorio (2015), SME/APCOM; extended in Fahl (2023) —
+    <a href="https://sites.ualberta.ca/MOL/DataFiles/2023_Papers/204_Fahl_Benefits%20of%20DES%20in%20Modeling%20Mining%20Processes.pdf">MOL paper</a>;
+    Arizona mine thesis —
+    <a href="https://repository.arizona.edu/bitstream/handle/10150/321594/azu_etd_13322_sip1_m.pdf">UA repository</a>.
+    Context-based alert system flags sub-standard load-haul-dump cycles; Arena DES compares As-Is vs To-Be routes.
+  </p>
+  <p><strong>Portfolio hook:</strong> Bridges T2 simulation with T3 KPI dashboard — cycle-time heatmap + alert thresholds.</p>
+
+  <h3>04 — Proactive mine-to-mill reconciliation (Brazil) <span class="tag">T3</span> · Clone 5</h3>
+  <p>
+    <strong>Source:</strong> Campos et al., <em>J. Rock Mech. Geotech. Eng.</em> 2017 —
+    <a href="https://www.sciencedirect.com/science/article/pii/S2095268617304895">ScienceDirect</a>.
+    Copper/gold operation monitors reconciliation indicators (PR, MR, etc.) as KPIs; quarterly matrices feed LOM forecasts.
+  </p>
+  <p><strong>Portfolio hook:</strong> Chart.js reconciliation matrix + stage-to-stage variance table; synthetic tonnage/grade CSV.</p>
+
+  <h3>05 — Mine-to-mill control charts &amp; TARPs <span class="tag">T3</span> · Clone 5</h3>
+  <p>
+    <strong>Source:</strong> Appian Capital Advisory industry note —
+    <a href="https://appiancapitaladvisory.com/insights-mine-to-mill-reconciliation/">Appian insights</a>.
+    Three-month weighted rolling averages and control charts distinguish noise from actionable variance; trigger action response plans (TARPs).
+  </p>
+  <p><strong>Portfolio hook:</strong> Lightweight SPC dashboard — no pit optimiser required; strong Ukwazi site-services narrative.</p>
+
+  <h3>06 — MIP truck dispatch validated by pit DES <span class="tag">T1</span> <span class="tag">T2</span> · Clone 4</h3>
+  <p>
+    <strong>Source:</strong> Smith, Linderoth &amp; Luedtke (2020) —
+    <a href="https://optimization-online.org/wp-content/uploads/2020/02/7646.pdf">Optimization Online</a>.
+    Nonlinear flow-rate policy vs rolling-horizon MIP dispatch; full DES output analysis shows MIP policy consistently beats average-flow heuristics.
+  </p>
+  <p><strong>Portfolio hook:</strong> Toy dispatch grid + Worker DES replay; pre-compute MIP results for large instances (PR-04 anti-pattern guard).</p>
+
+  <h3>07 — Sungun copper real-time multi-objective dispatch <span class="tag">T1</span> <span class="tag">T2</span> · Clone 4</h3>
+  <p>
+    <strong>Source:</strong> Mohtasham et al., <em>Optim. Eng.</em> 2022 —
+    <a href="https://link.springer.com/article/10.1007/s11081-022-09780-x">Springer</a>.
+    Two-stage allocation planning + dynamic truck assignment; DES of Iranian copper mine benchmarks heuristics vs multi-objective model.
+  </p>
+  <p><strong>Portfolio hook:</strong> Dispatch rule comparator UI; map shovel/dump nodes on simplified pit graph.</p>
+
+  <h3>08 — Bauxite semi-mobile IPCC vs truck haulage <span class="tag">T4</span> · Clone 4</h3>
+  <p>
+    <strong>Source:</strong> Ben-Awuah &amp; Hosseini, APCOM 2017 (MOL) —
+    <a href="https://sites.ualberta.ca/MOL/DataFiles/2017_Papers/202_An%20economic%20evaluation%20of%20a%20primary%20haulage%20system%20for%20a%20Bauxite%20mine%20load%20and%20haul%20versus%20in-pit%20crushing%20and%20conveying%20%20.pdf">U Alberta MOL</a>.
+    47-year mine life; IPCC cuts life-of-mine haulage cost ~60%, ~$1.33/t saving vs truck-shovel despite higher CAPEX.
+  </p>
+  <p><strong>Portfolio hook:</strong> NPV/LCC calculator with CAPEX/OPEX sliders — ideal WSM-style T4 demo per PR-04.</p>
+
+  <h3>09 — Loader/truck selection + replacement SLP <span class="tag">T5</span> · Clone 4</h3>
+  <p>
+    <strong>Source:</strong> Albor &amp; Fioroni, <em>Int. J. Mining Sci. Technol.</em> 2014 —
+    <a href="https://dsp.tecnalia.com/items/20f37281-ca29-4528-b515-7fd0ec5e6af0/full">Tecnalia repository</a>.
+    Stochastic LP integrates fleet selection and replacement under stochastic production-rate constraint; robust vs deterministic solutions.
+  </p>
+  <p><strong>Portfolio hook:</strong> Fleet mix table + scenario tree for availability; aligns with CV MDP/T5 proof (PR-03).</p>
+
+  <h3>10 — Probabilistic closure liability framework <span class="tag">T6</span> · Clone 4</h3>
+  <p>
+    <strong>Source:</strong> Botes, ACG Mine Closure 2024 —
+    <a href="https://papers.acg.uwa.edu.au/d/2515_29_Botes/29_Botes.pdf">ACG papers</a>.
+    Monte Carlo over closure actions/components with probability-weighted options; outputs cost distribution not single-point estimate.
+  </p>
+  <p><strong>Portfolio hook:</strong> Scenario histogram + exceedance curve; component toggle panel — no spatial pit model needed.</p>
+
+  <h3>11 — Closure decision tree + Monte Carlo exceedance <span class="tag">T6</span> · Clone 4</h3>
+  <p>
+    <strong>Source:</strong> Errington &amp; Scott, CIM/MEND closure costing —
+    <a href="https://open.library.ubc.ca/media/stream/pdf/59368/1.0107717/1">UBC library</a>.
+    Decision tree over closure element combinations; Monte Carlo on individual scenarios; 90% confidence cost vs most-likely case illustrated for high/low risk sites.
+  </p>
+  <p><strong>Portfolio hook:</strong> Tree visualisation + cost-probability chart; pairs with T6 gap noted in PR-03.</p>
+
+  <h3>12 — CADSIM dragline strip-mine planning <span class="tag">T1</span> <span class="tag">T2</span> · Clone 4</h3>
+  <p>
+    <strong>Source:</strong> CADSIM dragline simulation study, Australian coal strip mining —
+    <a href="https://www.academia.edu/100388845/A_dragline_simulation_model_for_strip_mine_design_and_development">Academia</a>.
+    CADSIM integrates geology into dragline method/layout/pit geometry selection; case studies show strip-ratio sensitivity to haul-road width and bench design.
+  </p>
+  <p><strong>Portfolio hook:</strong> Strip block schedule + dragline cycle DES; aligns with Ukwazi coal/phosphate strip context (anchor §5).</p>
+
+  <h3>13 — Three-stage truck dispatch (network LP + DP) <span class="tag">T1</span> · Clone 3</h3>
+  <p>
+    <strong>Source:</strong> Yang et al., <em>J. Applied Mathematics</em> 2015 (extends White &amp; Olson) —
+    <a href="https://onlinelibrary.wiley.com/doi/10.1155/2015/745378">Wiley</a>.
+    Shortest paths → material-flow LP → truck assignment DP; reported 10–20% productivity gains in literature benchmarks.
+  </p>
+  <p><strong>Portfolio hook:</strong> Small pit network graph; stage outputs as educational pipeline — MIP size limits clone score.</p>
+
+  <h3>14 — Holingol autonomous coal truck MILP <span class="tag">T1</span> · Clone 3</h3>
+  <p>
+    <strong>Source:</strong> Li et al., <em>Front. Eng. Manag.</em> 2025 —
+    <a href="https://journal.hep.com.cn/fem/EN/10.1007/s42524-025-4205-0">HEP journal</a>.
+    Branch-and-price MILP for autonomous haulage with coal blending/calorific balance; real Inner Mongolia mine data.
+  </p>
+  <p><strong>Portfolio hook:</strong> Blending constraint story strong for interviews; exact solver needs Cloud Function or pre-baked solutions.</p>
+
+  <h3>15 — OP–UG transition depth (integer programming) <span class="tag">T4</span> · Clone 3</h3>
+  <p>
+    <strong>Source:</strong> Ataee-Pour et al., <em>J. S. Afr. Inst. Min. Metall.</em> 2016 —
+    <a href="http://www.scielo.org.za/scielo.php?pid=S2225-62532016000800016&script=sci_arttext">SCIELO SA</a>.
+    IP on 3D gold deposit selects transition level (e.g. level 7, 140&nbsp;m) beating traditional stripping-ratio rule; crown-pillar levels enforced.
+  </p>
+  <p><strong>Portfolio hook:</strong> 2D level cross-section + NPV by transition depth chart; relevant SA mining literature (feeds PR-09).</p>
+
+  <h3>16 — Stochastic OP–UG transition scheduling <span class="tag">T4</span> <span class="tag">T5</span> · Clone 2</h3>
+  <p>
+    <strong>Source:</strong> De La Vergne, <em>Optim. Eng.</em> 2017 —
+    <a href="https://link.springer.com/article/10.1007/s11081-017-9361-6">Springer</a>.
+    Two-stage SIP generates OP and UG schedules per candidate transition depth under geological uncertainty; picks depth maximising combined NPV.
+  </p>
+  <p><strong>Portfolio hook:</strong> Conceptual scenario explorer only unless PR-07b synthetic block models supplied.</p>
+
+  <h3>17 — Joint stochastic short-term schedule + fleet management <span class="tag">T1</span> <span class="tag">T5</span> · Clone 2</h3>
+  <p>
+    <strong>Source:</strong> Goodfellow &amp; Dimitrakopoulos, <em>Optim. Eng.</em> 2020 —
+    <a href="https://link.springer.com/article/10.1007/s11081-020-09495-x">Springer</a>.
+    Simultaneous shovel relocation, heterogeneous truck assignment, and multi-destination material routing for a gold mining complex under equipment uncertainty.
+  </p>
+  <p><strong>Portfolio hook:</strong> Method reference for PR-17/Gorai contrast; full model too large for browser demo.</p>
+
+  <h3>18 — Kiruna iron-ore underground MILP aggregation <span class="tag">T1</span> · Clone 2</h3>
+  <p>
+    <strong>Source:</strong> Newman et al., <em>EJOR</em> 2007 —
+    <a href="https://www.sciencedirect.com/science/article/abs/pii/S0377221705007058">ScienceDirect</a>.
+    Machine-placement start-time MILP with time-period aggregation heuristic; Swedish Kiruna mine instances.
+  </p>
+  <p><strong>Portfolio hook:</strong> UG ring/place timeline UI possible; solver backend required for credibility.</p>
+
+  <h3>19 — US gold mine stochastic RCPSP <span class="tag">T1</span> <span class="tag">T5</span> · Clone 2</h3>
+  <p>
+    <strong>Source:</strong> Nesbitt et al., <em>EJOR</em> 2021 —
+    <a href="https://mgoycool.github.io/papers/21nesbitt_ejor.pdf">author PDF</a>.
+    Stochastic IP on ~15.7k UG activities (1.8&nbsp;Mt/a, 370&nbsp;koz Au); duration/value uncertainty; tactical vs deterministic RCPSP gap.
+  </p>
+  <p><strong>Portfolio hook:</strong> Small RCPSP toy in Worker feasible; full case needs cloud MIP — partial clone only.</p>
+
+  <h3>20 — Potash block selection &amp; sequencing MILP <span class="tag">T1</span> · Clone 3</h3>
+  <p>
+    <strong>Source:</strong> Schmidt et al., <em>Math. Prog. Comp.</em> 2021 —
+    <a href="https://link.springer.com/article/10.1007/s00291-021-00618-z">Springer</a>.
+    Quality-target deviation minimisation for flat-bedded UG potash; MILP + constructive heuristic (+92.5% improvement on hard instances).
+  </p>
+  <p><strong>Portfolio hook:</strong> Quality-band scheduling grid — medium-size MILP; synthetic block model from PR-07b could help.</p>
+
+  <h2>Top cloneable cases (ranked)</h2>
+  <ol>
+    <li><strong>#01 Peru copper DES</strong> — Pure T2 flagship; Arena methodology maps 1:1 to PR-04 Worker DES pattern.</li>
+    <li><strong>#02 Iron-ore IPCC DES</strong> — SimPy/open-source precedent; dual T2+T4 story for Ukwazi feasibility work.</li>
+    <li><strong>#03 Haulage KPI + DES</strong> — Unique T2+T3 bridge; alert dashboard differentiates from generic OR demos.</li>
+    <li><strong>#04–#05 Reconciliation KPIs</strong> — Highest T3 credibility; fills PR-03 CV gap with low implementation cost.</li>
+    <li><strong>#08 Bauxite IPCC LCC</strong> — Best T4 WSM-style trade-off without Whittle integration.</li>
+  </ol>
+
+  <h2>Gaps signalled for later PRs</h2>
+  <ul>
+    <li><strong>T6 depth:</strong> Only two closure cases — PR-09 SA context and PR-13 Natural Resources Handbook may add regional liability examples.</li>
+    <li><strong>T1 credibility:</strong> Most scheduling cases need MIP backend or toy instances; PR-07b synthetic pit graphs essential.</li>
+    <li><strong>Gorai overlap:</strong> Queuing/dispatch cases here complement but do not replace PR-17 Gorai shovel-truck chapter.</li>
+  </ul>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard</h3>
+    <p class="meta">Artifact-level scores for this research doc (not per-case clone ratings). See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score (1–5)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukwazi fit (T1–T6)</td>
+          <td>5</td>
+          <td>All six themes represented; T2/T3/T4 have ≥3 external cases each; T6 thin but present.</td>
+        </tr>
+        <tr>
+          <td>CV proof</td>
+          <td>3</td>
+          <td>Cases validate domain vocabulary; CV does not yet demonstrate mining-framed demos (PR-03 baseline).</td>
+        </tr>
+        <tr>
+          <td>Angular+Firebase fit</td>
+          <td>4</td>
+          <td>Twelve cases score clone ≥4 (#01–#12); DES/reconciliation/IPCC LCC align with PR-04 stack rows.</td>
+        </tr>
+        <tr>
+          <td>Data feasibility</td>
+          <td>3</td>
+          <td>Most papers use proprietary mine data; synthetic generators required (PR-07, PR-07b).</td>
+        </tr>
+        <tr>
+          <td>Differentiation</td>
+          <td>5</td>
+          <td>Mining-specific citations vs generic OR portfolio; KPI reconciliation + IPCC + DES uncommon in dev CVs.</td>
+        </tr>
+        <tr>
+          <td>Effort</td>
+          <td>M</td>
+          <td>Catalog complete; implementing top-5 clones is separate PR-19/20 scope.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Suggested Angular+Firebase sketch</h3>
+    <p>
+      Add a <code>/learn/mining-or</code> lazy route group mirroring PR-04 integraldecision pattern: a
+      <code>cases-catalog</code> Firestore-backed card menu listing the 20 cases with theme badges and clone scores.
+      Ship three starter modules first — <code>haulage-des</code> (#01 Peru parameters in
+      <code>scenarios/{id}</code>), <code>reconciliation-dashboard</code> (#04/#05 synthetic monthly KPI series in
+      <code>reconRuns</code>), and <code>ipcc-tradeoff</code> (#08 LCC inputs in <code>tradeoffCases</code>).
+      Each module runs its kernel in a Web Worker (DES event loop, SPC calculations, NPV summation); Firestore stores
+      only scenario metadata and anonymised results JSON, not raw event logs. Link each card to the external DOI/PDF in
+      a collapsible reference panel for interview credibility.
+    </p>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-05.md</code> ·
+    Registry row: <code>index.html#pr-05</code>
+  </footer>
+</body>
+</html>

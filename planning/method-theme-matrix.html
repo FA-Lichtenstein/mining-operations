@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Method ↔ Theme Matrix — Portfolio Research</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2c5f2d;
+      --border: #ddd;
+      --bg-soft: #f7f9f7;
+      --highlight: #eef6ee;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h2 {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.25rem;
+    }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    p, li { font-size: 0.95rem; }
+    .meta {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+    .lead {
+      font-size: 1.02rem;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--accent);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
+    li { margin-bottom: 0.35rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 1rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--bg-soft); font-weight: 600; }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+      margin-right: 0.35rem;
+    }
+    .matrix-compact { font-size: 0.78rem; }
+    .matrix-compact th, .matrix-compact td { padding: 0.35rem 0.45rem; }
+    .matrix-compact th:not(:first-child),
+    .matrix-compact td:not(:first-child) { text-align: center; min-width: 6.5rem; }
+    .matrix-compact td:first-child { min-width: 11rem; font-weight: 500; }
+    .matrix-compact td.cell-strong { background: var(--highlight); }
+    .matrix-compact td.cell-cv { background: #faf8f0; font-size: 0.76rem; text-align: left; }
+    .cite { display: block; margin-bottom: 0.2rem; line-height: 1.35; }
+    .cite:last-child { margin-bottom: 0; }
+    .domain-row td:first-child { font-style: italic; color: var(--muted); }
+    .portfolio-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+      margin-top: 0.75rem;
+    }
+    .portfolio-box h3 { margin-top: 0; color: var(--accent); }
+    a { color: var(--accent); }
+    code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.85em;
+      background: var(--bg-soft);
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <h1>Method ↔ Theme Matrix</h1>
+  <p class="meta">
+    Task ID: PR-18 · Date: 2026-05-27 ·
+    Upstream deps: <a href="index.html#pr-02">PR-02</a>,
+    <a href="index.html#pr-03">PR-03</a>–<a href="index.html#pr-09">PR-09</a>,
+    <a href="index.html#pr-07b">PR-07b</a>,
+    <a href="index.html#pr-10">PR-10</a>–<a href="index.html#pr-17">PR-17</a> ·
+    Anchor: <a href="ukwazi-services-summary.html">ukwazi-services-summary.html</a> §5 ·
+    Themes: <a href="_handover/theme-taxonomy.md">T1–T6 taxonomy</a>
+  </p>
+
+  <p class="lead">
+    Cross-reference of OR methods and three domain lenses (haulage, reconciliation, closure) against Ukwazi portfolio themes T1–T6,
+    with CV demonstrability from <a href="cv-ukwazi-alignment.html">PR-03</a>.
+    Every cell cites an existing Wave 1/2 HTML doc and chapter or section — no invented references.
+    <strong>Strongest T1/T2 scheduling and simulation evidence</strong> concentrates in
+    <a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai &amp; Chatterjee 2022</a> (Ch 5 MIP, Ch 10 queuing)
+    and <a href="source-natural-resources-handbook-2007.html">Natural Resources Handbook 2007</a> (Ch 29–31 MILP, Ch 30 conditional simulation).
+    Highlighted cells (green tint) mark flagship method–theme pairings for PR-19 shortlisting.
+  </p>
+
+  <h2>1. Matrix legend</h2>
+  <ul>
+    <li><strong>Columns T1–T6:</strong> Definitions from <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a> / anchor §5.</li>
+    <li><strong>Column CV:</strong> CV proof score (1–5) and evidence pointer from <a href="cv-ukwazi-alignment.html">cv-ukwazi-alignment.html</a>; not a theme but a portfolio feasibility gate.</li>
+    <li><strong>Cell content:</strong> Linked source doc + chapter/section anchor. Multiple cites separated by line breaks; first cite is primary for that cell.</li>
+    <li><strong>Domain rows</strong> (haulage, reconciliation, closure): aggregate domain vocabulary and KPI sources across methods — not a single OR technique.</li>
+    <li><strong>Wave 1</strong> docs supply external cases (<a href="mining-or-real-world-examples.html">PR-05</a>), UI patterns (<a href="or-portfolio-examples.html">PR-06</a>), stack constraints (<a href="angular-firebase-or-stack.html">PR-04</a>), open-data anchors (<a href="open-data-apis-mining.html">PR-07</a>/<a href="synthetic-data-generator-spec.html">PR-07b</a>), planning vocabulary (<a href="mine-planning-software-landscape.html">PR-08</a>), and SA context (<a href="sa-mining-context.html">PR-09</a>); <strong>Wave 2</strong> supply textbook method depth.</li>
+  </ul>
+
+  <h2>2. Method ↔ theme matrix</h2>
+  <p class="meta">Scroll horizontally on narrow viewports. Green cells = strongest pairings (composite ≥ 3.5 in source scorecards or explicit flagship seed in PR-13/PR-17).</p>
+
+  <table class="matrix-compact">
+    <thead>
+      <tr>
+        <th>Row</th>
+        <th><span class="tag">T1</span><br>Scheduling</th>
+        <th><span class="tag">T2</span><br>DES/sim</th>
+        <th><span class="tag">T3</span><br>Reconciliation</th>
+        <th><span class="tag">T4</span><br>Trade-offs</th>
+        <th><span class="tag">T5</span><br>MDP/capacity</th>
+        <th><span class="tag">T6</span><br>Closure/risk</th>
+        <th>CV evidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Linear programming (LP)</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 3.6 — coal seam allocation (US$435k/day)</span>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 3.1–3.4 — product mix</span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 3.4 — Swift 45-model scheduling</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 2 — OR honours framing only (<a href="cv-ukwazi-alignment.html">PR-03</a> T4)</td>
+      </tr>
+      <tr>
+        <td>Transportation &amp; assignment</td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #13 — three-stage dispatch (LP+DP)</span>
+        </td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 4.5 — iron-ore face→plant network (US$596,650/day)</span>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 9.1 — transportation problem</span>
+        </td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 4.5 — multi-echelon routing</span>
+        </td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-cv">Score 2 — no logistics CV (<a href="cv-ukwazi-alignment.html">PR-03</a>)</td>
+      </tr>
+      <tr>
+        <td>MIP / MILP production scheduling</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 5.4 — 49,603 blocks, NPV US$898M</span>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 29.4 — branch-and-cut ≥15% NPV</span>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 31 — Kiruna 69.6% deviation cut</span>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #06–07, #14, #18–20</span>
+          <span class="cite"><a href="mine-planning-software-landscape.html">PR-08</a> — period Gantt / tactical scheduler vocabulary</span>
+        </td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #06 — MIP dispatch + DES validation</span>
+        </td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 11.4 — MIQP schedule + stockpile (skim)</span>
+        </td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #09 — equipment SLP</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 2 — gym scheduling analog only (<a href="cv-ukwazi-alignment.html">PR-03</a> T1)</td>
+      </tr>
+      <tr>
+        <td>Branch-and-cut / Lagrangian</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 29.4 — ≥15% NPV gold; 68 pits / 16-yr iron ore</span>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 29.4 — Lagrangian within 5%</span>
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 5 App. — ZIMPL+CPLEX industrial solve path</span>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 12.6–12.8 — B&amp;B/cut</span>
+        </td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-cv">Score 2 — OR theory only (<a href="cv-ukwazi-alignment.html">PR-03</a>)</td>
+      </tr>
+      <tr>
+        <td>Dynamic programming (UPL / stope)</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 6.4–6.6 — 2-D/3-D UPL; Cu-Co 9.1 Mt @ 2.03%</span>
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 6.5 — block-caving stope boundary</span>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 29.3 — LGA / max-weight closure</span>
+        </td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 6.6 — pit limit before schedule (Seed C T1/T4)</span>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 29.3 — nested pushbacks</span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 11.3 — multi-stage DP</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 2 (<a href="cv-ukwazi-alignment.html">PR-03</a>)</td>
+      </tr>
+      <tr>
+        <td>CPM / PERT / crashing</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 7.3–7.4 — mine office Ex. 7.1; US$300k late penalty</span>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 10.8, 22.1–22.5 — Reliable Construction</span>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #12 — dragline strip planning</span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-sloan-mine-management-2012.html">Sloan</a> Ch 8 — PERT te = (a+4m+b)/6</span>
+        </td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 22.4 — deadline probability</span>
+        </td>
+        <td class="cell-cv">Score 2 — gym calendar analog (<a href="cv-ukwazi-alignment.html">PR-03</a> T1)</td>
+      </tr>
+      <tr>
+        <td>Network optimization (flows, paths)</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 10.3–10.6 — shortest path, max/min-cost flow</span>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #13 — network LP dispatch</span>
+          <span class="cite"><a href="or-portfolio-examples.html">PR-06</a> #01–03 — VRP/CVRP UI patterns</span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 10.5 — haul-road capacity arcs</span>
+        </td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 30.3.4–3.5 — Steiner decline networks</span>
+        </td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-cv">Score 2 (<a href="cv-ukwazi-alignment.html">PR-03</a>)</td>
+      </tr>
+      <tr>
+        <td>Queuing theory (M/M/s, finite population)</td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 10.6–10.8 — Odisha shovel-truck; 5 trucks optimal (η<sub>s</sub>=100%)</span>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 17.6, 17.10 — M/M/s fleet sizing</span>
+          <span class="cite"><a href="source-sme-mining-reference-handbook-2020.html">SME</a> Ch 12 Eq 12.27 — match factor N<sub>h</sub></span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-sme-mining-reference-handbook-2020.html">SME</a> Ch 12 — E = A×U bottleneck framing</span>
+        </td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 17.10 — minimise E(TC) staffing</span>
+          <span class="cite"><a href="source-mdp-practice-2017.html">MDP Practice</a> Ch 2.3 — M/M/s relative values</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 4–5 — DES/ABS profile, SIOPSA workshops (<a href="cv-ukwazi-alignment.html">PR-03</a> T2); queuing is analytic not DES</td>
+      </tr>
+      <tr>
+        <td>Discrete-event simulation (DES)</td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #12 — CADSIM dragline strip</span>
+        </td>
+        <td class="cell-strong">
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #01–03 — Peru fleet, IPCC DES, KPI alerts</span>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 20.1–20.2 — DES applications</span>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 7, 28 — LP+simulation coupling (transfer)</span>
+          <span class="cite"><a href="or-portfolio-examples.html">PR-06</a> #12–15 — SimPy/Streamlit patterns</span>
+          <span class="cite"><a href="angular-firebase-or-stack.html">PR-04</a> — Web Worker DES boundary (&lt;50 trucks)</span>
+        </td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #03 — cycle KPI alerts (T2+T3)</span>
+        </td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #02 — IPCC vs truck SimPy scenarios</span>
+        </td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #01 — stochastic vs deterministic fleet</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 5 — flagship CV proof (<a href="cv-ukwazi-alignment.html">PR-03</a> T2); integraldecision.com tutorials</td>
+      </tr>
+      <tr>
+        <td>Markov decision processes / ADP</td>
+        <td>
+          <span class="cite"><a href="source-mdp-practice-2017.html">MDP Practice</a> Ch 3.2 — nomadic trucker ADP dispatch</span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-mdp-practice-2017.html">MDP Practice</a> Ch 9 — ambulance dispatch (13% late reduction)</span>
+        </td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-mdp-practice-2017.html">MDP Practice</a> Ch 19 — flexible staffing MDP</span>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 19.1 — machine replacement MDP</span>
+          <span class="cite"><a href="cv-ukwazi-alignment.html">PR-03</a> — Honours nurse workforce MDP</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 5 — Honours MDP + forecasting (<a href="cv-ukwazi-alignment.html">PR-03</a> T5)</td>
+      </tr>
+      <tr>
+        <td>Metaheuristics (SA, GA, tabu)</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 29.4, 30.6 — GA/SA scheduling survey</span>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 14.2–14.4 — tabu, SA, GA</span>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #17 — SA fleet + schedule</span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 26.8.1 — ODF SA harvest (transfer)</span>
+        </td>
+        <td>—</td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #17 — joint stochastic fleet</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 3 — OR honours + computational workshops (<a href="cv-ukwazi-alignment.html">PR-03</a>)</td>
+      </tr>
+      <tr>
+        <td>Stochastic programming (two-stage)</td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #16–17, #19 — SIP / SA scheduling</span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 30.3.3 — conditional simulation stope risk</span>
+        </td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #16 — OP–UG transition SIP</span>
+        </td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 7.6 — stochastic recourse</span>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #09 — equipment SLP</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 4–5 — MDP/forecasting overlap (<a href="cv-ukwazi-alignment.html">PR-03</a> T5)</td>
+      </tr>
+      <tr>
+        <td>Forecasting &amp; aggregate planning (S&amp;OP)</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-reid-sanders-2023.html">Reid &amp; Sanders</a> Ch 13.1–13.3 — S&amp;OP level vs chase</span>
+        </td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="source-reid-sanders-2023.html">Reid &amp; Sanders</a> Ch 8.7 — tracking signal ±4</span>
+        </td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-reid-sanders-2023.html">Reid &amp; Sanders</a> Ch 8.1–8.4 — exponential smoothing, seasonality</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 5 — forecasting in core competencies (<a href="cv-ukwazi-alignment.html">PR-03</a> T5)</td>
+      </tr>
+      <tr>
+        <td>Statistical process control (SPC)</td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-reid-sanders-2023.html">Reid &amp; Sanders</a> Ch 6.5–6.8 — x̄-R, C<sub>pk</sub></span>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #05 — mine-to-mill control charts / TARPs</span>
+          <span class="cite"><a href="source-sme-mining-reference-handbook-2020.html">SME</a> Ch 9 — kriging standard error</span>
+        </td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-cv">Score 3 — Baobab dashboard pipeline (<a href="cv-ukwazi-alignment.html">PR-03</a> T3)</td>
+      </tr>
+      <tr>
+        <td>Conditional simulation (grade risk)</td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 30.3.3 — Floating Stope + Grieco case (Seed C)</span>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 30.3.1 — infill drilling stochastic sim</span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-sme-mining-reference-handbook-2020.html">SME</a> Ch 9 — grade confidence / kriging SE</span>
+        </td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 5.4 — deterministic kriged grades; stochastic follow-on cited</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 2 — no geostat CV (<a href="cv-ukwazi-alignment.html">PR-03</a>)</td>
+      </tr>
+      <tr>
+        <td>Monte Carlo / decision trees</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 16.1–16.8 — decision analysis</span>
+        </td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #10–11 — closure Monte Carlo + decision tree</span>
+          <span class="cite"><a href="source-dunbar-how-mining-works-2024.html">Dunbar</a> Ch 5 — ARD perpetual treatment NPV</span>
+          <span class="cite"><a href="source-sme-mining-reference-handbook-2020.html">SME</a> Ch 25 — bond phase release</span>
+        </td>
+        <td class="cell-cv">Score 1 — no closure finance on CV (<a href="cv-ukwazi-alignment.html">PR-03</a> T6)</td>
+      </tr>
+      <tr>
+        <td>Fixed-charge integer programming</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-hillier-2024.html">Hillier</a> Ch 12.3 — IPCC/truck activation gates</span>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #02, #08 — IPCC vs truck scenarios</span>
+          <span class="cite"><a href="source-dunbar-how-mining-works-2024.html">Dunbar</a> Ch 2 Table 2.4 — method cost/recovery matrix</span>
+        </td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 32.4.2.2 — water/energy binding limits</span>
+        </td>
+        <td class="cell-cv">Score 2 — decision analysis training only (<a href="cv-ukwazi-alignment.html">PR-03</a> T4)</td>
+      </tr>
+      <tr class="domain-row">
+        <td><em>Domain: haulage</em></td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #06–07 — dispatch MIP</span>
+        </td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 10.8 — shovel-truck queuing</span>
+          <span class="cite"><a href="source-sme-mining-reference-handbook-2020.html">SME</a> Ch 12–13 — match factor, stopping distance</span>
+          <span class="cite"><a href="source-dunbar-how-mining-works-2024.html">Dunbar</a> Ch 2 — mining cycle, truck fleets</span>
+          <span class="cite"><a href="sa-mining-context.html">PR-09</a> — iron-ore haul personas</span>
+        </td>
+        <td>
+          <span class="cite"><a href="source-sloan-mine-management-2012.html">Sloan</a> Ch 6 Table 6.4 — avail/util variance</span>
+        </td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #02, #08 — IPCC vs truck</span>
+        </td>
+        <td>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #01, #09 — fleet sizing</span>
+        </td>
+        <td>—</td>
+        <td class="cell-cv">Score 5 T2 DES; T1 gap remains (<a href="cv-ukwazi-alignment.html">PR-03</a>)</td>
+      </tr>
+      <tr class="domain-row">
+        <td><em>Domain: reconciliation</em></td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="source-sloan-mine-management-2012.html">Sloan</a> Ch 6 — flex budget, method/draw mix (Tables 6.5–6.6)</span>
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #04–05 — reconciliation KPIs, control charts</span>
+          <span class="cite"><a href="source-sme-mining-reference-handbook-2020.html">SME</a> Ch 9 Table 9.2 — due diligence checklist</span>
+          <span class="cite"><a href="source-dunbar-how-mining-works-2024.html">Dunbar</a> Ch 2 — dilution g×(1−d)</span>
+          <span class="cite"><a href="mine-planning-software-landscape.html">PR-08</a> — plan-vs-actual reconciliation loop</span>
+        </td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td class="cell-cv">Score 3 — Baobab audit pipeline (<a href="cv-ukwazi-alignment.html">PR-03</a> T3)</td>
+      </tr>
+      <tr class="domain-row">
+        <td><em>Domain: closure</em></td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>
+          <span class="cite"><a href="source-dunbar-how-mining-works-2024.html">Dunbar</a> Ch 5 — co-disposal, tailings forms</span>
+        </td>
+        <td>—</td>
+        <td class="cell-strong">
+          <span class="cite"><a href="mining-or-real-world-examples.html">PR-05</a> #10–11 — probabilistic closure liability</span>
+          <span class="cite"><a href="source-dunbar-how-mining-works-2024.html">Dunbar</a> Ch 5 — Equity Silver ARD ~US$2.065M/yr</span>
+          <span class="cite"><a href="source-sme-mining-reference-handbook-2020.html">SME</a> Ch 21, 24–25 — tailings, bonding, SMCRA phases</span>
+          <span class="cite"><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 29 — mine rehabilitation refs; Ch 32.4.2.2 water/energy</span>
+          <span class="cite"><a href="open-data-apis-mining.html">PR-07</a> — WRC Closure Atlas + Global Tailings T6 data package</span>
+        </td>
+        <td class="cell-cv">Score 1 — no closure modelling on CV (<a href="cv-ukwazi-alignment.html">PR-03</a> T6)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>3. Strongest method–theme pairings</h2>
+  <p>Ranked for PR-19 catalog ingestion. Composite scores from source scorecards where available; pairing strength = method depth × Ukwazi theme fit × CV feasibility.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Method × theme</th>
+        <th>Primary cite</th>
+        <th>Secondary cite</th>
+        <th>CV</th>
+        <th>Rationale</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>MIP scheduling × T1</strong></td>
+        <td><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 5.4 (composite 3.94)</td>
+        <td><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 31 Kiruna (3.86)</td>
+        <td>2 → demo must prove</td>
+        <td>Only pair with <em>two</em> in-book mine cases + published NPV/deviation metrics; open-pit (Gorai) + underground (Kiruna) breadth.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>DES haulage × T2</strong></td>
+        <td><a href="mining-or-real-world-examples.html">PR-05</a> #01 Peru fleet (clone 5)</td>
+        <td><a href="source-hillier-2024.html">Hillier</a> Ch 20.2 + <a href="or-portfolio-examples.html">PR-06</a> SimPy patterns</td>
+        <td>5</td>
+        <td>Strongest CV proof theme; external cases + UI patterns ready; pairs Gorai Ch 10 analytic queuing without duplicating.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>Queuing fleet sizing × T2</strong></td>
+        <td><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 10.8 (composite 3.93)</td>
+        <td><a href="source-sme-mining-reference-handbook-2020.html">SME</a> Ch 12 match factor</td>
+        <td>4–5</td>
+        <td>Field-data case (22 trucks deployed vs 5 optimal); fast browser demo via formulas + optional DES wrapper.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Reconciliation variance × T3</strong></td>
+        <td><a href="source-sloan-mine-management-2012.html">Sloan</a> Ch 6 flex budget (composite 4.32)</td>
+        <td><a href="mining-or-real-world-examples.html">PR-05</a> #04–05 KPI matrices</td>
+        <td>3</td>
+        <td>Mining-native MIS decomposition rare in OR texts; aligns Ukwazi site-services remit; Baobab pipeline is partial CV proof.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>MDP staffing × T5</strong></td>
+        <td><a href="source-mdp-practice-2017.html">MDP Practice</a> Ch 19 (composite 4.24)</td>
+        <td><a href="cv-ukwazi-alignment.html">PR-03</a> Honours nurse MDP</td>
+        <td>5</td>
+        <td>Direct CV structural match; reframe to contractor surge / core crew per Ch 19 flexible staffing.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>Branch-and-cut open-pit × T1</strong></td>
+        <td><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 29.4 (Seed B 3.55)</td>
+        <td><a href="source-gorai-chatterjee-optimization-mines-2022.html">Gorai</a> Ch 5 App. ZIMPL+CPLEX</td>
+        <td>2</td>
+        <td>Industrial deployment narrative (≥15% NPV); toy instance + citation anchor for interviews.</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><strong>Conditional simulation × T2/T5</strong></td>
+        <td><a href="source-natural-resources-handbook-2007.html">Handbook</a> Ch 30.3.3 (Seed C 3.78)</td>
+        <td><a href="synthetic-data-generator-spec.html">PR-07b</a> — block realisations</td>
+        <td>2</td>
+        <td>Stochastic grade-risk thread; complements deterministic Gorai Ch 5; simulation-first T2 anchor from handbook.</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><strong>IPCC fixed-charge × T4</strong></td>
+        <td><a href="mining-or-real-world-examples.html">PR-05</a> #02 IPCC DES (clone 5)</td>
+        <td><a href="source-hillier-2024.html">Hillier</a> Ch 12.3 fixed charge</td>
+        <td>2</td>
+        <td>Optional breadth pillar; WSM + scenario UI proven on integraldecision.com (<a href="or-portfolio-examples.html">PR-06</a> #18).</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><strong>Closure Monte Carlo × T6</strong></td>
+        <td><a href="mining-or-real-world-examples.html">PR-05</a> #10–11 (clone 4)</td>
+        <td><a href="source-dunbar-how-mining-works-2024.html">Dunbar</a> Ch 5 ARD costs</td>
+        <td>1</td>
+        <td>Domain vocabulary + external cases exist; CV gap largest — demo would be net-new proof.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Theme coverage summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Theme</th>
+        <th>Method rows with cites</th>
+        <th>Strongest method</th>
+        <th>CV proof</th>
+        <th>Gap note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag">T1</span></td>
+        <td>11 / 17 methods + haulage domain</td>
+        <td>MIP scheduling (Gorai Ch 5 + Handbook Ch 31)</td>
+        <td>2</td>
+        <td>Portfolio must demo mining constraints; CV has scheduling analog only.</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T2</span></td>
+        <td>10 / 17 methods + haulage domain</td>
+        <td>DES (PR-05) + queuing (Gorai Ch 10)</td>
+        <td>5</td>
+        <td>Lead theme for CV; mining entity re-skin required.</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T3</span></td>
+        <td>5 / 17 methods + reconciliation domain</td>
+        <td>Sloan Ch 6 variance + PR-05 reconciliation KPIs</td>
+        <td>3</td>
+        <td>Workflow proof exists; spatial/survey KPIs need synthetic data.</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T4</span></td>
+        <td>9 / 17 methods + closure domain</td>
+        <td>Fixed-charge IP + IPCC DES scenarios</td>
+        <td>2</td>
+        <td>Optional breadth; decision-analysis foundation only on CV.</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T5</span></td>
+        <td>10 / 17 methods</td>
+        <td>MDP flexible staffing (Ch 19) + forecasting (Reid Ch 8)</td>
+        <td>5</td>
+        <td>Strong Honours + forecasting proof; mining reframe straightforward.</td>
+      </tr>
+      <tr>
+        <td><span class="tag">T6</span></td>
+        <td>3 / 17 methods + closure domain</td>
+        <td>PR-05 closure Monte Carlo + Dunbar ARD</td>
+        <td>1</td>
+        <td>Research depth exceeds CV; optional breadth pillar.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5. PR-19 ingestion notes</h2>
+  <ul>
+    <li><strong>T1 pillar pair:</strong> Require Gorai Ch 5.4 + Handbook Ch 29.4 or Ch 31 citation fields on every T1 seed.</li>
+    <li><strong>T2 pillar pair:</strong> Lead with PR-05 DES clone; cite Gorai Ch 10.8 as analytic complement (not duplicate DES).</li>
+    <li><strong>T3 pillar:</strong> Sloan Ch 6 seeds A–C outscore generic SPC for mining differentiation.</li>
+    <li><strong>Composite gate:</strong> Per <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a>, keep seeds ≥ 3.5 with at least one T1–T6 pillar each.</li>
+    <li><strong>Suggested mix:</strong> One seed each from T1, T2, T3 + optional T4 or T6 — matches taxonomy north star.</li>
+  </ul>
+
+  <div class="portfolio-box">
+    <h3>Portfolio relevance scorecard</h3>
+    <p class="meta">See <a href="_handover/theme-taxonomy.md">theme-taxonomy.md</a> for T1–T6 definitions and composite formula.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score (1–5)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukwazi fit (T1–T6)</td>
+          <td>5</td>
+          <td>Directly maps anchor §5 themes to citeable methods; enforces T1+T2+T3 mix for PR-19.</td>
+        </tr>
+        <tr>
+          <td>CV proof</td>
+          <td>4</td>
+          <td>Matrix exposes T2/T5 strength and T1/T3/T6 demo gaps — input to honest PR-19 scoring.</td>
+        </tr>
+        <tr>
+          <td>Angular+Firebase fit</td>
+          <td>4</td>
+          <td>Pairings favour browser-feasible methods (DES, queuing, variance dashboards) over industrial MILP scale; see <a href="angular-firebase-or-stack.html">PR-04</a> Worker/Cloud Function boundaries.</td>
+        </tr>
+        <tr>
+          <td>Data feasibility</td>
+          <td>4</td>
+          <td>All cites trace to synthetic-data paths in <a href="synthetic-data-generator-spec.html">PR-07b</a> or open-data anchors in <a href="open-data-apis-mining.html">PR-07</a>; published numeric anchors for toy instances.</td>
+        </tr>
+        <tr>
+          <td>Differentiation</td>
+          <td>5</td>
+          <td>Gorai + Handbook mining-native cases vs generic OR portfolio demos.</td>
+        </tr>
+        <tr>
+          <td>Effort</td>
+          <td>M</td>
+          <td>Synthesis doc only; seeds inherit effort from source summaries.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="portfolio-box">
+    <h3>Suggested Angular+Firebase sketch</h3>
+    <p>
+      Read-only matrix route <code>/research/method-theme-matrix</code> with filter chips by theme (T1–T6) and row type (method vs domain).
+      Firestore collection <code>portfolioSeeds</code> documents keyed by seed ID store <code>methodRow</code>, <code>primaryTheme</code>,
+      <code>sourceCites[]</code> (doc slug + chapter), and <code>cvScore</code> — populated from this matrix in PR-19.
+      Clicking a green cell opens a slide-over with full cite list and links to source HTML summaries.
+      Optional heat-map view: rows × themes coloured by composite score from ingested seeds.
+    </p>
+  </div>
+
+  <footer>
+    Handover: see <code>sources/html/_handover/PR-18.md</code> ·
+    Registry row: <code>index.html#pr-18</code>
+  </footer>
+</body>
+</html>
