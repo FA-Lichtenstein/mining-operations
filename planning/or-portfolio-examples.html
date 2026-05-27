@@ -121,8 +121,9 @@
   </p>
 
   <p class="lead">
-    Eighteen external operations-research portfolio demos from GitHub, Kaggle, and consultancy platforms,
-    evaluated for UI patterns that transfer to a mining OR portfolio on Angular+Firebase (PR-04).
+    Eighteen external operations-research portfolio demos plus three Ukwazi visual references (#19–#21),
+    evaluated for UI patterns that transfer to a mining OR portfolio on Angular+Firebase
+    (<a href="angular-firebase-or-stack.html">PR-04</a>: dark workbench, D3 + ECharts only).
     Scope is cross-industry OR tooling and presentation — not mining case studies (see
     <a href="mining-or-real-world-examples.html">PR-05</a>) and not South African regulatory context
     (<a href="index.html#pr-09">PR-09</a>).
@@ -169,19 +170,22 @@
       <tr><td>15</td><td>OpenScienceNerd SimPy app template</td><td>GitHub</td><td>Call-centre DES</td><td>Streamlit</td><td>T2</td><td>5</td></tr>
       <tr><td>16</td><td>TSP routing app (Medium tutorial)</td><td>GitHub / article</td><td>TSP (Pyomo / OR-Tools)</td><td>Streamlit + Folium</td><td>T1</td><td>4</td></tr>
       <tr><td>17</td><td>Kaggle supply-chain gurobipy</td><td>Kaggle</td><td>LP / MIP supply chain</td><td>Jupyter notebook</td><td>T1</td><td>2</td></tr>
-      <tr><td>18</td><td>integraldecision.com (production OR portfolio)</td><td>Production</td><td>WSM, tutorials, DES patterns</td><td>Angular + Firebase</td><td>T2, T4</td><td>5</td></tr>
+      <tr><td>18</td><td>integraldecision.com (production OR portfolio)</td><td>Production</td><td>WSM, tutorials, DES patterns</td><td>Angular + Firebase</td><td>T2, T4</td><td>3</td></tr>
+      <tr><td>19</td><td>PHNX Foundry topology optimization</td><td><a href="https://topology-optimization-five.vercel.app/">Live</a></td><td>SIMP structural opt</td><td>Next.js + Recharts + WebGL</td><td>T1, T4</td><td>5</td></tr>
+      <tr><td>20</td><td>Aircraft Stability Visualiser</td><td><a href="https://simmeon.github.io/aircraft-stability/">Live</a></td><td>Linear stability / eigenmodes</td><td>Vanilla JS + canvas</td><td>T2, T5</td><td>5</td></tr>
+      <tr><td>21</td><td>Observable data-viz portfolio</td><td><a href="https://observablehq.com/@csdiehl/data-visualization-project-portfolio">Live</a></td><td>Gallery of notebooks</td><td>Observable / D3</td><td>All</td><td>4</td></tr>
     </tbody>
   </table>
 
   <h2>UI patterns — what works</h2>
   <p>
-    Patterns below appear repeatedly in high-rated examples (#01, #05–#07, #12–#15, #18) and align with
+    Patterns below appear repeatedly in high-rated examples (#01, #05–#07, #12–#15, #19–#20) and align with
     dashboard UX guidance on operational coherence, progressive disclosure, and scenario comparison
     (ThoughtSpot, UXPin, Pencil &amp; Paper, 2025–2026).
   </p>
 
   <div class="pattern-ok">
-    <p><strong>1. Learn / Decide route split</strong> — Tutorial route explains method; sibling Decide route runs the engine with user parameters and optional save. Proven on <a href="https://integraldecision.com/learn">integraldecision.com</a> (PR-04); maps to T2 haulage basics → fleet mix and T4 WSM method selection.</p>
+    <p><strong>1. Demo gallery → workbench or notebook</strong> — Home route lists runnable demos as cards (Observable portfolio pattern). Each card opens <code>/demo/:id</code> in either a four-panel workbench (live sims: D3 canvas + ECharts + controls) or a vertical notebook (narrative cells: prose, inputs, charts, maps). Mode set in catalog metadata (<a href="angular-firebase-or-stack.html">PR-04</a>).</p>
   </div>
   <div class="pattern-ok">
     <p><strong>2. Scenario picker + compare</strong> — Top-bar or sidebar dropdown switches scenarios; delta KPIs vs baseline highlighted. IBM <code>dse-do-dashboard</code> uses DB-backed scenario sets; PathMatrix and last-mile demos compare optimized vs heuristic routes with quantified savings.</p>
@@ -199,7 +203,7 @@
     <p><strong>6. Animated entity-flow for DES</strong> — Plotly animations of entities moving through queues (#12, #13 HSMA). Surfaces bottleneck buildup faster than static histograms; strongest T2 pattern for re-skinning to load–haul–dump cycles.</p>
   </div>
   <div class="pattern-ok">
-    <p><strong>7. Cards-menu demo catalog</strong> — Grid of titled cards with theme badges and deep links (integraldecision Learn index; PR-04 portable module). Scales to T1–T6 portfolio without one monolithic dashboard.</p>
+    <p><strong>7. Demo gallery catalog</strong> — Grid of titled cards with theme badges and deep links (Observable portfolio; PHNX Foundry landing brevity). <code>demos.json</code> drives cards; scales to T1–T6 without one monolithic dashboard.</p>
   </div>
   <div class="pattern-ok">
     <p><strong>8. Inverted-pyramid KPI layout</strong> — Critical metrics top (distance, cost, utilisation), trends middle, detail tables bottom. Project Atlas and PathMatrix follow this; avoids “metric soup” on first paint.</p>
@@ -211,16 +215,22 @@
     <p><strong>10. Algorithm transparency visualizations</strong> — optimax shows branch-and-bound trees, feasible regions, and stochastic scenario profit distributions; Horizon shows Jackson network diagrams and inventory saw-tooth plots. Teaching-grade visuals double as interview credibility for T5/T6.</p>
   </div>
   <div class="pattern-ok">
-    <p><strong>11. Schema-driven parameter panels</strong> — JSON/TypeScript config drives dynamic forms across demos (PR-04 ecosystem.Ai Workbench pattern). Reduces per-demo form boilerplate when shipping T1–T6 modules.</p>
+    <p><strong>11. Schema-driven parameter panels</strong> — JSON/TypeScript config drives dynamic forms in workbench panel A (<a href="angular-firebase-or-stack.html">PR-04</a>). Reduces per-demo form boilerplate when shipping T1–T6 modules.</p>
   </div>
   <div class="pattern-ok">
     <p><strong>12. Exportable results</strong> — PathMatrix Excel/HTML download; batch CSV experiment upload (OpenScienceNerd template). Lets reviewers reproduce runs offline — useful for Ukwazi-style site studies without live Firebase access.</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>13. Dark minimal + subtle gradient chrome</strong> — PHNX Foundry topology demo: near-black background, restrained accent, panel gradients, iteration KPI strip, collapsible “what to watch” explainer. Ukwazi default visual identity (<a href="angular-firebase-or-stack.html">PR-04</a>).</p>
+  </div>
+  <div class="pattern-ok">
+    <p><strong>14. Four-quadrant simulation layout</strong> — Aircraft Stability Visualiser: parameters + live response + diagnostic charts in one view. PR-04 formalises as panels A–D across all mining demos.</p>
   </div>
 
   <h2>UI patterns — what fails</h2>
 
   <div class="pattern-warn">
-    <p><strong>Notebook-only “portfolio”</strong> — Kaggle kernels (#17 gurobipy supply chain, DES Poisson tutorials) show code but no hosted interactive app. Interviewers cannot click through; fails the portfolio bar PR-04 sets for integraldecision-style demos.</p>
+    <p><strong>Notebook-only “portfolio”</strong> — Kaggle kernels (#17 gurobipy supply chain, DES Poisson tutorials) show code but no hosted interactive app. Interviewers cannot click through; fails the portfolio bar PR-04 sets for gallery + workbench demos.</p>
   </div>
   <div class="pattern-warn">
     <p><strong>Streamlit full-page rerun on every slider</strong> — Default Streamlit reruns entire script per interaction; long OR-Tools solves block UI unless isolated behind <code>st.form</code> + Run button or FastAPI backend (#01 PathMatrix split). PR-04 Workers + explicit Run avoid this in Angular.</p>
@@ -347,11 +357,32 @@
     Sidebar params, Run button, Plotly histograms, batch CSV upload — reference implementation for DES UX checklist.
   </p>
 
-  <h3>18 — integraldecision.com <span class="tag">T2</span> <span class="tag">T4</span> · Portable 5</h3>
+  <h3>18 — integraldecision.com <span class="tag">T2</span> <span class="tag">T4</span> · Portable 3</h3>
   <p>
-    <strong>Source:</strong> <a href="https://integraldecision.com/">integraldecision.com</a> (PR-02/PR-04 baseline).
-    Only production example in catalog already on Angular+Firebase; cards-menu, Learn/Decide split, WSM Decide route.
-    External Streamlit/Dash repos inform UX; this site is the stack anchor.
+    <strong>Source:</strong> <a href="https://integraldecision.com/">integraldecision.com</a> (PR-02 engineering baseline only).
+    Angular+Firebase proof on CV; Worker and scenario patterns are portable. Visual identity and tutorial-site chrome are
+    explicitly <em>not</em> copied — Ukwazi uses PHNX Foundry / Aircraft Stability references instead (<a href="angular-firebase-or-stack.html">PR-04</a>).
+  </p>
+
+  <h3>19 — PHNX Foundry topology optimization <span class="tag">T1</span> <span class="tag">T4</span> · Portable 5</h3>
+  <p>
+    <strong>Source:</strong> <a href="https://topology-optimization-five.vercel.app/">topology-optimization-five.vercel.app</a>.
+    Dark minimal chrome, subtle gradients, Run/Reset/compare, iteration KPI strip, collapsible method explainer — primary
+    Ukwazi visual reference. Recharts in original; Ukwazi maps equivalent charts to ngx-echarts.
+  </p>
+
+  <h3>20 — Aircraft Stability Visualiser <span class="tag">T2</span> <span class="tag">T5</span> · Portable 5</h3>
+  <p>
+    <strong>Source:</strong> <a href="https://simmeon.github.io/aircraft-stability/">simmeon.github.io/aircraft-stability</a>.
+    Four-quadrant layout: parameters, live response illustration, diagnostic charts, steady-state readouts. PR-04 workbench
+    panels A–D formalise this pattern for mining DES and MDP demos.
+  </p>
+
+  <h3>21 — Observable data-viz portfolio <span class="tag">All</span> · Portable 4</h3>
+  <p>
+    <strong>Source:</strong>
+    <a href="https://observablehq.com/@csdiehl/data-visualization-project-portfolio">@csdiehl/data-visualization-project-portfolio</a>.
+    Gallery index linking to live notebook artifacts — reference for Ukwazi <code>/</code> demo catalog (cards → workbench routes).
   </p>
 
   <h2>Consultancy platform patterns (reference only)</h2>
@@ -373,9 +404,9 @@
     </thead>
     <tbody>
       <tr><td><span class="tag">T1</span> Scheduling &amp; sequencing</td><td>Map + Gantt; scenario compare; schedule Gantt (IBM DO)</td><td>#01, #03, #07, #08, #16</td></tr>
-      <tr><td><span class="tag">T2</span> DES / simulation</td><td>Animated entity flow; replication slider; KPI alert banner</td><td>#06, #11, #12–#15, #18</td></tr>
+      <tr><td><span class="tag">T2</span> DES / simulation</td><td>Animated entity flow; four-panel workbench; KPI alert banner</td><td>#06, #11, #12–#15, #20</td></tr>
       <tr><td><span class="tag">T3</span> Reconciliation KPIs</td><td>Input/output table transparency; KPI pyramid; delta highlights</td><td>#07, #04 (Atlas KPI strip)</td></tr>
-      <tr><td><span class="tag">T4</span> Techno-economic trade-offs</td><td>Scenario toggles; WSM Decide route; what-if widgets</td><td>#05, #11, #18</td></tr>
+      <tr><td><span class="tag">T4</span> Techno-economic trade-offs</td><td>Scenario toggles; side-by-side compare; what-if widgets</td><td>#05, #11, #19</td></tr>
       <tr><td><span class="tag">T5</span> Capacity / MDP</td><td>Queue network diagrams; inventory saw-tooth; fleet sizing sliders</td><td>#06, #05 (stochastic module)</td></tr>
       <tr><td><span class="tag">T6</span> Closure / risk finance</td><td>Scenario distribution charts; exceedance curves (stochastic module)</td><td>#05 (two-stage stochastic viz)</td></tr>
     </tbody>
@@ -450,8 +481,8 @@
       Add a shared <code>features/portfolio-shell/</code> module: <code>/learn</code> cards-menu (theme badges T1–T6,
       clone score from PR-05) and reusable <code>ScenarioWorkbenchComponent</code> ported from IBM DO layout — left sidebar
       (Prepare inputs form from JSON schema), centre tabs (Map | Gantt | Charts | Output table), top scenario dropdown
-      with “Compare to baseline” toggle writing to Firestore <code>scenarios/{uid}/{demoId}</code>. Each OR demo lazy-loads
-      its Worker kernel on Run; results JSON and KPI deltas only persist to Firestore (not event logs). Include
+      with “Compare to baseline” toggle using in-session state and IndexedDB (JSON export per PR-04). Each OR demo lazy-loads
+      its Worker kernel on Run; KPI deltas persist locally, not to Firestore. Include
       <code>DesAnimationComponent</code> (Plotly-style canvas or SVG entity flow from #13) as optional T2 panel.
       Export CSV/PNG via client download for offline review. Cross-link external GitHub sources in a collapsible
       “Pattern reference” panel per demo for credibility without implying code reuse.

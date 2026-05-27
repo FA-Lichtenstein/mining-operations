@@ -259,7 +259,7 @@
   <dl>
     <dt>Seed A (queue DES)</dt>
     <dd>
-      Angular Material dashboard: sliders for λ, μ, fleet count s; Chart.js for L, W, utilisation. Web Worker runs M/M/s formulas and optional DES event engine (<a href="angular-firebase-or-stack.html">PR-04</a> DES row). Firestore stores scenario presets; Auth for demo user. Synthetic interarrival/service CSV from PR-07b.
+      Schema-driven workbench controls (panel A): sliders for λ, μ, fleet count s; ngx-echarts for L, W, utilisation. Web Worker runs M/M/s formulas and optional DES event engine (<a href="angular-firebase-or-stack.html">PR-04</a> DES row). Firestore stores scenario presets; Auth for demo user. Synthetic interarrival/service CSV from PR-07b.
     </dd>
     <dt>Seed B (network flow)</dt>
     <dd>
@@ -339,7 +339,7 @@
     parameter panel (arrival rate, mean load time, shovel count, cost rates from Ch 17.10),
     and dual-pane output (analytic M/M/s vs DES time-series). Firestore collections
     <code>scenarios/{id}</code>, <code>simRuns/{id}</code>; Auth optional.
-    All optimisation/simulation in <code>haul-queue.worker.ts</code>; Chart.js for L and W vs s curve (Fig 17.13 shape).
+    All optimisation/simulation in <code>haul-queue.worker.ts</code>; ngx-echarts for L and W vs s curve (Fig 17.13 shape).
     Offline-capable PWA shell; no Whittle/Deswik integration.
   </p>
 

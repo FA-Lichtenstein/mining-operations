@@ -251,7 +251,7 @@
   <dl>
     <dt>Seed A (forecast lab)</dt>
     <dd>
-      Angular Material: horizon selector, α slider, method dropdown. Web Worker runs smoothing loops and error metrics (<a href="angular-firebase-or-stack.html">PR-04</a>). Chart.js actual/forecast and tracking-signal band. Firestore <code>forecasts/{id}</code> stores parameters and backtest results; CSV import from PR-07b.
+      Schema-driven workbench controls (panel A): horizon selector, α slider, method dropdown. Web Worker runs smoothing loops and error metrics (<a href="angular-firebase-or-stack.html">PR-04</a>). ngx-echarts actual/forecast and tracking-signal band. Firestore <code>forecasts/{id}</code> stores parameters and backtest results; CSV import from PR-07b.
     </dd>
     <dt>Seed B (S&amp;OP simulator)</dt>
     <dd>
@@ -267,7 +267,7 @@
     </dd>
     <dt>Seed E (SPC chart)</dt>
     <dd>
-      Time-series input; Worker computes subgroup means, UCL/LCL, optional C<sub>pk</sub>; alert badges for out-of-control points. Links PR-09 reconciliation KPI labels in tooltips. Chart.js control chart; Firestore <code>spcRuns/{id}</code>.
+      Time-series input; Worker computes subgroup means, UCL/LCL, optional C<sub>pk</sub>; alert badges for out-of-control points. Links PR-09 reconciliation KPI labels in tooltips. ngx-echarts control chart; Firestore <code>spcRuns/{id}</code>.
     </dd>
   </dl>
 
@@ -300,7 +300,7 @@
       <tbody>
         <tr><td>Ukwazi fit (T5)</td><td>5</td><td>Forecasting is foundation for capacity and mine plan updates (Ch 8)</td></tr>
         <tr><td>CV proof</td><td>4</td><td>Time-series dashboards common on planning CVs</td></tr>
-        <tr><td>Angular+Firebase fit</td><td>5</td><td>Pure Worker math; Chart.js; no external solver</td></tr>
+        <tr><td>Angular+Firebase fit</td><td>5</td><td>Pure Worker math; ngx-echarts; no external solver</td></tr>
         <tr><td>Data feasibility</td><td>4</td><td>Synthetic tonnage series; public forecast examples for validation</td></tr>
         <tr><td>Differentiation</td><td>4</td><td>Tracking-signal governance story is stronger than generic MA demo</td></tr>
         <tr><td>Effort</td><td>M</td><td>Several methods + accuracy panel</td></tr>

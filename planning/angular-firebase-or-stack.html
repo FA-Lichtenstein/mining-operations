@@ -6,24 +6,38 @@
   <title>Angular+Firebase OR Stack — Portfolio Research</title>
   <style>
     :root {
-      --text: #1a1a1a;
-      --muted: #555;
-      --accent: #2c5f2d;
-      --border: #ddd;
-      --bg-soft: #f7f9f7;
-      --warn-bg: #fff8f0;
+      --bg: #0c0c0e;
+      --bg-elevated: #141418;
+      --bg-panel: #1a1a20;
+      --text: #ececee;
+      --muted: #8b8b95;
+      --accent: #7eb8da;
+      --accent-dim: #4a7a96;
+      --border: #2a2a32;
+      --gradient-subtle: linear-gradient(145deg, rgba(126, 184, 218, 0.08) 0%, rgba(255, 255, 255, 0.02) 45%, transparent 100%);
+      --gradient-panel: linear-gradient(180deg, #1e1e26 0%, #16161c 100%);
+      --warn-bg: rgba(196, 92, 0, 0.12);
       --warn-border: #c45c00;
     }
     * { box-sizing: border-box; }
     body {
-      font-family: "Segoe UI", system-ui, sans-serif;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
       line-height: 1.55;
       color: var(--text);
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(126, 184, 218, 0.06), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(255, 255, 255, 0.02), transparent);
       max-width: 52rem;
       margin: 0 auto;
       padding: 2rem 1.5rem 3rem;
     }
-    h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
     h2 {
       font-size: 1.2rem;
       margin-top: 2rem;
@@ -31,8 +45,9 @@
       color: var(--accent);
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.25rem;
+      font-weight: 600;
     }
-    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; color: var(--text); }
     p, li { font-size: 0.95rem; }
     .meta {
       color: var(--muted);
@@ -41,16 +56,19 @@
     }
     .lead {
       font-size: 1.02rem;
-      background: var(--bg-soft);
-      border-left: 4px solid var(--accent);
+      background: var(--gradient-panel);
+      background-image: var(--gradient-subtle), var(--gradient-panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-dim);
+      border-radius: 8px;
       padding: 0.85rem 1rem;
       margin: 1rem 0 1.5rem;
     }
     ul { padding-left: 1.25rem; margin: 0.4rem 0 0.8rem; }
     li { margin-bottom: 0.35rem; }
     dl { margin: 0.5rem 0; }
-    dt { font-weight: 600; margin-top: 0.6rem; }
-    dd { margin: 0.15rem 0 0.5rem 0; color: var(--text); }
+    dt { font-weight: 600; margin-top: 0.6rem; color: var(--text); }
+    dd { margin: 0.15rem 0 0.5rem 0; color: var(--muted); }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -63,7 +81,12 @@
       text-align: left;
       vertical-align: top;
     }
-    th { background: var(--bg-soft); font-weight: 600; }
+    th {
+      background: var(--bg-panel);
+      font-weight: 600;
+      color: var(--text);
+    }
+    tr:nth-child(even) td { background: rgba(255, 255, 255, 0.015); }
     .tag {
       display: inline-block;
       font-size: 0.75rem;
@@ -74,27 +97,79 @@
       margin-right: 0.35rem;
     }
     .portfolio-box {
-      background: #fff;
+      background: var(--gradient-panel);
+      background-image: var(--gradient-subtle), var(--gradient-panel);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 1rem 1.1rem;
       margin-top: 0.75rem;
     }
     .portfolio-box h3 { margin-top: 0; color: var(--accent); }
     .anti-pattern {
       background: var(--warn-bg);
-      border-left: 4px solid var(--warn-border);
+      border: 1px solid rgba(196, 92, 0, 0.35);
+      border-left: 3px solid var(--warn-border);
+      border-radius: 8px;
       padding: 0.85rem 1rem;
       margin: 1rem 0 1.5rem;
     }
     a { color: var(--accent); }
+    a:hover { color: #a8d4f0; }
     code {
       font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
       font-size: 0.85em;
-      background: var(--bg-soft);
-      padding: 0.1rem 0.3rem;
-      border-radius: 3px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      color: #c8d4e0;
     }
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin: 0.75rem 0 1rem;
+      font-size: 0.82rem;
+    }
+    .layout-cell {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      color: var(--muted);
+    }
+    .layout-cell strong { display: block; color: var(--text); font-size: 0.78rem; margin-bottom: 0.2rem; }
+    .layout-cell.span-2 { grid-column: span 2; }
+    .notebook-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0.75rem 0 1rem;
+      font-size: 0.82rem;
+    }
+    .notebook-cell {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.55rem 0.75rem;
+      color: var(--muted);
+      border-left: 3px solid var(--accent-dim);
+    }
+    .notebook-cell strong { color: var(--text); font-size: 0.78rem; }
+    .mode-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      margin-right: 0.35rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .ref-list { font-size: 0.88rem; color: var(--muted); }
+    .ref-list li { margin-bottom: 0.5rem; }
     footer {
       margin-top: 2.5rem;
       padding-top: 1rem;
@@ -107,18 +182,148 @@
 <body>
   <h1>Angular+Firebase OR Stack</h1>
   <p class="meta">
-    Task ID: PR-04 · Date: 2026-05-27 ·
+    Task ID: PR-04 · Date: 2026-05-27 (rev. visual identity) ·
     Upstream deps: <a href="index.html#pr-01">PR-01</a>, <a href="index.html#pr-02">PR-02</a> ·
     Baseline: <a href="_handover/PR-02.md">PR-02</a>, <a href="cv-ukwazi-alignment.html">PR-03</a> ·
     Themes: <a href="_handover/theme-taxonomy.md">T1–T6</a>
   </p>
 
   <p class="lead">
-    This document defines a browser-first operations-research stack for Ukwazi portfolio demos: Angular 17+ with Firebase
-    Hosting, Auth, and Firestore, plus Web Workers or Cloud Functions for anything heavier than toy LP/IP or small DES/MDP
-    runs. Heavy mine-planning MIP and proprietary Whittle/Deswik integration are explicitly out of scope — demos use
-    synthetic CSV/GeoJSON, open solvers, and honest “method showcase” framing. Portable module patterns are audited from
-    <a href="https://integraldecision.com/">integraldecision.com</a> and ecosystem.Ai Angular Workbench experience cited on the CV.
+    Browser-first operations-research stack for the Ukwazi portfolio: <strong>Angular 21 LTS</strong>, Firebase Hosting,
+    read-only Storage for synthetic seeds, and Web Workers (or Cloud Functions only when the browser budget is exceeded).
+    No Firebase Auth — public demos with scenario compare/save via in-session state, IndexedDB, and JSON export.
+    Visual identity is <strong>distinct from integraldecision.com</strong>: dark minimal chrome with subtle gradients
+    (reference: <a href="https://topology-optimization-five.vercel.app/">PHNX Foundry topology demo</a>).
+    Demos use one of <strong>two presentation modes</strong> — a four-panel simulation workbench for live, parameter-driven
+    runs (reference: <a href="https://simmeon.github.io/aircraft-stability/">Aircraft Stability Visualiser</a>), or a
+    vertical <strong>notebook</strong> layout for narrative, step-through studies (reference:
+    <a href="https://observablehq.com/@csdiehl/data-visualization-project-portfolio">Observable portfolio</a>).
+    The home gallery lists both types with the same card chrome.
+    Visualization is limited to <strong>two libraries</strong>: <strong>D3</strong> for custom simulation canvases and
+    <strong>ECharts</strong> (<code>ngx-echarts</code>) for standard charts. Heavy mine-planning MIP and proprietary
+    Whittle/Deswik integration remain out of scope.
+  </p>
+
+  <h2>Visual identity &amp; UX</h2>
+
+  <h3>Design direction</h3>
+  <ul>
+    <li><strong>Palette</strong> — Near-black background (<code>#0c0c0e</code>), elevated panels in charcoal greys,
+      off-white body text, one cool accent (steel blue / muted cyan) for links, active controls, and chart series.
+      Subtle radial gradients on hero and panel headers only — not full glassmorphism.</li>
+    <li><strong>Typography</strong> — System UI stack; tabular figures for KPIs and OR coefficients; no Material Design
+      or Ant Design defaults.</li>
+    <li><strong>Component shell</strong> — <a href="https://spartan.ng">Spartan UI</a> or
+      <a href="https://zardui.com">Zard UI</a> (copy-paste, Tailwind v4) for buttons, sliders, tabs, and dialogs.
+      Own the theme tokens in-repo; do not match integraldecision green or ecosystem.Ai Workbench chrome.</li>
+    <li><strong>Gallery index</strong> — Home route lists runnable demos as cards (title, one-line pitch, T1–T6 badge,
+      presentation-mode pill: <span class="mode-tag">workbench</span> or <span class="mode-tag">notebook</span>,
+      “Open demo →”). Observable gallery pattern — each card links to a live artifact, not a tutorial site.</li>
+    <li><strong>Method context</strong> — Workbench: collapsible explainer in panel D (PHNX “What to Watch”). Notebook:
+      prose cells interleaved with widgets. No separate Learn route hierarchy.</li>
+  </ul>
+
+  <h3>Presentation modes — pick per demo</h3>
+  <p>
+    Not every project is a live simulation. Choose the mode that fits the OR story; both share the same dark theme,
+    D3/ECharts stack, and gallery entry. Set <code>presentationMode</code> in <code>demos.json</code>; the router lazy-loads
+    either <code>WorkbenchLayoutComponent</code> or <code>NotebookLayoutComponent</code> under the same
+    <code>/demo/:demoId</code> route.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Mode</th>
+        <th>Best for</th>
+        <th>Examples in PR-20 shortlist</th>
+        <th>Avoid when</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="mode-tag">workbench</span></td>
+        <td>Run/Reset loops; sliders that drive a live canvas; side-by-side scenario compare; DES, queueing, MDP policy exploration</td>
+        <td><code>haulage-des</code>, <code>fleet-capacity-mdp</code></td>
+        <td>The deliverable is a written variance narrative or multi-step audit walkthrough with little continuous animation</td>
+      </tr>
+      <tr>
+        <td><span class="mode-tag">notebook</span></td>
+        <td>Step-through analysis; prose + chart + map cells; reconciliation stories; schedule/post-mortem reviews; method papers with embedded widgets</td>
+        <td><code>reconciliation-dashboard</code>, <code>pit-schedule-gantt</code></td>
+        <td>The core UX is “tweak parameter → watch sim respond in real time” (use workbench instead)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Workbench layout <span class="mode-tag">workbench</span></h3>
+  <p>
+    Interactive demos that need a persistent control surface and live response. Responsive 2×2 grid on desktop; stacked on
+    narrow viewports (controls → sim → charts → metrics).
+  </p>
+  <div class="layout-grid">
+    <div class="layout-cell"><strong>A · Controls</strong>Scenario picker, schema-driven parameter sliders, Run / Reset / Compare</div>
+    <div class="layout-cell"><strong>B · Simulation canvas</strong>D3 — haulage flow, pit bench section, DES entity animation, MDP grid</div>
+    <div class="layout-cell"><strong>C · Charts</strong>ngx-echarts — time series, waterfall, heatmap, Gantt, control charts</div>
+    <div class="layout-cell"><strong>D · Metrics &amp; explainer</strong>Iteration KPIs, convergence readout, “what to watch” bullets, export JSON</div>
+  </div>
+  <p class="ref-list">
+    Panel B follows the Aircraft Stability split (controls + live response + diagnostic charts). Panel D follows PHNX
+    Foundry’s iteration counter, material/compliance metrics, and explainer accordion. Side-by-side scenario compare
+    (topology demo “Compare Side-by-Side”) is a stretch overlay on panel B/C, not a separate app shell.
+  </p>
+
+  <h3>Notebook layout <span class="mode-tag">notebook</span></h3>
+  <p>
+    Narrative demos scroll vertically through ordered <strong>cells</strong> — Observable-style, but implemented as Angular
+    components (not iframe embeds). Each cell is one concern; reactive inputs in an upstream cell re-run downstream
+    outputs without full-page reload.
+  </p>
+  <div class="notebook-stack">
+    <div class="notebook-cell"><strong>Markdown cell</strong> — context, formulas, mining scenario setup, citations</div>
+    <div class="notebook-cell"><strong>Input cell</strong> — period selector, scenario picker, threshold sliders, CSV seed toggle</div>
+    <div class="notebook-cell"><strong>Chart cell</strong> — ngx-echarts waterfall, SPC, Gantt, KPI strip (full width)</div>
+    <div class="notebook-cell"><strong>Map / canvas cell</strong> — Leaflet bench heatmap or D3 figure when spatial story matters</div>
+    <div class="notebook-cell"><strong>Insight cell</strong> — computed variance table, alert callouts, export JSON / snapshot</div>
+  </div>
+  <p class="ref-list">
+    Reconciliation dashboards (T3) fit naturally: prose frames the accountability question → waterfall quantifies the gap →
+    map locates the bench → insight cell states who owns the variance. Pit schedule reviews (T1) fit as Gantt + bench map
+    cells stepping through precedence and period KPIs without cramming everything into four fixed quadrants.
+  </p>
+
+  <h3>Visualization libraries (two only)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Library</th>
+        <th>Package</th>
+        <th>Use for</th>
+        <th>Do not use for</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>D3</strong></td>
+        <td><code>d3</code> (direct import)</td>
+        <td>Custom simulation visuals: DES queue/entity animation, pit cross-section, network flow, policy grid paint,
+          map-adjacent SVG overlays on Leaflet</td>
+        <td>Standard bar/line dashboards — use ECharts instead</td>
+      </tr>
+      <tr>
+        <td><strong>ECharts</strong></td>
+        <td><code>ngx-echarts</code> + <code>echarts</code></td>
+        <td>KPI time series, waterfall reconciliation, SPC control charts, heatmaps, Gantt schedules, Sankey material
+          balance, side-by-side scenario KPI bars</td>
+        <td>Frame-by-frame DES animation — use D3 instead</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    <strong>Excluded from stack:</strong> Chart.js, ngx-charts, Plotly, Highcharts, ApexCharts — avoids split theming
+    and duplicate chart APIs. <strong>Leaflet + GeoJSON</strong> remains the map layer for T3 bench polygons (not counted
+    as a chart library). Register a shared ECharts theme (<code>ukwazi-dark.json</code>) matching panel backgrounds and
+    accent colour; wrap D3 canvases in a shared <code>SimulationCanvasComponent</code> with resize observer and Worker
+    data binding.
   </p>
 
   <h2>Stack architecture</h2>
@@ -142,8 +347,8 @@
       <tr>
         <td><strong>Dashboards &amp; KPIs</strong></td>
         <td>
-          Angular standalone components; Chart.js or ngx-charts; Angular Material or Tailwind (match integraldecision styling);
-          Firestore for saved views / scenario bookmarks; optional Cloud Storage for CSV uploads
+          Four-panel workbench <em>or</em> notebook cells; ngx-echarts for waterfall, SPC, and KPI cards; D3 for custom glyphs;
+          Spartan/Zard + Tailwind dark theme; IndexedDB for snapshot bookmarks; static summary JSON from Hosting/Storage
         </td>
         <td>Main thread for render; aggregate in Worker if &gt;10k rows</td>
         <td>T3, T1</td>
@@ -154,7 +359,8 @@
         <td><strong>LP / IP (small)</strong></td>
         <td>
           <code>javascript-lp-solver</code> or <code>glpk.js</code> (WASM) for LP and tiny IP; model JSON in TypeScript;
-          Cloud Function + Python (<code>PuLP</code> / <code>OR-Tools</code>) only when problem size exceeds browser budget
+          Cloud Function + Python (<code>PuLP</code> / <code>OR-Tools</code>) only when problem size exceeds browser budget;
+          D3 for feasible-region / branch-tree viz; ECharts for objective value vs iteration
         </td>
         <td>Web Worker for anything &gt; ~500 variables; never main thread for IP solves</td>
         <td>T1, T4</td>
@@ -164,19 +370,19 @@
       <tr>
         <td><strong>DES / ABS</strong></td>
         <td>
-          Custom discrete-event engine in TypeScript (queue + resource calendar) for haulage/truck-shovel demos;
-          <code>simulation-web-worker</code> pattern; seed from PR-07b JSON schedules
+          Custom discrete-event engine in TypeScript (queue + resource calendar); D3 canvas for shovel/truck animation and
+          queue state; ngx-echarts for throughput and queue-depth time series; seed from PR-07b JSON schedules
         </td>
         <td>Web Worker mandatory; cap entities (e.g. &lt;50 trucks, &lt;500 events/run) for responsive UI</td>
         <td>T2</td>
-        <td>Strongest CV proof theme — re-skin integraldecision interactive models with mining entities (shovels, dumps,
-          contractors). Full AnyLogic-style ABS is out of browser scope.</td>
+        <td>Strongest CV proof theme — mining entities (shovels, dumps, contractors) in panel B, KPIs in C/D. Full
+          AnyLogic-style ABS is out of browser scope.</td>
       </tr>
       <tr>
         <td><strong>MDP / capacity planning</strong></td>
         <td>
-          Value iteration / policy iteration in TypeScript for small discrete state spaces; parameter panels via reactive
-          forms; export policy heatmaps to Chart.js
+          Value iteration / policy iteration in TypeScript for small discrete state spaces; schema-driven parameter panel;
+          ECharts heatmap for policy; optional D3 state-transition diagram
         </td>
         <td>Web Worker when states × actions &gt; ~10⁴; Cloud Function for larger POMDP approximations</td>
         <td>T5</td>
@@ -186,8 +392,8 @@
       <tr>
         <td><strong>Maps &amp; spatial KPIs</strong></td>
         <td>
-          Leaflet + GeoJSON block polygons; optional MapLibre GL; colour by variance (grade, tonnes, recovery); no live
-          WMS to proprietary block models
+          Leaflet + GeoJSON block polygons; colour by variance (grade, tonnes, recovery) via Leaflet choropleth or D3
+          overlay; ECharts for non-spatial drill-down charts; no live WMS to proprietary block models
         </td>
         <td>Main thread; tile/GeoJSON fetch from Hosting or Storage</td>
         <td>T3</td>
@@ -195,129 +401,107 @@
           live integration.</td>
       </tr>
       <tr>
-        <td><strong>Auth &amp; persistence</strong></td>
+        <td><strong>Hosting &amp; persistence</strong></td>
         <td>
-          Firebase Auth (Google + email link for reviewers); Firestore Security Rules as primary access control (never
-          trust client-side checks alone); anonymous auth for public demos; Cloud Functions for server-side validation
-          of submitted runs; App Check on callable Functions
+          Firebase Hosting (SPA); Storage for read-only synthetic CSV/GeoJSON seeds; IndexedDB + JSON export for scenario
+          compare/save; optional Cloud Functions + App Check only for stretch server-side solves (T1 MIP) — not default
         </td>
-        <td>Server-side rules + Functions for anything trusted</td>
+        <td>Client IndexedDB/Worker memory; Hosting/Storage read-only; Functions only when browser budget exceeded</td>
         <td>All</td>
-        <td>Mirror integraldecision.com: public Learn/Decide routes; optional Participate-style run logging for DES/MDP
-          experiments. Never store solver API keys in the client bundle.</td>
+        <td>Public portfolio — no sign-in. Never store solver API keys in the client bundle.</td>
       </tr>
     </tbody>
   </table>
 
   <h3>Cross-cutting platform choices</h3>
   <ul>
-    <li><strong>Angular 17+ standalone</strong> — feature folders per demo (<code>features/haulage-des/</code>,
-      <code>features/reconciliation-dash/</code>) with lazy <code>loadComponent</code> routes; heavier than integraldecision’s
-      current eager main bundle, but same route taxonomy.</li>
-    <li><strong>Firebase</strong> — Hosting (SPA), Auth, Firestore (metadata + user scenarios), Storage (CSV/GeoJSON),
-      Functions (optional Python OR backend), App Check on public endpoints. Security Rules enforce uid-scoped writes;
-      sensitive OR logic stays in Functions.</li>
-    <li><strong>State</strong> — Signals-first UI (Angular 17+; zoneless viable on greenfield); RxJS via <code>AsyncPipe</code>
-      or <code>toSignal()</code> for Firestore streams; immutable scenario snapshots in Firestore; large result arrays
-      in IndexedDB or Worker memory, not Firestore documents.</li>
+    <li><strong>Angular 21 LTS standalone</strong> — feature folders per demo with lazy <code>loadComponent</code> routes;
+      zoneless change detection; shared <code>WorkbenchLayoutComponent</code> or <code>NotebookLayoutComponent</code>
+      selected from catalog metadata.</li>
+    <li><strong>Firebase</strong> — Hosting (SPA) and Storage (read-only seeds). No Auth or user-scoped Firestore in MVP.
+      Optional Cloud Functions (Python OR backend) + App Check only if a stretch demo exceeds browser budget.</li>
+    <li><strong>State</strong> — Signals-first UI; scenario snapshots in IndexedDB or in-session compare; export/import JSON;
+      large result arrays in Worker memory or IndexedDB, not remote documents.</li>
     <li><strong>Web Workers</strong> — One pool sized to <code>navigator.hardwareConcurrency − 1</code>; pass large arrays
-      with transferables to avoid copy overhead; terminate idle Workers on route leave.</li>
-    <li><strong>Testing</strong> — Vitest/Jest for OR kernels; Playwright smoke on hosted demo URLs for interview links.</li>
+      with transferables; terminate idle Workers on route leave.</li>
+    <li><strong>Testing</strong> — Vitest for OR kernels; Playwright smoke on hosted demo URLs for interview links.</li>
   </ul>
 
-  <h3>integraldecision.com reuse audit</h3>
-  <p>
-    Production site verified May 2026 (<a href="https://integraldecision.com/">integraldecision.com</a>,
-    <a href="https://integraldecision.com/learn">/learn</a>, <a href="https://integraldecision.com/about">/about</a>).
-    PR-02 baseline confirmed: Angular SPA (<code>&lt;app-root&gt;</code>), Firebase/Firestore in bundle
-    (<code>main-OLSJ4TPC.js</code>), three Learn card modules plus Decide and Participate flows.
-  </p>
-
-  <h3>Route &amp; module inventory (production bundle)</h3>
+  <h3>Route &amp; navigation model</h3>
   <table>
     <thead>
       <tr>
         <th>Route</th>
         <th>Role</th>
-        <th>Portable for mining OR?</th>
+        <th>Reference pattern</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><code>/</code>, <code>/about</code></td>
-        <td>Shell + positioning</td>
-        <td>Reuse layout/nav shell; swap copy for “mining OR portfolio”</td>
+        <td><code>/</code></td>
+        <td>Demo gallery — card grid with T1–T6 badges, live links</td>
+        <td>Observable project portfolio; PHNX Foundry landing brevity</td>
       </tr>
       <tr>
-        <td><code>/learn</code></td>
-        <td>Card catalog (<code>cards-menu</code> pattern)</td>
-        <td><strong>Yes</strong> — index page listing T1–T6 demos with theme tags</td>
+        <td><code>/demo/:demoId</code></td>
+        <td>One OR demo — layout from <code>presentationMode</code> in catalog</td>
+        <td>Workbench: Aircraft Stability + PHNX Run/Reset. Notebook: Observable vertical cells</td>
       </tr>
       <tr>
-        <td><code>/learn/stpetersburgparadox</code></td>
-        <td>Interactive tutorial (risky choice)</td>
-        <td>Pattern only — replace with e.g. strip-sequence uncertainty tutorial</td>
-      </tr>
-      <tr>
-        <td><code>/learn/weightedsummodel</code></td>
-        <td>Multi-criteria tutorial</td>
-        <td><strong>Yes</strong> — direct T4 method-selection (IPCC vs trucking weights)</td>
-      </tr>
-      <tr>
-        <td><code>/learn/aidisruption</code></td>
-        <td>Structured decision routine</td>
-        <td>Pattern only — could frame pit vs UG transition decisions</td>
-      </tr>
-      <tr>
-        <td><code>/decide</code>, <code>/decide/weightedsummodel</code></td>
-        <td>Decision support (not just teach)</td>
-        <td><strong>Yes</strong> — “Decide” vs “Learn” split: run solver, save scenario, compare alternatives</td>
-      </tr>
-      <tr>
-        <td><code>/participate</code>, <code>/participate/replications/…</code></td>
-        <td>Research replication + Firestore logging</td>
-        <td>Partial — optional telemetry for DES runs; not required for Ukwazi portfolio</td>
+        <td><code>/about</code></td>
+        <td>Portfolio positioning, synthetic-data disclaimer, CV link</td>
+        <td>Minimal — not a consultancy services page</td>
       </tr>
     </tbody>
   </table>
+  <p>
+    <strong>Deprecated for Ukwazi:</strong> integraldecision-style <code>/learn</code> + <code>/decide</code> tutorial
+    hierarchy and Participate replication flows. Method context lives in workbench panel D or notebook prose cells — not
+    separate Learn routes.
+  </p>
 
-  <h3>Portable UI modules (integraldecision + ecosystem.Ai)</h3>
+  <h3>integraldecision.com audit (engineering only)</h3>
+  <p>
+    Production site verified May 2026 — useful for <em>route inventory and Firebase proof on CV</em>, not visual identity.
+    Portable engineering patterns: lazy feature modules, Worker-wrapped solvers, scenario JSON export. Do not copy styling,
+    Learn-card tutorial chrome, or Participate Auth flows.
+  </p>
+
+  <h3>Portable engineering patterns</h3>
   <dl>
-    <dt><code>cards-menu</code> catalog component</dt>
+    <dt><code>DemoGalleryComponent</code></dt>
     <dd>
-      Grid of titled cards (title, description, image, deep link) used on Learn and Participate index pages. Mining portfolio
-      reuses for demo registry with T1–T6 badges — one component, many OR apps.
+      Card grid driven by <code>assets/catalog/demos.json</code> (title, description, theme tags,
+      <code>presentationMode</code>, thumbnail, route). Replaces integraldecision <code>cards-menu</code> on a dark gallery shell.
     </dd>
-    <dt>Learn / Decide route split</dt>
+    <dt><code>WorkbenchLayoutComponent</code></dt>
     <dd>
-      Tutorial route explains method; sibling Decide route runs the same engine with user parameters and optional save.
-      Maps to T2 DES (Learn haulage basics → Decide fleet mix) and T4 WSM (Learn criteria → Decide IPCC vs truck).
+      Shared 2×2 grid with named slots: <code>controls</code>, <code>simulation</code>, <code>charts</code>,
+      <code>metrics</code>. Used when <code>presentationMode === "workbench"</code>.
     </dd>
-    <dt>Per-demo feature component</dt>
+    <dt><code>NotebookLayoutComponent</code></dt>
     <dd>
-      Each route mounts a self-contained Angular component (production currently bundles eagerly; new work should
-      <code>loadComponent</code> lazy load). One folder per theme demo: routes, model, worker, charts.
+      Vertical stack of typed cells (<code>markdown</code>, <code>input</code>, <code>chart</code>, <code>map</code>,
+      <code>insight</code>). Used when <code>presentationMode === "notebook"</code>. Cell registry per demo; shared cell
+      chrome and scroll-spy optional.
     </dd>
-    <dt>Firebase bootstrap (<code>provideFirebaseApp</code>, AngularFire)</dt>
+    <dt>Per-demo feature folder</dt>
     <dd>
-      Confirmed in production bundle. Reuse for Auth + Firestore scenario store; keep OR kernels free of Firebase imports.
+      <code>routes.ts</code>, model types, Worker entry, cell or panel components, ECharts option builders, IndexedDB adapter.
+      Lazy-loaded per <code>/demo/:demoId</code>.
     </dd>
-    <dt>ecosystem.Ai Workbench — schema-driven parameter panels</dt>
+    <dt>Schema-driven parameter panels</dt>
     <dd>
-      CV cites Angular Workbench at ecosystem.Ai; public docs reference modular Angular UIs
-      (<a href="https://developer.ecosystem.ai/docs/frontend/angular">ecosystem.Ai Angular UI</a>,
-      <code>message-app-angular</code> pattern). Portable pattern: JSON schema (or TypeScript config objects) drives
-      dynamic forms for DES/MDP/LP inputs — same panel component across demos. Optional: ngx-formly for rapid parameter UIs;
-      keep schemas in repo, not Firestore, for version control.
+      JSON schema drives sliders and selects — panel A in workbench mode, or dedicated <code>input</code> cells in notebook mode.
     </dd>
-    <dt>Navigation + title service</dt>
+    <dt>Scenario compare &amp; export</dt>
     <dd>
-      Custom title builder suffixes “Portfolio Demo” per route — small polish item worth copying for hosted interview links.
+      In-session A/B compare list + JSON export/import (topology side-by-side pattern). IndexedDB optional for saved runs.
     </dd>
   </dl>
 
-  <p><strong>Not portable / do not copy blindly:</strong> Participate replication studies (behavioural research consent flows);
-  decision-science copy and images; eager monolithic bundle without lazy OR chunks; any assumption of Whittle-grade pit optimisation.</p>
+  <p><strong>Not portable / do not copy:</strong> integraldecision visual design; Participate replication studies;
+  decision-science tutorial copy; eager monolithic bundle; Whittle-grade pit optimisation claims.</p>
 
   <h3>Anti-patterns</h3>
   <div class="anti-pattern">
@@ -332,18 +516,22 @@
     <p><strong>Do not pretend Whittle, Deswik, or Vulcan integration.</strong></p>
     <p>
       Reviewers at a planning consultancy will spot fake logos or “import .whittle” claims. Use synthetic block models (PR-07b),
-      CSV/GeoJSON upload, and explicit labels: “toy pit shell”, “synthetic schedule”, “method illustration only”. Reference
-      commercial tools in landscape research (PR-08) without implying this portfolio connects to them.
+      CSV/GeoJSON upload, and explicit labels: “toy pit shell”, “synthetic schedule”, “method illustration only”.
     </p>
   </div>
   <ul>
+    <li><strong>Chart library sprawl</strong> — adding Chart.js or ngx-charts alongside ECharts splits theming and doubles bundle size; stay on D3 + ECharts only.</li>
     <li><strong>Main-thread DES at scale</strong> — thousands of haul cycles block UI; always Worker + capped horizon.</li>
     <li><strong>Firestore as compute cache</strong> — storing full DES event logs or MIP constraint matrices blows document limits;
       use Storage or client IndexedDB.</li>
     <li><strong>Solver keys in client</strong> — remote MIP APIs belong in Functions with secrets.</li>
-    <li><strong>One monolith app</strong> — without lazy routes, T2 DES + T3 maps + T5 MDP in one bundle hurts load time;
-      mirror integraldecision routes but lazy-load each OR feature.</li>
+    <li><strong>One monolith app</strong> — without lazy routes, T2 DES + T3 maps + T5 MDP in one bundle hurts load time.</li>
     <li><strong>Gym / hospital demos as headline</strong> — PR-03 gap analysis: re-skin entities, lead with mining KPIs.</li>
+    <li><strong>Sign-in for public demos</strong> — use local persistence or JSON export instead of uid-scoped Firestore.</li>
+    <li><strong>Wrong presentation mode</strong> — forcing a reconciliation narrative or schedule post-mortem into four
+      fixed quadrants when a notebook scroll tells the story better; forcing DES/MDP live sims into static notebook cells
+      when a workbench is expected.</li>
+    <li><strong>integraldecision look-alike</strong> — separate repo must read as mining OR portfolio, not decision-science tutorial site.</li>
   </ul>
 
   <div class="portfolio-box">
@@ -369,12 +557,12 @@
         <tr>
           <td>CV proof</td>
           <td>4</td>
-          <td>Stack delivery proof (integraldecision.com + ecosystem.Ai Angular shipped). Per-theme CV gaps remain in PR-03 (T1/T4/T6 weak).</td>
+          <td>Angular+Firebase delivery proven on integraldecision.com; distinct Ukwazi visual identity is net-new differentiation.</td>
         </tr>
         <tr>
           <td>Angular+Firebase fit</td>
           <td>5</td>
-          <td>Production-proven on integraldecision; lazy routes + Workers extend pattern for heavier OR demos.</td>
+          <td>Angular 21 LTS + Firebase Hosting; lazy routes + Workers + two-viz-library cap keeps bundles interview-link friendly.</td>
         </tr>
         <tr>
           <td>Data feasibility</td>
@@ -383,13 +571,13 @@
         </tr>
         <tr>
           <td>Differentiation</td>
-          <td>4</td>
-          <td>Honest browser OR + mining KPI framing beats generic Jupyter notebooks; not unique vs commercial DSS.</td>
+          <td>5</td>
+          <td>Dark workbench + mining KPI framing + D3 live sims vs generic Jupyter or integraldecision tutorial chrome.</td>
         </tr>
         <tr>
           <td>Effort</td>
           <td>M</td>
-          <td>First demo (likely T2 DES) ~2–3 weeks solo including Worker engine and Firebase hosting; each additional theme S–M.</td>
+          <td>Shared workbench shell amortised across demos; first demo (likely T2 DES) ~2–3 weeks including Worker + D3 canvas.</td>
         </tr>
       </tbody>
     </table>
@@ -398,25 +586,28 @@
   <div class="portfolio-box">
     <h3>Suggested Angular+Firebase sketch</h3>
     <p>
-      Monorepo-style Angular app on Firebase Hosting with routes
-      <code>/learn</code> (demo catalog with T1–T6 tags),
-      <code>/learn/:demoId</code> (tutorial),
-      <code>/decide/:demoId</code> (interactive run).
-      Lazy-load each demo folder. Firestore collections:
-      <code>scenarios/{uid}/{demoId}</code> (saved parameters + summary KPIs),
-      <code>catalog/demos</code> (metadata for cards-menu).
-      Auth: public read for Learn; Google sign-in to save Decide runs.
-      T2 flagship: <code>haulage-des</code> Worker module, Chart.js time-series, JSON seed from PR-07b.
-      T3: Leaflet + GeoJSON variance layer.
-      T5: <code>fleet-mdp</code> Worker with schema-driven form (ecosystem.Ai Workbench pattern).
-      T4 optional: WSM Decide fork of integraldecision weightedsummodel.
-      Cloud Function stub <code>solveLp</code> only if PR-19 selects a larger IP demo — not default.
+      Monorepo-style Angular app on Firebase Hosting. Routes: <code>/</code> (demo gallery from
+      <code>assets/catalog/demos.json</code> including <code>presentationMode</code>),
+      <code>/demo/:demoId</code> (workbench or notebook per catalog), <code>/about</code>.
+      Shared: Spartan/Zard + Tailwind dark tokens, <code>SimulationCanvasComponent</code> (D3),
+      <code>ChartPanelComponent</code> (ngx-echarts + <code>ukwazi-dark</code> theme).
+      Persistence: in-session compare, IndexedDB, JSON export — no Auth.
     </p>
+    <ul>
+      <li><strong>T2 flagship · workbench</strong> — <code>haulage-des</code>: Worker DES; D3 flow in panel B; ECharts queue depth in panel C.</li>
+      <li><strong>T3 · notebook</strong> — <code>reconciliation-dashboard</code>: markdown setup → waterfall chart cell → Leaflet heatmap cell → insight/alert cell.</li>
+      <li><strong>T5 · workbench</strong> — <code>fleet-mdp</code>: Worker VI; ECharts policy heatmap; optional D3 state graph.</li>
+      <li><strong>T1 · notebook</strong> — <code>pit-schedule-gantt</code>: prose + Gantt cell + bench map cell + NPV KPI cell; optional Cloud Function for stretch re-solve.</li>
+    </ul>
   </div>
 
   <footer>
     Handover: see <a href="_handover/PR-04.md">PR-04.md</a> ·
-    Registry row: <a href="index.html#pr-04">index.html#pr-04</a>
+    Registry row: <a href="index.html#pr-04">index.html#pr-04</a> ·
+    Visual refs:
+    <a href="https://topology-optimization-five.vercel.app/">PHNX Foundry</a>,
+    <a href="https://simmeon.github.io/aircraft-stability/">Aircraft Stability</a>,
+    <a href="https://observablehq.com/@csdiehl/data-visualization-project-portfolio">Observable portfolio</a>
   </footer>
 </body>
 </html>
