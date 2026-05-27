@@ -1,6 +1,6 @@
-# Portfolio research — template & handover protocol
+﻿# Portfolio research — template & handover protocol
 
-Local agent tasks (PR-XX) produce HTML research docs under `sources/html/`. This folder holds handover markdown and shared conventions.
+Local agent tasks (PR-XX) produce HTML research docs under `planning/`. This folder holds handover markdown and shared conventions.
 
 ---
 
@@ -106,7 +106,7 @@ The registry [`index.html`](../index.html) adds `.status`, `.status-complete`, `
 
 ## Using `_template.html`
 
-1. Copy `sources/html/_template.html` to the **planned output filename** shown in your registry row (e.g. `cv-ukwazi-alignment.html` for PR-03). Do not invent alternate slugs.
+1. Copy `../_template.html` to the **planned output filename** shown in your registry row (e.g. `cv-ukwazi-alignment.html` for PR-03). Do not invent alternate slugs.
 2. Replace HTML comments with real content.
 3. Fill meta line: task ID, date, upstream deps.
 4. Write executive summary in `.lead`.
@@ -145,7 +145,7 @@ Example — after completing PR-03, update only:
 
 ## Handover markdown format
 
-Every task produces `sources/html/_handover/PR-XX.md` (PR-07b → `PR-07b.md`).
+Every task produces `PR-XX.md` (PR-07b → `PR-07b.md`).
 
 ```markdown
 # PR-XX — {Task title}

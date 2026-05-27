@@ -1,15 +1,15 @@
-# PR-07b — Synthetic data spec
+﻿# PR-07b — Synthetic data spec
 
 ## Inputs read
 
-- `sources/html/_handover/PR-07.md` — per-theme data packages, synthetic gaps, calibration anchors, PR-07b blocking PR-19
-- `sources/html/open-data-apis-mining.html` — anchor files (`entities.csv`, `throughput_priors.json`, `benchmark_kpi.csv`, `closure_risk.csv`), theme gap table, T1–T6 package recommendations
-- `sources/html/_handover/PR-05.md` — clone cases #01–#12 requiring synthetic pit/haul/reconciliation seeds
-- `sources/html/_handover/PR-04.md` — Worker DES, GeoJSON maps, Storage/Firestore patterns
-- `sources/html/_handover/theme-taxonomy.md` — T1–T6 definitions, Data feasibility scorecard column
-- `sources/html/_handover/README-template.md` — row-ID protocol, handover format
-- `sources/html/_template.html` — HTML/CSS skeleton
-- `sources/html/index.html` — registry row `id="pr-07b"` updated to complete
+- `PR-07.md` — per-theme data packages, synthetic gaps, calibration anchors, PR-07b blocking PR-19
+- `../open-data-apis-mining.html` — anchor files (`entities.csv`, `throughput_priors.json`, `benchmark_kpi.csv`, `closure_risk.csv`), theme gap table, T1–T6 package recommendations
+- `PR-05.md` — clone cases #01–#12 requiring synthetic pit/haul/reconciliation seeds
+- `PR-04.md` — Worker DES, GeoJSON maps, Storage/Firestore patterns
+- `theme-taxonomy.md` — T1–T6 definitions, Data feasibility scorecard column
+- `README-template.md` — row-ID protocol, handover format
+- `../_template.html` — HTML/CSS skeleton
+- `../index.html` — registry row `id="pr-07b"` updated to complete
 
 ## Key findings
 
