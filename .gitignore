@@ -1,0 +1,5 @@
+# Local source library and pipeline
+sources/
+
+# Local Python environment
+.venv/
