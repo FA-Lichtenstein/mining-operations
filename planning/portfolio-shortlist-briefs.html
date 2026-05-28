@@ -142,14 +142,13 @@
   </p>
 
   <p class="lead">
-    Four build-ready briefs selected from the PR-19 catalog using the default pillar mix:
+    Five build-ready briefs selected from the PR-19 catalog covering all six Ukwazi themes (T4 via idea-02 IPCC sidebar):
     <strong>T2</strong> (<a href="portfolio-ideas-catalog.html#idea-02">idea-02</a> truck-shovel DES, composite 4.70),
     <strong>T3</strong> (<a href="portfolio-ideas-catalog.html#idea-03">idea-03</a> reconciliation, 3.93),
+    <strong>T5</strong> (<a href="portfolio-ideas-catalog.html#idea-06">idea-06</a> fleet maintenance MDP, 3.93),
     <strong>T1</strong> (<a href="portfolio-ideas-catalog.html#idea-01">idea-01</a> open-pit schedule, 3.86),
-    and <strong>T5</strong> (<a href="portfolio-ideas-catalog.html#idea-06">idea-06</a> fleet maintenance MDP, 3.93).
-    The fourth slot goes to fleet MDP over closure MC (<a href="portfolio-ideas-catalog.html#idea-10">idea-10</a>, 3.55):
-    higher composite, CV proof 5 vs 1 on T6, and T4 breadth is already covered by idea-02’s IPCC trade-off sidebar.
-    Recommended build sequence: T2 → T3 → T5 → T1 (flagship DES first; schedule optimizer last due to Effort L).
+    and <strong>T6</strong> (<a href="portfolio-ideas-catalog.html#idea-10">idea-10</a> closure liability MC, rank #9, 3.55).
+    Recommended build sequence: T2 → T3 → T5 → T1 → T6 (flagship DES first; schedule optimizer before closure MC; T6 closes the sustainability narrative).
   </p>
 
   <h2>1. Shortlist summary</h2>
@@ -202,18 +201,26 @@
         <td>L</td>
         <td>Weeks 10–16</td>
       </tr>
+      <tr>
+        <td>5</td>
+        <td><a href="#brief-10">idea-10</a> Closure liability scenario model</td>
+        <td><span class="tag">T6</span></td>
+        <td><code>closure-liability-mc</code></td>
+        <td><strong>3.55</strong></td>
+        <td>M</td>
+        <td>Weeks 17–19</td>
+      </tr>
     </tbody>
   </table>
   <p class="meta">
-    <strong>Deferred:</strong> <a href="portfolio-ideas-catalog.html#idea-10">idea-10</a> closure liability MC (T6, 3.55) —
-    optional breadth if sustainability narrative needed; weakest CV pillar (score 1).
+    <strong>Catalog rank #9:</strong> idea-10 passes the PR-19 gate (composite ≥ 3.5). CV proof for T6 remains the weakest pillar (PR-03 score 1–2); the brief targets Ukwazi sustainable-mining and valuation narrative with Monte Carlo + WRC atlas overlays.
   </p>
 
   <h2>2. Shared persona</h2>
   <p>
     <strong>Naledi Mokoena</strong> — Quantitative Planning Analyst, Ukwazi Mineral Services, embedded at
     <code>syn-pgm-bushveld-01</code> (PGM open pit, Limpopo). She supports the mine planning team with short-term schedules,
-    haulage trade-off studies, monthly reconciliation packs, and fleet availability forecasts. She does not run Whittle or Deswik;
+    haulage trade-off studies, monthly reconciliation packs, fleet availability forecasts, and closure-provision scenario packs for Technical Services. She does not run Whittle or Deswik;
     she interprets model outputs, builds accountability dashboards, and presents options to the Technical Services superintendent.
     All demos use synthetic data with the PR-07b disclaimer footer.
   </p>
@@ -720,13 +727,145 @@ IndexedDB mipRuns               // stretch Cloud Function results; key = runId
     </p>
   </div>
 
+  <!-- BRIEF 10 -->
+  <div class="portfolio-box" id="brief-10">
+    <h3>Brief 5 · Closure liability scenario model
+      <span class="tag">T6</span>
+      <span class="composite-badge">idea-10 · rank #9 · composite 3.55 · closure-liability-mc</span></h3>
+
+    <h4>Problem &amp; persona</h4>
+    <p>
+      The Technical Services team needs a defensible range of post-closure water treatment and tailings stewardship costs
+      for board reporting — not a single point estimate. Naledi must stress-test ARD treatment rates (Dunbar Equity Silver
+      ~US$2.065M/yr worked example), wet-climate vs base-case scenarios, and bond-release phasing (SME SMCRA Phases I–III)
+      using public WRC atlas layers and synthetic <code>closure_risk.csv</code> — without claiming SAMVAL Competent Valuator sign-off.
+    </p>
+
+    <h4>MVP vs stretch</h4>
+    <table>
+      <thead><tr><th>Scope</th><th>Deliverables</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>MVP</strong></td>
+          <td>
+            Workbench at <code>/demo/closure-liability-mc</code>: scenario tree (base / ARD escalation / wet climate);
+            1,000-draw Monte Carlo in Web Worker on annual treatment + bond top-up costs; NPV liability distribution
+            (histogram + P10/P50/P90); Leaflet overlay of WRC Mine Closure Atlas risk band for Limpopo persona.
+            Seed from PR-07 <code>closure_risk.csv</code> + Dunbar Ch 5 ARD cost anchors.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Stretch</strong></td>
+          <td>
+            Decision-tree exceedance branch (PR-05 #11 pattern); Global Tailings Portal point overlay when bulk CSV available;
+            link pit backfill option (Kidston / Dunbar Ch 5) as capex offset node; export board-pack PDF with SAMREC/SAMVAL
+            vocabulary sidebar (valuation vs resource reporting disambiguation from <a href="sa-mining-context.html">PR-09</a>).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Persistence schema &amp; JSON samples</h4>
+    <pre><code>// portfolioSeeds/idea-10 mirror (optional Firestore sync)
+IndexedDB closureScenarios     // key = scenarioId
+  mineId: "syn-pgm-bushveld-01"
+  title, createdAt
+  scenarioTree: { root, nodes[] }   // base | ard | wetClimate
+  assumptions: {
+    treatment_usd_per_yr_mean, treatment_usd_per_yr_sigma,
+    bond_phase_weights: { phaseI, phaseII, phaseIII },
+    discount_rate, horizon_years
+  }
+  atlasLayerRefs: ["wrc_closure_atlas", "wrc_mine_water"]
+
+IndexedDB mcRuns               // key = runId
+  scenarioId, draws: 1000, seed
+  npvDistribution: { p10, p50, p90, mean }
+  series: [{ draw, npv_liability_usd, annual_treatment_usd }]
+
+// closure_risk.csv row sample (PR-07 T6 package)
+{
+  "mine_id": "syn-pgm-bushveld-01",
+  "tsf_type": "upstream",
+  "raise_rate_m_yr": 4.2,
+  "amd_risk_class": "moderate",
+  "community_proximity_km": 2.1,
+  "bond_release_phase": "II",
+  "treatment_cost_index": 1.0
+}</code></pre>
+
+    <h4>Angular module breakdown</h4>
+    <dl>
+      <dt><code>features/closure-liability-mc/</code></dt>
+      <dd>Lazy route; Learn (closure liability primer) + Decide (MC lab).</dd>
+      <dt><code>ClosureLearnComponent</code></dt>
+      <dd>Dunbar ARD cost vignette; Ukwazi sustainable-mining + transaction advisory context; SAMVAL “CV” disambiguation.</dd>
+      <dt><code>ScenarioTreeComponent</code></dt>
+      <dd>Panel A: base / ARD / wet-climate branch selector with assumption diff table.</dd>
+      <dt><code>McWorkerService</code></dt>
+      <dd>Lognormal treatment cost draws + bond phase timing in Worker; transferables for result arrays.</dd>
+      <dt><code>LiabilityChartComponent</code></dt>
+      <dd>ngx-echarts histogram + percentile strip (P10/P50/P90).</dd>
+      <dt><code>AtlasMapComponent</code></dt>
+      <dd>Leaflet WRC closure/water layers; mine pin at synthetic Bushveld site.</dd>
+    </dl>
+
+    <h4>Firebase architecture</h4>
+    <pre class="mermaid">flowchart TB
+  subgraph Client["Angular SPA"]
+    Demo["/demo/closure-liability-mc"]
+    MCw["MC Worker 1000 draws"]
+    Map["Leaflet WRC atlas layers"]
+    Demo --> MCw
+    Demo --> Map
+  end
+  subgraph Firebase
+    ST["Storage closure_risk.csv + GeoJSON atlas tiles"]
+    Host["Hosting SPA"]
+  end
+  subgraph ClientPersist["Client"]
+    IDB["IndexedDB scenarios + mcRuns"]
+  end
+  Demo --> IDB
+  Demo --> ST
+  Host --> Client</pre>
+
+    <h4>5-minute demo script</h4>
+    <ol>
+      <li><strong>0:00–0:45</strong> — Panel D explainer: closure liability vs operational reconciliation; cite Dunbar Equity Silver ARD cost anchor (illustrative).</li>
+      <li><strong>0:45–1:30</strong> — Load <code>closure_risk.csv</code> for Bushveld TSF; show WRC atlas overlay and AMD risk class.</li>
+      <li><strong>1:30–2:30</strong> — Select base scenario; run 1,000-draw MC; display P50 NPV liability.</li>
+      <li><strong>2:30–3:30</strong> — Switch to ARD escalation branch; compare P90 shift vs base (PR-05 #10 Monte Carlo pattern).</li>
+      <li><strong>3:30–4:15</strong> — Toggle wet-climate sigma; bond Phase II vs III timing impact on cash-flow profile.</li>
+      <li><strong>4:15–5:00</strong> — Export scenario JSON; SAMVAL vocabulary note; synthetic + illustrative regulatory disclaimer.</li>
+    </ol>
+
+    <h4>Week-by-week build order</h4>
+    <table>
+      <thead><tr><th>Week</th><th>Tasks</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Load <code>closure_risk.csv</code>; scenario tree model; MC Worker core loop.</td></tr>
+        <tr><td>2</td><td>Liability histogram + percentile panel; WRC atlas Leaflet overlay.</td></tr>
+        <tr><td>3</td><td>IndexedDB scenarios/runs; Learn primer; deploy + board-pack export stub.</td></tr>
+      </tbody>
+    </table>
+
+    <h4>CV bullet supported</h4>
+    <p>
+      <em>“Built a stochastic closure-liability scenario model with Monte Carlo cost bands, WRC atlas spatial context,
+      and bond-release phasing — connecting decision-analysis and financial-modelling skills to Ukwazi sustainable-mining
+      and transaction-advisory workflows at illustrative scale.”</em>
+      — maps to Honours decision analysis / OR, Monte Carlo on CV competencies (T6 proof 1–2 → demo lifts to 3).
+    </p>
+  </div>
+
   <h2>4. Portfolio shell integration</h2>
   <p>
-    All four modules plug into the shared shell from
+    All five modules plug into the shared shell from
     <a href="angular-firebase-or-stack.html">PR-04</a>: <code>/</code> demo gallery (Observable-style card index with T1–T6 badges
     and <code>presentationMode</code> pill), <code>/demo/:demoId</code> opening either a four-panel workbench or a vertical
     notebook layout, lazy <code>loadComponent</code> per feature, client IndexedDB + JSON export (no Auth), shared disclaimer footer.
-    Cross-links: brief-06 stretch imports downtime events into brief-02 DES; brief-03 consumes schedule plan tonnes from brief-01 exports.
+    Cross-links: brief-06 stretch imports downtime events into brief-02 DES; brief-03 consumes schedule plan tonnes from brief-01 exports; brief-10 tailings metadata references block model footprint from brief-01 exports.
   </p>
   <table>
     <thead>
@@ -737,6 +876,7 @@ IndexedDB mipRuns               // stretch Cloud Function results; key = runId
       <tr><td><code>reconciliation-dashboard</code></td><td>notebook</td><td><code>/demo/reconciliation-dashboard</code></td><td>Prose → waterfall → bench map → alert/insight cells</td></tr>
       <tr><td><code>fleet-capacity-mdp</code></td><td>workbench</td><td><code>/demo/fleet-capacity-mdp</code></td><td>Policy heatmap + simulate loop; MDP explainer in D</td></tr>
       <tr><td><code>pit-schedule-gantt</code></td><td>notebook</td><td><code>/demo/pit-schedule-gantt</code></td><td>Gantt + bench map cells; Gorai scale disclaimer in intro cell</td></tr>
+      <tr><td><code>closure-liability-mc</code></td><td>workbench</td><td><code>/demo/closure-liability-mc</code></td><td>Scenario tree + MC histogram; WRC atlas map; SAMVAL primer in D</td></tr>
     </tbody>
   </table>
 
@@ -746,12 +886,12 @@ IndexedDB mipRuns               // stretch Cloud Function results; key = runId
     <table>
       <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>T1+T2+T3+T5 pillars; T4 via idea-02 IPCC sidebar; T6 deferred</td></tr>
-        <tr><td>CV proof</td><td>4</td><td>Four briefs target weakest pillars T1/T3 with demos; T2/T5 leverage existing proof</td></tr>
+        <tr><td>Ukwazi fit (T1–T6)</td><td>5</td><td>T1+T2+T3+T5+T6 pillars; T4 via idea-02 IPCC sidebar — full theme coverage</td></tr>
+        <tr><td>CV proof</td><td>4</td><td>Five briefs target weakest pillars T1/T3/T6 with demos; T2/T5 leverage existing proof</td></tr>
         <tr><td>Angular+Firebase fit</td><td>5</td><td>Every brief has module tree, Firestore paths, mermaid arch, Worker boundaries</td></tr>
         <tr><td>Data feasibility</td><td>5</td><td>All seeds from PR-07b generators; no proprietary block models</td></tr>
         <tr><td>Differentiation</td><td>5</td><td>Mining-native KPIs + SA persona vs generic OR portfolio</td></tr>
-        <tr><td>Effort</td><td>M</td><td>~16 weeks solo sequential; ~10 weeks if T2+T3 parallel after shell</td></tr>
+        <tr><td>Effort</td><td>M</td><td>~19 weeks solo sequential; ~12 weeks if T2+T3+T6 parallel after shell</td></tr>
         <tr><td><strong>Composite (doc)</strong></td><td><strong>4.47</strong></td><td>Matches PR-19 catalog artifact score</td></tr>
       </tbody>
     </table>
