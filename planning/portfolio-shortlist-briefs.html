@@ -138,7 +138,7 @@
     <a href="synthetic-data-generator-spec.html">PR-07b</a>,
     <a href="cv-ukwazi-alignment.html">PR-03</a> ·
     Anchor: <a href="ukwazi-services-summary.html">ukwazi-services-summary.html</a> §5 ·
-    Persona: <a href="sa-mining-context.html">syn-pgm-bushveld-01</a>
+    Demo site: <a href="sa-mining-context.html">syn-pgm-bushveld-01</a> · User role: Quantitative Planning Analyst (Ukwazi)
   </p>
 
   <p class="lead">
@@ -216,12 +216,12 @@
     <strong>Catalog rank #9:</strong> idea-10 passes the PR-19 gate (composite ≥ 3.5). CV proof for T6 remains the weakest pillar (PR-03 score 1–2); the brief targets Ukwazi sustainable-mining and valuation narrative with Monte Carlo + WRC atlas overlays.
   </p>
 
-  <h2>2. Shared persona</h2>
+  <h2>2. Shared user role</h2>
   <p>
-    <strong>Naledi Mokoena</strong> — Quantitative Planning Analyst, Ukwazi Mineral Services, embedded at
-    <code>syn-pgm-bushveld-01</code> (PGM open pit, Limpopo). She supports the mine planning team with short-term schedules,
-    haulage trade-off studies, monthly reconciliation packs, fleet availability forecasts, and closure-provision scenario packs for Technical Services. She does not run Whittle or Deswik;
-    she interprets model outputs, builds accountability dashboards, and presents options to the Technical Services superintendent.
+    <strong>Quantitative Planning Analyst</strong>, Ukwazi Mineral Services — embedded planning support at the synthetic demo site
+    <code>syn-pgm-bushveld-01</code> (PGM open pit, Limpopo). The role supports the mine planning team with short-term schedules,
+    haulage trade-off studies, monthly reconciliation packs, fleet availability forecasts, and closure-provision scenario packs for Technical Services. The analyst does not run Whittle or Deswik;
+    interprets model outputs, builds accountability dashboards, and presents options to the Technical Services superintendent.
     All demos use synthetic data with the PR-07b disclaimer footer.
   </p>
 
@@ -233,11 +233,11 @@
       <span class="tag">T2</span> <span class="tag">T4</span>
       <span class="composite-badge">idea-02 · composite 4.70 · haulage-des</span></h3>
 
-    <h4>Problem &amp; persona</h4>
+    <h4>Problem &amp; role</h4>
     <p>
-      Naledi’s superintendent asks whether adding K-Tec scraper trains can reduce unit cost on a 12 Mt/a waste-stripping push
+      A Technical Services superintendent asks whether adding K-Tec scraper trains can reduce unit cost on a 12 Mt/a waste-stripping push
       without starving ore feed. Conventional truck-shovel cycles dominate the pit; contractor haulage is common in the Bushveld.
-      She needs a defensible DES comparison — cycle times, queueing, match factor, tonnes/shift — not a vendor brochure.
+      The quantitative planning analyst needs a defensible DES comparison — cycle times, queueing, match factor, tonnes/shift — not a vendor brochure.
     </p>
 
     <h4>MVP vs stretch</h4>
@@ -353,10 +353,10 @@ IndexedDB haulageDesRuns      // optional local save; key = runId
       <span class="tag">T3</span>
       <span class="composite-badge">idea-03 · composite 3.93 · reconciliation-dashboard</span></h3>
 
-    <h4>Problem &amp; persona</h4>
+    <h4>Problem &amp; role</h4>
     <p>
       Month-end: planned tonnes and 4E grade from the short-term schedule do not match survey polygons or plant feed.
-      Naledi must explain variance by bench and shift — who owns the gap (mining, survey, plant) — before the accountability
+      The quantitative planning analyst must explain variance by bench and shift — who owns the gap (mining, survey, plant) — before the accountability
       meeting. Sloan Ch 6 flexible-budget logic and SME Table 9.2 checklist frame the narrative.
     </p>
 
@@ -478,10 +478,10 @@ IndexedDB haulageDesRuns      // optional local save; key = runId
       <span class="tag">T5</span>
       <span class="composite-badge">idea-06 · composite 3.93 · fleet-capacity-mdp</span></h3>
 
-    <h4>Problem &amp; persona</h4>
+    <h4>Problem &amp; role</h4>
     <p>
       Two shovels and eighteen trucks must hit 42 kt/d through the wet season, but unplanned downtime and PM windows
-      compete for the same maintenance bay. Naledi needs a policy: when to pull units for PM vs run-to-failure, given
+      compete for the same maintenance bay. The quantitative planning analyst needs a policy: when to pull units for PM vs run-to-failure, given
       contractor-maintained vs owner-maintained split — without OEM confidential rates. SME availability/utilisation
       (A, U, E = A×U) and Fig 22.1 PM cost curve anchor the model.
     </p>
@@ -603,10 +603,10 @@ IndexedDB fleetSimRuns          // key = runId
       <span class="tag">T1</span>
       <span class="composite-badge">idea-01 · composite 3.86 · pit-schedule-gantt</span></h3>
 
-    <h4>Problem &amp; persona</h4>
+    <h4>Problem &amp; role</h4>
     <p>
       Quarterly pushback review: which blocks to mine in which periods to maximise NPV while respecting bench-down
-      precedence, shovel capacity, and soft 4E grade targets? Naledi cannot run Whittle in-browser; she needs a toy
+      precedence, shovel capacity, and soft 4E grade targets? The quantitative planning analyst cannot run Whittle in-browser; the role needs a toy
       instance (≤500 blocks) with honest Gorai Ch 5.4 / Handbook Ch 29.4 citation anchors and a Gantt the team can edit.
     </p>
 
@@ -733,10 +733,10 @@ IndexedDB mipRuns               // stretch Cloud Function results; key = runId
       <span class="tag">T6</span>
       <span class="composite-badge">idea-10 · rank #9 · composite 3.55 · closure-liability-mc</span></h3>
 
-    <h4>Problem &amp; persona</h4>
+    <h4>Problem &amp; role</h4>
     <p>
       The Technical Services team needs a defensible range of post-closure water treatment and tailings stewardship costs
-      for board reporting — not a single point estimate. Naledi must stress-test ARD treatment rates (Dunbar Equity Silver
+      for board reporting — not a single point estimate. The quantitative planning analyst must stress-test ARD treatment rates (Dunbar Equity Silver
       ~US$2.065M/yr worked example), wet-climate vs base-case scenarios, and bond-release phasing (SME SMCRA Phases I–III)
       using public WRC atlas layers and synthetic <code>closure_risk.csv</code> — without claiming SAMVAL Competent Valuator sign-off.
     </p>
@@ -750,7 +750,7 @@ IndexedDB mipRuns               // stretch Cloud Function results; key = runId
           <td>
             Workbench at <code>/demo/closure-liability-mc</code>: scenario tree (base / ARD escalation / wet climate);
             1,000-draw Monte Carlo in Web Worker on annual treatment + bond top-up costs; NPV liability distribution
-            (histogram + P10/P50/P90); Leaflet overlay of WRC Mine Closure Atlas risk band for Limpopo persona.
+            (histogram + P10/P50/P90); Leaflet overlay of WRC Mine Closure Atlas risk band for the Limpopo demo site.
             Seed from PR-07 <code>closure_risk.csv</code> + Dunbar Ch 5 ARD cost anchors.
           </td>
         </tr>
@@ -890,7 +890,7 @@ IndexedDB mcRuns               // key = runId
         <tr><td>CV proof</td><td>4</td><td>Five briefs target weakest pillars T1/T3/T6 with demos; T2/T5 leverage existing proof</td></tr>
         <tr><td>Angular+Firebase fit</td><td>5</td><td>Every brief has module tree, Firestore paths, mermaid arch, Worker boundaries</td></tr>
         <tr><td>Data feasibility</td><td>5</td><td>All seeds from PR-07b generators; no proprietary block models</td></tr>
-        <tr><td>Differentiation</td><td>5</td><td>Mining-native KPIs + SA persona vs generic OR portfolio</td></tr>
+        <tr><td>Differentiation</td><td>5</td><td>Mining-native KPIs + SA demo site context vs generic OR portfolio</td></tr>
         <tr><td>Effort</td><td>M</td><td>~19 weeks solo sequential; ~12 weeks if T2+T3+T6 parallel after shell</td></tr>
         <tr><td><strong>Composite (doc)</strong></td><td><strong>4.47</strong></td><td>Matches PR-19 catalog artifact score</td></tr>
       </tbody>

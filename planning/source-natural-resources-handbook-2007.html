@@ -242,7 +242,7 @@
 
     <li><strong>Read boundary:</strong> Deep Ch 29 (block model, Lerchs–Grossmann/max-closure, MILP scheduling, branch-and-cut); Ch 30 (infill drilling, cut-off, stope optimisation, Steiner decline networks, Kiruna precursor, conditional simulation); Ch 31 (Kiruna MILP, variable reduction, numerical results); Ch 32 (copper chain integration, hardness/recovery nonlinearity, water/energy limits). Skim ag Ch 1 (farm risk), Ch 7 (MCDM+simulation), Ch 9 (PMP calibration); forestry Ch 22 (harvest ops), Ch 26 (heuristics/SA scheduling), Ch 28 (LP+simulation strategy). TOC only: fisheries, remaining ag/forestry.</li>
 
-    <li><strong>Cross-refs:</strong> Hillier Ch 10 network, Ch 12 IP (<a href="source-hillier-2024.html">PR-10</a>); haulage DES patterns (<a href="mining-or-real-world-examples.html">PR-05</a>); SA iron-ore personas (<a href="sa-mining-context.html">PR-09</a>); synthetic block models (<a href="synthetic-data-generator-spec.html">PR-07b</a>); Epstein/Weintraub also author forest transport Ch 22 and copper Ch 32.</li>
+    <li><strong>Cross-refs:</strong> Hillier Ch 10 network, Ch 12 IP (<a href="source-hillier-2024.html">PR-10</a>); haulage DES patterns (<a href="mining-or-real-world-examples.html">PR-05</a>); SA iron-ore demo site profiles (<a href="sa-mining-context.html">PR-09</a>); synthetic block models (<a href="synthetic-data-generator-spec.html">PR-07b</a>); Epstein/Weintraub also author forest transport Ch 22 and copper Ch 32.</li>
 
   </ul>
 
@@ -512,7 +512,7 @@
 
     <p><strong>Source:</strong> Ch 32.1–2 (sequential vs integrated); Ch 32.4.1 (hardness W<sub>i</sub>→tpd, recovery vs µm, pollutant blend); Ch 32.4.2.2 (water 53% / energy 48% at crushing-grinding-flotation, Tables 1–2).</p>
 
-    <p><strong>Idea:</strong> Two-mine, one-concentrator toy LP/MILP: monthly ore feed by hardness class affects mill tpd and recovery; water cap binds in dry-site persona (<a href="sa-mining-context.html">PR-09</a>). Vision doc + small solver — integration gap is the story (Ch 32.5).</p>
+    <p><strong>Idea:</strong> Two-mine, one-concentrator toy LP/MILP: monthly ore feed by hardness class affects mill tpd and recovery; water cap binds in dry-site demo profile (<a href="sa-mining-context.html">PR-09</a>). Vision doc + small solver — integration gap is the story (Ch 32.5).</p>
 
   </div>
 
@@ -690,7 +690,7 @@
 
   <p>
 
-    Module <code>KirunaScheduleLab</code>: persona selector (<a href="sa-mining-context.html">PR-09</a> iron-ore buyer), 12-month horizon, three ore-type demand series (B1/B2/D3 analogues).
+    Module <code>KirunaScheduleLab</code>: site profile selector (<a href="sa-mining-context.html">PR-09</a> iron-ore buyer), 12-month horizon, three ore-type demand series (B1/B2/D3 analogues).
 
     Upload or generate machine-placement list with vertical/horizontal precedence (Ch 31.2). Toggle long-term-only vs combined model; display monthly deviation chart (Fig. 3 analogue).
 
