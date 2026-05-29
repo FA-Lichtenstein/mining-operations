@@ -1,3 +1,6 @@
+# Accidental root npm lock (workspace is app/ only)
+/package-lock.json
+
 # Local source library and pipeline
 sources/
 

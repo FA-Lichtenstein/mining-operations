@@ -1,173 +1,100 @@
-# Haulage DES — scope extensions (PR1 reviewer notes)
+# Haulage DES — scope extensions
 
-Ideas deferred beyond PR1 acceptance. **Not implemented** in this PR — capture for later PRs or stretch backlog.
+Holistic final review (2026-05-29). Six-PR synthesis on `main` (commits `7180198` … `3e2510e`). **Do not implement items below without a new PR** — this file is the prioritized backlog only.
 
-## PR1 reviewer audit (2026-05-29)
+## Synthesis plan acceptance (holistic)
 
-- Shell, gallery, `/demo/haulage-des` four-panel workbench placeholders, shared layouts, disclaimer, `demos.json`, and role-based brief/docs meet PR1 plan acceptance.
-- Root `npm run build` and `npm run test` pass; `provideHttpClient` present; no named fictional personas in new copy.
-- Minor polish: aligned coming-soon `themeTags` in `demos.json` with `planning/portfolio-shortlist-briefs.html`; repo-root `.gitignore` excludes `app/node_modules`, `app/dist`, `app/.angular`.
+| Area | Plan requirement | Status |
+|------|------------------|--------|
+| Personas | Role-based only (`Quantitative Planning Analyst`, `Technical Services superintendent`); no fictional names | Met — no `Naledi` or named personas in app/docs/seeds/tests |
+| Demo site | `syn-pgm-bushveld-01` synthetic Bushveld PGM context | Met |
+| MVP scenarios | `truck_shovel`, `scraper_train` | Met — seeds, panel A picker, clone/compare |
+| IPCC | Stretch / schema stub only | Met as deferred (`ipcc_conveyor.stub.json`, checklist stretch step) |
+| Compute | Browser Web Worker DES; local IndexedDB | Met |
+| Export | JSON MVP; PDF stretch | Met — JSON export/import; no PDF |
+| Labelling | Synthetic + illustrative K-Tec | Met — `metadata` labels in panel A, study copy, seeds |
+| PR1 shell | Angular `app/`, gallery, `/demo/haulage-des`, layouts, thin brief | Met |
+| PR2 generator | Deterministic `gen-truck-cycle`, golden Vitest | Met — `npm run gen:seeds`, `test:tools` |
+| PR3 engine | Pure TS DES + worker, KPI tests | Met — `test:engine` (8 tests) |
+| PR4 workbench | Panels A–D, compare, IndexedDB, JSON | Met |
+| PR5 study | Background/study + presenter 5-min checklist | Met |
+| PR6 readiness | Playwright smoke, Firebase stub, README/checklist | Met — `test:e2e` passes |
 
-## Suggested extensions (ideas only)
+## PR audits (condensed)
 
-### Shell & catalog
+- **PR1** — Portfolio shell, `demos.json`, role-based `docs/projects/haulage-des/brief.md`, four-panel haulage placeholder → live workbench route.
+- **PR2** — `app/tools/gen-truck-cycle/` (Mulberry32, triangular/normal/exponential), both MVP scenarios under `assets/seeds/syn-pgm-bushveld-01/gen-truck-cycle/v1.0.0-{scenario}/`; `ipcc` stub only; `train_size` in config not consumed by generator logic.
+- **PR3** — `engine/` (event queue, FIFO resources, shift, breakdown/repair, KPIs incl. N_h, E=A×U); `haulage-des.worker.ts` + `DesWorkerService`; Gorai analytic-only.
+- **PR4** — Full workbench: D3 schematic, ECharts panels, compare A/B, IndexedDB `haulageDesRuns`, JSON export; worker returns `cycles` for charts.
+- **PR5** — Study drawer + presenter teleprompter (`localStorage` checklist); citations to `planning/` sources; docs aligned with in-app content paths.
+- **PR6** — `e2e/haulage-des-smoke.spec.ts`, `firebase.json` SPA hosting stub, `demo-checklist.md`, test IDs, loading/error/a11y basics on controls.
 
-- Add Vitest coverage for `DemoCatalogService` and route smoke tests (gallery → haulage-des shell).
-- Gallery filter/sort by theme tag (T1–T6) and presentation mode.
-- Document theme taxonomy in About or a small `/themes` reference page.
+---
 
-### Haulage-des UX (PR4+)
+## Proposed scope extensions
 
-- Wire panel A controls to real scenario/seed selectors once `gen-truck-cycle` lands (PR2).
-- Persistent “last scenario” in `sessionStorage` for demo reload continuity.
-- Panel D superintendent summary component with role-based copy template (no names).
+Prioritized **open** backlog. Items marked **Done** were delivered in PR1–6 (listed once here to dedupe per-PR notes).
 
-### Data & labelling
+### Priority 1 — CI & regression gates
 
-- In-app link from workbench footer to `docs/projects/haulage-des/brief.md` (or rendered study pane in PR5).
-- Explicit K-Tec “illustrative parameters” chip in panel A when scraper_train is selected.
+| # | Item | Status |
+|---|------|--------|
+| 1 | GitHub Actions: `build`, `test:engine`, `test:tools`, `test:e2e` (`CI=1`, cached Playwright browsers) | Open |
+| 2 | `gen-truck-cycle --check` (fail CI when on-disk seeds drift from `golden-hashes.json` without rewrite) | Open |
+| 3 | Vitest for `DemoCatalogService` + lightweight route/gallery unit smoke | Open |
 
-### Engineering hygiene
+### Priority 2 — Demo continuity & facilitator UX
 
-- Firebase Hosting stub and `firebase.json` (PR6) without Auth/Firestore.
-- Playwright smoke: gallery card → haulage-des → four panel headings visible.
-- ESLint/Prettier CI job at repo root invoking `app/` scripts.
+| # | Item | Status |
+|---|------|--------|
+| 4 | `sessionStorage` last scenario + fleet/horizon sliders for reload continuity | Open |
+| 5 | Extend Playwright: open Background/Study, tick presenter checkbox, assert IndexedDB saved-runs after run | Open |
+| 6 | Deep-link `?study=<section>` or presenter section hash for rehearsal bookmarks | Open |
+| 7 | Export presenter checklist progress as JSON for facilitator handoff | Open |
 
-### Cross-demo
+### Priority 3 — Simulation fidelity & stretch scenarios
 
-- Cross-link from fleet-capacity-mdp (future) downtime events into haulage DES inputs (per planning brief cross-links).
+| # | Item | Status |
+|---|------|--------|
+| 8 | Implement `ipcc_conveyor` scenario + panel A option (T4 stretch) | Open |
+| 9 | Gorai analytic overlay chart (explain-only, not second simulator) | Open |
+| 10 | Panel B animation from streamed DES cycle events (not progress-derived phase proxy); queue bar from rolling queue samples | Open |
+| 11 | Deterministic-vs-stochastic toggle for explainers; multi-shift handover queues | Open |
+| 12 | Replay/calibration check: compare worker output to `cycles.csv` from gen-truck-cycle | Open |
+| 13 | Use or drop `train_size` in scraper_train generator semantics | Open |
+| 14 | Separate dump-queue vs loader-queue wait in KPI cards | Open |
+| 15 | Congestion / Weibull jam events on network edges (generator stretch) | Open |
 
-## PR2 reviewer audit (2026-05-29)
+### Priority 4 — Workbench & persistence polish
 
-- `app/tools/gen-truck-cycle` with Mulberry32, triangular/normal/exponential phases, `truck_shovel` + `scraper_train` scenarios; seeds at `app/src/assets/seeds/syn-pgm-bushveld-01/gen-truck-cycle/v1.0.0-{scenario}/`; `npm run gen:seeds` and `npm run test:tools` (Vitest golden hashes). K-Tec illustrative metadata on `scraper_train`; role-based `roles_note` only; no DES engine in PR2.
-- `ipcc_conveyor.stub.json` deferred; `train_size` in config not yet consumed by generator logic.
+| # | Item | Status |
+|---|------|--------|
+| 16 | IndexedDB prune/delete-run UI; export compare pair as single JSON manifest | Open |
+| 17 | Partial import restore when `cycles` omitted (KPI-only, chart placeholders) | Open |
+| 18 | Gallery filter/sort by theme tag (T1–T6) and presentation mode | Open |
+| 19 | Document theme taxonomy on About or `/themes` | Open |
+| 20 | Render `brief.md` from repo fetch (optional) to avoid TS copy drift | Open |
+| 21 | Footer link to GitHub `docs/projects/haulage-des/brief.md` alongside study drawer | Open |
 
-## Suggested extensions after PR2 (ideas only)
+### Priority 5 — Hosting, cross-demo, governance
 
-### Seed consumption (PR3–4)
+| # | Item | Status |
+|---|------|--------|
+| 22 | `firebase deploy` in CI when project id secret available; preview channels per PR | Open |
+| 23 | Cross-link fleet-capacity-mdp downtime → haulage DES inputs (future module) | Open |
+| 24 | Bundle manifest (per-file sha256) for seed debugging | Open |
+| 25 | Root ESLint/Prettier CI invoking `app/` scripts | Open |
+| 26 | Contractor shift-calendar toggle; PDF superintendent pack (plan stretch) | Open |
 
-- Angular seed loader service: fetch `config.json` + CSV bundles from `assets/seeds/…/gen-truck-cycle/`.
-- Panel A scenario selector (`truck_shovel` | `scraper_train`) wired to seed path suffix; show `metadata.ktec_parameters_label` / `fleet_parameters_label` chips.
-- Pass parsed cycles into Web Worker DES kernel (queue + resource calendar) with deterministic replay from bundle `seed`.
+### Delivered in PR1–6 (deduped — not open)
 
-### Generator
-
-- Implement `ipcc_conveyor` scenario (stub exists); emit under `v1.0.0-ipcc_conveyor/`.
-- Use `train_size` in scraper_train cycle semantics or drop from schema until used.
-- Congestion / Weibull jam events on `network.graphml` edges (per synthetic-data-generator-spec stretch).
-- CLI flag `--check` to fail CI when on-disk seeds drift from `golden-hashes.json` without rewrite.
-
-### Tests & CI
-
-- Commit `vitest.tools.config.ts` + `tsconfig.tools.json` if not already on branch; root or `app/` CI job running `npm run test:tools`.
-- Golden-hash update workflow documented in tool README or haulage-des brief.
-
-### Labelling & governance
-
-- Replace any residual OEM-style `haul_unit_class` strings in future scenarios with `illustrative-*` taxonomy.
-- Export bundle manifest (sha256 per file) alongside aggregate bundle hash for partial invalidation debugging.
-
-## PR3 reviewer audit (2026-05-29)
-
-- `app/src/app/features/haulage-des/engine/` — min-heap event queue, FIFO loader/dump resources, shift window, MTBF/MTTR breakdown deferral, cycle phases (queue/spot/load/haul/dump/return), KPI aggregation (tonnes/shift, cycle/queue stats, loader idle %, haul util %, SME-style N_h, E=A×U, availability-adjusted throughput, cost/fuel placeholders).
-- `haulage-des.worker.ts` + `DesWorkerService` (module Worker, progress + complete messages); `load-seed-config.ts` and Vitest specs excluded from `tsconfig.app.json`.
-- `npm run test:engine` (8 golden/behaviour tests), `npm run test:tools`, `ng build` pass; worker chunk `haulage-des-worker`; shell smoke button fetches `v1.0.0-truck_shovel/config.json`.
-- Availability KPI uses scheduled breakdown downtime (not a constant 1.0); Gorai hint remains analytic-only.
-
-## Suggested extensions after PR3 (ideas only)
-
-### Engine & seeds
-
-- Browser `SeedConfigService` loading `config.json` from `assets/seeds/…` (replace shell `fetch` + align panel A with scenario suffix).
-- Replay/compare against `cycles.csv` from gen-truck-cycle for calibration drift checks.
-- Multi-shift runs with shift handover queues; optional deterministic-vs-stochastic toggle for explainers.
-- Track dump-queue wait separately from loader-queue wait in KPI cards.
-
-### Worker & UI (PR4)
-
-- Wire panel A scenario picker to both scenarios; show `metadata.ktec_parameters_label` / `fleet_parameters_label` chips.
-- Stream cycle events from worker for D3 panel B animation; ECharts queue depth from time-series buffers.
-- IndexedDB run history + JSON export; in-session A/B compare table.
-
-### Tests & CI
-
-- Root/`app/` CI job: `test:engine`, `test:tools`, `build`; document golden KPI update workflow when simulator semantics change.
-- Property test: availability in (0,1] when MTBF finite; breakdown intervals never double-schedule `breakdown_end`.
-
-## PR4 reviewer audit (2026-05-29)
-
-- `/demo/haulage-des` workbench MVP: **Panel A** scenario picker (`truck_shovel` | `scraper_train`), fleet/payload/haul-distance/horizon/seed controls, Run / Reset / Clone; config loaded via `HttpClient` from `assets/seeds/…/gen-truck-cycle/`; `metadata` illustrative labels surfaced. **Panel B** D3 load–haul–dump schematic with phase animation and queue-depth proxy. **Panel C** ngx-echarts (tree-shaken core) queue rolling average, throughput-by-shift, cycle-time histogram from worker `cycles`. **Panel D** KPI cards, cycle anatomy explainer, role-based superintendent summary (no named personas).
-- Compare bar: in-session A/B save, KPI delta table, JSON export/import (`HaulageRunExport` v1), IndexedDB `mining-portfolio` / `haulageDesRuns` auto-save on complete + restore list — matches brief-02 persistence sketch.
-- Worker fix: `haulage-des.worker.ts` and `DesWorkerService` return `cycles` on `complete` (required for Panel C charts; was KPI-only in PR3 shell smoke).
-- `d3`, `echarts`, `ngx-echarts@21` added; `npm run build`, `test:engine`, `test:tools` pass.
-- Deferred to PR5+: in-app brief/study pane, Playwright smoke, sessionStorage last scenario, Gorai analytic overlay, IPCC scenario.
-
-## Suggested extensions after PR4 (ideas only)
-
-### Workbench UX
-
-- Drive Panel B animation from streamed cycle events (not progress-derived phase proxy); tie queue bar to rolling DES queue samples.
-- `sessionStorage` last scenario + fleet sliders for demo reload continuity.
-- Footer link to `docs/projects/haulage-des/brief.md` or rendered study layer (PR5).
-
-### Persistence & compare
-
-- IndexedDB prune / delete-run UI; export compare pair as single JSON manifest.
-- Partial restore when import omits `cycles` (KPI-only cards, charts placeholder).
-
-### CI
-
-- Root or `app/` workflow: `build`, `test:engine`, `test:tools`; Playwright gallery → haulage-des → run → compare → export.
-
-## PR5 reviewer audit (2026-05-29)
-
-- **Background / Study** drawer (`haulage-study-drawer`, `content/haulage-study-content.ts`): six sections (decision question, haul-cycle anatomy, N_h / E = A×U, stochastic queues, illustrative K-Tec hypotheses, synthetic limits); role-based copy only; citation chips link to `planning/` sources (SME, Gorai, Dunbar, Ukwazi, brief #02).
-- **Presenter mode** (`haulage-presenter-panel`, `content/haulage-demo-checklist.ts`, `HaulagePresenterStateService`): 5-minute teleprompter with timed sections mirroring `demo-script-outline.md`; checkbox progress in `localStorage` (`haulage-des-presenter-checklist-v1`); reset + completion counter.
-- **Context toolbar** above workbench toggles study vs presenter (mutually exclusive); panel D cycle anatomy points to **Background / Study**.
-- Docs sync: `brief.md` documents in-app content paths; `demo-script-outline.md` aligned with checklist (no panel D placeholder copy).
-- `npm run build` passes; PR4 workbench, compare, IndexedDB unchanged.
-- Still deferred: Playwright smoke, `sessionStorage` last scenario, Gorai analytic overlay, IPCC scenario, workbench footer doc link (study toolbar replaces footer link).
-
-## Suggested extensions after PR5 (ideas only)
-
-### Study & presenter
-
-- Deep-link `?study=match-efficiency` or presenter section hash for rehearsal bookmarks.
-- Export presenter checklist progress as JSON for facilitator handoff.
-- Render brief markdown from `docs/` via fetch (optional) instead of duplicated TS copy — keep single source if drift becomes painful.
-
-### Workbench UX
-
-- `sessionStorage` last scenario + fleet sliders for demo reload continuity.
-- Footer link to repo `docs/projects/haulage-des/brief.md` on GitHub alongside in-app study drawer.
-
-### CI
-
-- Playwright: gallery → haulage-des → open study → presenter tick → run DES → export.
-
-## PR6 reviewer audit (2026-05-29)
-
-- **Playwright** (`app/playwright.config.ts`, `app/e2e/haulage-des-smoke.spec.ts`, `npm run test:e2e`): gallery (`gallery-haulage-open`) → haulage-des → four panel labels → horizon=1 run → save A → clone other scenario → save B → Δ table → JSON export filename `haulage-des-*.json`; `webServer` starts `ng serve` unless `reuseExistingServer` (local) or `CI=1` (fresh server + retries).
-- **Firebase Hosting stub** (`firebase.json`, `.firebaserc` placeholder project id): `public` → `app/dist/portfolio/browser`, SPA rewrite; no Auth/Firestore.
-- **Docs**: root + `app/README.md` command table (`build`, `test:engine`, `test:tools`, `test:e2e`, `gen:seeds`); [`demo-checklist.md`](./demo-checklist.md) manual 5-minute interview checklist; `demo-script-outline.md` links checklist.
-- **Test IDs & polish**: `haulage-run-des`, `haulage-clone-other`, `haulage-save-a|b`, `haulage-export-json`; controls loading state + `role="alert"` on seed errors; `sim-busy` shell blocks interaction during run except panel A.
-- `.gitignore` excludes Playwright artifacts under `app/`.
-- `npm run build`, `test:engine`, `test:tools`, `test:e2e` pass from `app/`.
-- Still deferred: `sessionStorage` last scenario, Gorai analytic overlay, IPCC scenario, study/presenter steps in e2e, Firebase deploy, root ESLint CI.
-
-## Suggested extensions after PR6 (ideas only)
-
-### E2E & CI
-
-- Extend smoke: open **Background / Study**, tick presenter checkbox, assert IndexedDB saved-runs list after run.
-- GitHub Actions job: `build`, `test:engine`, `test:tools`, `test:e2e` with `CI=1` and cached Playwright browsers.
-
-### Hosting
-
-- Wire `firebase deploy` in CI after `npm run build` when project id secret is available.
-- Preview channels per PR (Firebase Hosting channels or alternate static host).
-
-### Demo hygiene
-
-- `sessionStorage` last scenario + fleet sliders for demo reload continuity.
-- Deep-link `?study=` / presenter section hash for rehearsal bookmarks.
+- Angular portfolio shell in `app/`, gallery, `/about`, workbench/notebook layouts, synthetic disclaimer.
+- Thin haulage brief + demo script + manual `demo-checklist.md`.
+- `gen-truck-cycle` for `truck_shovel` and `scraper_train`; golden-hash Vitest; illustrative K-Tec metadata.
+- Pure DES engine + Web Worker; `test:engine` KPI/queue golden tests.
+- Workbench panels A–D; in-session A/B compare; IndexedDB run history; JSON export/import.
+- Study drawer + presenter mode with role-based copy and planning source citations.
+- Playwright smoke (gallery → haulage-des → run → clone → compare → export).
+- Firebase Hosting stub (`firebase.json`, `.firebaserc` placeholder) — no Auth/Firestore.
+- Panel A scenario/seed wiring, `metadata` illustrative labels, `provideHttpClient`, repo `.gitignore` for `app/node_modules`, `dist`, Playwright artifacts.
+- Worker `cycles` on complete for ECharts; `sim-busy` / `role="alert"` polish; README command table.

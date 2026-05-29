@@ -17,12 +17,15 @@ A **Technical Services superintendent** asks whether adding K-Tec scraper trains
 | Technical Services superintendent | Poses the haulage trade-off question; reviews KPI summary and follow-up checks |
 | Quantitative Planning Analyst | Configures scenarios, runs DES, compares runs, exports evidence for decision memos |
 
-## MVP acceptance (target state — PR 3–6)
+## MVP acceptance (delivered — PR 3–6)
 
 - Workbench at `/demo/haulage-des` with panels A–D (controls, D3 schematic, ECharts queues, KPI / explainer)
 - Web Worker DES with deterministic seeds from `gen-truck-cycle`
-- In-session A/B compare (truck-shovel vs scraper-train), optional IndexedDB save, JSON export
+- In-session A/B compare (truck-shovel vs scraper-train), IndexedDB save, JSON export
 - Synthetic-data and illustrative K-Tec labelling visible in UI
+- Background/Study drawer and 5-minute presenter checklist (PR 5); Playwright smoke + Firebase Hosting stub (PR 6)
+
+Backlog: [`scope-extensions.md`](./scope-extensions.md).
 
 ## Assumptions (illustrative)
 
