@@ -9,13 +9,31 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
   template: `
     <section class="compare-bar" aria-label="Compare runs and persistence">
       <div class="compare-actions">
-        <button type="button" class="btn sm" (click)="wb.saveCompareSlot('A')" [disabled]="!wb.lastRun()">
+        <button
+          type="button"
+          class="btn sm"
+          data-testid="haulage-save-a"
+          (click)="wb.saveCompareSlot('A')"
+          [disabled]="!wb.lastRun()"
+        >
           Save as A
         </button>
-        <button type="button" class="btn sm" (click)="wb.saveCompareSlot('B')" [disabled]="!wb.lastRun()">
+        <button
+          type="button"
+          class="btn sm"
+          data-testid="haulage-save-b"
+          (click)="wb.saveCompareSlot('B')"
+          [disabled]="!wb.lastRun()"
+        >
           Save as B
         </button>
-        <button type="button" class="btn sm" (click)="wb.exportLastRunJson()" [disabled]="!wb.lastRun()">
+        <button
+          type="button"
+          class="btn sm"
+          data-testid="haulage-export-json"
+          (click)="wb.exportLastRunJson()"
+          [disabled]="!wb.lastRun()"
+        >
           Export JSON
         </button>
         <label class="btn sm import-label">

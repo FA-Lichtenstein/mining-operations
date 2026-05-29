@@ -40,7 +40,13 @@ import { DemoCatalogService } from '../../core/services/demo-catalog.service';
               </div>
 
               @if (demo.status === 'live') {
-                <a class="btn btn-primary" [routerLink]="demo.route">Open demo</a>
+                <a
+                  class="btn btn-primary"
+                  [routerLink]="demo.route"
+                  [attr.data-testid]="demo.id === 'haulage-des' ? 'gallery-haulage-open' : null"
+                >
+                  Open demo
+                </a>
               } @else {
                 <span class="btn disabled" aria-disabled="true">Coming soon</span>
               }

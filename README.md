@@ -2,7 +2,7 @@
 
 Public portfolio of operations research applications in mine planning.
 
-## Angular portfolio app (PR 1)
+## Angular portfolio app
 
 The interactive demo shell lives in [`app/`](app/). It uses **Angular 21** (standalone components, signals in catalog service) with a dark steel-blue theme distinct from integraldecision.com.
 
@@ -16,20 +16,34 @@ npm start
 
 Open [http://localhost:4200](http://localhost:4200). From the repo root you can also use `npm start` (delegates to `app/`).
 
-### Build & test
+### Build and test
+
+From `app/` (or use root scripts that delegate with `--prefix app`):
+
+| Command | Purpose |
+|---------|---------|
+| `npm run build` | Production build → `app/dist/portfolio/browser` |
+| `npm run test:engine` | Vitest — DES engine unit tests |
+| `npm run test:tools` | Vitest — `gen-truck-cycle` golden seeds |
+| `npm run test:e2e` | Playwright smoke — gallery → haulage-des → run → compare → export |
+| `npm run gen:seeds` | Regenerate deterministic seed assets |
 
 ```bash
 cd app
 npm run build
-npm run test
+npm run test:engine
+npm run test:tools
+npm run test:e2e   # installs Chromium via Playwright on first run
 ```
+
+First-time e2e: `cd app && npx playwright install chromium`
 
 ### Routes
 
 | Path | Purpose |
 |------|---------|
 | `/` | Demo gallery (`assets/catalog/demos.json`) |
-| `/demo/haulage-des` | Haulage DES workbench shell (4 panels, placeholders) |
+| `/demo/haulage-des` | Haulage DES workbench (panels A–D, study, presenter) |
 | `/demo/:demoId` | Coming-soon previews for other catalog entries |
 | `/about` | Portfolio positioning and synthetic-data policy |
 
@@ -37,5 +51,18 @@ npm run test
 
 - [`docs/projects/haulage-des/brief.md`](docs/projects/haulage-des/brief.md)
 - [`docs/projects/haulage-des/demo-script-outline.md`](docs/projects/haulage-des/demo-script-outline.md)
+- [`docs/projects/haulage-des/demo-checklist.md`](docs/projects/haulage-des/demo-checklist.md) — 5-minute manual interview checklist
 
 Planning acceptance contract: [`planning/portfolio-shortlist-briefs.html`](planning/portfolio-shortlist-briefs.html#brief-02).
+
+### Deferred Firebase Hosting
+
+Hosting config is stubbed at repo root for a future deploy (no Auth/Firestore in MVP):
+
+- [`firebase.json`](firebase.json) — `public`: `app/dist/portfolio/browser`
+- [`.firebaserc`](.firebaserc) — replace `REPLACE_WITH_FIREBASE_PROJECT_ID` before `firebase deploy`
+
+```bash
+cd app && npm run build
+# firebase deploy   # when project id is configured
+```

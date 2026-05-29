@@ -49,6 +49,7 @@ import { HaulageWorkbenchService } from './services/haulage-workbench.service';
     />
 
     <app-workbench-layout
+      [class.sim-busy]="wb.running()"
       title="Haulage discrete-event simulation"
       subtitle="syn-pgm-bushveld-01 · truck-shovel vs K-Tec scraper train · role-based DES workbench"
       controlsLabel="Panel A — Scenario & fleet controls"
@@ -74,10 +75,19 @@ import { HaulageWorkbenchService } from './services/haulage-workbench.service';
       display: block;
       margin-bottom: 0.75rem;
     }
+
+    app-workbench-layout.sim-busy {
+      opacity: 0.92;
+      pointer-events: none;
+    }
+
+    app-workbench-layout.sim-busy :is(app-haulage-controls-panel) {
+      pointer-events: auto;
+    }
   `,
 })
 export class HaulageDesShellComponent implements OnInit {
-  private readonly wb = inject(HaulageWorkbenchService);
+  protected readonly wb = inject(HaulageWorkbenchService);
 
   protected readonly studyOpen = signal(false);
   protected readonly presenterOpen = signal(false);

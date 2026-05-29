@@ -9,6 +9,7 @@
     "test": "ng test",
     "test:tools": "vitest run --config vitest.tools.config.ts",
     "test:engine": "vitest run --config vitest.engine.config.ts",
+    "test:e2e": "playwright test",
     "gen:seeds": "tsx tools/gen-truck-cycle/cli.ts"
   },
   "private": true,
@@ -30,6 +31,7 @@
     "@angular/build": "^21.2.13",
     "@angular/cli": "^21.2.13",
     "@angular/compiler-cli": "^21.2.0",
+    "@playwright/test": "^1.60.0",
     "@types/d3": "^7.4.3",
     "@types/node": "^22.10.0",
     "jsdom": "^28.0.0",

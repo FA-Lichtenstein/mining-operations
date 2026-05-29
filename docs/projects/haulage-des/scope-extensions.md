@@ -144,3 +144,30 @@ Ideas deferred beyond PR1 acceptance. **Not implemented** in this PR — capture
 ### CI
 
 - Playwright: gallery → haulage-des → open study → presenter tick → run DES → export.
+
+## PR6 reviewer audit (2026-05-29)
+
+- **Playwright** (`app/playwright.config.ts`, `app/e2e/haulage-des-smoke.spec.ts`, `npm run test:e2e`): gallery (`gallery-haulage-open`) → haulage-des → four panel labels → horizon=1 run → save A → clone other scenario → save B → Δ table → JSON export filename `haulage-des-*.json`; `webServer` starts `ng serve` unless `reuseExistingServer` (local) or `CI=1` (fresh server + retries).
+- **Firebase Hosting stub** (`firebase.json`, `.firebaserc` placeholder project id): `public` → `app/dist/portfolio/browser`, SPA rewrite; no Auth/Firestore.
+- **Docs**: root + `app/README.md` command table (`build`, `test:engine`, `test:tools`, `test:e2e`, `gen:seeds`); [`demo-checklist.md`](./demo-checklist.md) manual 5-minute interview checklist; `demo-script-outline.md` links checklist.
+- **Test IDs & polish**: `haulage-run-des`, `haulage-clone-other`, `haulage-save-a|b`, `haulage-export-json`; controls loading state + `role="alert"` on seed errors; `sim-busy` shell blocks interaction during run except panel A.
+- `.gitignore` excludes Playwright artifacts under `app/`.
+- `npm run build`, `test:engine`, `test:tools`, `test:e2e` pass from `app/`.
+- Still deferred: `sessionStorage` last scenario, Gorai analytic overlay, IPCC scenario, study/presenter steps in e2e, Firebase deploy, root ESLint CI.
+
+## Suggested extensions after PR6 (ideas only)
+
+### E2E & CI
+
+- Extend smoke: open **Background / Study**, tick presenter checkbox, assert IndexedDB saved-runs list after run.
+- GitHub Actions job: `build`, `test:engine`, `test:tools`, `test:e2e` with `CI=1` and cached Playwright browsers.
+
+### Hosting
+
+- Wire `firebase deploy` in CI after `npm run build` when project id secret is available.
+- Preview channels per PR (Firebase Hosting channels or alternate static host).
+
+### Demo hygiene
+
+- `sessionStorage` last scenario + fleet sliders for demo reload continuity.
+- Deep-link `?study=` / presenter section hash for rehearsal bookmarks.

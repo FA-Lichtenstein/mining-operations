@@ -5,6 +5,8 @@ Narration uses official roles only. Demo site: **syn-pgm-bushveld-01**.
 In-app **Presenter mode** on `/demo/haulage-des` mirrors this outline (checkboxes, localStorage).
 Source: `app/src/app/features/haulage-des/content/haulage-demo-checklist.ts` — keep in sync when editing.
 
+Manual checkbox version for interviews: [demo-checklist.md](./demo-checklist.md).
+
 ## 0:00–0:45 — Open and orient
 
 - Start at portfolio gallery; open **Truck-shovel vs K-Tec scraper DES**

@@ -9,10 +9,12 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
   imports: [FormsModule],
   template: `
     @if (wb.loadError()) {
-      <p class="error">{{ wb.loadError() }}</p>
+      <p class="error" role="alert">{{ wb.loadError() }}</p>
+    } @else if (!wb.config()) {
+      <p class="loading" aria-busy="true">Loading scenario seed…</p>
     }
 
-    <fieldset class="field-group">
+    <fieldset class="field-group" [attr.aria-hidden]="!wb.config()">
       <legend>Scenario</legend>
       <div class="scenario-row">
         @for (id of scenarioIds; track id) {
@@ -94,11 +96,24 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
       }
 
       <div class="actions">
-        <button type="button" class="btn primary" (click)="wb.runSimulation()" [disabled]="wb.running()">
+        <button
+          type="button"
+          class="btn primary"
+          data-testid="haulage-run-des"
+          (click)="wb.runSimulation()"
+          [disabled]="wb.running()"
+          [attr.aria-busy]="wb.running()"
+        >
           {{ wb.running() ? 'Running… ' + wb.progressPct() + '%' : 'Run DES' }}
         </button>
         <button type="button" class="btn" (click)="wb.resetToSeed()" [disabled]="wb.running()">Reset</button>
-        <button type="button" class="btn" (click)="cloneOther()" [disabled]="wb.running()">
+        <button
+          type="button"
+          class="btn"
+          data-testid="haulage-clone-other"
+          (click)="cloneOther()"
+          [disabled]="wb.running()"
+        >
           Clone → {{ otherLabel }}
         </button>
       </div>
@@ -181,6 +196,20 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
     .error {
       color: var(--warn);
       font-size: 0.85rem;
+    }
+
+    .loading {
+      margin: 0 0 0.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    fieldset[aria-hidden='true'] {
+      visibility: hidden;
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
     }
   `,
 })
