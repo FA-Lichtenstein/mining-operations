@@ -45,8 +45,8 @@ import { HaulageCitationChipsComponent } from './haulage-citation-chips.componen
         <footer class="study-footer">
           <p>
             Docs mirror:
-            <code>docs/projects/haulage-des/brief.md</code> and
-            <code>demo-script-outline.md</code>.
+            <code>docs/projects/haulage-des/narrative-redesign.md</code> and
+            <code>docs/projects/haulage-des/demo-checklist.md</code>.
           </p>
         </footer>
       </aside>

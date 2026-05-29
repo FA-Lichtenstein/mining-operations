@@ -14,3 +14,9 @@ This file records proposed future scope only. Do not treat these notes as PR 1 a
 - Proposed future scope: add event-level queue occupancy snapshots so the schematic can show actual loader and dump queue lengths instead of an animation-only progress preview.
 - Proposed future scope: add a small KPI glossary or tooltip layer that distinguishes loader queue wait, dump queue wait, recommended haul units N_h, and fleet match ratio without relying on panel text.
 - Proposed future scope: decide whether exported brief fields should be renamed from legacy `queueWait_min` and `matchFactor` to PR 2's explicit loader-wait and recommended-unit terminology in a versioned export format.
+
+## PR 3 Reviewer Notes (2026-05-29)
+
+- Proposed future scope: add inline source markers inside study paragraphs so each visible citation sits directly beside the claim it supports instead of only at section level.
+- Proposed future scope: turn the presenter walkthrough into a read-only narrative mode with optional rehearsal checkboxes hidden behind a practice toggle.
+- Proposed future scope: add a short glossary card for DES, FIFO queue, availability, utilisation, fleet match ratio, and recommended haul units once the notebook UI flow has a stable article layout.

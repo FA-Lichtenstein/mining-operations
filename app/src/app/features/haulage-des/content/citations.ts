@@ -1,4 +1,4 @@
-/** Planning-source citation chips for haulage-des study layer (PR 5). */
+/** Planning-source citations for haulage-des study copy. */
 
 export type HaulageCitation = {
   id: string;
@@ -19,13 +19,13 @@ export const HAULAGE_CITATIONS: Record<string, HaulageCitation> = {
   sme: {
     id: 'sme',
     shortLabel: 'SME 2020',
-    detail: 'Ch 12 — match factor N_h, E = A×U, fleet formulas',
+    detail: 'Availability, utilisation, haul cycle, and fleet-match vocabulary',
     planningPath: 'planning/source-sme-mining-reference-handbook-2020.html',
   },
   gorai: {
     id: 'gorai',
     shortLabel: 'Gorai 2022',
-    detail: 'Ch 10.8 — shovel-truck queuing; analytic sanity checks',
+    detail: 'Shovel-truck queueing, FIFO waits, and fleet-sizing context',
     planningPath: 'planning/source-gorai-chatterjee-optimization-mines-2022.html',
   },
   dunbar: {
@@ -37,13 +37,13 @@ export const HAULAGE_CITATIONS: Record<string, HaulageCitation> = {
   ukwazi: {
     id: 'ukwazi',
     shortLabel: 'Ukwazi anchor',
-    detail: 'Portfolio T2/T4 themes; K-Tec scraper framing (illustrative)',
+    detail: 'Mining advisory, operational site services, and K-Tec context',
     planningPath: 'planning/ukwazi-services-summary.html',
   },
   brief02: {
     id: 'brief02',
     shortLabel: 'Brief #02',
-    detail: 'Portfolio acceptance contract for haulage DES',
+    detail: 'Synthetic site, assumptions, non-claims, and narrative contract',
     planningPath: 'planning/portfolio-shortlist-briefs.html#brief-02',
   },
 };

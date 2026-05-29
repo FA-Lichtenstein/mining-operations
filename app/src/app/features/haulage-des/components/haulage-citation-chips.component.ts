@@ -10,7 +10,8 @@ import {
   standalone: true,
   template: `
     @if (ids().length) {
-      <div class="citation-row" role="list" aria-label="Planning sources">
+      <div class="citation-row" role="list" aria-label="Sources for claims above">
+        <span class="citation-label">Sources for claims above:</span>
         @for (c of resolved(); track c.id) {
           <a
             class="cite-chip"
@@ -20,7 +21,8 @@ import {
             rel="noopener noreferrer"
             [title]="c.detail"
           >
-            {{ c.shortLabel }}
+            <span class="cite-title">{{ c.shortLabel }}</span>
+            <span class="cite-detail">{{ c.detail }}</span>
           </a>
         }
       </div>
@@ -30,8 +32,14 @@ import {
     .citation-row {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 0.35rem;
       margin-top: 0.5rem;
+    }
+
+    .citation-label {
+      font-size: 0.72rem;
+      color: var(--muted);
     }
 
     .cite-chip {
@@ -46,9 +54,19 @@ import {
       text-decoration: none;
     }
 
+    .cite-detail {
+      margin-left: 0.25rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
     .cite-chip:hover {
       background: rgba(126, 184, 218, 0.2);
       color: #a8d4f0;
+    }
+
+    .cite-chip:hover .cite-detail {
+      color: #c5d6e0;
     }
   `,
 })

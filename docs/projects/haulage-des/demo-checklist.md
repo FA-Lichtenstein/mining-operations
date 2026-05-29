@@ -1,8 +1,8 @@
-# Haulage DES — 5-minute interview demo checklist
+# Haulage DES - 5-minute presenter walkthrough
 
-Manual verification before a live demo or interview. Role-based copy only (no fictional character names). Demo site: **syn-pgm-bushveld-01**.
+Manual rehearsal before a live demo or interview. Role-based copy only (no fictional character names). Demo site: **syn-pgm-bushveld-01**.
 
-In-app **Presenter mode** on `/demo/haulage-des` mirrors this list. Source of truth for presenter UI: `app/src/app/features/haulage-des/content/haulage-demo-checklist.ts`.
+In-app **Presenter mode** on `/demo/haulage-des` mirrors this walkthrough. Source of truth for presenter UI: `app/src/app/features/haulage-des/content/haulage-demo-checklist.ts`.
 
 ## Before you start
 
@@ -11,47 +11,65 @@ In-app **Presenter mode** on `/demo/haulage-des` mirrors this list. Source of tr
 - [ ] `npm run test:e2e` passes (or note environment blocker)
 - [ ] `npm start` → [http://localhost:4200](http://localhost:4200)
 
-## 0:00–0:45 — Open and orient
+## 0:00-0:45 - The decision
 
-- [ ] Portfolio gallery loads; **Truck-shovel vs K-Tec scraper DES** shows **Live**
-- [ ] Open demo; workbench title and four panels (A–D) visible
-- [ ] Synthetic-data disclaimer visible
-- [ ] **Background / Study** opens; load–haul–dump anatomy readable on panel B
-- [ ] **Presenter mode** opens with timed sections
+Start with the operational question, not the controls. A Technical Services superintendent wants to know whether a synthetic haulage change is promising enough to justify a real site-data study.
 
-## 0:45–1:30 — Baseline scenario
+Explain why this belongs in the portfolio: Ukwazi does mining advisory and operational technical-services work, and the planning sources connect Ukwazi with K-Tec equipment. The scenario is therefore relevant, but it is not vendor advice.
 
-- [ ] Panel A: **Truck–shovel** scenario selected
-- [ ] Seed metadata and **Synthetic** tag visible
-- [ ] `syn-pgm-bushveld-01` appears in subtitle or meta line
+- [ ] Say the decision question before pointing to the interface.
+- [ ] State that `syn-pgm-bushveld-01` and the fleet inputs are synthetic.
 
-## 1:30–2:30 — Run truck-shovel DES
+## 0:45-1:30 - The naive spreadsheet
 
-- [ ] **Run DES** completes (Web Worker; progress if multi-shift)
-- [ ] Panel D: KPI cards show tonnes/shift, cycle time, queue wait, match N<sub>h</sub>
-- [ ] Panel C: queue / throughput charts render
-- [ ] Panel D: **Technical Services superintendent** summary and follow-ups appear
+Describe the first-pass spreadsheet answer. It fixes average load, travel, dump, and return times, then turns those averages into a tonnes-per-shift estimate.
 
-## 2:30–3:30 — Compare scraper train
+The problem is interaction. Averages do not show two trucks arriving at the shovel together, a dump point becoming congested, or a loader waiting because every haul unit is somewhere else.
 
-- [ ] **Clone → Scraper** (or truck) switches scenario and re-runs
-- [ ] **Save as A** / **Save as B** after two runs; compare table shows Δ (B−A)
-- [ ] Narrate trade-offs for superintendent (throughput vs queueing)
+- [ ] Define the fixed average cycle before mentioning simulation.
+- [ ] Name queues and idle time as the missing behavior.
 
-## 3:30–4:15 — Study layer (optional depth)
+## 1:30-2:30 - The DES model
 
-- [ ] Study drawer: match factor, E = A × U, stochastic queues, illustrative K-Tec notes
-- [ ] Citation chips link to planning source pages (new tab)
+Now define DES. The model advances from event to event: a haul unit requests the loader, loading starts and ends, loaded travel ends, dumping or ejecting ends, the unit returns empty, or downtime changes the available fleet.
 
-## 4:15–5:00 — Export and close
+The entities are haul units. The resources are the loader or shovel, the dump or eject point when modeled, and available haul-unit time. When a resource is busy, arrivals wait in FIFO order.
 
-- [ ] **Export JSON** downloads a haulage-des run file
-- [ ] IndexedDB saved runs list updates after run (optional refresh restore)
-- [ ] Return to gallery or **About** for portfolio context
+The inputs are synthetic distributions and shift assumptions. Random draws vary cycle components around those assumptions so the run can expose congestion that the average spreadsheet cannot show.
+
+- [ ] Walk through the load, haul, dump or eject, return loop.
+- [ ] Clarify that randomness is synthetic, not dispatch validation.
+
+## 2:30-3:30 - Reading a run
+
+Interpret the truck-shovel baseline in order. Tonnes per shift answers throughput. Average cycle time explains the duration of completed cycles. Loader and dump queue waits, read with loader idle, show whether the constrained resources are being matched well.
+
+Then separate availability from utilisation. Availability asks whether the equipment is ready; utilisation asks whether ready equipment is productively used. The point is not to chase one number, but to see the operating trade-off.
+
+- [ ] Read throughput before queue and utilisation metrics.
+- [ ] Explain availability and utilisation as different ideas.
+
+## 3:30-4:15 - Comparing scraper train
+
+Bring in the scraper-train scenario as a hypothesis. It would need to improve the decision metrics enough to earn a closer look: more tonnes, lower queue waits, better loader use, or a fleet match that reduces idle time.
+
+Keep the risks visible. Smaller payloads, more frequent cycles, road interaction, discharge constraints, material suitability, and commercial terms could offset a cleaner-looking queue result.
+
+- [ ] Describe what would have to improve before a real study is worthwhile.
+- [ ] Say which risks are outside the current model before closing the comparison.
+
+## 4:15-5:00 - Limitations
+
+Close by narrowing the claim. This is a synthetic browser DES for explaining queueing and utilisation trade-offs. It is not an operational forecast, a unit-cost model, a diesel or water model, a validation study, or vendor advice.
+
+The next real step would be site data: dispatch timestamps, payloads, loader service times, dump delays, road segments, downtime records, shift rules, and material checks.
+
+- [ ] State the caveats in plain language.
+- [ ] Name the site data needed before any real recommendation.
 
 ## Deferred (not in MVP)
 
-- IPCC scenario UI, Gorai analytic overlay, PDF superintendent pack, Firebase deploy
+- Unit-cost, diesel, water, emissions, road-geometry, material-suitability, validation, IPCC, PDF pack, and Firebase deploy scope.
 
 ## Related docs
 

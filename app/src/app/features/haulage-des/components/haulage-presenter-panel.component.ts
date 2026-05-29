@@ -16,7 +16,7 @@ import { HaulagePresenterStateService } from '../services/haulage-presenter-stat
           <div>
             <h3 id="haulage-presenter-heading">Presenter mode</h3>
             <p class="presenter-lead">
-              5-minute demo teleprompter · tick items during rehearsal (saved locally)
+              5-minute narrative walkthrough · tick rehearsal prompts locally
             </p>
             <p class="progress" aria-live="polite">
               {{ presenter.checkedCount() }} / {{ presenter.totalCount() }} complete
@@ -36,6 +36,9 @@ import { HaulagePresenterStateService } from '../services/haulage-presenter-stat
               <span class="time">{{ section.timeRange }}</span>
               {{ section.title }}
             </h4>
+            @for (para of section.paragraphs; track para) {
+              <p class="walkthrough-copy">{{ para }}</p>
+            }
             <ul class="checklist">
               @for (item of section.items; track item.id) {
                 <li>
@@ -55,7 +58,7 @@ import { HaulagePresenterStateService } from '../services/haulage-presenter-stat
 
         <p class="presenter-note">
           Official roles only: Quantitative Planning Analyst and Technical Services superintendent.
-          Mirrors <code>docs/projects/haulage-des/demo-script-outline.md</code>.
+          Mirrors <code>docs/projects/haulage-des/demo-checklist.md</code>.
         </p>
       </aside>
     }
@@ -122,6 +125,13 @@ import { HaulagePresenterStateService } from '../services/haulage-presenter-stat
       margin: 0 0 0.35rem;
       font-size: 0.88rem;
       color: var(--text);
+    }
+
+    .walkthrough-copy {
+      margin: 0 0 0.45rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
     .time {
