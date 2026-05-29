@@ -1,0 +1,37 @@
+{
+  "generator_id": "gen-truck-cycle",
+  "version": "1.0.0",
+  "seed": 1339,
+  "_comment": "Schema-compatible stub for T4 stretch; not emitted by default gen:seeds.",
+  "site": {
+    "mine_id": "syn-pgm-bushveld-01",
+    "scenario_id": "ipcc_conveyor",
+    "shift_hours": 12,
+    "simulation_days": 30
+  },
+  "fleet": {
+    "haul_unit_class": "IPCC-conveyor-illustrative",
+    "haul_unit_count": 12,
+    "payload_t": 180,
+    "loader_count": 2,
+    "operating_mode": "ipcc_conveyor"
+  },
+  "zones": {
+    "load_zone": "pit-strip-north",
+    "dump_zone": "conveyor-port"
+  },
+  "calibration": {
+    "throughput_prior_ref": "p2041-platinum-group-metals",
+    "daily_tonnage_target_t": 35000,
+    "haul_distance_km": 2.3
+  },
+  "cycle_distributions": {
+    "load_time_min": { "dist": "triangular", "min": 2.0, "mode": 2.8, "max": 4.5 },
+    "haul_time_min": { "dist": "normal", "mean": 8.5, "sd": 1.0 },
+    "dump_time_min": { "dist": "triangular", "min": 0.5, "mode": 0.9, "max": 1.5 },
+    "queue_time_min": { "dist": "exponential", "lambda": 0.2 },
+    "return_time_min": { "dist": "normal", "mean": 7.5, "sd": 1.0 },
+    "breakdown_mtbf_hours": 200,
+    "breakdown_mttr_hours": 3.0
+  }
+}

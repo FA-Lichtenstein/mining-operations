@@ -1,0 +1,43 @@
+{
+  "generator_id": "gen-truck-cycle",
+  "version": "1.0.0",
+  "seed": 1337,
+  "site": {
+    "mine_id": "syn-pgm-bushveld-01",
+    "scenario_id": "truck_shovel",
+    "shift_hours": 12,
+    "simulation_days": 30
+  },
+  "fleet": {
+    "haul_unit_class": "illustrative-218t-adt",
+    "haul_unit_count": 18,
+    "payload_t": 218,
+    "loader_count": 2,
+    "operating_mode": "truck_shovel"
+  },
+  "zones": {
+    "load_zone": "pit-strip-north",
+    "dump_zone": "waste-dump-west"
+  },
+  "calibration": {
+    "throughput_prior_ref": "p2041-platinum-group-metals",
+    "daily_tonnage_target_t": 32877,
+    "network_edge_ref": "pit-a_crusher-a",
+    "haul_distance_km": 3.8
+  },
+  "cycle_distributions": {
+    "load_time_min": { "dist": "triangular", "min": 2.8, "mode": 3.2, "max": 5.5 },
+    "haul_time_min": { "dist": "normal", "mean": 12.5, "sd": 1.6 },
+    "dump_time_min": { "dist": "triangular", "min": 1.2, "mode": 2.1, "max": 3.2 },
+    "queue_time_min": { "dist": "exponential", "lambda": 0.18 },
+    "return_time_min": { "dist": "normal", "mean": 11.0, "sd": 1.5 },
+    "breakdown_mtbf_hours": 140,
+    "breakdown_mttr_hours": 4.5
+  },
+  "metadata": {
+    "data_classification": "synthetic_illustrative",
+    "fleet_parameters_label": "Illustrative truck-shovel fleet parameters — not OEM or vendor benchmarks.",
+    "roles_note": "Technical Services superintendent poses the haulage question; Quantitative Planning Analyst configures scenarios and interprets KPIs.",
+    "operating_mode_note": "Conventional truck-and-shovel load-haul-dump cycles on a synthetic PGM Bushveld waste push."
+  }
+}

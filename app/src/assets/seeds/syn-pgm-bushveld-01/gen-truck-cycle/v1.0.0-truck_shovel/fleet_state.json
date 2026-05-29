@@ -1,0 +1,307 @@
+{
+  "mine_id": "syn-pgm-bushveld-01",
+  "scenario_id": "truck_shovel",
+  "generator_version": "1.0.0",
+  "snapshots": [
+    {
+      "shift_id": "2026-01-01-D",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33749,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-02-N",
+      "trucks_total": 18,
+      "trucks_available": 15,
+      "trucks_down": 3,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33561,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-03-D",
+      "trucks_total": 18,
+      "trucks_available": 17,
+      "trucks_down": 1,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33539,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-04-N",
+      "trucks_total": 18,
+      "trucks_available": 16,
+      "trucks_down": 2,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33723,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-05-D",
+      "trucks_total": 18,
+      "trucks_available": 17,
+      "trucks_down": 1,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33594,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-06-N",
+      "trucks_total": 18,
+      "trucks_available": 14,
+      "trucks_down": 4,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33538,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-07-D",
+      "trucks_total": 18,
+      "trucks_available": 17,
+      "trucks_down": 1,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33547,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-08-N",
+      "trucks_total": 18,
+      "trucks_available": 17,
+      "trucks_down": 1,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33552,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-09-D",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33574,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-10-N",
+      "trucks_total": 18,
+      "trucks_available": 17,
+      "trucks_down": 1,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33621,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-11-D",
+      "trucks_total": 18,
+      "trucks_available": 16,
+      "trucks_down": 2,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33626,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-12-N",
+      "trucks_total": 18,
+      "trucks_available": 14,
+      "trucks_down": 4,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33742,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-13-D",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33624,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-14-N",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33707,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-15-D",
+      "trucks_total": 18,
+      "trucks_available": 16,
+      "trucks_down": 2,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33726,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-16-N",
+      "trucks_total": 18,
+      "trucks_available": 16,
+      "trucks_down": 2,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33610,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-17-D",
+      "trucks_total": 18,
+      "trucks_available": 16,
+      "trucks_down": 2,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33612,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-18-N",
+      "trucks_total": 18,
+      "trucks_available": 15,
+      "trucks_down": 3,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33591,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-19-D",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33571,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-20-N",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33591,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-21-D",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33566,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-22-N",
+      "trucks_total": 18,
+      "trucks_available": 16,
+      "trucks_down": 2,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33574,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-23-D",
+      "trucks_total": 18,
+      "trucks_available": 16,
+      "trucks_down": 2,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33540,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-24-N",
+      "trucks_total": 18,
+      "trucks_available": 16,
+      "trucks_down": 2,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33726,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-25-D",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33742,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-26-N",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33566,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-27-D",
+      "trucks_total": 18,
+      "trucks_available": 18,
+      "trucks_down": 0,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33538,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-28-N",
+      "trucks_total": 18,
+      "trucks_available": 17,
+      "trucks_down": 1,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33639,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-29-D",
+      "trucks_total": 18,
+      "trucks_available": 15,
+      "trucks_down": 3,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33735,
+      "shift_tons_target": 32877
+    },
+    {
+      "shift_id": "2026-01-30-N",
+      "trucks_total": 18,
+      "trucks_available": 15,
+      "trucks_down": 3,
+      "shovels_active": 2,
+      "backlog_tons": 0,
+      "shift_tons_actual": 33660,
+      "shift_tons_target": 32877
+    }
+  ]
+}

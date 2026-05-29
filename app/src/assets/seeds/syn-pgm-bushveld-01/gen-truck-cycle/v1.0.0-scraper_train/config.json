@@ -1,0 +1,65 @@
+{
+  "generator_id": "gen-truck-cycle",
+  "version": "1.0.0",
+  "seed": 1338,
+  "site": {
+    "mine_id": "syn-pgm-bushveld-01",
+    "scenario_id": "scraper_train",
+    "shift_hours": 12,
+    "simulation_days": 30
+  },
+  "fleet": {
+    "haul_unit_class": "KTEC-ADT-scraper-illustrative",
+    "haul_unit_count": 8,
+    "payload_t": 42,
+    "loader_count": 2,
+    "operating_mode": "scraper_train",
+    "train_size": 4
+  },
+  "zones": {
+    "load_zone": "pit-strip-north",
+    "dump_zone": "push-dump-berm-east"
+  },
+  "calibration": {
+    "throughput_prior_ref": "p2041-platinum-group-metals",
+    "daily_tonnage_target_t": 6700,
+    "network_edge_ref": "pit-a_push-dump-east",
+    "haul_distance_km": 2.4
+  },
+  "cycle_distributions": {
+    "load_time_min": {
+      "dist": "triangular",
+      "min": 4,
+      "mode": 5.5,
+      "max": 8
+    },
+    "haul_time_min": {
+      "dist": "normal",
+      "mean": 9.2,
+      "sd": 1.2
+    },
+    "dump_time_min": {
+      "dist": "triangular",
+      "min": 0.8,
+      "mode": 1.2,
+      "max": 2
+    },
+    "queue_time_min": {
+      "dist": "exponential",
+      "lambda": 0.12
+    },
+    "return_time_min": {
+      "dist": "normal",
+      "mean": 8.5,
+      "sd": 1.1
+    },
+    "breakdown_mtbf_hours": 180,
+    "breakdown_mttr_hours": 3.5
+  },
+  "metadata": {
+    "data_classification": "synthetic_illustrative",
+    "ktec_parameters_label": "Illustrative K-Tec scraper-train parameters — not vendor benchmarks.",
+    "roles_note": "Technical Services superintendent poses the haulage question; Quantitative Planning Analyst configures scenarios and interprets KPIs.",
+    "operating_mode_note": "Scraper-train continuous load-haul-dump with lower unit payload, shorter haul leg, and eject-style dump semantics (illustrative). Daily tonnage target reflects illustrative 8-unit train fleet capacity, not truck-shovel parity."
+  }
+}
