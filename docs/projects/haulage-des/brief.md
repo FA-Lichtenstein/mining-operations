@@ -28,7 +28,7 @@ A **Technical Services superintendent** asks whether a different haulage method 
 - Background/Study drawer and 5-minute presenter checklist for interview rehearsal
 - Hiring-manager script: open with the operating question, define the DES model, run the baseline, clone the scraper-train hypothesis, compare directional KPI deltas, export JSON, and close with known limitations.
 
-Backlog: [`scope-extensions.md`](./scope-extensions.md).
+Future scope from the rescue review is consolidated in [`scope-extension-ideas.md`](./scope-extension-ideas.md).
 
 ## Assumptions (illustrative)
 
