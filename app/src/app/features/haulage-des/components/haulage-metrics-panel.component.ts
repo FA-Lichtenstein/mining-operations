@@ -11,29 +11,51 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
   template: `
     @if (kpis(); as k) {
       <div class="kpi-grid">
-        <article class="kpi-card">
-          <span class="kpi-label">Tonnes / shift</span>
+        <article class="kpi-card" title="Completed payload moved during each synthetic shift.">
+          <span class="kpi-label">Did material move?</span>
           <strong>{{ k.tonnes_per_shift | number: '1.0-0' }}</strong>
+          <p>Tonnes per synthetic shift.</p>
         </article>
-        <article class="kpi-card">
-          <span class="kpi-label">Avg cycle</span>
+        <article class="kpi-card" title="Average completed load-haul-dump-return cycle time.">
+          <span class="kpi-label">How long was a cycle?</span>
           <strong>{{ k.avg_cycle_time_min | number: '1.1-1' }} min</strong>
+          <p>Full completed cycle, including modeled queue waits.</p>
         </article>
-        <article class="kpi-card">
-          <span class="kpi-label">Loader queue wait</span>
+        <article class="kpi-card" title="Actual simulated wait before a haul unit enters loader service.">
+          <span class="kpi-label">Did the loader queue?</span>
           <strong>{{ k.avg_loader_queue_wait_min | number: '1.2-2' }} min</strong>
+          <p>Average FIFO wait at the load point.</p>
         </article>
-        <article class="kpi-card">
-          <span class="kpi-label">Recommended units N<sub>h</sub></span>
+        <article
+          class="kpi-card"
+          title="SME-style truck count: full haul cycle time divided by loader service time."
+        >
+          <span class="kpi-label">How many haul units fit?</span>
           <strong>{{ k.recommended_haul_units_Nh | number: '1.2-2' }}</strong>
+          <p>N<sub>h</sub> uses full cycle time, not only loading time.</p>
         </article>
-        <article class="kpi-card">
-          <span class="kpi-label">Haul utilisation</span>
+        <article
+          class="kpi-card"
+          title="Configured haul units divided by recommended haul units; values far above 1 can create queues."
+        >
+          <span class="kpi-label">Is the fleet matched?</span>
+          <strong>{{ k.fleet_match_ratio | number: '1.2-2' }}</strong>
+          <p>Above 1 is more fleet than the cycle-service match suggests.</p>
+        </article>
+        <article class="kpi-card" title="Share of scheduled time the haul fleet is mechanically ready.">
+          <span class="kpi-label">Was the fleet available?</span>
+          <strong>{{ k.availability | number: '1.2-2' }}</strong>
+          <p>Availability is readiness, separate from productive use.</p>
+        </article>
+        <article class="kpi-card" title="Share of available haul-unit time spent in modeled productive activity.">
+          <span class="kpi-label">Was available time used?</span>
           <strong>{{ k.haul_unit_utilization_percent | number: '1.0-0' }}%</strong>
+          <p>High utilisation helps only if queues stay controlled.</p>
         </article>
-        <article class="kpi-card">
-          <span class="kpi-label">E = A × U</span>
+        <article class="kpi-card" title="Operating efficiency, E = availability times utilisation.">
+          <span class="kpi-label">What is E = A × U?</span>
           <strong>{{ k.operating_efficiency_E | number: '1.2-2' }}</strong>
+          <p>Combines mechanical readiness with productive use.</p>
         </article>
       </div>
 
@@ -49,6 +71,7 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
       @if (summary(); as s) {
         <section class="super-summary">
           <h4>Technical Services superintendent summary</h4>
+          <p class="interpretation">{{ s.interpretation }}</p>
           <p class="bottleneck"><strong>Bottleneck:</strong> {{ s.bottleneck }}</p>
           <ul>
             @for (item of s.followUps; track item) {
@@ -85,8 +108,17 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
     }
 
     .kpi-card strong {
+      display: block;
+      margin-top: 0.15rem;
       font-size: 1rem;
       color: var(--text);
+    }
+
+    .kpi-card p {
+      margin: 0.2rem 0 0;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      color: var(--muted);
     }
 
     .anatomy {
@@ -116,6 +148,12 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
     .bottleneck {
       margin: 0 0 0.35rem;
       font-size: 0.88rem;
+    }
+
+    .interpretation {
+      margin: 0 0 0.45rem;
+      font-size: 0.9rem;
+      line-height: 1.45;
     }
 
     .super-summary ul {

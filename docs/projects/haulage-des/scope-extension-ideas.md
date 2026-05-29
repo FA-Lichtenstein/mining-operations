@@ -27,3 +27,9 @@ This file records proposed future scope only. Do not treat these notes as PR 1 a
 - Proposed future scope: evaluate whether the Study and Presenter panels should become modal side sheets on wider screens, preserving inner-only scrolling without pushing the notebook article down.
 - Proposed future scope: replace the optional cycle animation with event-level loader and dump queue snapshots once the simulator exposes real occupancy traces.
 - Proposed future scope: add a short route-local table of contents after the notebook flow stabilizes, so hiring-manager reviewers can jump between problem, controls, results, comparison, and limitations.
+
+## PR 5 Reviewer Notes (2026-05-29)
+
+- Proposed future scope: add chart-level visual tests that verify the loader queue chart, throughput target line, and cycle-time histogram still render after future ECharts changes.
+- Proposed future scope: add a versioned export field rename so legacy `queueWait_min` and `matchFactor` brief values can become explicit loader-wait and recommended-unit names without breaking existing imports.
+- Proposed future scope: add a comparison explainer panel that expands the directional KPI summary into a short worked example for hiring-manager demos.

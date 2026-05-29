@@ -29,6 +29,16 @@ export type CompletedRun = {
   createdAt: string;
 };
 
+export type CompareDeltaRow = {
+  label: string;
+  a: number;
+  b: number;
+  delta: number;
+  unit: string;
+  reading: string;
+  tone: 'improved' | 'worse' | 'context';
+};
+
 @Injectable({ providedIn: 'root' })
 export class HaulageWorkbenchService {
   private readonly http = inject(HttpClient);
@@ -63,14 +73,32 @@ export class HaulageWorkbenchService {
     if (!a || !b) {
       return null;
     }
-    const rows: { label: string; a: number; b: number; delta: number; unit: string }[] = [
-      mkRow('Throughput', a.kpis.tonnes_per_shift, b.kpis.tonnes_per_shift, 't/shift'),
-      mkRow('Avg cycle', a.kpis.avg_cycle_time_min, b.kpis.avg_cycle_time_min, 'min'),
-      mkRow('Loader queue wait', a.kpis.avg_loader_queue_wait_min, b.kpis.avg_loader_queue_wait_min, 'min'),
-      mkRow('Dump queue wait', a.kpis.avg_dump_queue_wait_min, b.kpis.avg_dump_queue_wait_min, 'min'),
-      mkRow('Recommended units Nh', a.kpis.recommended_haul_units_Nh, b.kpis.recommended_haul_units_Nh, ''),
-      mkRow('Fleet match ratio', a.kpis.fleet_match_ratio, b.kpis.fleet_match_ratio, ''),
-      mkRow('Haul utilisation', a.kpis.haul_unit_utilization_percent, b.kpis.haul_unit_utilization_percent, '%'),
+    const rows: CompareDeltaRow[] = [
+      mkRow('Throughput', a.kpis.tonnes_per_shift, b.kpis.tonnes_per_shift, 't/shift', 'higher'),
+      mkRow('Avg cycle', a.kpis.avg_cycle_time_min, b.kpis.avg_cycle_time_min, 'min', 'lower'),
+      mkRow(
+        'Loader queue wait',
+        a.kpis.avg_loader_queue_wait_min,
+        b.kpis.avg_loader_queue_wait_min,
+        'min',
+        'lower',
+      ),
+      mkRow(
+        'Dump queue wait',
+        a.kpis.avg_dump_queue_wait_min,
+        b.kpis.avg_dump_queue_wait_min,
+        'min',
+        'lower',
+      ),
+      mkRow('Recommended units Nh', a.kpis.recommended_haul_units_Nh, b.kpis.recommended_haul_units_Nh, '', 'context'),
+      mkRow('Fleet match ratio', a.kpis.fleet_match_ratio, b.kpis.fleet_match_ratio, '', 'context'),
+      mkRow(
+        'Haul utilisation',
+        a.kpis.haul_unit_utilization_percent,
+        b.kpis.haul_unit_utilization_percent,
+        '%',
+        'context',
+      ),
     ];
     return rows;
   });
@@ -335,8 +363,28 @@ function queuePreviewFromProgress(pct: number, fleet: number): number {
   return Math.max(0, round2((fleet * 0.12 + wave * fleet * 0.08) * (pct / 100)));
 }
 
-function mkRow(label: string, a: number, b: number, unit: string) {
-  return { label, a: round2(a), b: round2(b), delta: round2(b - a), unit };
+function mkRow(
+  label: string,
+  a: number,
+  b: number,
+  unit: string,
+  preference: 'higher' | 'lower' | 'context',
+): CompareDeltaRow {
+  const delta = round2(b - a);
+  const tone =
+    preference === 'context' || delta === 0
+      ? 'context'
+      : (preference === 'higher' && delta > 0) || (preference === 'lower' && delta < 0)
+        ? 'improved'
+        : 'worse';
+  const reading =
+    preference === 'higher'
+      ? 'Higher is better for this synthetic throughput metric.'
+      : preference === 'lower'
+        ? 'Lower is better because it means less modeled waiting or cycle delay.'
+        : 'Interpret with the other rows; higher utilisation or match ratio is not automatically better.';
+
+  return { label, a: round2(a), b: round2(b), delta, unit, reading, tone };
 }
 
 function round2(n: number): number {

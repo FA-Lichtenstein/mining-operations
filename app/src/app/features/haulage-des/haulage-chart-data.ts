@@ -53,6 +53,7 @@ export function buildLoaderQueueWaitSeries(cycles: DesCycleRecord[]): EChartsOpt
 export function buildThroughputByShift(
   cycles: DesCycleRecord[],
   shiftHours: number,
+  dailyTargetT: number,
 ): EChartsOption {
   const byShift = new Map<number, number>();
   for (const c of cycles) {
@@ -85,6 +86,18 @@ export function buildThroughputByShift(
         type: 'bar',
         data: tpd,
         itemStyle: { color: CHART_THEME.line },
+        markLine:
+          dailyTargetT > 0
+            ? {
+                symbol: 'none',
+                lineStyle: { color: CHART_THEME.accent, type: 'dashed' },
+                label: {
+                  color: CHART_THEME.text,
+                  formatter: 'Synthetic target',
+                },
+                data: [{ yAxis: round1(dailyTargetT) }],
+              }
+            : undefined,
       },
     ],
   };

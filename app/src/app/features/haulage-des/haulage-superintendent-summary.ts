@@ -2,6 +2,7 @@ import type { DesKpis } from './engine/types';
 import type { HaulageScenarioId } from './haulage-scenario';
 
 export type SuperintendentSummary = {
+  interpretation: string;
   bottleneck: string;
   followUps: string[];
 };
@@ -16,35 +17,44 @@ export function buildSuperintendentSummary(
   if (kpis.avg_loader_queue_wait_min >= 4) {
     bottleneck = 'Loader queue — haul units waiting at the shovel/train load point.';
     followUps.push(
-      'Quantitative Planning Analyst: test +2 haul units or +1 loader in DES before field trial.',
+      'Next field check: compare modeled loader waits with dispatch timestamps before changing fleet size.',
     );
     followUps.push(
-      'Technical Services superintendent: confirm contractor shift calendar matches 12 h synthetic shift.',
+      'Next field check: confirm the contractor shift calendar matches the synthetic shift length.',
     );
   } else if (kpis.fleet_match_ratio < 0.9) {
     bottleneck = 'Haul fleet below full-cycle recommendation — loader idle risk.';
-    followUps.push('Review full cycle time and loader service time before changing fleet count.');
+    followUps.push('Next field check: measure full cycle time and loader service time before changing truck count.');
   } else if (kpis.haul_unit_utilization_percent < 55) {
     bottleneck = 'Haul fleet under-utilised — excess idle time between cycles.';
-    followUps.push('Check whether fleet count exceeds optimal match for current loader count.');
+    followUps.push('Next field check: verify whether current fleet count exceeds the loader-matching need.');
   } else if (kpis.loader_idle_percent > 35) {
     bottleneck = 'Loader idle — haul fleet may be undersized for the push rate.';
-    followUps.push('Validate payload and haul distance assumptions against site survey.');
+    followUps.push('Next field check: validate payload and haul distance assumptions against survey and dispatch data.');
   }
 
   if (scenarioId === 'scraper_train') {
     followUps.push(
-      'Illustrative K-Tec train: confirm berm dump geometry and push-dump rules before comparing unit cost to truck-shovel.',
+      'Next field check: confirm berm dump geometry and push-dump rules; cost, diesel, and water remain deferred.',
     );
   } else {
     followUps.push(
-      'Truck-shovel baseline: reconcile synthetic 218 t payload with contractor fleet register (illustrative only).',
+      'Next field check: reconcile the synthetic payload and fleet count with the contractor fleet register.',
     );
   }
 
   followUps.push(
-    'All figures are synthetic for syn-pgm-bushveld-01 — not OEM benchmarks or production forecasts.',
+    'Limitation: all figures are synthetic for syn-pgm-bushveld-01, not vendor benchmarks or production forecasts.',
   );
 
-  return { bottleneck, followUps };
+  return {
+    interpretation: `This synthetic run suggests ${sentenceCase(bottleneck)} Read it as evidence for the next site-data check, not as an operating instruction.`,
+    bottleneck,
+    followUps,
+  };
+}
+
+function sentenceCase(text: string): string {
+  const trimmed = text.trim().replace(/[.]+$/, '');
+  return `${trimmed.charAt(0).toLowerCase()}${trimmed.slice(1)}.`;
 }

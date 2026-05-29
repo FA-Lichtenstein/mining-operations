@@ -1,5 +1,5 @@
 import { DecimalPipe, SlicePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
 
 @Component({
@@ -58,13 +58,19 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
                 <td>{{ row.label }}</td>
                 <td>{{ row.a | number: '1.1-1' }}{{ row.unit }}</td>
                 <td>{{ row.b | number: '1.1-1' }}{{ row.unit }}</td>
-                <td [class.positive]="row.delta > 0" [class.negative]="row.delta < 0">
+                <td
+                  [class.improved]="row.tone === 'improved'"
+                  [class.worse]="row.tone === 'worse'"
+                  [class.context]="row.tone === 'context'"
+                  [title]="row.reading"
+                >
                   {{ row.delta > 0 ? '+' : '' }}{{ row.delta | number: '1.1-1' }}{{ row.unit }}
                 </td>
               </tr>
             }
           </tbody>
         </table>
+        <p class="compare-summary">{{ compareInterpretation() }}</p>
         <p class="compare-hint">
           Run A: {{ wb.compareA()?.config?.site?.scenario_id }} · Run B:
           {{ wb.compareB()?.config?.site?.scenario_id }}
@@ -133,12 +139,22 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
       font-weight: 500;
     }
 
-    .positive {
+    .improved {
       color: #7ed4a0;
     }
 
-    .negative {
+    .worse {
       color: #e88;
+    }
+
+    .context {
+      color: var(--muted);
+    }
+
+    .compare-summary {
+      margin: 0.55rem 0 0;
+      font-size: 0.86rem;
+      line-height: 1.45;
     }
 
     .compare-hint {
@@ -170,6 +186,29 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
 })
 export class HaulageCompareBarComponent {
   protected readonly wb = inject(HaulageWorkbenchService);
+  protected readonly compareInterpretation = computed(() => {
+    const rows = this.wb.compareDelta();
+    const a = this.wb.compareA();
+    const b = this.wb.compareB();
+    if (!rows || !a || !b) {
+      return '';
+    }
+
+    const throughput = rows.find((row) => row.label === 'Throughput');
+    const loaderWait = rows.find((row) => row.label === 'Loader queue wait');
+    const utilisation = rows.find((row) => row.label === 'Haul utilisation');
+    const throughputText = throughput
+      ? describeDelta(throughput.delta, 't/shift', 'more tonnes', 'fewer tonnes')
+      : 'an unknown throughput change';
+    const queueText = loaderWait
+      ? describeDelta(loaderWait.delta, 'min/cycle', 'more loader waiting', 'less loader waiting')
+      : 'an unknown loader-wait change';
+    const utilisationText = utilisation
+      ? describeDelta(utilisation.delta, 'percentage points', 'higher haul utilisation', 'lower haul utilisation')
+      : 'an unknown utilisation change';
+
+    return `Compared with Run A (${a.config.site.scenario_id}), Run B (${b.config.site.scenario_id}) produced ${throughputText}, ${queueText}, and ${utilisationText}. Run B improves the trade-off only where tonnes rise or waits fall; higher utilisation is useful only when queues do not explode. Cost, diesel, water, material suitability, and vendor performance remain unknown.`;
+  });
 
   onImport(ev: Event): void {
     const input = ev.target as HTMLInputElement;
@@ -179,4 +218,12 @@ export class HaulageCompareBarComponent {
     }
     input.value = '';
   }
+}
+
+function describeDelta(delta: number, unit: string, positiveLabel: string, negativeLabel: string): string {
+  if (delta === 0) {
+    return `no change in ${positiveLabel.replace('more ', '').replace('higher ', '')}`;
+  }
+  const label = delta > 0 ? positiveLabel : negativeLabel;
+  return `${Math.abs(delta).toLocaleString(undefined, { maximumFractionDigits: 1 })} ${unit} ${label}`;
 }

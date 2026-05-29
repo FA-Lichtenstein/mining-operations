@@ -17,16 +17,25 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
     @if (hasData()) {
       <div class="chart-grid">
         <div class="chart-cell">
-          <h4>Loader queue wait</h4>
+          <h4>Did queues form at the loader?</h4>
           <div echarts [options]="queueOptions()" class="chart"></div>
+          <p class="chart-caption">
+            A rising line means completed cycles spent more time in the actual loader FIFO queue.
+          </p>
         </div>
         <div class="chart-cell">
-          <h4>Throughput by shift</h4>
+          <h4>Did throughput meet the synthetic target?</h4>
           <div echarts [options]="throughputOptions()" class="chart"></div>
+          <p class="chart-caption">
+            Bars show tonnes per day implied by each simulated shift; the dashed line is the synthetic target.
+          </p>
         </div>
         <div class="chart-cell full">
-          <h4>Cycle time distribution</h4>
+          <h4>How variable were completed cycle times?</h4>
           <div echarts [options]="cycleHistOptions()" class="chart"></div>
+          <p class="chart-caption">
+            A wider histogram means identical input settings still produced materially different completed cycles.
+          </p>
         </div>
       </div>
     } @else {
@@ -45,6 +54,13 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
       font-size: 0.78rem;
       color: var(--muted);
       font-weight: 500;
+    }
+
+    .chart-caption {
+      margin: 0.25rem 0 0;
+      font-size: 0.76rem;
+      line-height: 1.35;
+      color: var(--muted);
     }
 
     .chart {
@@ -88,7 +104,7 @@ export class HaulageChartsPanelComponent {
     if (!run?.cycles.length || !cfg) {
       return {};
     }
-    return buildThroughputByShift(run.cycles, cfg.site.shift_hours);
+    return buildThroughputByShift(run.cycles, cfg.site.shift_hours, cfg.calibration.daily_tonnage_target_t);
   });
 
   protected readonly cycleHistOptions = computed(() => {
