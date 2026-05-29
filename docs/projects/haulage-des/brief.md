@@ -1,18 +1,16 @@
-# Haulage DES — project brief (PR 1)
+# Haulage DES - project brief
 
-> Narrative redesign note: the source-grounded article contract now lives in
-> [`narrative-redesign.md`](./narrative-redesign.md). Use it as the acceptance
-> source for the next article-style haulage DES flow before changing app behavior.
+The source-grounded article contract lives in [`narrative-redesign.md`](./narrative-redesign.md). The rehearsable demo script lives in [`demo-script-outline.md`](./demo-script-outline.md).
 
 ## Problem
 
-A **Technical Services superintendent** asks whether adding K-Tec scraper trains can reduce unit cost on a 12 Mt/a waste-stripping push without starving ore feed. Conventional truck-shovel cycles dominate the pit; contractor haulage is common in the Bushveld. The **Quantitative Planning Analyst** needs a defensible discrete-event simulation (DES) comparison — cycle times, queueing, match factor, tonnes per shift — not a vendor brochure.
+A **Technical Services superintendent** asks whether a different haulage method could reduce queueing or improve tonnes per shift enough to justify a real site-data study. Conventional truck-shovel cycles dominate the synthetic pit, and K-Tec scraper trains are treated as an illustrative hypothesis because of Ukwazi's published equipment context. The **Quantitative Planning Analyst** needs a defensible discrete-event simulation (DES) comparison — cycle times, queueing, fleet match, tonnes per shift — not a vendor brochure or a production forecast.
 
 ## Demo site
 
 - **Mine ID:** `syn-pgm-bushveld-01` (fully synthetic PGM Bushveld context)
-- **MVP scenarios (later PRs):** `truck_shovel`, `scraper_train`
-- **Stretch:** `ipcc` (T4 fixed-charge / sidebar framing)
+- **MVP scenarios:** `truck_shovel`, `scraper_train`
+- **Deferred stretch:** `ipcc` (T4 fixed-charge / sidebar framing)
 
 ## Role-based personas (no fictional names)
 
@@ -21,13 +19,14 @@ A **Technical Services superintendent** asks whether adding K-Tec scraper trains
 | Technical Services superintendent | Poses the haulage trade-off question; reviews KPI summary and follow-up checks |
 | Quantitative Planning Analyst | Configures scenarios, runs DES, compares runs, exports evidence for decision memos |
 
-## MVP acceptance (delivered — PR 3–6)
+## Current demo flow
 
-- Workbench at `/demo/haulage-des` with panels A–D (controls, D3 schematic, ECharts queues, KPI / explainer)
+- Notebook-style workbench at `/demo/haulage-des`: decision question, model explanation, baseline run, results interpretation, scenario comparison, limitations, and JSON export
 - Web Worker DES with deterministic seeds from `gen-truck-cycle`
 - In-session A/B compare (truck-shovel vs scraper-train), IndexedDB save, JSON export
-- Synthetic-data and illustrative K-Tec labelling visible in UI
-- Background/Study drawer and 5-minute presenter checklist (PR 5); Playwright smoke + Firebase Hosting stub (PR 6)
+- One global synthetic-data warning in the app shell, plus route-level caveats in the notebook copy
+- Background/Study drawer and 5-minute presenter checklist for interview rehearsal
+- Hiring-manager script: open with the operating question, define the DES model, run the baseline, clone the scraper-train hypothesis, compare directional KPI deltas, export JSON, and close with known limitations.
 
 Backlog: [`scope-extensions.md`](./scope-extensions.md).
 
@@ -37,7 +36,7 @@ Backlog: [`scope-extensions.md`](./scope-extensions.md).
 - K-Tec scraper parameters are labelled illustrative, not vendor benchmarks
 - Gorai / SME material supports explainers and sanity checks, not a parallel analytic engine
 
-## In-app study layer (PR 5)
+## In-app study layer
 
 Expanded background copy lives in the Angular app at
 `app/src/app/features/haulage-des/content/haulage-study-content.ts` (problem, roles,
@@ -45,9 +44,13 @@ haul-cycle anatomy, match factor, stochastic queues, scraper hypotheses, synthet
 The 5-minute presenter checklist mirrors `demo-script-outline.md` in
 `content/haulage-demo-checklist.ts`. Keep these files aligned when editing this brief or the demo script.
 
-## PR 1 scope (historical)
+## Known limitations
 
-Initial shell: gallery route, four-panel workbench placeholders, thin docs.
+- No operational forecast: site, fleet, cycle, availability, utilisation, and downtime inputs are synthetic.
+- No vendor benchmark: scraper-train values are illustrative hypotheses, not K-Tec performance claims.
+- No unit-cost, diesel, water, emissions, road-geometry, or material-suitability model.
+- No dispatch-data, survey, reconciliation, fleet-management, or maintenance validation.
+- IPCC, PDF superintendent packs, Firebase deploy work, and source-claim trace tooling remain future scope.
 
 ## References
 

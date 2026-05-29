@@ -25,7 +25,7 @@ From `app/` (or use root scripts that delegate with `--prefix app`):
 | `npm run build` | Production build → `app/dist/portfolio/browser` |
 | `npm run test:engine` | Vitest — DES engine unit tests |
 | `npm run test:tools` | Vitest — `gen-truck-cycle` golden seeds |
-| `npm run test:e2e` | Playwright smoke — gallery → haulage-des → run → compare → export |
+| `npm run test:e2e` | Playwright smoke — gallery -> haulage notebook -> run -> compare -> export |
 | `npm run gen:seeds` | Regenerate deterministic seed assets |
 
 ```bash
@@ -43,7 +43,7 @@ First-time e2e: `cd app && npx playwright install chromium`
 | Path | Purpose |
 |------|---------|
 | `/` | Demo gallery (`assets/catalog/demos.json`) |
-| `/demo/haulage-des` | Haulage DES workbench (panels A–D, study, presenter) |
+| `/demo/haulage-des` | Haulage DES notebook demo (decision, model, run, compare, limitations) |
 | `/demo/:demoId` | Coming-soon previews for other catalog entries |
 | `/about` | Portfolio positioning and synthetic-data policy |
 
@@ -52,6 +52,16 @@ First-time e2e: `cd app && npx playwright install chromium`
 - [`docs/projects/haulage-des/brief.md`](docs/projects/haulage-des/brief.md)
 - [`docs/projects/haulage-des/demo-script-outline.md`](docs/projects/haulage-des/demo-script-outline.md)
 - [`docs/projects/haulage-des/demo-checklist.md`](docs/projects/haulage-des/demo-checklist.md) — 5-minute manual interview checklist
+
+The 5-minute haulage talk track starts with the superintendent's operational
+question: would a different haulage method reduce queueing or improve tonnes per
+shift enough to justify a site-data study? The demo then explains why
+fixed-average cycles miss queueing, defines the DES model, runs the synthetic
+truck-shovel baseline, clones a scraper-train hypothesis, compares directional
+KPI deltas, exports JSON, and closes with limitations. Known limitations:
+synthetic inputs only; no operational forecast, vendor benchmark, unit-cost,
+diesel, water, emissions, road-geometry, material-suitability, or
+dispatch-validation model.
 
 Planning acceptance contract: [`planning/portfolio-shortlist-briefs.html`](planning/portfolio-shortlist-briefs.html#brief-02).
 

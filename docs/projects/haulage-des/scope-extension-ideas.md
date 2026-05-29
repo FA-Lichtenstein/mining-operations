@@ -33,3 +33,9 @@ This file records proposed future scope only. Do not treat these notes as PR 1 a
 - Proposed future scope: add chart-level visual tests that verify the loader queue chart, throughput target line, and cycle-time histogram still render after future ECharts changes.
 - Proposed future scope: add a versioned export field rename so legacy `queueWait_min` and `matchFactor` brief values can become explicit loader-wait and recommended-unit names without breaking existing imports.
 - Proposed future scope: add a comparison explainer panel that expands the directional KPI summary into a short worked example for hiring-manager demos.
+
+## PR 6 Reviewer Notes (2026-05-29)
+
+- Proposed future scope: add a rehearsal-mode e2e path that opens Presenter mode and verifies its checklist still follows the hiring-manager talk track.
+- Proposed future scope: add a lightweight accessibility check around the notebook route so future copy changes keep the decision question, run controls, compare section, and limitations discoverable by role and heading.
+- Proposed future scope: add a small generated demo pack that bundles the exported JSON with a one-page superintendent memo once real site-data fields and versioned export names are settled.
