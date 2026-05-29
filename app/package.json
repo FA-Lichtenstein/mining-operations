@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:tools": "vitest run --config vitest.tools.config.ts",
+    "test:engine": "vitest run --config vitest.engine.config.ts",
     "gen:seeds": "tsx tools/gen-truck-cycle/cli.ts"
   },
   "private": true,

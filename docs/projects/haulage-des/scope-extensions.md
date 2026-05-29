@@ -66,3 +66,30 @@ Ideas deferred beyond PR1 acceptance. **Not implemented** in this PR — capture
 
 - Replace any residual OEM-style `haul_unit_class` strings in future scenarios with `illustrative-*` taxonomy.
 - Export bundle manifest (sha256 per file) alongside aggregate bundle hash for partial invalidation debugging.
+
+## PR3 reviewer audit (2026-05-29)
+
+- `app/src/app/features/haulage-des/engine/` — min-heap event queue, FIFO loader/dump resources, shift window, MTBF/MTTR breakdown deferral, cycle phases (queue/spot/load/haul/dump/return), KPI aggregation (tonnes/shift, cycle/queue stats, loader idle %, haul util %, SME-style N_h, E=A×U, availability-adjusted throughput, cost/fuel placeholders).
+- `haulage-des.worker.ts` + `DesWorkerService` (module Worker, progress + complete messages); `load-seed-config.ts` and Vitest specs excluded from `tsconfig.app.json`.
+- `npm run test:engine` (8 golden/behaviour tests), `npm run test:tools`, `ng build` pass; worker chunk `haulage-des-worker`; shell smoke button fetches `v1.0.0-truck_shovel/config.json`.
+- Availability KPI uses scheduled breakdown downtime (not a constant 1.0); Gorai hint remains analytic-only.
+
+## Suggested extensions after PR3 (ideas only)
+
+### Engine & seeds
+
+- Browser `SeedConfigService` loading `config.json` from `assets/seeds/…` (replace shell `fetch` + align panel A with scenario suffix).
+- Replay/compare against `cycles.csv` from gen-truck-cycle for calibration drift checks.
+- Multi-shift runs with shift handover queues; optional deterministic-vs-stochastic toggle for explainers.
+- Track dump-queue wait separately from loader-queue wait in KPI cards.
+
+### Worker & UI (PR4)
+
+- Wire panel A scenario picker to both scenarios; show `metadata.ktec_parameters_label` / `fleet_parameters_label` chips.
+- Stream cycle events from worker for D3 panel B animation; ECharts queue depth from time-series buffers.
+- IndexedDB run history + JSON export; in-session A/B compare table.
+
+### Tests & CI
+
+- Root/`app/` CI job: `test:engine`, `test:tools`, `build`; document golden KPI update workflow when simulator semantics change.
+- Property test: availability in (0,1] when MTBF finite; breakdown intervals never double-schedule `breakdown_end`.
