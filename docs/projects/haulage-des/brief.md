@@ -1,5 +1,9 @@
 # Haulage DES — project brief (PR 1)
 
+> Narrative redesign note: the source-grounded article contract now lives in
+> [`narrative-redesign.md`](./narrative-redesign.md). Use it as the acceptance
+> source for the next article-style haulage DES flow before changing app behavior.
+
 ## Problem
 
 A **Technical Services superintendent** asks whether adding K-Tec scraper trains can reduce unit cost on a 12 Mt/a waste-stripping push without starving ore feed. Conventional truck-shovel cycles dominate the pit; contractor haulage is common in the Bushveld. The **Quantitative Planning Analyst** needs a defensible discrete-event simulation (DES) comparison — cycle times, queueing, match factor, tonnes per shift — not a vendor brochure.
@@ -47,5 +51,6 @@ Initial shell: gallery route, four-panel workbench placeholders, thin docs.
 
 ## References
 
+- Narrative redesign contract: [`narrative-redesign.md`](./narrative-redesign.md)
 - Portfolio brief: `planning/portfolio-shortlist-briefs.html#brief-02`
 - Synthesis plan: haulage DES 6-PR roadmap (PR 1–6)

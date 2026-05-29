@@ -1,5 +1,12 @@
 # Haulage DES — 5-minute demo script outline (role-based)
 
+> Superseded for the redesign: the next implementation should follow the
+> article sequence in [`narrative-redesign.md`](./narrative-redesign.md):
+> problem, why deterministic averages fail, DES model definition, baseline run,
+> scenario comparison, what changed and why, limitations, and next site-data
+> steps. Keep this file only as the historical dashboard-first talk track until
+> the later demo-readiness PR rewrites it.
+
 Narration uses official roles only. Demo site: **syn-pgm-bushveld-01**.
 
 In-app **Presenter mode** on `/demo/haulage-des` mirrors this outline (checkboxes, localStorage).
