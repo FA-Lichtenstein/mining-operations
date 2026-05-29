@@ -1,3 +1,4 @@
+/** PR2 seeds: `assets/seeds/syn-pgm-bushveld-01/gen-truck-cycle/v1.0.0-truck_shovel` | `…-scraper_train`. */
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { WorkbenchLayoutComponent } from '../../shared/workbench-layout/workbench-layout.component';
