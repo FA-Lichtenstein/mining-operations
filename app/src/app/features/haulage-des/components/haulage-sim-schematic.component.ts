@@ -19,11 +19,11 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
     <div class="schematic-wrap">
       <svg #svgRoot class="schematic" aria-label="Load haul dump schematic"></svg>
       <div class="queue-bar">
-        <span>Queue depth proxy</span>
+        <span>Animation queue preview</span>
         <div class="queue-track">
           <div class="queue-fill" [style.width.%]="queuePct()"></div>
         </div>
-        <span class="queue-val">{{ wb.queueDepthProxy() | number: '1.1-1' }} min</span>
+        <span class="queue-val">{{ wb.runProgressQueuePreview() | number: '1.1-1' }}</span>
       </div>
       <p class="phase-label">Phase: {{ phaseLabel() }}</p>
     </div>
@@ -113,7 +113,7 @@ export class HaulageSimSchematicComponent implements AfterViewInit, OnDestroy {
   }
 
   protected queuePct(): number {
-    const q = this.wb.queueDepthProxy();
+    const q = this.wb.runProgressQueuePreview();
     const max = Math.max(8, (this.wb.config()?.fleet.haul_unit_count ?? 10) * 0.5);
     return Math.min(100, (q / max) * 100);
   }

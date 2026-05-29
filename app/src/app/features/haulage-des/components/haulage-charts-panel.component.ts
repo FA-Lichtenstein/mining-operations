@@ -3,7 +3,7 @@ import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 import { echarts } from '../haulage-echarts';
 import {
   buildCycleTimeHistogram,
-  buildQueueDepthSeries,
+  buildLoaderQueueWaitSeries,
   buildThroughputByShift,
 } from '../haulage-chart-data';
 import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
@@ -17,7 +17,7 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
     @if (hasData()) {
       <div class="chart-grid">
         <div class="chart-cell">
-          <h4>Queue depth proxy</h4>
+          <h4>Loader queue wait</h4>
           <div echarts [options]="queueOptions()" class="chart"></div>
         </div>
         <div class="chart-cell">
@@ -30,7 +30,7 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
         </div>
       </div>
     } @else {
-      <p class="placeholder">Run DES to populate queue, throughput, and cycle-time charts.</p>
+      <p class="placeholder">Run DES to populate loader wait, throughput, and cycle-time charts.</p>
     }
   `,
   styles: `
@@ -79,7 +79,7 @@ export class HaulageChartsPanelComponent {
     if (!run?.cycles.length) {
       return {};
     }
-    return buildQueueDepthSeries(run.cycles);
+    return buildLoaderQueueWaitSeries(run.cycles);
   });
 
   protected readonly throughputOptions = computed(() => {

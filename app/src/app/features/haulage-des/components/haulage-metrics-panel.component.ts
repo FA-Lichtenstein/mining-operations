@@ -20,12 +20,12 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
           <strong>{{ k.avg_cycle_time_min | number: '1.1-1' }} min</strong>
         </article>
         <article class="kpi-card">
-          <span class="kpi-label">Queue wait</span>
-          <strong>{{ k.avg_queue_wait_min | number: '1.2-2' }} min</strong>
+          <span class="kpi-label">Loader queue wait</span>
+          <strong>{{ k.avg_loader_queue_wait_min | number: '1.2-2' }} min</strong>
         </article>
         <article class="kpi-card">
-          <span class="kpi-label">Match N<sub>h</sub></span>
-          <strong>{{ k.match_factor_Nh | number: '1.2-2' }}</strong>
+          <span class="kpi-label">Recommended units N<sub>h</sub></span>
+          <strong>{{ k.recommended_haul_units_Nh | number: '1.2-2' }}</strong>
         </article>
         <article class="kpi-card">
           <span class="kpi-label">Haul utilisation</span>

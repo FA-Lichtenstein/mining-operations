@@ -69,11 +69,11 @@ export const HAULAGE_DEMO_CHECKLIST: DemoChecklistSection[] = [
       {
         id: 'run-kpis',
         label:
-          'Highlight throughput, avg cycle, queue wait, match factor N_h vs SME-style band in panel D',
+          'Highlight throughput, avg cycle, loader queue wait, and full-cycle N_h recommendation in panel D',
       },
       {
         id: 'run-charts',
-        label: 'Panel C: queue depth and throughput time series',
+        label: 'Panel C: loader queue wait and throughput time series',
       },
     ],
   },

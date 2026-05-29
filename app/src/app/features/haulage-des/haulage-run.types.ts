@@ -10,7 +10,7 @@ export type HaulageRunKpisBrief = {
   avgCycle_min: number;
   queueWait_min: number;
   matchFactor: number;
-  cost_index: number;
+  cost_index: null;
 };
 
 export type HaulageDesRunRecord = {
@@ -39,9 +39,9 @@ export function kpisToBrief(kpis: DesKpis, shiftHours: number): HaulageRunKpisBr
   return {
     throughput_tpd: round1(kpis.tonnes_per_shift * shiftsPerDay),
     avgCycle_min: round2(kpis.avg_cycle_time_min),
-    queueWait_min: round2(kpis.avg_queue_wait_min),
-    matchFactor: round2(kpis.match_factor_Nh),
-    cost_index: round2(kpis.cost_index_placeholder),
+    queueWait_min: round2(kpis.avg_loader_queue_wait_min),
+    matchFactor: round2(kpis.recommended_haul_units_Nh),
+    cost_index: null,
   };
 }
 

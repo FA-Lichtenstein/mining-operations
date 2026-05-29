@@ -13,7 +13,7 @@ export function buildSuperintendentSummary(
   const followUps: string[] = [];
   let bottleneck = 'Balanced loader–haul fleet (illustrative DES).';
 
-  if (kpis.avg_queue_wait_min >= 4) {
+  if (kpis.avg_loader_queue_wait_min >= 4) {
     bottleneck = 'Loader queue — haul units waiting at the shovel/train load point.';
     followUps.push(
       'Quantitative Planning Analyst: test +2 haul units or +1 loader in DES before field trial.',
@@ -21,9 +21,9 @@ export function buildSuperintendentSummary(
     followUps.push(
       'Technical Services superintendent: confirm contractor shift calendar matches 12 h synthetic shift.',
     );
-  } else if (kpis.match_factor_Nh < 0.95) {
-    bottleneck = 'Match factor below 1 — loading element is the limiting factor (SME Eq 12.27).';
-    followUps.push('Review loader cycle time vs truck/scraper load time at the strip face.');
+  } else if (kpis.fleet_match_ratio < 0.9) {
+    bottleneck = 'Haul fleet below full-cycle recommendation — loader idle risk.';
+    followUps.push('Review full cycle time and loader service time before changing fleet count.');
   } else if (kpis.haul_unit_utilization_percent < 55) {
     bottleneck = 'Haul fleet under-utilised — excess idle time between cycles.';
     followUps.push('Check whether fleet count exceeds optimal match for current loader count.');

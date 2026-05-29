@@ -41,7 +41,7 @@ export class HaulageWorkbenchService {
   readonly running = signal(false);
   readonly progressPct = signal(0);
   readonly simPhase = signal<SimPhase>('idle');
-  readonly queueDepthProxy = signal(0);
+  readonly runProgressQueuePreview = signal(0);
   readonly lastRun = signal<CompletedRun | null>(null);
   readonly compareA = signal<CompletedRun | null>(null);
   readonly compareB = signal<CompletedRun | null>(null);
@@ -66,10 +66,11 @@ export class HaulageWorkbenchService {
     const rows: { label: string; a: number; b: number; delta: number; unit: string }[] = [
       mkRow('Throughput', a.kpis.tonnes_per_shift, b.kpis.tonnes_per_shift, 't/shift'),
       mkRow('Avg cycle', a.kpis.avg_cycle_time_min, b.kpis.avg_cycle_time_min, 'min'),
-      mkRow('Queue wait', a.kpis.avg_queue_wait_min, b.kpis.avg_queue_wait_min, 'min'),
-      mkRow('Match factor Nh', a.kpis.match_factor_Nh, b.kpis.match_factor_Nh, ''),
+      mkRow('Loader queue wait', a.kpis.avg_loader_queue_wait_min, b.kpis.avg_loader_queue_wait_min, 'min'),
+      mkRow('Dump queue wait', a.kpis.avg_dump_queue_wait_min, b.kpis.avg_dump_queue_wait_min, 'min'),
+      mkRow('Recommended units Nh', a.kpis.recommended_haul_units_Nh, b.kpis.recommended_haul_units_Nh, ''),
+      mkRow('Fleet match ratio', a.kpis.fleet_match_ratio, b.kpis.fleet_match_ratio, ''),
       mkRow('Haul utilisation', a.kpis.haul_unit_utilization_percent, b.kpis.haul_unit_utilization_percent, '%'),
-      mkRow('Cost index', a.kpis.cost_index_placeholder, b.kpis.cost_index_placeholder, ''),
     ];
     return rows;
   });
@@ -136,7 +137,7 @@ export class HaulageWorkbenchService {
     this.lastRun.set(null);
     this.progressPct.set(0);
     this.simPhase.set('idle');
-    this.queueDepthProxy.set(0);
+    this.runProgressQueuePreview.set(0);
   }
 
   async cloneToOtherScenario(): Promise<void> {
@@ -191,7 +192,7 @@ export class HaulageWorkbenchService {
           if (ev.kind === 'progress') {
             this.progressPct.set(ev.pct);
             this.simPhase.set(phaseFromProgress(ev.pct));
-            this.queueDepthProxy.set(queueProxyFromProgress(ev.pct, cfg.fleet.haul_unit_count));
+            this.runProgressQueuePreview.set(queuePreviewFromProgress(ev.pct, cfg.fleet.haul_unit_count));
           } else {
             const runId = crypto.randomUUID();
             const createdAt = new Date().toISOString();
@@ -205,7 +206,7 @@ export class HaulageWorkbenchService {
             this.lastRun.set(completed);
             this.progressPct.set(100);
             this.simPhase.set('idle');
-            this.queueDepthProxy.set(ev.kpis.avg_queue_wait_min);
+            this.runProgressQueuePreview.set(0);
             this.running.set(false);
             void this.persistRun(completed, 'complete');
           }
@@ -329,7 +330,7 @@ function phaseFromProgress(pct: number): SimPhase {
   return 'idle';
 }
 
-function queueProxyFromProgress(pct: number, fleet: number): number {
+function queuePreviewFromProgress(pct: number, fleet: number): number {
   const wave = Math.sin((pct / 100) * Math.PI * 4);
   return Math.max(0, round2((fleet * 0.12 + wave * fleet * 0.08) * (pct / 100)));
 }

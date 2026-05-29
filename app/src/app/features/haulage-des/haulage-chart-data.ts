@@ -8,7 +8,7 @@ const CHART_THEME = {
   grid: '#2a2a32',
 };
 
-export function buildQueueDepthSeries(cycles: DesCycleRecord[]): EChartsOption {
+export function buildLoaderQueueWaitSeries(cycles: DesCycleRecord[]): EChartsOption {
   const window = 12;
   const x: string[] = [];
   const y: number[] = [];
@@ -32,7 +32,7 @@ export function buildQueueDepthSeries(cycles: DesCycleRecord[]): EChartsOption {
     },
     yAxis: {
       type: 'value',
-      name: 'Queue wait (min)',
+      name: 'Loader wait (min)',
       nameTextStyle: { color: CHART_THEME.text },
       axisLabel: { color: CHART_THEME.text },
       splitLine: { lineStyle: { color: CHART_THEME.grid } },
@@ -97,6 +97,7 @@ export function buildCycleTimeHistogram(cycles: DesCycleRecord[]): EChartsOption
       c.spotting_min +
       c.load_min +
       c.haul_min +
+      c.dump_queue_wait_min +
       c.dump_min +
       c.return_min,
   );

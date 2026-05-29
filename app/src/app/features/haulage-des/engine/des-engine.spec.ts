@@ -10,7 +10,7 @@ const SCENARIOS = ['truck_shovel', 'scraper_train'] as const;
 
 describe('haulage DES engine', () => {
   describe('KPI formulas', () => {
-    it('matchFactorNh = loader cycle / truck load (SME Eq 12.27)', () => {
+    it('matchFactorNh = full haul cycle / loader service time', () => {
       expect(matchFactorNh(12, 4)).toBe(3);
       expect(matchFactorNh(0, 4)).toBe(0);
     });
@@ -53,8 +53,23 @@ describe('haulage DES engine', () => {
       { ...base, seed: 4242, fleet: { ...base.fleet, haul_unit_count: 24 } },
       { shiftCount: 1 },
     ).kpis;
-    expect(oversized.avg_queue_wait_min).toBeGreaterThan(balanced.avg_queue_wait_min);
+    expect(oversized.avg_loader_queue_wait_min).toBeGreaterThan(balanced.avg_loader_queue_wait_min);
     expect(oversized.loader_idle_percent).toBeLessThan(balanced.loader_idle_percent);
+  });
+
+  it('computes recommended haul units from full cycle time, not load-time ratio', () => {
+    const config = loadSeedConfig('truck_shovel');
+    const result = runDesSimulation(config, { shiftCount: 1 });
+    const avgLoadMin =
+      result.cycles.reduce((sum, cycle) => sum + cycle.load_min, 0) / result.cycles.length;
+    const oldLoadOnlyRatio = result.kpis.avg_loader_service_time_min / avgLoadMin;
+
+    expect(result.cycles.some((cycle) => cycle.dump_queue_wait_min > 0)).toBe(true);
+    expect(result.kpis.recommended_haul_units_Nh).toBeCloseTo(
+      result.kpis.avg_haul_cycle_time_min / result.kpis.avg_loader_service_time_min,
+      3,
+    );
+    expect(result.kpis.recommended_haul_units_Nh).toBeGreaterThan(oldLoadOnlyRatio);
   });
 
   it('progress callback reaches 100', () => {
@@ -74,9 +89,11 @@ function kpiFingerprint(kpis: {
   tonnes_per_shift: number;
   avg_cycle_time_min: number;
   avg_queue_wait_min: number;
+  avg_dump_queue_wait_min: number;
+  recommended_haul_units_Nh: number;
+  fleet_match_ratio: number;
   loader_idle_percent: number;
   haul_unit_utilization_percent: number;
-  match_factor_Nh: number;
   cycles_completed: number;
 }): string {
   return [
@@ -84,8 +101,10 @@ function kpiFingerprint(kpis: {
     kpis.tonnes_per_shift,
     kpis.avg_cycle_time_min,
     kpis.avg_queue_wait_min,
+    kpis.avg_dump_queue_wait_min,
     kpis.loader_idle_percent,
     kpis.haul_unit_utilization_percent,
-    kpis.match_factor_Nh,
+    kpis.recommended_haul_units_Nh,
+    kpis.fleet_match_ratio,
   ].join('|');
 }

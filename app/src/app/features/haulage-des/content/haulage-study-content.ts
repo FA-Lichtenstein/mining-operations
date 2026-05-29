@@ -28,7 +28,7 @@ export const HAULAGE_STUDY_SECTIONS: StudySection[] = [
       'Each haul unit traverses a repeating load–haul–dump cycle: queue at the loader → spot and load → haul loaded along the pit haul road → queue at dump → dump or eject → return empty. Panel B schematic and seed distributions illustrate the same sequence for truck_shovel and scraper_train.',
     ],
     listItems: [
-      'Queue wait captures shovel/truck or train mismatch under stochastic arrivals.',
+      'Loader and dump queue waits capture shovel/truck or train mismatch under stochastic arrivals.',
       'Loader idle percent rises when haul units are over-fleeted or blocked at dump.',
       'Completed cycles only feed KPI aggregates in panel D.',
     ],
@@ -38,7 +38,7 @@ export const HAULAGE_STUDY_SECTIONS: StudySection[] = [
     id: 'match-efficiency',
     title: 'Match factor N_h and E = A × U',
     paragraphs: [
-      'Match factor N_h compares loader cycle time to haul-unit load time (SME Ch 12). Values near 1.0 suggest balanced fleets; sustained overload shows up as queue wait and loader starvation in DES, not only in closed-form hints.',
+      'Recommended haul units N_h uses full average haul cycle time divided by average loader service time. The fleet match ratio then compares configured haul units with that recommendation; sustained overload still shows up in simulated loader and dump queue waits.',
       'Operating efficiency E = availability × utilisation on the shift calendar separates mechanical availability from time actually hauling. Availability answers “is the unit down?”; utilisation answers “when up, is it productive?” Panel D reports E alongside haul-unit utilisation percent.',
     ],
     citationIds: ['sme'],
@@ -60,7 +60,7 @@ export const HAULAGE_STUDY_SECTIONS: StudySection[] = [
     ],
     listItems: [
       'Hypothesis: lower unit payload with more cycles may improve loader match on certain bench geometries.',
-      'Risk: additional handling and road interactions may offset queue gains — compare tonnes/shift and queue wait in panel C.',
+      'Risk: additional handling and road interactions may offset queue gains — compare tonnes/shift and loader queue wait in panel C.',
       'Superintendent follow-ups in panel D should cite site geometry, contractor rates, and ore-feed constraints outside this demo.',
     ],
     citationIds: ['ukwazi', 'dunbar'],

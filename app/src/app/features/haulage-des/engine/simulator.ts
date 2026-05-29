@@ -13,6 +13,7 @@ type InFlightCycle = {
   loader_id: string;
   shift_index: number;
   queue_wait_min: number;
+  dump_queue_wait_min: number;
   spotting_min: number;
   load_min: number;
   haul_min: number;
@@ -119,14 +120,14 @@ function simulateShift(ctx: {
   const events = new EventQueue();
   const loaderQueue: string[] = [];
   const dumpQueue: string[] = [];
-  const joinTimes = new Map<string, number>();
+  const loaderJoinTimes = new Map<string, number>();
+  const dumpJoinTimes = new Map<string, number>();
   const inFlight = new Map<string, InFlightCycle>();
   const loaders: LoaderSlot[] = loaderIds.map((loaderId) => ({
     loaderId,
     busyUntilMin: shiftStartMin,
   }));
   let dumpBusyUntilMin = shiftStartMin;
-  let loaderRoundRobin = 0;
   const breakdownDeferred = new Set<string>();
 
   for (const id of haulUnitIds) {
@@ -135,24 +136,20 @@ function simulateShift(ctx: {
   }
 
   const tryAssignLoaders = (now: number) => {
-    while (loaderQueue.length > 0) {
-      const available = loaders
-        .map((l, i) => ({ l, i }))
-        .filter(({ l }) => l.busyUntilMin <= now)
-        .sort((a, b) => a.l.busyUntilMin - b.l.busyUntilMin || a.i - b.i);
-      if (available.length === 0) {
-        break;
-      }
+    const available = loaders
+      .map((l, i) => ({ l, i }))
+      .filter(({ l }) => l.busyUntilMin <= now)
+      .sort((a, b) => a.l.busyUntilMin - b.l.busyUntilMin || a.i - b.i);
 
+    while (loaderQueue.length > 0 && available.length > 0) {
+      const { l: slot } = available.shift()!;
       const haulId = loaderQueue.shift()!;
-      const joinedAt = joinTimes.get(haulId) ?? now;
-      const queueWait = Math.max(0, now - joinedAt);
+      const joinedAt = loaderJoinTimes.get(haulId) ?? now;
       const spottingMin = sampleDistribution(dist.queue_time_min, rng);
       const loadMin = sampleDistribution(dist.load_time_min, rng);
-      const slot = available[loaderRoundRobin % available.length]!.l;
-      loaderRoundRobin++;
 
       const startLoad = Math.max(now, slot.busyUntilMin);
+      const queueWait = Math.max(0, startLoad - joinedAt);
       const endLoad = startLoad + spottingMin + loadMin;
       slot.busyUntilMin = endLoad;
 
@@ -167,6 +164,7 @@ function simulateShift(ctx: {
         loader_id: slot.loaderId,
         shift_index: shiftIdx,
         queue_wait_min: round3(queueWait),
+        dump_queue_wait_min: 0,
         spotting_min: round3(spottingMin),
         load_min: round3(loadMin),
         haul_min: 0,
@@ -176,13 +174,14 @@ function simulateShift(ctx: {
       });
 
       events.schedule(endLoad, 'load_complete', haulId);
-      now = endLoad;
     }
   };
 
   const tryAssignDump = (now: number) => {
     while (dumpQueue.length > 0 && dumpBusyUntilMin <= now) {
       const haulId = dumpQueue.shift()!;
+      const joinedAt = dumpJoinTimes.get(haulId) ?? now;
+      const dumpQueueWait = Math.max(0, now - joinedAt);
       const dumpMin = sampleDistribution(dist.dump_time_min, rng);
       const start = Math.max(now, dumpBusyUntilMin);
       const end = start + dumpMin;
@@ -190,8 +189,10 @@ function simulateShift(ctx: {
 
       const cycle = inFlight.get(haulId);
       if (cycle) {
+        cycle.dump_queue_wait_min = round3(dumpQueueWait);
         cycle.dump_min = round3(dumpMin);
       }
+      dumpJoinTimes.delete(haulId);
       events.schedule(end, 'dump_complete', haulId);
       now = end;
     }
@@ -214,7 +215,7 @@ function simulateShift(ctx: {
 
     switch (ev.kind) {
       case 'join_loader_queue': {
-        joinTimes.set(ev.haulUnitId, ev.time);
+        loaderJoinTimes.set(ev.haulUnitId, ev.time);
         loaderQueue.push(ev.haulUnitId);
         tryAssignLoaders(ev.time);
         break;
@@ -230,6 +231,7 @@ function simulateShift(ctx: {
         break;
       }
       case 'arrive_dump': {
+        dumpJoinTimes.set(ev.haulUnitId, ev.time);
         dumpQueue.push(ev.haulUnitId);
         tryAssignDump(ev.time);
         break;
@@ -252,6 +254,7 @@ function simulateShift(ctx: {
           acc.loaderBusyMin += cycle.spotting_min + cycle.load_min;
           acc.haulBusyMin +=
             cycle.queue_wait_min +
+            cycle.dump_queue_wait_min +
             cycle.spotting_min +
             cycle.load_min +
             cycle.haul_min +
