@@ -93,3 +93,28 @@ Ideas deferred beyond PR1 acceptance. **Not implemented** in this PR — capture
 
 - Root/`app/` CI job: `test:engine`, `test:tools`, `build`; document golden KPI update workflow when simulator semantics change.
 - Property test: availability in (0,1] when MTBF finite; breakdown intervals never double-schedule `breakdown_end`.
+
+## PR4 reviewer audit (2026-05-29)
+
+- `/demo/haulage-des` workbench MVP: **Panel A** scenario picker (`truck_shovel` | `scraper_train`), fleet/payload/haul-distance/horizon/seed controls, Run / Reset / Clone; config loaded via `HttpClient` from `assets/seeds/…/gen-truck-cycle/`; `metadata` illustrative labels surfaced. **Panel B** D3 load–haul–dump schematic with phase animation and queue-depth proxy. **Panel C** ngx-echarts (tree-shaken core) queue rolling average, throughput-by-shift, cycle-time histogram from worker `cycles`. **Panel D** KPI cards, cycle anatomy explainer, role-based superintendent summary (no named personas).
+- Compare bar: in-session A/B save, KPI delta table, JSON export/import (`HaulageRunExport` v1), IndexedDB `mining-portfolio` / `haulageDesRuns` auto-save on complete + restore list — matches brief-02 persistence sketch.
+- Worker fix: `haulage-des.worker.ts` and `DesWorkerService` return `cycles` on `complete` (required for Panel C charts; was KPI-only in PR3 shell smoke).
+- `d3`, `echarts`, `ngx-echarts@21` added; `npm run build`, `test:engine`, `test:tools` pass.
+- Deferred to PR5+: in-app brief/study pane, Playwright smoke, sessionStorage last scenario, Gorai analytic overlay, IPCC scenario.
+
+## Suggested extensions after PR4 (ideas only)
+
+### Workbench UX
+
+- Drive Panel B animation from streamed cycle events (not progress-derived phase proxy); tie queue bar to rolling DES queue samples.
+- `sessionStorage` last scenario + fleet sliders for demo reload continuity.
+- Footer link to `docs/projects/haulage-des/brief.md` or rendered study layer (PR5).
+
+### Persistence & compare
+
+- IndexedDB prune / delete-run UI; export compare pair as single JSON manifest.
+- Partial restore when import omits `cycles` (KPI-only cards, charts placeholder).
+
+### CI
+
+- Root or `app/` workflow: `build`, `test:engine`, `test:tools`; Playwright gallery → haulage-des → run → compare → export.

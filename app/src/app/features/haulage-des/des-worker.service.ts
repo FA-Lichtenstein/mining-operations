@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import type { GenTruckCycleConfig } from '../../shared/domain/haulage';
-import type { DesKpis, DesRunOptions } from './engine/types';
+import type { DesCycleRecord, DesKpis, DesRunOptions } from './engine/types';
 import type {
   HaulageDesWorkerRequest,
   HaulageDesWorkerResponse,
@@ -9,7 +9,7 @@ import type {
 
 export type DesWorkerRunEvent =
   | { kind: 'progress'; pct: number }
-  | { kind: 'complete'; kpis: DesKpis };
+  | { kind: 'complete'; kpis: DesKpis; cycles: DesCycleRecord[] };
 
 @Injectable({ providedIn: 'root' })
 export class DesWorkerService implements OnDestroy {
@@ -31,7 +31,7 @@ export class DesWorkerService implements OnDestroy {
       if (msg.type === 'progress') {
         subject.next({ kind: 'progress', pct: msg.pct });
       } else if (msg.type === 'complete') {
-        subject.next({ kind: 'complete', kpis: msg.kpis });
+        subject.next({ kind: 'complete', kpis: msg.kpis, cycles: msg.cycles });
         subject.complete();
         this.terminate();
       }

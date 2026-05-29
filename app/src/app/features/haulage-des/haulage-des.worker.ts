@@ -2,7 +2,7 @@
 
 import type { GenTruckCycleConfig } from '../../shared/domain/haulage';
 import { runDesSimulation } from './engine/simulator';
-import type { DesKpis, DesRunOptions } from './engine/types';
+import type { DesCycleRecord, DesKpis, DesRunOptions } from './engine/types';
 
 export type HaulageDesWorkerRequest = {
   type: 'run';
@@ -18,6 +18,7 @@ export type HaulageDesWorkerProgress = {
 export type HaulageDesWorkerComplete = {
   type: 'complete';
   kpis: DesKpis;
+  cycles: DesCycleRecord[];
 };
 
 export type HaulageDesWorkerResponse = HaulageDesWorkerProgress | HaulageDesWorkerComplete;
@@ -36,6 +37,10 @@ addEventListener('message', (event: MessageEvent<HaulageDesWorkerRequest>) => {
     },
   });
 
-  const complete: HaulageDesWorkerComplete = { type: 'complete', kpis: result.kpis };
+  const complete: HaulageDesWorkerComplete = {
+    type: 'complete',
+    kpis: result.kpis,
+    cycles: result.cycles,
+  };
   postMessage(complete);
 });
