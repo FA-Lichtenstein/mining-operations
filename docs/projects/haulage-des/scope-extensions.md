@@ -118,3 +118,29 @@ Ideas deferred beyond PR1 acceptance. **Not implemented** in this PR — capture
 ### CI
 
 - Root or `app/` workflow: `build`, `test:engine`, `test:tools`; Playwright gallery → haulage-des → run → compare → export.
+
+## PR5 reviewer audit (2026-05-29)
+
+- **Background / Study** drawer (`haulage-study-drawer`, `content/haulage-study-content.ts`): six sections (decision question, haul-cycle anatomy, N_h / E = A×U, stochastic queues, illustrative K-Tec hypotheses, synthetic limits); role-based copy only; citation chips link to `planning/` sources (SME, Gorai, Dunbar, Ukwazi, brief #02).
+- **Presenter mode** (`haulage-presenter-panel`, `content/haulage-demo-checklist.ts`, `HaulagePresenterStateService`): 5-minute teleprompter with timed sections mirroring `demo-script-outline.md`; checkbox progress in `localStorage` (`haulage-des-presenter-checklist-v1`); reset + completion counter.
+- **Context toolbar** above workbench toggles study vs presenter (mutually exclusive); panel D cycle anatomy points to **Background / Study**.
+- Docs sync: `brief.md` documents in-app content paths; `demo-script-outline.md` aligned with checklist (no panel D placeholder copy).
+- `npm run build` passes; PR4 workbench, compare, IndexedDB unchanged.
+- Still deferred: Playwright smoke, `sessionStorage` last scenario, Gorai analytic overlay, IPCC scenario, workbench footer doc link (study toolbar replaces footer link).
+
+## Suggested extensions after PR5 (ideas only)
+
+### Study & presenter
+
+- Deep-link `?study=match-efficiency` or presenter section hash for rehearsal bookmarks.
+- Export presenter checklist progress as JSON for facilitator handoff.
+- Render brief markdown from `docs/` via fetch (optional) instead of duplicated TS copy — keep single source if drift becomes painful.
+
+### Workbench UX
+
+- `sessionStorage` last scenario + fleet sliders for demo reload continuity.
+- Footer link to repo `docs/projects/haulage-des/brief.md` on GitHub alongside in-app study drawer.
+
+### CI
+
+- Playwright: gallery → haulage-des → open study → presenter tick → run DES → export.

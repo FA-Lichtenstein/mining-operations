@@ -30,9 +30,17 @@ A **Technical Services superintendent** asks whether adding K-Tec scraper trains
 - K-Tec scraper parameters are labelled illustrative, not vendor benchmarks
 - Gorai / SME material supports explainers and sanity checks, not a parallel analytic engine
 
-## PR 1 scope (this document)
+## In-app study layer (PR 5)
 
-Shell only: gallery route, four-panel workbench placeholders, thin docs. No generator, DES engine, or chart libraries yet.
+Expanded background copy lives in the Angular app at
+`app/src/app/features/haulage-des/content/haulage-study-content.ts` (problem, roles,
+haul-cycle anatomy, match factor, stochastic queues, scraper hypotheses, synthetic limits).
+The 5-minute presenter checklist mirrors `demo-script-outline.md` in
+`content/haulage-demo-checklist.ts`. Keep these files aligned when editing this brief or the demo script.
+
+## PR 1 scope (historical)
+
+Initial shell: gallery route, four-panel workbench placeholders, thin docs.
 
 ## References
 

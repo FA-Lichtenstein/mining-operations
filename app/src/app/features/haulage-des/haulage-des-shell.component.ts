@@ -1,13 +1,16 @@
 /** Haulage DES workbench — panels A–D, compare, IndexedDB, JSON export (PR 4). */
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SyntheticDataDisclaimerComponent } from '../../shared/synthetic-data-disclaimer/synthetic-data-disclaimer.component';
 import { WorkbenchLayoutComponent } from '../../shared/workbench-layout/workbench-layout.component';
 import { HaulageChartsPanelComponent } from './components/haulage-charts-panel.component';
 import { HaulageCompareBarComponent } from './components/haulage-compare-bar.component';
+import { HaulageContextToolbarComponent } from './components/haulage-context-toolbar.component';
 import { HaulageControlsPanelComponent } from './components/haulage-controls-panel.component';
 import { HaulageMetricsPanelComponent } from './components/haulage-metrics-panel.component';
+import { HaulagePresenterPanelComponent } from './components/haulage-presenter-panel.component';
 import { HaulageSimSchematicComponent } from './components/haulage-sim-schematic.component';
+import { HaulageStudyDrawerComponent } from './components/haulage-study-drawer.component';
 import { HaulageWorkbenchService } from './services/haulage-workbench.service';
 
 @Component({
@@ -22,6 +25,9 @@ import { HaulageWorkbenchService } from './services/haulage-workbench.service';
     HaulageChartsPanelComponent,
     HaulageMetricsPanelComponent,
     HaulageCompareBarComponent,
+    HaulageContextToolbarComponent,
+    HaulageStudyDrawerComponent,
+    HaulagePresenterPanelComponent,
   ],
   template: `
     <nav class="demo-nav">
@@ -29,6 +35,18 @@ import { HaulageWorkbenchService } from './services/haulage-workbench.service';
     </nav>
 
     <app-synthetic-data-disclaimer />
+
+    <app-haulage-context-toolbar
+      [(studyOpen)]="studyOpen"
+      [(presenterOpen)]="presenterOpen"
+    />
+
+    <app-haulage-study-drawer [open]="studyOpen()" (closed)="studyOpen.set(false)" />
+
+    <app-haulage-presenter-panel
+      [open]="presenterOpen()"
+      (closed)="presenterOpen.set(false)"
+    />
 
     <app-workbench-layout
       title="Haulage discrete-event simulation"
@@ -60,6 +78,9 @@ import { HaulageWorkbenchService } from './services/haulage-workbench.service';
 })
 export class HaulageDesShellComponent implements OnInit {
   private readonly wb = inject(HaulageWorkbenchService);
+
+  protected readonly studyOpen = signal(false);
+  protected readonly presenterOpen = signal(false);
 
   ngOnInit(): void {
     void this.wb.init();

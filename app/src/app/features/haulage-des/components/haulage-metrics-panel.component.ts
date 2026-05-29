@@ -40,13 +40,9 @@ import { HaulageWorkbenchService } from '../services/haulage-workbench.service';
       <details class="anatomy">
         <summary>Cycle anatomy (illustrative)</summary>
         <p>
-          Queue → spot/load at the shovel or scraper train → haul loaded along the pit haul road →
-          queue at dump → dump or eject → return empty. Stochastic times come from seed
-          <code>gen-truck-cycle</code> distributions; KPIs aggregate completed cycles only.
-        </p>
-        <p>
-          Match factor N<sub>h</sub> compares loader cycle time to haul-unit load time (SME Ch 12).
-          Operating efficiency E = availability × utilisation on the synthetic shift calendar.
+          Queue → spot/load → haul loaded → queue at dump → dump/eject → return empty. See
+          <strong>Background / Study</strong> for N<sub>h</sub>, E = A×U, stochastic queues, and
+          illustrative K-Tec hypotheses.
         </p>
       </details>
 
