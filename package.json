@@ -1,0 +1,10 @@
+{
+  "name": "mining-operations",
+  "private": true,
+  "description": "Mining operations OR portfolio — Angular app in app/",
+  "scripts": {
+    "start": "npm run start --prefix app",
+    "build": "npm run build --prefix app",
+    "test": "npm run test --prefix app"
+  }
+}

@@ -1,0 +1,17 @@
+<div class="app-shell">
+  <header class="site-header panel">
+    <a class="brand" routerLink="/">Mining operations</a>
+    <nav class="site-nav" aria-label="Main">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        >Gallery</a
+      >
+      <a routerLink="/about" routerLinkActive="active">About</a>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <router-outlet />
+  </main>
+
+  <app-synthetic-data-disclaimer />
+</div>

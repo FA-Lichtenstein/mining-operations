@@ -3,3 +3,8 @@ sources/
 
 # Local Python environment
 .venv/
+
+# Angular portfolio app (app/ workspace)
+app/node_modules/
+app/dist/
+app/.angular/

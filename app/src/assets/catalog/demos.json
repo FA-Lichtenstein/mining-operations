@@ -1,0 +1,47 @@
+[
+  {
+    "id": "haulage-des",
+    "title": "Truck-shovel vs K-Tec scraper DES",
+    "description": "Discrete-event simulation workbench comparing conventional truck-shovel haulage with scraper-train alternatives on a synthetic Bushveld PGM waste-stripping push.",
+    "themeTags": ["T2", "T4"],
+    "presentationMode": "workbench",
+    "route": "/demo/haulage-des",
+    "status": "live"
+  },
+  {
+    "id": "reconciliation-dashboard",
+    "title": "Mine reconciliation dashboard",
+    "description": "Planned vs actual tonnes, dilution, and recovery variance views for short-interval control.",
+    "themeTags": ["T3"],
+    "presentationMode": "notebook",
+    "route": "/demo/reconciliation-dashboard",
+    "status": "comingSoon"
+  },
+  {
+    "id": "fleet-capacity-mdp",
+    "title": "Fleet capacity MDP",
+    "description": "Markov decision model for multi-unit fleet availability and throughput under maintenance uncertainty.",
+    "themeTags": ["T5"],
+    "presentationMode": "workbench",
+    "route": "/demo/fleet-capacity-mdp",
+    "status": "comingSoon"
+  },
+  {
+    "id": "pit-schedule-gantt",
+    "title": "Pit schedule Gantt",
+    "description": "Interactive Gantt for pushbacks, phase dependencies, and equipment constraints.",
+    "themeTags": ["T1"],
+    "presentationMode": "notebook",
+    "route": "/demo/pit-schedule-gantt",
+    "status": "comingSoon"
+  },
+  {
+    "id": "closure-liability-mc",
+    "title": "Closure liability Monte Carlo",
+    "description": "Stochastic closure-cost bands with sensitivity to discount rate and rehabilitation scope.",
+    "themeTags": ["T6"],
+    "presentationMode": "notebook",
+    "route": "/demo/closure-liability-mc",
+    "status": "comingSoon"
+  }
+]
