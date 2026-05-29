@@ -20,3 +20,10 @@ This file records proposed future scope only. Do not treat these notes as PR 1 a
 - Proposed future scope: add inline source markers inside study paragraphs so each visible citation sits directly beside the claim it supports instead of only at section level.
 - Proposed future scope: turn the presenter walkthrough into a read-only narrative mode with optional rehearsal checkboxes hidden behind a practice toggle.
 - Proposed future scope: add a short glossary card for DES, FIFO queue, availability, utilisation, fleet match ratio, and recommended haul units once the notebook UI flow has a stable article layout.
+
+## PR 4 Reviewer Notes (2026-05-29)
+
+- Proposed future scope: add a visual regression or e2e assertion that the haulage route shows exactly one visible synthetic-data warning near the top of the app shell.
+- Proposed future scope: evaluate whether the Study and Presenter panels should become modal side sheets on wider screens, preserving inner-only scrolling without pushing the notebook article down.
+- Proposed future scope: replace the optional cycle animation with event-level loader and dump queue snapshots once the simulator exposes real occupancy traces.
+- Proposed future scope: add a short route-local table of contents after the notebook flow stabilizes, so hiring-manager reviewers can jump between problem, controls, results, comparison, and limitations.

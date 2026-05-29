@@ -23,32 +23,34 @@ import { HaulageCitationChipsComponent } from './haulage-citation-chips.componen
           <button type="button" class="btn btn-ghost" (click)="closed.emit()">Close</button>
         </header>
 
-        @for (section of sections; track section.id) {
-          <article class="study-section" [id]="'study-' + section.id">
-            <h4>{{ section.title }}</h4>
-            @for (para of section.paragraphs; track para) {
-              <p>{{ para }}</p>
-            }
-            @if (section.listItems?.length) {
-              <ul>
-                @for (item of section.listItems; track item) {
-                  <li>{{ item }}</li>
-                }
-              </ul>
-            }
-            @if (section.citationIds; as citeIds) {
-              <app-haulage-citation-chips [ids]="citeIds" />
-            }
-          </article>
-        }
+        <div class="drawer-content">
+          @for (section of sections; track section.id) {
+            <article class="study-section" [id]="'study-' + section.id">
+              <h4>{{ section.title }}</h4>
+              @for (para of section.paragraphs; track para) {
+                <p>{{ para }}</p>
+              }
+              @if (section.listItems?.length) {
+                <ul>
+                  @for (item of section.listItems; track item) {
+                    <li>{{ item }}</li>
+                  }
+                </ul>
+              }
+              @if (section.citationIds; as citeIds) {
+                <app-haulage-citation-chips [ids]="citeIds" />
+              }
+            </article>
+          }
 
-        <footer class="study-footer">
-          <p>
-            Docs mirror:
-            <code>docs/projects/haulage-des/narrative-redesign.md</code> and
-            <code>docs/projects/haulage-des/demo-checklist.md</code>.
-          </p>
-        </footer>
+          <footer class="study-footer">
+            <p>
+              Docs mirror:
+              <code>docs/projects/haulage-des/narrative-redesign.md</code> and
+              <code>docs/projects/haulage-des/demo-checklist.md</code>.
+            </p>
+          </footer>
+        </div>
       </aside>
     }
   `,
@@ -56,8 +58,6 @@ import { HaulageCitationChipsComponent } from './haulage-citation-chips.componen
     .study-drawer {
       margin-bottom: 0.75rem;
       padding: 1rem 1.1rem;
-      max-height: min(70vh, 42rem);
-      overflow-y: auto;
     }
 
     .study-header {
@@ -66,12 +66,14 @@ import { HaulageCitationChipsComponent } from './haulage-citation-chips.componen
       align-items: flex-start;
       gap: 0.75rem;
       margin-bottom: 0.75rem;
-      position: sticky;
-      top: 0;
-      background: var(--bg-panel);
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border);
-      z-index: 1;
+    }
+
+    .drawer-content {
+      max-height: min(62vh, 38rem);
+      overflow-y: auto;
+      padding-right: 0.25rem;
     }
 
     .study-header h3 {

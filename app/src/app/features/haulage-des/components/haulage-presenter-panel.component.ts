@@ -30,36 +30,38 @@ import { HaulagePresenterStateService } from '../services/haulage-presenter-stat
           </div>
         </header>
 
-        @for (section of checklist; track section.id) {
-          <section class="check-section">
-            <h4>
-              <span class="time">{{ section.timeRange }}</span>
-              {{ section.title }}
-            </h4>
-            @for (para of section.paragraphs; track para) {
-              <p class="walkthrough-copy">{{ para }}</p>
-            }
-            <ul class="checklist">
-              @for (item of section.items; track item.id) {
-                <li>
-                  <label>
-                    <input
-                      type="checkbox"
-                      [checked]="presenter.isChecked(item.id)"
-                      (change)="presenter.toggle(item.id)"
-                    />
-                    <span>{{ item.label }}</span>
-                  </label>
-                </li>
+        <div class="drawer-content">
+          @for (section of checklist; track section.id) {
+            <section class="check-section">
+              <h4>
+                <span class="time">{{ section.timeRange }}</span>
+                {{ section.title }}
+              </h4>
+              @for (para of section.paragraphs; track para) {
+                <p class="walkthrough-copy">{{ para }}</p>
               }
-            </ul>
-          </section>
-        }
+              <ul class="checklist">
+                @for (item of section.items; track item.id) {
+                  <li>
+                    <label>
+                      <input
+                        type="checkbox"
+                        [checked]="presenter.isChecked(item.id)"
+                        (change)="presenter.toggle(item.id)"
+                      />
+                      <span>{{ item.label }}</span>
+                    </label>
+                  </li>
+                }
+              </ul>
+            </section>
+          }
 
-        <p class="presenter-note">
-          Official roles only: Quantitative Planning Analyst and Technical Services superintendent.
-          Mirrors <code>docs/projects/haulage-des/demo-checklist.md</code>.
-        </p>
+          <p class="presenter-note">
+            Official roles only: Quantitative Planning Analyst and Technical Services superintendent.
+            Mirrors <code>docs/projects/haulage-des/demo-checklist.md</code>.
+          </p>
+        </div>
       </aside>
     }
   `,
@@ -67,8 +69,6 @@ import { HaulagePresenterStateService } from '../services/haulage-presenter-stat
     .presenter {
       margin-bottom: 0.75rem;
       padding: 1rem 1.1rem;
-      max-height: min(70vh, 42rem);
-      overflow-y: auto;
     }
 
     .presenter-header {
@@ -77,12 +77,14 @@ import { HaulagePresenterStateService } from '../services/haulage-presenter-stat
       align-items: flex-start;
       gap: 0.75rem;
       margin-bottom: 0.75rem;
-      position: sticky;
-      top: 0;
-      background: var(--bg-panel);
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border);
-      z-index: 1;
+    }
+
+    .drawer-content {
+      max-height: min(62vh, 38rem);
+      overflow-y: auto;
+      padding-right: 0.25rem;
     }
 
     .presenter-header h3 {
